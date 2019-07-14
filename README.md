@@ -2,11 +2,11 @@
 
 个人练习和积累的一套小程序组件
 
-# 效果图
+## 效果图
 
 ![listPage效果演示](https://img2018.cnblogs.com/blog/1058332/201907/1058332-20190714181810782-278091686.gif)
 
-# 功能解析
+## 功能解析
 
 [swipeList组件实现分析](https://www.cnblogs.com/haha1212/p/11184595.html)
 
