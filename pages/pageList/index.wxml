@@ -1,0 +1,36 @@
+<view class="top-wrap">
+    <menu id="category"
+          menuData="{{categoryMenu}}"
+          min="{{true}}"
+          isScroll="{{true}}"
+          bindchange="toggleMenu"
+    ></menu>
+</view>
+
+<swiper current="{{categoryCur}}" duration="300" bindchange="swipeChange">
+    <swiper-item wx:for="{{categoryData}}" wx:key="{{index}}">
+        <scroll requesting="{{item.requesting}}"
+                end="{{item.end}}"
+                min="{{true}}"
+                listCount="{{item.listData.length}}"
+                bind:refresh="refresh"
+                bind:more="more">
+            <view class="list">
+                <view class="list-item"
+                     wx:for="{{item.listData}}"
+                     wx:key="{{index}}">
+                    <view class="bd">
+                        <view class="name">{{item.title}}</view>
+                        <view class="des">{{item.description}}</view>
+                        <view class="image" wx:if="{{item.type === 2}}">
+                            <image wx:for="{{item.images}}" wx:key="{{index}}" src="{{item}}" alt=""/>
+                        </view>
+                    </view>
+                    <view wx:if="{{item.type === 1}}" class="ft">
+                        <image src="{{item.images[0]}}" alt=""/>
+                    </view>
+                </view>
+            </view>
+        </scroll>
+    </swiper-item>
+</swiper>

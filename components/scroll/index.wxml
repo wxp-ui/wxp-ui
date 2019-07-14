@@ -1,0 +1,46 @@
+<movable-area>
+    <movable-view
+            class="{{min ? 'min' : ''}}"
+            bind:change="change"
+            bind:touchend="touchend"
+            direction="vertical"
+            out-of-bounds="{{true}}"
+            y='{{move}}'>
+        <scroll-view
+                class="scroll-view {{min ? 'min' : ''}}"
+                scroll-y
+                lower-threshold="{{0}}"
+                bindscrolltolower="more">
+            <view id="refresh" class="refresh {{successShow ? 'hidden' : ''}}">
+                <view class="la-square-jelly-box">
+                    <view></view>
+                    <view></view>
+                </view>
+            </view>
+            <view id="success" class="success {{successShow ? 'show' : ''}}">刷新成功</view>
+            <slot></slot>
+            <view wx:if="{{listCount === 0 && !requesting}}" class="emptyList">
+                <image src="{{emptyUrl}}"></image>
+                <view class="emptyInfo">{{emptyText}}</view>
+            </view>
+            <view wx:if="{{listCount !== 0}}" class="bottom {{isIphoneX ? 'isX' : ''}}">
+                <view class="requesting" wx:if="{{end}}">
+                    <view class="text">已全部加载</view>
+                </view>
+                <view class="requesting" wx:else>
+                    <view class="la-line-spin-fade-rotating">
+                        <view></view>
+                        <view></view>
+                        <view></view>
+                        <view></view>
+                        <view></view>
+                        <view></view>
+                        <view></view>
+                        <view></view>
+                    </view>
+                    <view class="text">加载中...</view>
+                </view>
+            </view>
+        </scroll-view>
+    </movable-view>
+</movable-area>

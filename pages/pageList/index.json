@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "多页数据列表切换",
+  "disableScroll": true,
+  "usingComponents": {
+    "menu": "../../components/menu/index",
+    "scroll": "../../components/scroll/index"
+  }
+}

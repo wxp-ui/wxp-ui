@@ -1,0 +1,4 @@
+
+<navigator url="/pages/pageList/index" hover-class="hover" hover-start-time="{{0}}" class="btn">
+    多页切换数据列表
+</navigator>

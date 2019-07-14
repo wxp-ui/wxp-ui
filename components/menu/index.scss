@@ -1,0 +1,64 @@
+@import "../../assets/css/variables.scss";
+
+$top-height-min: 80rpx;
+$top-height: 90rpx;
+
+.top {
+    width: 100%;
+    &.min {
+        .content {
+            height: $top-height-min !important;
+            .item_wrap {
+                height: $top-height-min !important;
+                line-height: $top-height-min !important;
+            }
+        }
+    }
+    .content {
+        position: relative;
+        height: $top-height;
+        color: $mainBlack3;
+        display: flex;
+        .line {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            background: $mainColor;
+            height: 6rpx;
+            border-radius: 6rpx;
+            width: 0rpx;
+            display: inline-block;
+        }
+
+        .item_wrap {
+            flex: 1;
+            text-align: center;
+            height: $top-height;
+            line-height: $top-height;
+            padding: 0 30rpx;
+            box-sizing: border-box;
+            -webkit-transition: color 0.3s, background-color 0.3s;
+            transition: color 0.3s, background-color 0.3s;
+            .item {
+                display: inline-block;
+            }
+            &.cur {
+                color: $mainBlack1;
+            }
+        }
+    }
+    &.isScroll {
+        .content {
+            white-space: nowrap;
+            display: block;
+            .item_wrap {
+                flex: initial;
+                text-align: initial;
+                display: inline-block;
+                .item {
+                    display: block;
+                }
+            }
+        }
+    }
+}

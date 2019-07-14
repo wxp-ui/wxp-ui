@@ -1,0 +1,66 @@
+.top-wrap {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background-color: #ffffff;
+  z-index: 99;
+}
+
+swiper {
+  height: 100vh;
+}
+
+.list {
+  background: #ffffff;
+  margin-top: 20rpx;
+}
+.list .list-item {
+  display: flex;
+  padding: 30rpx;
+}
+.list .list-item:not(:last-child) {
+  border-bottom: 1px solid #ebedf0;
+}
+.list .list-item .bd {
+  flex: 1;
+}
+.list .list-item .bd .name {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  word-break: break-all;
+  margin-bottom: 50rpx;
+  font-size: 32rpx;
+}
+.list .list-item .bd .des {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  word-break: break-all;
+  color: #666666;
+}
+.list .list-item .bd .image {
+  font-size: 0;
+}
+.list .list-item .bd .image image {
+  width: 216rpx;
+  height: 216rpx;
+  border-radius: 16rpx;
+  margin-top: 30rpx;
+  margin-right: 20rpx;
+}
+.list .list-item .bd .image image:nth-child(3) {
+  margin-right: 0;
+}
+.list .list-item .ft {
+  font-size: 0;
+}
+.list .list-item .ft image {
+  width: 216rpx;
+  height: 216rpx;
+  border-radius: 16rpx;
+  margin-left: 30rpx;
+}

@@ -1,0 +1,19 @@
+page {
+  padding-top: 300rpx;
+}
+
+.btn {
+  width: 320rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 8rpx;
+  text-align: center;
+  color: #ffffff;
+  font-weight: bold;
+  background: #ff4158;
+  margin: 30rpx auto;
+  transition: background-color 0.3s;
+}
+.btn.hover {
+  background: rgba(255, 65, 88, 0.7);
+}

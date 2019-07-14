@@ -1,0 +1,63 @@
+@import "../../assets/css/variables.scss";
+
+$top-height: 90rpx;
+
+.top-wrap {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background-color: #ffffff;
+    z-index: 99;
+}
+
+swiper {
+    height: 100vh;
+}
+
+.list {
+    background: #ffffff;
+    margin-top: 20rpx;
+    .list-item {
+        display: flex;
+        padding: 30rpx;
+        &:not(:last-child) {
+            border-bottom: 1px solid $lineColor;
+        }
+        .bd {
+            flex: 1;
+            .name {
+                @include line(2);
+                margin-bottom: 50rpx;
+                font-size: 32rpx;
+            }
+            .des {
+                @include line(2);
+                color: $mainBlack2;
+            }
+            .image {
+                font-size: 0;
+                image {
+                    width: 216rpx;
+                    height: 216rpx;
+                    border-radius: 16rpx;
+                    margin-top: 30rpx;
+                    margin-right: 20rpx;
+                    &:nth-child(3) {
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+        .ft {
+            font-size: 0;
+            image {
+                width: 216rpx;
+                height: 216rpx;
+                border-radius: 16rpx;
+                margin-left: 30rpx;
+            }
+        }
+
+    }
+}

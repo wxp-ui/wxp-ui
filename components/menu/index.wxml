@@ -1,0 +1,13 @@
+<scroll-view class="top {{min ? 'min' : ''}} {{ isScroll ? 'isScroll' : ''}}" scroll-x scroll-with-animation="{{true}}" scroll-left="{{scrollLeft}}">
+    <view class="content">
+        <view   wx:for="{{menuData}}"
+                wx:key="{{index}}"
+                id="item_wrap{{index}}"
+                class="item_wrap {{index === menuCur ? 'cur': ''}}"
+                bindtap="toggleMenu"
+                data-index="{{index}}">
+            <view class="item" id="item{{index}}">{{item}}</view>
+        </view>
+        <view animation="{{animationData}}" class="line"></view>
+    </view>
+</scroll-view>
