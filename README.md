@@ -12,7 +12,7 @@
 ## 组件列表 
 #### 目前只有listPage组件
 
-- listPage组件(小程序多页swipe切换,自定义下啦刷新和上拉加载,以及顶部menu滚动)
+- listPage组件(小程序多页swiper切换,自定义下拉刷新和上拉加载,以及顶部menuTab滚动)
 
 ## 贡献
 
