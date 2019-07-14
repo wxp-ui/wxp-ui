@@ -2,6 +2,9 @@
 
 个人练习和积累的一套小程序组件
 
+# 效果图
+![listPage效果演示](https://img2018.cnblogs.com/blog/1058332/201907/1058332-20190714161616356-16316324.gif)
+
 ## 如何使用
 
 通过 [GitHub](https://github.com/singletouch/small-demo) 下载, 然后每个组件参考对应使用页面
