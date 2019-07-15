@@ -48,7 +48,7 @@ swiper {
 .list .list-item .bd .image image {
   width: 216rpx;
   height: 216rpx;
-  border-radius: 16rpx;
+  border-radius: 4rpx;
   margin-top: 30rpx;
   margin-right: 20rpx;
 }
@@ -61,6 +61,6 @@ swiper {
 .list .list-item .ft image {
   width: 216rpx;
   height: 216rpx;
-  border-radius: 16rpx;
+  border-radius: 4rpx;
   margin-left: 30rpx;
 }

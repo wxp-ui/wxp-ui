@@ -15,9 +15,9 @@
 通过 [GitHub](https://github.com/singletouch/small-demo) 下载, 然后每个组件参考对应使用页面
 
 ## 组件列表 
-#### 目前只有listPage组件
 
 - swipeList组件(小程序多页swipe切换,自定义下拉刷新和上拉加载,以及顶部menuTab滚动)
+- 日历组件
 
 ## 贡献
 

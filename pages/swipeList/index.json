@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "多页数据列表切换",
+  "navigationBarTitleText": "多页列表切换组件",
   "disableScroll": true,
   "usingComponents": {
     "menu": "../../components/menu/index",

@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/date/index",
     "pages/swipeList/index"
   ],
   "permission": {
@@ -12,9 +13,8 @@
     "backgroundTextStyle": "dark",
     "navigationBarTextStyle": "white",
     "navigationBarBackgroundColor": "#ff4158",
-    "navigationBarTitleText": "small-demo",
-    "backgroundColor": "#f7f7f7",
-    "disableSwipeBack": true
+    "navigationBarTitleText": "小程序组件",
+    "backgroundColor": "#f7f7f7"
   },
   "sitemapLocation": "sitemap.json"
 }

@@ -1,0 +1,21 @@
+Page .list {
+  background: #ffffff;
+  margin: 20rpx 0;
+  border-top: 1rpx solid #ebedf0;
+  border-bottom: 1rpx solid #ebedf0;
+}
+Page .list .listItem {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 20rpx 30rpx;
+}
+Page .list .listItem:not(:last-child) {
+  border-bottom: 1rpx solid #ebedf0;
+}
+Page .list .listItem .bd {
+  flex: 1;
+}
+Page .app-btn {
+  margin-bottom: 100rpx;
+}
