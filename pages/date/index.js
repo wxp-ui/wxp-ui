@@ -3,8 +3,6 @@ const {appUtils} = require('../../utils/util.js');
 
 Page({
     data: {
-
-
         time1: undefined,
         timeStr1: '',
         timeShow1: false,
@@ -18,27 +16,26 @@ Page({
         timeShow3: false,
         rangeStart: undefined,
         rangeEnd: undefined
-
     },
     timeSelect1(e) {
-        let {date, dateStr} = e.detail;
+        let {date, dateTimeStr} = e.detail;
         this.setData({
             time1: date.getTime(),
-            timeStr1: dateStr
+            timeStr1: dateTimeStr
         });
     },
     timeSelect2(e) {
-        let {date, dateStr} = e.detail;
+        let {date, dateTimeStr} = e.detail;
         this.setData({
             time2: date.getTime(),
-            timeStr2: dateStr
+            timeStr2: dateTimeStr
         });
     },
     timeSelect3(e) {
-        let {date, dateStr} = e.detail;
+        let {date, dateTimeStr} = e.detail;
         this.setData({
             time3: date.getTime(),
-            timeStr3: dateStr
+            timeStr3: dateTimeStr
         });
     },
     toggleShow1() {

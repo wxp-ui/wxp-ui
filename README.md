@@ -4,11 +4,19 @@
 
 ## 效果图
 
-![listPage效果演示](https://img2018.cnblogs.com/blog/1058332/201907/1058332-20190714181810782-278091686.gif)
+swipeList组件演示:
+
+![swipeList组件](https://img2018.cnblogs.com/blog/1058332/201907/1058332-20190715191010564-135337474.gif)
+
+日历组件演示:
+
+![日历组件](https://img2018.cnblogs.com/blog/1058332/201907/1058332-20190715191925671-242282121.gif)
 
 ## 功能解析
 
 [swipeList组件实现分析](https://www.cnblogs.com/haha1212/p/11184595.html)
+
+[日历组件实现分析](https://www.cnblogs.com/haha1212/p/11191035.html)
 
 ## 如何使用
 
