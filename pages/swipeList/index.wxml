@@ -19,15 +19,12 @@
                 <view class="list-item"
                      wx:for="{{item.listData}}"
                      wx:key="{{index}}">
+                    <view class="hd">
+                        <image mode="aspectFill" src="{{item.images}}" alt=""/>
+                    </view>
                     <view class="bd">
                         <view class="name">{{item.title}}</view>
                         <view class="des">{{item.description}}</view>
-                        <view class="image" wx:if="{{item.type === 2}}">
-                            <image wx:for="{{item.images}}" wx:key="{{index}}" src="{{item}}" alt=""/>
-                        </view>
-                    </view>
-                    <view wx:if="{{item.type === 1}}" class="ft">
-                        <image src="{{item.images[0]}}" alt=""/>
                     </view>
                 </view>
             </view>

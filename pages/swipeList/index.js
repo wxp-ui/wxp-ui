@@ -5,49 +5,43 @@ let pageSize = 15;
 
 let categoryMenu
 
-let testData1 = [
+let testData = [
     {
-        title: "广汽本田新缤智上市，售价12.78万-17.68万元",
-        description: "新缤智融合了SUV和轿车的造型设计，采用一体式镀铬前格栅与飞翼动感前脸，配上高辨识度的羽翼式LED前大灯以及并排式五灯珠雾灯，带来更强的视觉冲击。",
-        images: [
-            "../../assets/image/swipe/1.jpeg"
-        ],
-        type: 1
+        title: "我要在这战火纷飞的俗世中打上停战的休止符，这就是神的使命。国国相战中，怎样才能迅速制止那战争呢？",
+        description: "感受痛苦吧，体验痛苦吧，接受痛苦吧，了解痛苦吧。不知道痛苦的人是不会知道什么是和平。",
+        images: "../../assets/image/swipe/1.jpg"
     },
     {
-        title: "建于1951年的什刹海人民游泳场，曾是当年北京人消夏休闲的好去处",
-        description: "解放初期，北京市政府在完成龙须沟整修工程之后，即大力开展全市河湖水系的整理，疏通三海（中南海、北海、什刹海），并利用天然水系和原有地形，在前什刹海西小海建立起人民游泳场，于1951年6月6日正式对外开放。",
-        images: [
-            "../../assets/image/swipe/3.jpeg",
-            "../../assets/image/swipe/4.jpeg",
-            "../../assets/image/swipe/5.jpeg"
-        ],
-        type: 2
+        title: "在我归于沉眠的这段时间，将一切都交给你，让你走在我的前面！那是我开启的道路，你为了达成目标，应作为斑尽享天年才是！作为..拯救这个世界的救世主！",
+        description: "这世上的事并非皆能如你所愿，活得越久……看得越清，现实其实就是无奈，痛苦和空虚……听好了……在这世上，有光的地方就必定有阴影。诺以想一己之私，想要维持和平，必会招致战争，为了守护爱，便孕育出恨。此间因果，是无法斩断的，现实就是如此。现实世界，即是地狱。只有胜者，只有和平的世界，只有爱的世界，我就是想再造一个这样的世界。",
+        images: "../../assets/image/swipe/2.jpg"
     },
     {
-        title: "为什么会做梦，并且更经常做不太好的梦？为何睡醒之后容易忘记自己的梦？原来梦的重点不是内容",
-        description: "睡觉是自然界的普遍现象。所有的动物都睡觉，连培植器皿中的细菌都会睡觉。但梦却是进化较新的产物——快速眼动睡眠（REM）只在人类和其他温血哺乳类动物、鸟类身上发现过。",
-        images: [
-            "../../assets/image/swipe/2.jpeg"
-        ],
-        type: 1
+        title: "我现在决定了，我要走我自己的忍道，朝着一条绝对不会后悔的路，一直往前走！",
+        description: "孤单一个人的，那种痛苦，真的不是一般的难受，你的心情不知道为什么，我觉得很清楚，不过，对我来说，已经找到了最珍惜的人们。我最珍惜的人们，我不会让你伤害他们，就算要杀了你，我也要阻止你。",
+        images: "../../assets/image/swipe/3.jpg"
     },
     {
-        title: "一只特立独行的猫！被欺负逃上树一住6年没下来",
-        description: "波兰东北部小镇巴尔托希采有一只独特的小猫咪。它独来独往，在一棵橡树上生活了整整6年。",
-        images: [
-            "../../assets/image/swipe/6.jpeg",
-            "../../assets/image/swipe/7.jpeg",
-            "../../assets/image/swipe/8.jpeg"
-        ],
-        type: 2
+        title: "你知道你为什么这么弱吗，那是因为你的仇恨还不够深！！",
+        description: "你逃吧，直到有了我一样的眼睛你再来找我，在此之前你就苟延残喘一样的活下去吧，哇哈哈哈哈哈~~~~~~",
+        images: "../../assets/image/swipe/4.jpg"
+    },
+    {
+        title: "我早已闭上了双眼，我的目的，只有在黑暗中才能实现。",
+        description: "因为我认同你，你的确是很强，你跟我是一样的，我们都了解孤独的痛苦是什么，而且，那种痛苦可以让人变得更强，就是因为这样，我要借由断掉这层关系，得到比现在更强大的力量，从现在开始，我要跟你对等的交手。",
+        images: "../../assets/image/swipe/5.jpg"
+    },
+    {
+        title: "不能保护同伴的人，不配称之为忍者。",
+        description: "很不巧的是我只有一个人，你说的那些家伙们已经一个都没有了，已经??全部被杀死了",
+        images: "../../assets/image/swipe/6.jpg"
     }
 ]
 
 Page({
     data: {
         categoryCur: 0,
-        categoryMenu: ["推荐", "美食", "时尚美妆", "明星综艺", "搞笑", "游戏"],
+        categoryMenu: ["推荐", "精选集锦", "最新体验", "资料", "版本", "攻略", "排行", "热门"],
         categoryData: [
             {
                 name: "推荐",
@@ -57,35 +51,49 @@ Page({
                 listData: []
             },
             {
-                name: "美食",
+                name: "精选集锦",
                 requesting: false,
                 end: false,
                 page: pageStart,
                 listData: []
             },
             {
-                name: "时尚美妆",
+                name: "最新体验",
                 requesting: false,
                 end: false,
                 page: pageStart,
                 listData: []
             },
             {
-                name: "明星综艺",
+                name: "资料",
                 requesting: false,
                 end: false,
                 page: pageStart,
                 listData: []
             },
             {
-                name: "搞笑",
+                name: "版本",
                 requesting: false,
                 end: false,
                 page: pageStart,
                 listData: []
             },
             {
-                name: "游戏",
+                name: "攻略",
+                requesting: false,
+                end: false,
+                page: pageStart,
+                listData: []
+            },
+            {
+                name: "排行",
+                requesting: false,
+                end: false,
+                page: pageStart,
+                listData: []
+            },
+            {
+                name: "热门",
                 requesting: false,
                 end: false,
                 page: pageStart,
@@ -108,30 +116,11 @@ Page({
             wx.hideNavigationBarLoading()
 
             if(type === 'refresh') {
-                pageData.listData = testData1
+                pageData.listData = testData
                 pageData.page = currentPage + 1
 
             } else {
-                pageData.listData = pageData.listData.concat([
-                    {
-                        title: "一个冰激凌，需要走5700步才能消耗掉",
-                        description: "人们常感叹减肥过程中难以抵挡美食的诱惑，怎么办呢？在忍不住食指大动前，不妨看一看食物的热量以及需要多少运动量才能将其消耗掉吧！这样也能帮助你“三思而后行”。",
-                        images: [
-                            "../../assets/image/swipe/12.jpeg"
-                        ],
-                        type: 1
-                    },
-                    {
-                        title: "被历史遗忘的一段齐长城：既没有被拆毁，也没有被重建",
-                        description: "我们在山东寻访《诗经》地理，最初试图了解“泰山岩岩”究竟是何种气派，又去寻找“徂莱之松”，在徂莱林场见识到千年古松和成片成片的松林。",
-                        images: [
-                            "../../assets/image/swipe/9.jpeg",
-                            "../../assets/image/swipe/10.jpeg",
-                            "../../assets/image/swipe/11.jpeg"
-                        ],
-                        type: 2
-                    },
-                ])
+                pageData.listData = pageData.listData.concat(testData)
                 pageData.end = true
                 pageData.page = currentPage + 1
             }

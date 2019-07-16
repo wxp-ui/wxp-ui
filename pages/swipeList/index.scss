@@ -24,40 +24,26 @@ swiper {
         &:not(:last-child) {
             border-bottom: 1px solid $lineColor;
         }
+        .hd {
+            font-size: 0;
+            image {
+                width: 200rpx;
+                height: 200rpx;
+                border-radius: 4rpx;
+                margin-right: 30rpx;
+            }
+        }
         .bd {
             flex: 1;
             .name {
                 @include line(2);
-                margin-bottom: 50rpx;
+                margin-bottom: 32rpx;
                 font-size: 32rpx;
             }
             .des {
                 @include line(2);
                 color: $mainBlack2;
             }
-            .image {
-                font-size: 0;
-                image {
-                    width: 216rpx;
-                    height: 216rpx;
-                    border-radius: 4rpx;
-                    margin-top: 30rpx;
-                    margin-right: 20rpx;
-                    &:nth-child(3) {
-                        margin-right: 0;
-                    }
-                }
-            }
         }
-        .ft {
-            font-size: 0;
-            image {
-                width: 216rpx;
-                height: 216rpx;
-                border-radius: 4rpx;
-                margin-left: 30rpx;
-            }
-        }
-
     }
 }

@@ -22,6 +22,15 @@ swiper {
 .list .list-item:not(:last-child) {
   border-bottom: 1px solid #ebedf0;
 }
+.list .list-item .hd {
+  font-size: 0;
+}
+.list .list-item .hd image {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 4rpx;
+  margin-right: 30rpx;
+}
 .list .list-item .bd {
   flex: 1;
 }
@@ -31,7 +40,7 @@ swiper {
   -webkit-line-clamp: 2;
   overflow: hidden;
   word-break: break-all;
-  margin-bottom: 50rpx;
+  margin-bottom: 32rpx;
   font-size: 32rpx;
 }
 .list .list-item .bd .des {
@@ -41,26 +50,4 @@ swiper {
   overflow: hidden;
   word-break: break-all;
   color: #666666;
-}
-.list .list-item .bd .image {
-  font-size: 0;
-}
-.list .list-item .bd .image image {
-  width: 216rpx;
-  height: 216rpx;
-  border-radius: 4rpx;
-  margin-top: 30rpx;
-  margin-right: 20rpx;
-}
-.list .list-item .bd .image image:nth-child(3) {
-  margin-right: 0;
-}
-.list .list-item .ft {
-  font-size: 0;
-}
-.list .list-item .ft image {
-  width: 216rpx;
-  height: 216rpx;
-  border-radius: 4rpx;
-  margin-left: 30rpx;
 }
