@@ -31,11 +31,18 @@ Component({
         successShow: false,
         refreshStatus: 0, // 1: 下拉刷新, 2: 松开刷新, 3: 加载中, 4: 加载完成
         move: -40,
-        scrollHeight1: 0,
-        scrollHeight2: 0
+        scrollHeight1: 0, // refresh view 高度负值
+        scrollHeight2: 0  // refresh view - success view 高度负值
     },
     methods: {
         change(e) {
+            const {refreshStatus} = this.data;
+
+            // 判断如果状态大于3则返回
+            if(refreshStatus >= 3) {
+                return
+            }
+
             let diff = e.detail.y
 
             if(diff > -10) {
@@ -49,21 +56,20 @@ Component({
             }
         },
         touchend() {
-            const status = this.data.refreshStatus;
+            const {refreshStatus} = this.data;
 
-            if (status == 2) {
+            if(refreshStatus >= 3) {
+                return
+            }
 
+            if (refreshStatus == 2) {
                 this.setData({
                     refreshStatus: 3,
-                    move: 0
-                })
-                this.setData({
+                    move: 0,
                     mode: 'refresh'
                 })
                 this.triggerEvent('refresh');
-
-            } else if(status == 1) {
-
+            } else if(refreshStatus == 1) {
                 this.setData({
                     move: this.data.scrollHeight1
                 })
@@ -92,9 +98,14 @@ Component({
                 setTimeout(() => {
                     this.setData({
                         successShow: false,
-                        refreshStatus: 1,
                         move: this.data.scrollHeight1
                     });
+                    setTimeout(() => {
+                        this.setData({
+                            refreshStatus: 1,
+                            move: this.data.scrollHeight1
+                        });
+                    }, 300)
                 }, 1000)
             } else {
                 if(this.data.refreshStatus != 3) {
@@ -116,7 +127,7 @@ Component({
             this.setData({
                 scrollHeight1: -res[0].height,
                 scrollHeight2: res[1].height - res[0].height,
-                move: -res[0].height,
+                move: -res[0].height
             })
         }.bind(this));
     }

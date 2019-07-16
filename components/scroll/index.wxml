@@ -5,10 +5,11 @@
             bind:touchend="touchend"
             direction="vertical"
             out-of-bounds="{{true}}"
+            disabled="{{refreshStatus >= 3}}"
             y='{{move}}'>
         <scroll-view
                 class="scroll-view {{min ? 'min' : ''}}"
-                scroll-y
+                scroll-y="{{refreshStatus == 1}}"
                 lower-threshold="{{0}}"
                 bindscrolltolower="more">
             <view id="refresh" class="refresh {{successShow ? 'hidden' : ''}}">
