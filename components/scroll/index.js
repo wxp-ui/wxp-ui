@@ -63,6 +63,7 @@ Component({
             }
 
             if (refreshStatus == 2) {
+                wx.vibrateShort();
                 this.setData({
                     refreshStatus: 3,
                     move: 0,
