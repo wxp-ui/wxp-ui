@@ -98,10 +98,6 @@ movable-area {
   &__bottom {
     height: 40rpx;
     padding: 30rpx 0;
-
-    &.isX {
-      padding-bottom: 70rpx;
-    }
   }
 
   &__bottom > &__loading {

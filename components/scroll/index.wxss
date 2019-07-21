@@ -82,9 +82,6 @@ movable-area {
   height: 40rpx;
   padding: 30rpx 0;
 }
-.scroll__bottom.isX {
-  padding-bottom: 70rpx;
-}
 .scroll__bottom > .scroll__loading {
   text-align: center;
   color: #999999;

@@ -32,7 +32,7 @@
                 <image src="{{emptyUrl}}"></image>
                 <view>{{emptyText}}</view>
             </view>
-            <view wx:if="{{listCount !== 0}}" class="scroll__bottom {{isIphoneX ? 'isX' : ''}}">
+            <view wx:if="{{listCount !== 0}}" class="scroll__bottom">
                 <view class="scroll__loading" wx:if="{{end}}">
                     <view class="text">已全部加载</view>
                 </view>
