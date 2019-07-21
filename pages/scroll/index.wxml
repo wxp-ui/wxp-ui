@@ -1,5 +1,5 @@
 <view class="title" style="line-height: {{refreshSize < 80 ? 80 : refreshSize }}rpx" wx:if="{{hasTop}}">
-    title
+    标题
 </view>
 
 <scroll id="scroll"
