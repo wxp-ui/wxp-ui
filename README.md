@@ -6,15 +6,12 @@
 
 ![微信小程序组件](./assets/image/code.jpg)
 
-## 效果图
+## 组件列表 
 
-swipe-list组件演示:
-
-![swipe-list组件](https://img2018.cnblogs.com/blog/1058332/201907/1058332-20190716153254624-2000170045.gif)
-
-日历组件演示:
-
-![日历组件](https://img2018.cnblogs.com/blog/1058332/201907/1058332-20190715191925671-242282121.gif)
+- swipe-list组件
+- scroll组件
+- tab组件
+- 日历组件
 
 ## 功能解析
 
@@ -24,14 +21,6 @@ swipe-list组件演示:
 
 ## 如何使用
 
-通过 [GitHub](https://github.com/singletouch/small-demo) 下载, 然后每个组件参考对应使用页面
-
-## 组件列表 
-
-- swipe-list组件
-- scroll组件
-- tab组件
-- 日历组件
 
 ## 贡献
 
