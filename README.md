@@ -1,4 +1,4 @@
-# 小程序DEMO
+# 小程序组件
 
 个人练习和积累的一套小程序组件
 
@@ -21,10 +21,17 @@
 
 ## 如何使用
 
+```
+git clone https://github.com/singletouch/small-demo
+```
+
+将需要使用的组件代码拷至自己的小程序项目中，按照小程序官方[引入组件](https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component)方式引入即可
+
+本项目自身就是一个完整的小程序项目，也可以直接使用本项目作为小程序开发目录
 
 ## 贡献
 
-有任何意见或建议都欢迎提 issue
+如果有什么好的建议欢迎提issues
 
 ## License
 
