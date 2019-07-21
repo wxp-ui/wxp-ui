@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "日历组件",
   "usingComponents": {
-    "date-picker": "/components/datePicker/index"
+    "date-picker": "/components/date-picker/index"
   }
 }

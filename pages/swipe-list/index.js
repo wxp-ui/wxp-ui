@@ -129,8 +129,8 @@ Page({
         }, 1000)
 
     },
-    // 顶部菜单切换事件
-    toggleMenu(e) {
+    // 顶部tab切换事件
+    toggleCategory(e) {
         this.setData({
             categoryCur: e.detail.index
         })

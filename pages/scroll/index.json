@@ -1,8 +1,7 @@
 {
-  "navigationBarTitleText": "多页列表切换组件",
+  "navigationBarTitleText": "scroll组件用法",
   "disableScroll": true,
   "usingComponents": {
-    "menu": "../../components/menu/index",
     "scroll": "../../components/scroll/index"
   }
 }

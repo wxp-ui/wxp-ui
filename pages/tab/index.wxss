@@ -1,0 +1,32 @@
+.top {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background-color: #ffffff;
+  z-index: 99;
+  box-shadow: 0 0 20rpx -5rpx rgba(0, 0, 0, 0.1);
+}
+
+.control-panel {
+  border-top: 1rpx solid #ebedf0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 12213;
+  background: #ffffff;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+.control-panel.isX {
+  padding-bottom: 60rpx;
+}
+
+.panel-item {
+  display: flex;
+  align-items: center;
+}
+.panel-item__bd {
+  flex: 1;
+}

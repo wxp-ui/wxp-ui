@@ -1,18 +1,19 @@
 <view class="top-wrap">
-    <menu id="category"
-          menuData="{{categoryMenu}}"
-          min="{{true}}"
-          isScroll="{{true}}"
-          bindchange="toggleMenu"
-    ></menu>
+    <tab id="category"
+          tab-data="{{categoryMenu}}"
+          size="{{80}}"
+          scroll="{{true}}"
+          bindchange="toggleCategory">
+    </tab>
 </view>
 
 <swiper current="{{categoryCur}}" duration="300" bindchange="swipeChange">
     <swiper-item wx:for="{{categoryData}}" wx:key="{{index}}">
         <scroll requesting="{{item.requesting}}"
                 end="{{item.end}}"
-                min="{{true}}"
                 listCount="{{item.listData.length}}"
+                has-top="{{true}}"
+                refresh-size="{{80}}"
                 bind:refresh="refresh"
                 bind:more="more">
             <view class="list">

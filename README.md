@@ -8,9 +8,9 @@
 
 ## 效果图
 
-swipeList组件演示:
+swipe-list组件演示:
 
-![swipeList组件](https://img2018.cnblogs.com/blog/1058332/201907/1058332-20190716153254624-2000170045.gif)
+![swipe-list组件](https://img2018.cnblogs.com/blog/1058332/201907/1058332-20190716153254624-2000170045.gif)
 
 日历组件演示:
 
@@ -18,7 +18,7 @@ swipeList组件演示:
 
 ## 功能解析
 
-[swipeList组件实现分析](https://www.cnblogs.com/haha1212/p/11184595.html)
+[swipe-list组件实现分析](https://www.cnblogs.com/haha1212/p/11184595.html)
 
 [日历组件实现分析](https://www.cnblogs.com/haha1212/p/11191035.html)
 
@@ -28,7 +28,9 @@ swipeList组件演示:
 
 ## 组件列表 
 
-- swipeList组件(小程序多页swipe切换,自定义下拉刷新和上拉加载,以及顶部menuTab滚动)
+- swipe-list组件
+- scroll组件
+- tab组件
 - 日历组件
 
 ## 贡献

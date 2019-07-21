@@ -1,0 +1,16 @@
+<scroll-view scroll-x
+             scroll-with-animation="{{true}}"
+             scroll-left="{{scrollLeft}}">
+    <view class="tabs {{ scroll ? 'tabs--scroll' : ''}}" style="height: {{size}}rpx">
+        <view id="item{{index}}"
+              class="tabs__item {{index === tabCur ? 'tabs__item--cur': ''}}"
+              style="height: {{size}}rpx;line-height: {{size}}rpx"
+              wx:for="{{tabData}}"
+              wx:key="{{index}}"
+              bindtap="toggleTab"
+              data-index="{{index}}">
+            <view class="tabs__item-child" id="item-child{{index}}">{{item}}</view>
+        </view>
+        <view animation="{{animationData}}" class="tabs__line" style="background: {{color}};"></view>
+    </view>
+</scroll-view>

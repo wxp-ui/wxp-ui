@@ -2,49 +2,55 @@ const app = getApp()
 
 Component({
     properties: {
-        isScroll: {
+        scroll: {
             type: Boolean,
             value: false
         },
-        min: {
-            type: Boolean,
-            value: false
-        },
-        menuData: {
+        tabData: {
             type: Array,
             value: []
         },
+        size: {
+            type: Number,
+            value: 90,
+            observer: "sizeChange"
+        },
+        color: {
+            type: String,
+            value: "#ff4158",
+            observer: "colorChange"
+        }
     },
     data: {
-        windowWidth: 0,
-        menuCur: 0,
+        windowWidth: 375,
+        tabCur: 0,
         scrollLeft: 0,
     },
     methods: {
         /**
          * 切换菜单
          */
-        toggleMenu(e) {
+        toggleTab(e) {
             this.triggerEvent('change', {index: e.currentTarget.dataset.index});
             this.scrollByIndex(e.currentTarget.dataset.index)
         },
         /**
-         * 获取当前menuItem的左边距离
-         * @param menuCur: 当前激活的menuItem的索引
+         * 获取当前tabItem的左边距离
+         * @param tabCur: 当前激活的tabItem的索引
          */
-        getOffsetLeftByIndex(menuCur) {
+        getOffsetLeftByIndex(tabCur) {
             let offsetLeft = 0;
-            for(let i = 0; i < menuCur; i++) {
+            for(let i = 0; i < tabCur; i++) {
                 offsetLeft += this.data.items[i].width
             }
             return offsetLeft;
         },
         /**
          * 滑动到指定位置
-         * @param menuCur: 当前激活的menuItem的索引
+         * @param tabCur: 当前激活的tabItem的索引
          * @param needTransition: 下划线是否需要过渡动画, 第一次进来应设置为false
          */
-        scrollByIndex(menuCur, needTransition = true) {
+        scrollByIndex(tabCur, needTransition = true) {
             let animation;
             if(needTransition) {
                 animation = wx.createAnimation({
@@ -59,9 +65,9 @@ Component({
 
             let query = this.createSelectorQuery();
 
-            query.select(`#item${menuCur}`).boundingClientRect();
+            query.select(`#item-child${tabCur}`).boundingClientRect();
 
-            query.select(`#item_wrap${menuCur}`).fields({
+            query.select(`#item${tabCur}`).fields({
                 size: true,
                 computedStyle: ['paddingLeft']
             });
@@ -71,9 +77,9 @@ Component({
                 let itemWidth = res[0].width
 
                 // 父item左边距离
-                let offsetLeft = this.getOffsetLeftByIndex(menuCur)
+                let offsetLeft = this.getOffsetLeftByIndex(tabCur)
 
-                if(this.data.isScroll) { // 超出滚动的情况
+                if(this.data.scroll) { // 超出滚动的情况
                     // 父item左边距
                     let paddingLeft = parseInt(res[1].paddingLeft.slice(0,-2)||0)
 
@@ -87,7 +93,7 @@ Component({
                     let scrollLeft = offsetLeft - (this.data.windowWidth - itemWidth) / 2;
 
                     this.setData({
-                        menuCur: menuCur,
+                        tabCur: tabCur,
                         scrollLeft: scrollLeft,
                     })
                 } else { // 不超出滚动的情况
@@ -101,28 +107,46 @@ Component({
                     })
 
                     this.setData({
-                        menuCur: menuCur,
+                        tabCur: tabCur,
                     })
                 }
+            }.bind(this));
+        },
+        sizeChange(newVal, oldVal) {
+            if(newVal <= 80) {
+                this.setData({
+                    size: 80
+                })
+            }
+        },
+        colorChange(newVal, oldVal) {
+            this.init();
+        },
+        init() {
+            try {
+                const res = wx.getSystemInfoSync()
+                this.setData({
+                    windowWidth: res.windowWidth
+                });
+            } catch (e) {
+                console.log(e)
+            }
+
+            let query = this.createSelectorQuery();
+
+            for(let i = 0; i < this.data.tabData.length; i++) {
+                query.select(`#item${i}`).boundingClientRect()
+            }
+
+            query.exec(function (res) {
+                this.setData({
+                    items: res
+                })
+                this.scrollByIndex(0, false)
             }.bind(this));
         }
     },
     attached() {
-        this.setData({
-            windowWidth: app.globalData.systemInfo.windowWidth
-        })
-
-        let query = this.createSelectorQuery();
-
-        for(let i = 0; i < this.data.menuData.length; i++) {
-            query.select(`#item_wrap${i}`).boundingClientRect()
-        }
-
-        query.exec(function (res) {
-            this.setData({
-                items: res
-            })
-            this.scrollByIndex(0, false)
-        }.bind(this));
+        this.init();
     }
 })

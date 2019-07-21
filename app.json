@@ -1,8 +1,10 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/tab/index",
+    "pages/scroll/index",
     "pages/date/index",
-    "pages/swipeList/index"
+    "pages/swipe-list/index"
   ],
   "permission": {
     "scope.userLocation": {

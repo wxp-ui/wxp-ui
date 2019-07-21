@@ -1,6 +1,7 @@
 <movable-area>
     <movable-view
-            class="{{min ? 'min' : ''}}"
+            class="scroll"
+            style="height: calc(100vh + {{refreshSize}}rpx)"
             bind:change="change"
             bind:touchend="touchend"
             direction="vertical"
@@ -8,27 +9,34 @@
             disabled="{{refreshStatus >= 3}}"
             y='{{move}}'>
         <scroll-view
-                class="scroll-view {{min ? 'min' : ''}}"
+                class="scroll__view"
+                style="padding-bottom: {{bottomSize}}rpx;padding-top: {{ hasTop ? refreshSize : 0}}rpx;"
                 scroll-y="{{refreshStatus == 1}}"
                 lower-threshold="{{0}}"
                 bindscrolltolower="more">
-            <view id="refresh" class="refresh {{successShow ? 'hidden' : ''}}">
-                <view class="la-square-jelly-box">
+            <view id="refresh"
+                  class="scroll__refresh {{successShow ? 'scroll__refresh--hidden' : ''}}"
+                  style="height: {{refreshSize}}rpx;padding: {{(refreshSize - 50) / 2}}rpx 0;">
+                <view class="la-square-jelly-box" style="color: {{color}}">
                     <view></view>
                     <view></view>
                 </view>
             </view>
-            <view id="success" class="success {{successShow ? 'show' : ''}}">刷新成功</view>
-            <slot></slot>
-            <view wx:if="{{listCount === 0 && !requesting}}" class="emptyList">
-                <image src="{{emptyUrl}}"></image>
-                <view class="emptyInfo">{{emptyText}}</view>
+            <view id="success"
+                  class="scroll__success {{successShow ? 'scroll__success--show' : ''}} {{successTran ? 'scroll__success--tran' : ''}}"
+                  style="top: {{refreshSize - 60}}rpx;color: {{color}}">
+                <view>刷新成功</view>
             </view>
-            <view wx:if="{{listCount !== 0}}" class="bottom {{isIphoneX ? 'isX' : ''}}">
-                <view class="requesting" wx:if="{{end}}">
+            <slot></slot>
+            <view wx:if="{{listCount === 0 && !requesting}}" class="scroll__empty">
+                <image src="{{emptyUrl}}"></image>
+                <view>{{emptyText}}</view>
+            </view>
+            <view wx:if="{{listCount !== 0}}" class="scroll__bottom {{isIphoneX ? 'isX' : ''}}">
+                <view class="scroll__loading" wx:if="{{end}}">
                     <view class="text">已全部加载</view>
                 </view>
-                <view class="requesting" wx:else>
+                <view class="scroll__loading" wx:else>
                     <view class="la-line-spin-fade-rotating">
                         <view></view>
                         <view></view>
@@ -39,7 +47,7 @@
                         <view></view>
                         <view></view>
                     </view>
-                    <view class="text">加载中...</view>
+                    <view class="scroll__text">加载中...</view>
                 </view>
             </view>
         </scroll-view>

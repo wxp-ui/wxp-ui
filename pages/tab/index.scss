@@ -1,0 +1,37 @@
+@import "../../assets/css/variables.scss";
+
+.top {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background-color: #ffffff;
+    z-index: 99;
+    box-shadow: $shadow;
+}
+
+.control-panel {
+    border-top: 1rpx solid $lineColor;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 12213;
+    background: #ffffff;
+    padding: 20rpx;
+    box-sizing: border-box;
+    &.isX {
+        padding-bottom: 60rpx;
+    }
+}
+
+.panel-item {
+    display: flex;
+    align-items: center;
+    &_hd {
+
+    }
+    &__bd {
+        flex: 1;
+    }
+}

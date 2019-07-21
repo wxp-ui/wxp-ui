@@ -1,4 +1,4 @@
-Component({
+module.exports = Component({
     properties: {
         requesting: {
             type: Boolean,
@@ -6,10 +6,6 @@ Component({
             observer: 'requestingEnd',
         },
         end: {
-            type: Boolean,
-            value: false,
-        },
-        min: {
             type: Boolean,
             value: false,
         },
@@ -24,13 +20,32 @@ Component({
         emptyText: {
             type: String,
             value: "未找到数据"
-        }
+        },
+        hasTop: {
+            type: Boolean,
+            value: false
+        },
+        refreshSize: {
+            type: Number,
+            value: 90,
+            observer: 'refreshChange'
+        },
+        bottomSize: {
+            type: Number,
+            value: 0,
+        },
+        color: {
+            type: String,
+            value: "#ff4158",
+            observer: "colorChange"
+        },
     },
     data: {
         mode: 'refresh', // refresh 和 more 两种模式
         successShow: false,
+        successTran: false,
         refreshStatus: 0, // 1: 下拉刷新, 2: 松开刷新, 3: 加载中, 4: 加载完成
-        move: -40,
+        move: -45,
         scrollHeight1: 0, // refresh view 高度负值
         scrollHeight2: 0  // refresh view - success view 高度负值
     },
@@ -91,23 +106,30 @@ Component({
 
             if (oldVal === true && newVal === false) {
                 this.setData({
-                    successShow: true,
                     refreshStatus: 4,
                     move: this.data.scrollHeight2
                 });
 
                 setTimeout(() => {
                     this.setData({
-                        successShow: false,
-                        move: this.data.scrollHeight1
+                        successShow: true,
                     });
                     setTimeout(() => {
                         this.setData({
-                            refreshStatus: 1,
+                            successTran: true,
                             move: this.data.scrollHeight1
                         });
-                    }, 300)
-                }, 1000)
+                        setTimeout(() => {
+                            this.setData({
+                                refreshStatus: 1,
+                                successShow: false,
+                                successTran: false,
+                                move: this.data.scrollHeight1
+                            });
+                        }, 350)
+                    }, 1000)
+                }, 650)
+
             } else {
                 if(this.data.refreshStatus != 3) {
                     this.setData({
@@ -117,19 +139,30 @@ Component({
                 }
             }
         },
+        refreshChange(newVal, oldVal) {
+            if(newVal <= 80) {
+                this.setData({
+                    refreshSize: 80
+                })
+            }
+            this.init();
+        },
+        init() {
+            let query = this.createSelectorQuery();
+
+            query.select("#refresh").boundingClientRect()
+            query.select("#success").boundingClientRect()
+
+            query.exec(function (res) {
+                this.setData({
+                    scrollHeight1: -res[0].height,
+                    scrollHeight2: res[1].height - res[0].height,
+                    move: -res[0].height
+                })
+            }.bind(this));
+        },
     },
     attached() {
-        let query = this.createSelectorQuery();
-
-        query.select("#refresh").boundingClientRect()
-        query.select("#success").boundingClientRect()
-
-        query.exec(function (res) {
-            this.setData({
-                scrollHeight1: -res[0].height,
-                scrollHeight2: res[1].height - res[0].height,
-                move: -res[0].height
-            })
-        }.bind(this));
+        this.init()
     }
 })
