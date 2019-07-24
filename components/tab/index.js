@@ -2,19 +2,23 @@ const app = getApp()
 
 Component({
     properties: {
+        // 是否可以超出滚动
         scroll: {
             type: Boolean,
             value: false
         },
+        // 数据源
         tabData: {
             type: Array,
             value: []
         },
+        // tab高度
         size: {
             type: Number,
             value: 90,
             observer: "sizeChange"
         },
+        // 颜色
         color: {
             type: String,
             value: "#ff4158",
@@ -22,9 +26,9 @@ Component({
         }
     },
     data: {
-        windowWidth: 375,
-        tabCur: 0,
-        scrollLeft: 0,
+        windowWidth: 375, // 屏幕宽度
+        tabCur: 0, // 当前聚焦的tab
+        scrollLeft: 0, // scroll-view 左边滚动距离
     },
     methods: {
         /**
@@ -112,6 +116,9 @@ Component({
                 }
             }.bind(this));
         },
+        /**
+         *  监听tab高度变化, 最小值为80rpx
+         */
         sizeChange(newVal, oldVal) {
             if(newVal <= 80) {
                 this.setData({
@@ -119,10 +126,17 @@ Component({
                 })
             }
         },
+        /**
+         *  监听颜色变化, 然后调用初始化函数
+         */
         colorChange(newVal, oldVal) {
             this.init();
         },
+        /**
+         *  初始化函数
+         */
         init() {
+            // 获取屏幕宽度
             try {
                 const res = wx.getSystemInfoSync()
                 this.setData({
@@ -132,12 +146,11 @@ Component({
                 console.log(e)
             }
 
+            // 获取每一个tab的宽高信息并存储起来
             let query = this.createSelectorQuery();
-
             for(let i = 0; i < this.data.tabData.length; i++) {
                 query.select(`#item${i}`).boundingClientRect()
             }
-
             query.exec(function (res) {
                 this.setData({
                     items: res
