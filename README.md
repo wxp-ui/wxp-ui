@@ -11,13 +11,13 @@
 - swipe-list组件
 - scroll组件
 - tab组件
-- 日历组件
+- date-picker组件
 
 ## 功能解析
 
 [swipe-list组件实现分析](https://www.cnblogs.com/haha1212/p/11184595.html)
 
-[日历组件实现分析](https://www.cnblogs.com/haha1212/p/11191035.html)
+[date-picker组件实现分析](https://www.cnblogs.com/haha1212/p/11191035.html)
 
 ## 如何使用
 
@@ -28,6 +28,64 @@ git clone https://github.com/singletouch/small-demo
 将需要使用的组件代码拷至自己的小程序项目中，按照小程序官方[引入组件](https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component)方式引入即可
 
 本项目自身就是一个完整的小程序项目，也可以直接使用本项目作为小程序开发目录
+
+## 组件配置
+
+### Scroll组件
+
+#### Scroll Attributes
+
+| 参数 | 说明 | 类型 | 可选值 | 默认值 |
+| --- | --- | --- | --- | --- |
+| requesting | 列表数据是否处于加载中 | Boolean | -- | false |
+| end | 列表数据加载完成 | Boolean | -- | false |
+| listCount | 当前列表长度 | Number | -- | 0 |
+| emptyUrl | 空列表的展示图片 | String | * | /assets/image/empty/empty.png |
+| emptyText | 空列表的文字提示 | String | * | 未找到数据 |
+| hasTop | 是否有header | Boolean | -- | false |
+| refreshSize | 下拉刷新的高度 | Number | -- | 90 |
+| bottomSize | 底部高度 | Number | -- | 0 |
+| color | 颜色 | String | -- | #ff4158 |
+
+#### Scroll Events
+
+| 事件名称 | 说明 | 回调参数 |
+| --- | --- | --- |
+| refresh | 下拉刷新 | -- |
+| more | 上拉加载 | -- |
+
+#### Scroll Slots
+
+| name | 说明 |
+| --- | --- |
+| -- | 列表组件主体 |
+
+### Tab组件
+
+#### Tab Attributes
+
+| 参数 | 说明 | 类型 | 可选值 | 默认值 |
+| --- | --- | --- | --- | --- |
+| scroll | 是否可以超出滚动 | Boolean | -- | false |
+| tabData | 数据源 | Array | -- | [] |
+| size | tab高度 | Number | -- | 90 |
+| color | 颜色 | String | -- | #ff4158 |
+
+#### Tab Events
+
+| 事件名称 | 说明 | 回调参数 |
+| --- | --- | --- |
+| change | tab切换事件 | 当前选中tab的index |
+
+#### Tab Methods
+
+| 方法名 | 说明 | 回调参数 |
+| --- | --- | --- |
+| scrollByIndex | 让tab组件根据传入的index进行滚动 | 需要切换tab项的index |
+
+### DatePicker组件
+
+后续更新
 
 ## 贡献
 
