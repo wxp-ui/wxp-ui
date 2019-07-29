@@ -1,49 +1,56 @@
-@import "../../assets/css/variables.scss";
+@import "../../assets/css/variables";
 
 $top-height: 90rpx;
 
 .top-wrap {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    background-color: #ffffff;
-    z-index: 99;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	background-color: #ffffff;
+	z-index: 99;
 }
 
 swiper {
-    height: 100vh;
+	height: 100vh;
 }
 
 .list {
-    background: #ffffff;
-    margin-top: 20rpx;
-    .list-item {
-        display: flex;
-        padding: 30rpx;
-        &:not(:last-child) {
-            border-bottom: 1px solid $lineColor;
-        }
-        .hd {
-            font-size: 0;
-            image {
-                width: 200rpx;
-                height: 200rpx;
-                border-radius: 4rpx;
-                margin-right: 30rpx;
-            }
-        }
-        .bd {
-            flex: 1;
-            .name {
-                @include line(2);
-                margin-bottom: 32rpx;
-                font-size: 32rpx;
-            }
-            .des {
-                @include line(2);
-                color: $mainBlack2;
-            }
-        }
-    }
+	background: #ffffff;
+	margin-top: 20rpx;
+
+	.list-item {
+		display: flex;
+		padding: 30rpx;
+
+		&:not(:last-child) {
+			border-bottom: 1px solid $lineColor;
+		}
+
+		.hd {
+			font-size: 0;
+
+			image {
+				width: 200rpx;
+				height: 200rpx;
+				border-radius: 4rpx;
+				margin-right: 30rpx;
+			}
+		}
+
+		.bd {
+			flex: 1;
+
+			.name {
+				@include line(2);
+				margin-bottom: 32rpx;
+				font-size: 32rpx;
+			}
+
+			.des {
+				@include line(2);
+				color: $mainBlack2;
+			}
+		}
+	}
 }

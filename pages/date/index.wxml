@@ -1,50 +1,50 @@
 <date-picker
-        bind:select="timeSelect1"
-        date="{{time1}}"
-        picker-show="{{timeShow1}}">
+	bind:select="timeSelect1"
+	date="{{time1}}"
+	picker-show="{{timeShow1}}">
 </date-picker>
 
 <date-picker
-        bind:select="timeSelect2"
-        date="{{time2}}"
-        need-week="{{false}}"
-        picker-show="{{timeShow2}}">
+	bind:select="timeSelect2"
+	date="{{time2}}"
+	need-week="{{false}}"
+	picker-show="{{timeShow2}}">
 </date-picker>
 
 <date-picker
-        bind:select="timeSelect3"
-        date="{{time3}}"
-        range-start="{{rangeStart}}"
-        range-end="{{rangeEnd}}"
-        picker-show="{{timeShow3}}">
+	bind:select="timeSelect3"
+	date="{{time3}}"
+	range-start="{{rangeStart}}"
+	range-end="{{rangeEnd}}"
+	picker-show="{{timeShow3}}">
 </date-picker>
 
 <view class="list">
-    <view class="listItem" bindtap="toggleShow1">
-        <view class="hd title">
-            日期选择
-        </view>
-        <view class="bd"></view>
-        <view class="ft">
-            {{timeStr1 ? timeStr1 : '-- : --'}}
-        </view>
-    </view>
-    <view class="listItem" bindtap="toggleShow2">
-        <view class="hd title">
-            日期选择(禁用周末)
-        </view>
-        <view class="bd"></view>
-        <view class="ft">
-            {{timeStr2 ? timeStr2 : '-- : --'}}
-        </view>
-    </view>
-    <view class="listItem" bindtap="toggleShow3">
-        <view class="hd title">
-            日期选择(开始时间,结束时间)
-        </view>
-        <view class="bd"></view>
-        <view class="ft">
-            {{timeStr3 ? timeStr3 : '-- : --'}}
-        </view>
-    </view>
+	<view class="listItem" bindtap="toggleShow1">
+		<view class="hd title">
+			日期选择
+		</view>
+		<view class="bd"></view>
+		<view class="ft">
+			{{timeStr1 ? timeStr1 : '-- : --'}}
+		</view>
+	</view>
+	<view class="listItem" bindtap="toggleShow2">
+		<view class="hd title">
+			日期选择(禁用周末)
+		</view>
+		<view class="bd"></view>
+		<view class="ft">
+			{{timeStr2 ? timeStr2 : '-- : --'}}
+		</view>
+	</view>
+	<view class="listItem" bindtap="toggleShow3">
+		<view class="hd title">
+			日期选择(开始时间,结束时间)
+		</view>
+		<view class="bd"></view>
+		<view class="ft">
+			{{timeStr3 ? timeStr3 : '-- : --'}}
+		</view>
+	</view>
 </view>

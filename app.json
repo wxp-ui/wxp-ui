@@ -1,22 +1,22 @@
 {
-  "pages": [
-    "pages/index/index",
-    "pages/tab/index",
-    "pages/scroll/index",
-    "pages/date/index",
-    "pages/swipe-list/index"
-  ],
-  "permission": {
-    "scope.userLocation": {
-      "desc": "你的位置信息将用于小程序位置接口的效果展示"
-    }
-  },
-  "window": {
-    "backgroundTextStyle": "dark",
-    "navigationBarTextStyle": "white",
-    "navigationBarBackgroundColor": "#ff4158",
-    "navigationBarTitleText": "小程序组件",
-    "backgroundColor": "#f7f7f7"
-  },
-  "sitemapLocation": "sitemap.json"
+	"pages": [
+		"pages/index/index",
+		"pages/tab/index",
+		"pages/scroll/index",
+		"pages/date/index",
+		"pages/swipe-list/index"
+	],
+	"permission": {
+		"scope.userLocation": {
+			"desc": "你的位置信息将用于小程序位置接口的效果展示"
+		}
+	},
+	"window": {
+		"backgroundTextStyle": "dark",
+		"navigationBarTextStyle": "white",
+		"navigationBarBackgroundColor": "#ff4158",
+		"navigationBarTitleText": "小程序组件",
+		"backgroundColor": "#f7f7f7"
+	},
+	"sitemapLocation": "sitemap.json"
 }

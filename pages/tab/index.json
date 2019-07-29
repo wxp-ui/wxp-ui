@@ -1,6 +1,6 @@
 {
-  "navigationBarTitleText": "tab组件用法",
-  "usingComponents": {
-    "tab": "../../components/tab/index"
-  }
+	"navigationBarTitleText": "tab组件用法",
+	"usingComponents": {
+		"tab": "../../components/tab/index"
+	}
 }

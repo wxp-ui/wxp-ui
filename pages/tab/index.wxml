@@ -1,31 +1,35 @@
 <view class="top">
-    <tab id="tabs"
-         tab-data="{{tabData}}"
-         color="{{color}}"
-         size="{{size}}"
-         scroll="{{scroll}}"
-         bindchange="tabChange">
-    </tab>
+	<tab id="tabs"
+		 tab-data="{{tabData}}"
+		 color="{{color}}"
+		 size="{{size}}"
+		 scroll="{{scroll}}"
+		 bindchange="tabChange">
+	</tab>
 </view>
 
 
 <view class="control-panel {{isIphoneX ? 'isX' : ''}}">
-    <view class="panel-item">
-        <view class="panel-item__hd">size:</view>
-        <view class="panel-item__bd"><slider bindchanging="sizeChange" value="{{size}}" show-value="{{true}}" min="80" max="200" step="10"/></view>
-    </view>
-    <view class="panel-item">
-        <view class="panel-item__hd">scroll:</view>
-        <view class="panel-item__bd"> <switch checked="{{scroll}}" bindchange="scrollChange"/></view>
-    </view>
-    <view class="panel-item">
-        <view class="panel-item__hd">color:</view>
-        <view class="panel-item__bd">
-            <radio-group class="radio-group" bindchange="radioChange">
-                <label class="radio" wx:for="{{items}}" wx:key="{{index}}">
-                    <radio value="{{item.value}}" checked="{{item.checked}}"/>{{item.name}}
-                </label>
-            </radio-group>
-        </view>
-    </view>
+	<view class="panel-item">
+		<view class="panel-item__hd">size:</view>
+		<view class="panel-item__bd">
+			<slider bindchanging="sizeChange" value="{{size}}" show-value="{{true}}" min="80" max="200" step="10"/>
+		</view>
+	</view>
+	<view class="panel-item">
+		<view class="panel-item__hd">scroll:</view>
+		<view class="panel-item__bd">
+			<switch checked="{{scroll}}" bindchange="scrollChange"/>
+		</view>
+	</view>
+	<view class="panel-item">
+		<view class="panel-item__hd">color:</view>
+		<view class="panel-item__bd">
+			<radio-group class="radio-group" bindchange="radioChange">
+				<label class="radio" wx:for="{{items}}" wx:key="{{index}}">
+					<radio value="{{item.value}}" checked="{{item.checked}}"/>{{item.name}}
+				</label>
+			</radio-group>
+		</view>
+	</view>
 </view>

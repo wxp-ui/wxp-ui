@@ -1,7 +1,7 @@
 {
-  "navigationBarTitleText": "scroll组件用法",
-  "disableScroll": true,
-  "usingComponents": {
-    "scroll": "../../components/scroll/index"
-  }
+	"navigationBarTitleText": "scroll组件用法",
+	"disableScroll": true,
+	"usingComponents": {
+		"scroll": "../../components/scroll/index"
+	}
 }

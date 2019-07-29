@@ -1,4 +1,4 @@
-@import "../../assets/css/variables.scss";
+@import "../../assets/css/variables";
 
 $refresh-height: 90rpx;
 $success-height: 60rpx;
@@ -6,306 +6,309 @@ $success-top: $refresh-height - $success-height;
 $refresh-padding: ($refresh-height - 50rpx) / 2;
 
 movable-area {
-  width: 100%;
-  height: 100vh;
+	width: 100%;
+	height: 100vh;
 }
 
 .scroll {
-  width: 100%;
-  height: calc(100vh + #{$refresh-height});
+	width: 100%;
+	height: calc(100vh + #{$refresh-height});
 
-  &__view {
-    height: 100%;
-    position: relative;
-    box-sizing: border-box;
-  }
+	&__view {
+		height: 100%;
+		position: relative;
+		box-sizing: border-box;
+	}
 
-  &__success {
-    position: absolute;
-    z-index: 9;
-    top: $success-top;
-    left: 0;
-    width: 100%;
-    height: $success-height;
-    line-height: $success-height;
-    font-size: 24rpx;
-    text-align: center;
-    opacity: 0;
-    color: $mainColor;
+	&__success {
+		position: absolute;
+		z-index: 9;
+		top: $success-top;
+		left: 0;
+		width: 100%;
+		height: $success-height;
+		line-height: $success-height;
+		font-size: 24rpx;
+		text-align: center;
+		opacity: 0;
+		color: $mainColor;
 
-    &:after {
-      content: " ";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: currentColor;
-      opacity: 0.7;
-      transform: scaleX(0);
-      transition: transform 0.15s ease-in-out;
-      z-index: 0;
-    }
+		&:after {
+			content: " ";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: currentColor;
+			opacity: 0.7;
+			transform: scaleX(0);
+			transition: transform 0.15s ease-in-out;
+			z-index: 0;
+		}
 
-    & > view {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      color: #ffffff;
-    }
+		& > view {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 1;
+			color: #ffffff;
+		}
 
-    &--show {
-      opacity: 1;
-      &:after {
-        transform: scaleX(1);
-      }
-    }
+		&--show {
+			opacity: 1;
 
-    &--tran {
-      opacity: 0;
-      transition: opacity 0.3s linear;
-    }
-  }
+			&:after {
+				transform: scaleX(1);
+			}
+		}
 
-  &__refresh {
-    height: $refresh-height;
-    padding: $refresh-padding 0;
-    box-sizing: border-box;
+		&--tran {
+			opacity: 0;
+			transition: opacity 0.3s linear;
+		}
+	}
 
-    &--hidden {
-      visibility: hidden;
-    }
-  }
+	&__refresh {
+		height: $refresh-height;
+		padding: $refresh-padding 0;
+		box-sizing: border-box;
 
-  &__empty {
-    padding: 30rpx;
-    text-align: center;
+		&--hidden {
+			visibility: hidden;
+		}
+	}
 
-    image {
-      width: 200rpx;
-      height: 200rpx;
-      margin: 160rpx auto 60rpx;
-    }
+	&__empty {
+		padding: 30rpx;
+		text-align: center;
 
-    view {
-      color: #999999;
-    }
-  }
+		image {
+			width: 200rpx;
+			height: 200rpx;
+			margin: 160rpx auto 60rpx;
+		}
 
-  &__bottom {
-    height: 40rpx;
-    padding: 30rpx 0;
-  }
+		view {
+			color: #999999;
+		}
+	}
 
-  &__bottom > &__loading {
-    text-align: center;
-    color: #999999;
-  }
+	&__bottom {
+		height: 40rpx;
+		padding: 30rpx 0;
+	}
 
-  &__bottom > &__text {
-    display: inline-block;
-    vertical-align: middle;
-  }
+	&__bottom > &__loading {
+		text-align: center;
+		color: #999999;
+	}
+
+	&__bottom > &__text {
+		display: inline-block;
+		vertical-align: middle;
+	}
 }
 
 /* start: 刷新动画 */
-.la-square-jelly-box,.la-square-jelly-box>view {
-  position: relative;
-  box-sizing: border-box
+.la-square-jelly-box, .la-square-jelly-box > view {
+	position: relative;
+	box-sizing: border-box
 }
 
 .la-square-jelly-box {
-  width: 50rpx;
-  height: 50rpx;
-  margin: 0 auto;
-  display: block;
-  font-size: 0;
-  color: $mainColor;
+	width: 50rpx;
+	height: 50rpx;
+	margin: 0 auto;
+	display: block;
+	font-size: 0;
+	color: $mainColor;
 }
 
-.la-square-jelly-box>view {
-  display: inline-block;
-  float: none;
-  background-color: currentColor;
-  opacity: 0.5;
+.la-square-jelly-box > view {
+	display: inline-block;
+	float: none;
+	background-color: currentColor;
+	opacity: 0.5;
 }
 
-.la-square-jelly-box>view:nth-child(1),.la-square-jelly-box>view:nth-child(2) {
-  position: absolute;
-  left: 0;
-  width: 100%
+.la-square-jelly-box > view:nth-child(1), .la-square-jelly-box > view:nth-child(2) {
+	position: absolute;
+	left: 0;
+	width: 100%
 }
 
-.la-square-jelly-box>view:nth-child(1) {
-  top: -25%;
-  z-index: 1;
-  height: 100%;
-  border-radius: 10%;
-  animation: square-jelly-box-animate .6s -.1s linear infinite
+.la-square-jelly-box > view:nth-child(1) {
+	top: -25%;
+	z-index: 1;
+	height: 100%;
+	border-radius: 10%;
+	animation: square-jelly-box-animate .6s -.1s linear infinite
 }
 
-.la-square-jelly-box>view:nth-child(2) {
-  bottom: -9%;
-  height: 10%;
-  background: #000;
-  border-radius: 50%;
-  opacity: .2;
-  animation: square-jelly-box-shadow .6s -.1s linear infinite
+.la-square-jelly-box > view:nth-child(2) {
+	bottom: -9%;
+	height: 10%;
+	background: #000;
+	border-radius: 50%;
+	opacity: .2;
+	animation: square-jelly-box-shadow .6s -.1s linear infinite
 }
 
 @keyframes square-jelly-box-shadow {
-  50% {
-    transform: scale(1.25,1)
-  }
+	50% {
+		transform: scale(1.25, 1)
+	}
 }
 
 @keyframes square-jelly-box-animate {
-  17% {
-    border-bottom-right-radius: 10%
-  }
+	17% {
+		border-bottom-right-radius: 10%
+	}
 
-  25% {
-    transform: translateY(25%) rotate(22.5deg)
-  }
+	25% {
+		transform: translateY(25%) rotate(22.5deg)
+	}
 
-  50% {
-    border-bottom-right-radius: 100%;
-    transform: translateY(50%) scale(1,.9) rotate(45deg)
-  }
+	50% {
+		border-bottom-right-radius: 100%;
+		transform: translateY(50%) scale(1, .9) rotate(45deg)
+	}
 
-  75% {
-    transform: translateY(25%) rotate(67.5deg)
-  }
+	75% {
+		transform: translateY(25%) rotate(67.5deg)
+	}
 
-  100% {
-    transform: translateY(0) rotate(90deg)
-  }
+	100% {
+		transform: translateY(0) rotate(90deg)
+	}
 }
+
 /* end: 刷新动画 */
 
 /* start: 加载动画 */
-.la-line-spin-fade-rotating,.la-line-spin-fade-rotating>view {
-  position: relative;
-  box-sizing: border-box
+.la-line-spin-fade-rotating, .la-line-spin-fade-rotating > view {
+	position: relative;
+	box-sizing: border-box
 }
 
 .la-line-spin-fade-rotating {
-  vertical-align: middle;
-  display: inline-block;
-  font-size: 0;
-  color: currentColor;
-  margin-right: 10rpx;
+	vertical-align: middle;
+	display: inline-block;
+	font-size: 0;
+	color: currentColor;
+	margin-right: 10rpx;
 }
 
-.la-line-spin-fade-rotating>view {
-  display: inline-block;
-  float: none;
-  background-color: currentColor;
-  border: 0 solid currentColor
+.la-line-spin-fade-rotating > view {
+	display: inline-block;
+	float: none;
+	background-color: currentColor;
+	border: 0 solid currentColor
 }
 
 .la-line-spin-fade-rotating {
-  width: 32rpx;
-  height: 32rpx;
-  animation: ball-spin-fade-rotating-rotate 6s infinite linear
+	width: 32rpx;
+	height: 32rpx;
+	animation: ball-spin-fade-rotating-rotate 6s infinite linear
 }
 
-.la-line-spin-fade-rotating>view {
-  position: absolute;
-  width: 2rpx;
-  height: 8rpx;
-  margin: 4rpx;
-  margin-top: -4rpx;
-  margin-left: 0;
-  border-radius: 0;
-  animation: line-spin-fade-rotating 1s infinite ease-in-out
+.la-line-spin-fade-rotating > view {
+	position: absolute;
+	width: 2rpx;
+	height: 8rpx;
+	margin: 4rpx;
+	margin-top: -4rpx;
+	margin-left: 0;
+	border-radius: 0;
+	animation: line-spin-fade-rotating 1s infinite ease-in-out
 }
 
-.la-line-spin-fade-rotating>view:nth-child(1) {
-  top: 15%;
-  left: 50%;
-  transform: rotate(0deg);
-  animation-delay: -1.125s
+.la-line-spin-fade-rotating > view:nth-child(1) {
+	top: 15%;
+	left: 50%;
+	transform: rotate(0deg);
+	animation-delay: -1.125s
 }
 
-.la-line-spin-fade-rotating>view:nth-child(2) {
-  top: 25.2512626585%;
-  left: 74.7487373415%;
-  transform: rotate(45deg);
-  animation-delay: -1.25s
+.la-line-spin-fade-rotating > view:nth-child(2) {
+	top: 25.2512626585%;
+	left: 74.7487373415%;
+	transform: rotate(45deg);
+	animation-delay: -1.25s
 }
 
-.la-line-spin-fade-rotating>view:nth-child(3) {
-  top: 50%;
-  left: 85%;
-  transform: rotate(90deg);
-  animation-delay: -1.375s
+.la-line-spin-fade-rotating > view:nth-child(3) {
+	top: 50%;
+	left: 85%;
+	transform: rotate(90deg);
+	animation-delay: -1.375s
 }
 
-.la-line-spin-fade-rotating>view:nth-child(4) {
-  top: 74.7487373415%;
-  left: 74.7487373415%;
-  transform: rotate(135deg);
-  animation-delay: -1.5s
+.la-line-spin-fade-rotating > view:nth-child(4) {
+	top: 74.7487373415%;
+	left: 74.7487373415%;
+	transform: rotate(135deg);
+	animation-delay: -1.5s
 }
 
-.la-line-spin-fade-rotating>view:nth-child(5) {
-  top: 84.9999999974%;
-  left: 50.0000000004%;
-  transform: rotate(180deg);
-  animation-delay: -1.625s
+.la-line-spin-fade-rotating > view:nth-child(5) {
+	top: 84.9999999974%;
+	left: 50.0000000004%;
+	transform: rotate(180deg);
+	animation-delay: -1.625s
 }
 
-.la-line-spin-fade-rotating>view:nth-child(6) {
-  top: 74.7487369862%;
-  left: 25.2512627193%;
-  transform: rotate(225deg);
-  animation-delay: -1.75s
+.la-line-spin-fade-rotating > view:nth-child(6) {
+	top: 74.7487369862%;
+	left: 25.2512627193%;
+	transform: rotate(225deg);
+	animation-delay: -1.75s
 }
 
-.la-line-spin-fade-rotating>view:nth-child(7) {
-  top: 49.9999806189%;
-  left: 15.0000039834%;
-  transform: rotate(270deg);
-  animation-delay: -1.875s
+.la-line-spin-fade-rotating > view:nth-child(7) {
+	top: 49.9999806189%;
+	left: 15.0000039834%;
+	transform: rotate(270deg);
+	animation-delay: -1.875s
 }
 
-.la-line-spin-fade-rotating>view:nth-child(8) {
-  top: 25.2506949798%;
-  left: 25.2513989292%;
-  transform: rotate(315deg);
-  animation-delay: -2s
+.la-line-spin-fade-rotating > view:nth-child(8) {
+	top: 25.2506949798%;
+	left: 25.2513989292%;
+	transform: rotate(315deg);
+	animation-delay: -2s
 }
 
 
 .la-line-spin-fade.la-sm {
-  width: 16px;
-  height: 16px
+	width: 16px;
+	height: 16px
 }
 
-.la-line-spin-fade.la-sm>div {
-  width: 1px;
-  height: 4px;
-  margin-top: -2px;
-  margin-left: 0
+.la-line-spin-fade.la-sm > div {
+	width: 1px;
+	height: 4px;
+	margin-top: -2px;
+	margin-left: 0
 }
 
 @keyframes ball-spin-fade-rotating-rotate {
-  100% {
-    transform: rotate(360deg)
-  }
+	100% {
+		transform: rotate(360deg)
+	}
 }
 
 @keyframes line-spin-fade-rotating {
-  50% {
-    opacity: .2
-  }
+	50% {
+		opacity: .2
+	}
 
-  100% {
-    opacity: 1
-  }
+	100% {
+		opacity: 1
+	}
 }
+
 /* end: 加载动画 */

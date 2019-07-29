@@ -1,37 +1,40 @@
-@import "../../assets/css/variables.scss";
+@import "../../assets/css/variables";
 
 .top {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    background-color: #ffffff;
-    z-index: 99;
-    box-shadow: $shadow;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	background-color: #ffffff;
+	z-index: 99;
+	box-shadow: $shadow;
 }
 
 .control-panel {
-    border-top: 1rpx solid $lineColor;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 12213;
-    background: #ffffff;
-    padding: 20rpx;
-    box-sizing: border-box;
-    &.isX {
-        padding-bottom: 60rpx;
-    }
+	border-top: 1rpx solid $lineColor;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 12213;
+	background: #ffffff;
+	padding: 20rpx;
+	box-sizing: border-box;
+
+	&.isX {
+		padding-bottom: 60rpx;
+	}
 }
 
 .panel-item {
-    display: flex;
-    align-items: center;
-    &_hd {
+	display: flex;
+	align-items: center;
 
-    }
-    &__bd {
-        flex: 1;
-    }
+	&_hd {
+
+	}
+
+	&__bd {
+		flex: 1;
+	}
 }

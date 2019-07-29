@@ -1,8 +1,8 @@
 const app = getApp()
 
 Page({
-    data: {},
-    onLoad() {
-    }
+	data: {},
+	onLoad() {
+	}
 });
 

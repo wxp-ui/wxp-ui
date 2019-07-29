@@ -1,85 +1,99 @@
 <view>
-    <view class="modal {{pickerShow ? 'modal-show' : 'modal-hide'}}" catchtouchmove='true' bindtap="cancel"></view>
-    <view class="picker {{pickerShow ? 'picker-show' : 'picker-hide'}}">
-        <view class='date-header' wx:if="{{mode==='date'}}">
-            <view class='btn doubleLeft' bindtap="changeDate" data-type="year-">
-                <text class="iconfont icon-arrow-double-left"></text>
-            </view>
-            <view class='btn left' bindtap="changeDate" data-type="month-">
-                <text class="iconfont icon-arrow-left"></text>
-            </view>
-            <view class='month'>
-                {{currentDateStr}}
-            </view>
-            <view class='btn right' bindtap="changeDate" data-type="month+">
-                <text class="iconfont icon-arrow-right"></text>
-            </view>
-            <view class='btn doubleRight' bindtap="changeDate" data-type="year+">
-                <text class="iconfont icon-arrow-double-right"></text>
-            </view>
-        </view>
-        <view class='date-body' wx:if="{{mode==='date'}}">
-            <view class='tr'>
-                <view class='th'><view class="cell">日</view></view>
-                <view class='th'><view class="cell">一</view></view>
-                <view class='th'><view class="cell">二</view></view>
-                <view class='th'><view class="cell">三</view></view>
-                <view class='th'><view class="cell">四</view></view>
-                <view class='th'><view class="cell">五</view></view>
-                <view class='th'><view class="cell">六</view></view>
-            </view>
-            <view class="tr"
-                  wx:for="{{currentData}}"
-                  wx:key="{{i}}"
-                  wx:for-item="tr"
-                  wx:for-index="i">
-                <view class="td"
-                      wx:for="{{tr}}"
-                      wx:key="{{j}}"
-                      wx:for-item="td"
-                      wx:for-index="j"
-                      data-i="{{i}}"
-                      data-j="{{j}}"
-                      bindtap="chooseDate">
-                    <view hover-class="none"
-                          class="cell {{td.currentMonth ? '' : 'otherMonth'}} {{td.valid ? '' : 'disabled'}} {{td.date && td.dateStr === selectedDateStr ? 'cur' : ''}}">
-                        {{td.day}}
-                    </view>
-                </view>
-            </view>
-        </view>
-        <view class="time-header" wx:if="{{mode==='time'}}">
-            <view class='date'>
-                {{selectedDateShow}}
-            </view>
-        </view>
-        <view class='time-body' wx:if="{{mode==='time'}}">
-            <picker-view indicator-class="selectItem" value="{{initTimeValue}}" bindchange="bindChange">
-                <picker-view-column>
-                    <view wx:for="{{hours}}" wx:key="*this" class="item">{{item}}时</view>
-                </picker-view-column>
-                <picker-view-column>
-                    <view wx:for="{{minutes}}" wx:key="*this" class="item">{{item}}分</view>
-                </picker-view-column>
-                <picker-view-column>
-                    <view wx:for="{{seconds}}" wx:key="*this" class="item">{{item}}秒</view>
-                </picker-view-column>
-            </picker-view>
-        </view>
-        <view class="bottom">
-            <view class="btn btn-cancel" bindtap="cancel" wx:if="{{mode==='date'}}">
-                <view hover-class="hover" hover-start-time="{{0}}" >取消</view>
-            </view>
-            <view class="btn btn-cancel" bindtap="toggleMode" wx:else>
-                <view hover-class="hover" hover-start-time="{{0}}">返回</view>
-            </view>
-            <view class="bd"></view>
-            <view class="btn btn-confirm" bindtap="toggleMode" wx:if="{{mode==='date'}}">
-                <view hover-class="hover" hover-start-time="{{0}}">选时间</view>
-            </view>
-            <view class="btn btn-confirm" bindtap="confirm" wx:else>
-                <view hover-class="hover" hover-start-time="{{0}}">完成</view>
-            </view>
-        </view>
-    </view>
+	<view class="modal {{pickerShow ? 'modal-show' : 'modal-hide'}}" catchtouchmove='true' bindtap="cancel"></view>
+	<view class="picker {{pickerShow ? 'picker-show' : 'picker-hide'}}">
+		<view class='date-header' wx:if="{{mode==='date'}}">
+			<view class='btn doubleLeft' bindtap="changeDate" data-type="year-">
+				<text class="iconfont icon-arrow-double-left"></text>
+			</view>
+			<view class='btn left' bindtap="changeDate" data-type="month-">
+				<text class="iconfont icon-arrow-left"></text>
+			</view>
+			<view class='month'>
+				{{currentDateStr}}
+			</view>
+			<view class='btn right' bindtap="changeDate" data-type="month+">
+				<text class="iconfont icon-arrow-right"></text>
+			</view>
+			<view class='btn doubleRight' bindtap="changeDate" data-type="year+">
+				<text class="iconfont icon-arrow-double-right"></text>
+			</view>
+		</view>
+		<view class='date-body' wx:if="{{mode==='date'}}">
+			<view class='tr'>
+				<view class='th'>
+					<view class="cell">日</view>
+				</view>
+				<view class='th'>
+					<view class="cell">一</view>
+				</view>
+				<view class='th'>
+					<view class="cell">二</view>
+				</view>
+				<view class='th'>
+					<view class="cell">三</view>
+				</view>
+				<view class='th'>
+					<view class="cell">四</view>
+				</view>
+				<view class='th'>
+					<view class="cell">五</view>
+				</view>
+				<view class='th'>
+					<view class="cell">六</view>
+				</view>
+			</view>
+			<view class="tr"
+				  wx:for="{{currentData}}"
+				  wx:key="{{i}}"
+				  wx:for-item="tr"
+				  wx:for-index="i">
+				<view class="td"
+					  wx:for="{{tr}}"
+					  wx:key="{{j}}"
+					  wx:for-item="td"
+					  wx:for-index="j"
+					  data-i="{{i}}"
+					  data-j="{{j}}"
+					  bindtap="chooseDate">
+					<view hover-class="none"
+						  class="cell {{td.currentMonth ? '' : 'otherMonth'}} {{td.valid ? '' : 'disabled'}} {{td.date && td.dateStr === selectedDateStr ? 'cur' : ''}}">
+						{{td.day}}
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="time-header" wx:if="{{mode==='time'}}">
+			<view class='date'>
+				{{selectedDateShow}}
+			</view>
+		</view>
+		<view class='time-body' wx:if="{{mode==='time'}}">
+			<picker-view indicator-class="selectItem" value="{{initTimeValue}}" bindchange="bindChange">
+				<picker-view-column>
+					<view wx:for="{{hours}}" wx:key="*this" class="item">{{item}}时</view>
+				</picker-view-column>
+				<picker-view-column>
+					<view wx:for="{{minutes}}" wx:key="*this" class="item">{{item}}分</view>
+				</picker-view-column>
+				<picker-view-column>
+					<view wx:for="{{seconds}}" wx:key="*this" class="item">{{item}}秒</view>
+				</picker-view-column>
+			</picker-view>
+		</view>
+		<view class="bottom">
+			<view class="btn btn-cancel" bindtap="cancel" wx:if="{{mode==='date'}}">
+				<view hover-class="hover" hover-start-time="{{0}}">取消</view>
+			</view>
+			<view class="btn btn-cancel" bindtap="toggleMode" wx:else>
+				<view hover-class="hover" hover-start-time="{{0}}">返回</view>
+			</view>
+			<view class="bd"></view>
+			<view class="btn btn-confirm" bindtap="toggleMode" wx:if="{{mode==='date'}}">
+				<view hover-class="hover" hover-start-time="{{0}}">选时间</view>
+			</view>
+			<view class="btn btn-confirm" bindtap="confirm" wx:else>
+				<view hover-class="hover" hover-start-time="{{0}}">完成</view>
+			</view>
+		</view>
+	</view>
 </view>

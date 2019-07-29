@@ -1,21 +1,22 @@
-@import "../../assets/css/variables.scss";
+@import "../../assets/css/variables";
 
 page {
-    padding-top: 300rpx;
+	padding-top: 300rpx;
 }
 
 .btn {
-    width: 500rpx;
-    height: 80rpx;
-    line-height: 80rpx;
-    border-radius: 8rpx;
-    text-align: center;
-    color: #ffffff;
-    font-weight: bold;
-    background: $mainColor;
-    margin: 30rpx auto;
-    transition: background-color 0.3s;
-    &.hover {
-        background: $mainColorActive;
-    }
+	width: 500rpx;
+	height: 80rpx;
+	line-height: 80rpx;
+	border-radius: 8rpx;
+	text-align: center;
+	color: #ffffff;
+	font-weight: bold;
+	background: $mainColor;
+	margin: 30rpx auto;
+	transition: background-color 0.3s;
+
+	&.hover {
+		background: $mainColorActive;
+	}
 }

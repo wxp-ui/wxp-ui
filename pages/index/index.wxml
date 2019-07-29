@@ -1,16 +1,15 @@
-
 <navigator url="/pages/swipe-list/index" hover-class="hover" hover-start-time="{{0}}" class="btn">
-    多页列表切换组件
+	多页列表切换组件
 </navigator>
 
 <navigator url="/pages/tab/index" hover-class="hover" hover-start-time="{{0}}" class="btn">
-    tab组件
+	tab组件
 </navigator>
 
 <navigator url="/pages/scroll/index" hover-class="hover" hover-start-time="{{0}}" class="btn">
-    scroll组件
+	scroll组件
 </navigator>
 
 <navigator url="/pages/date/index" hover-class="hover" hover-start-time="{{0}}" class="btn">
-    日期选择器组件
+	日期选择器组件
 </navigator>

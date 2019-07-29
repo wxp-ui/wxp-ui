@@ -1,11 +1,11 @@
-@import "./assets/css/variables.scss";
+@import "assets/css/variables";
 
 Page {
-    background: $mainBd;
-    font-size: 28rpx;
-    color: $mainBlack1;
+	background: $mainBd;
+	font-size: 28rpx;
+	color: $mainBlack1;
 }
 
 .input-placeholder {
-    color: #bbbbbb;
+	color: #bbbbbb;
 }
