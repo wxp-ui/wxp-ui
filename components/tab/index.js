@@ -134,19 +134,15 @@ Component({
 		 *  初始化函数
 		 */
 		init() {
+			const {windowWidth, SDKVersion} = wx.getSystemInfoSync();
+
 			// 获取屏幕宽度
-			try {
-				const res = wx.getSystemInfoSync()
-				this.setData({
-					windowWidth: res.windowWidth
-				});
-			} catch (e) {
-				console.log(e)
-			}
+			this.setData({
+				windowWidth: windowWidth
+			});
 
-			const version = wx.getSystemInfoSync().SDKVersion
-
-			if (compareVersion(version, '2.7.2')>=0) {
+			// 对比版本号, 处理兼容问题
+			if (compareVersion(SDKVersion, '2.7.2')>=0) {
 				// 获取每一个tab的宽高信息并存储起来
 				let query = this.createSelectorQuery();
 				for (let i = 0; i < this.data.tabData.length; i++) {

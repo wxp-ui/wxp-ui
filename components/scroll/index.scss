@@ -112,7 +112,8 @@ movable-area {
 	}
 }
 
-/* start: 刷新动画 */
+/* start: refresh */
+
 .la-square-jelly-box, .la-square-jelly-box > view {
 	position: relative;
 	box-sizing: border-box
@@ -186,9 +187,10 @@ movable-area {
 	}
 }
 
-/* end: 刷新动画 */
+/* end: refresh */
 
-/* start: 加载动画 */
+/* start: more */
+
 .la-line-spin-fade-rotating, .la-line-spin-fade-rotating > view {
 	position: relative;
 	box-sizing: border-box
@@ -311,4 +313,4 @@ movable-area {
 	}
 }
 
-/* end: 加载动画 */
+/* end: more */

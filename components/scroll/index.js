@@ -175,9 +175,9 @@ Component({
 		 * 初始化scroll组件参数, 动态获取 下拉刷新区域 和 success 的高度
 		 */
 		init() {
-			const version = wx.getSystemInfoSync().SDKVersion
+			const {SDKVersion} = wx.getSystemInfoSync();
 
-			if (compareVersion(version, '2.7.2')>=0) {
+			if (compareVersion(SDKVersion, '2.7.2')>=0) {
 				let query = this.createSelectorQuery();
 
 				query.select("#refresh").boundingClientRect()

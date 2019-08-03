@@ -1,4 +1,3 @@
-@charset "UTF-8";
 movable-area {
   width: 100%;
   height: 100vh;
@@ -91,7 +90,7 @@ movable-area {
   vertical-align: middle;
 }
 
-/* start: 刷新动画 */
+/* start: refresh */
 .la-square-jelly-box, .la-square-jelly-box > view {
   position: relative;
   box-sizing: border-box;
@@ -159,8 +158,8 @@ movable-area {
     transform: translateY(0) rotate(90deg);
   }
 }
-/* end: 刷新动画 */
-/* start: 加载动画 */
+/* end: refresh */
+/* start: more */
 .la-line-spin-fade-rotating, .la-line-spin-fade-rotating > view {
   position: relative;
   box-sizing: border-box;
@@ -279,4 +278,4 @@ movable-area {
     opacity: 1;
   }
 }
-/* end: 加载动画 */
+/* end: more */
