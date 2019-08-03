@@ -85,7 +85,7 @@ movable-area {
   text-align: center;
   color: #999999;
 }
-.scroll__bottom > .scroll__text {
+.scroll__bottom > .scroll__loading > .scroll__text {
   display: inline-block;
   vertical-align: middle;
 }

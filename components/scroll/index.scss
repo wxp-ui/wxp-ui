@@ -106,7 +106,7 @@ movable-area {
 		color: #999999;
 	}
 
-	&__bottom > &__text {
+	&__bottom > &__loading > &__text {
 		display: inline-block;
 		vertical-align: middle;
 	}
