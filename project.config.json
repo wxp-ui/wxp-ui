@@ -20,7 +20,7 @@
 		}
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.7.7",
+	"libVersion": "2.6.4",
 	"appid": "wxe14d4ca6edeb543e",
 	"projectname": "small-demo",
 	"simulatorType": "wechat",
@@ -42,16 +42,8 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
-			"list": [
-				{
-					"id": 0,
-					"name": "test",
-					"pathName": "pages/poster/index",
-					"query": "",
-					"scene": null
-				}
-			]
+			"current": -1,
+			"list": []
 		}
 	}
 }

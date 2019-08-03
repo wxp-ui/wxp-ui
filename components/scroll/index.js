@@ -1,4 +1,4 @@
-module.exports = Component({
+Component({
 	properties: {
 		// 加载中
 		requesting: {
@@ -175,21 +175,66 @@ module.exports = Component({
 		 * 初始化scroll组件参数, 动态获取 下拉刷新区域 和 success 的高度
 		 */
 		init() {
-			let query = this.createSelectorQuery();
+			const version = wx.getSystemInfoSync().SDKVersion
 
-			query.select("#refresh").boundingClientRect()
-			query.select("#success").boundingClientRect()
+			if (compareVersion(version, '2.7.2')>=0) {
+				let query = this.createSelectorQuery();
 
-			query.exec(function (res) {
-				this.setData({
-					scrollHeight1: -res[0].height,
-					scrollHeight2: res[1].height - res[0].height,
-					move: -res[0].height
-				})
-			}.bind(this));
+				query.select("#refresh").boundingClientRect()
+				query.select("#success").boundingClientRect()
+
+				query.exec(function (res) {
+					this.setData({
+						scrollHeight1: -res[0].height,
+						scrollHeight2: res[1].height - res[0].height,
+						move: -res[0].height
+					})
+				}.bind(this));
+			} else {
+				setTimeout(() => {
+					let query = this.createSelectorQuery();
+
+					query.select("#refresh").boundingClientRect()
+					query.select("#success").boundingClientRect()
+
+					query.exec(function (res) {
+						this.setData({
+							scrollHeight1: -res[0].height,
+							scrollHeight2: res[1].height - res[0].height,
+							move: -res[0].height
+						})
+					}.bind(this));
+				}, 300)
+			}
 		},
 	},
 	attached() {
 		this.init()
 	}
 })
+
+function compareVersion(v1, v2) {
+	v1 = v1.split('.')
+	v2 = v2.split('.')
+	const len = Math.max(v1.length, v2.length)
+
+	while (v1.length < len) {
+		v1.push('0')
+	}
+	while (v2.length < len) {
+		v2.push('0')
+	}
+
+	for (let i = 0; i < len; i++) {
+		const num1 = parseInt(v1[i])
+		const num2 = parseInt(v2[i])
+
+		if (num1 > num2) {
+			return 1
+		} else if (num1 < num2) {
+			return -1
+		}
+	}
+
+	return 0
+}
