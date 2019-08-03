@@ -284,19 +284,6 @@ movable-area {
 	animation-delay: -2s
 }
 
-
-.la-line-spin-fade.la-sm {
-	width: 16px;
-	height: 16px
-}
-
-.la-line-spin-fade.la-sm > div {
-	width: 1px;
-	height: 4px;
-	margin-top: -2px;
-	margin-left: 0
-}
-
 @keyframes ball-spin-fade-rotating-rotate {
 	100% {
 		transform: rotate(360deg)
