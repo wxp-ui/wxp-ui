@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "购物车",
+  "navigationBarTitleText": "侧滑组件",
   "usingComponents": {
     "side-slip": "/components/side-slip/index"
   }
