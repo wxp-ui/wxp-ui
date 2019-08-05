@@ -13,3 +13,7 @@
 <navigator url="/pages/date/index" hover-class="hover" hover-start-time="{{0}}" class="btn">
 	日期选择器组件
 </navigator>
+
+<navigator url="/pages/side-slip/index" hover-class="hover" hover-start-time="{{0}}" class="btn">
+	侧滑组件
+</navigator>

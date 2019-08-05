@@ -21,7 +21,7 @@
   padding: 30rpx;
 }
 .cell:not(:last-child) {
-  border-bottom: 1px solid #ebedf0;
+  border-bottom: 1rpx solid #ebedf0;
 }
 .cell__hd {
   font-size: 0;

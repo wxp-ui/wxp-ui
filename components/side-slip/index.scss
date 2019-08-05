@@ -1,0 +1,30 @@
+.side {
+	width: 100vw;
+	height: initial;
+	position: relative;
+	overflow: hidden;
+
+	&__view {
+		width: calc(100vw + 160rpx);
+		height: initial;
+		display: flex;
+		position: relative;
+	}
+
+	&__con {
+		flex: 1;
+	}
+
+	&__del {
+		position: relative;
+		width: 160rpx;
+		background: red;
+		color: #FFFFFF;
+		text {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+	}
+}

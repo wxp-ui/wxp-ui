@@ -1,5 +1,5 @@
 page {
-  padding-top: 300rpx;
+  padding-top: 200rpx;
 }
 
 .btn {

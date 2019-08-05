@@ -12,6 +12,7 @@
 - scroll组件
 - tab组件
 - date-picker组件
+- side-slip组件(基于movable-view实现)
 
 ## 功能解析
 
@@ -31,7 +32,7 @@ git clone https://github.com/singletouch/small-demo
 
 ## 组件配置
 
-### Scroll组件
+### Scroll 组件
 
 #### Scroll Attributes
 
@@ -60,7 +61,7 @@ git clone https://github.com/singletouch/small-demo
 | --- | --- |
 | -- | 列表组件主体 |
 
-### Tab组件
+### Tab 组件
 
 #### Tab Attributes
 
@@ -83,9 +84,17 @@ git clone https://github.com/singletouch/small-demo
 | --- | --- | --- |
 | scrollByIndex | 让tab组件根据传入的index进行滚动 | 需要切换tab项的index |
 
-### DatePicker组件
+### DatePicker 组件
 
 后续更新
+
+### SideSlip 组件
+
+#### SideSlip Methods
+
+| 方法名 | 说明 | 回调参数 |
+| --- | --- | --- |
+| delete | 点击删除按钮触发的事件 | -- |
 
 ## 贡献
 

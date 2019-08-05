@@ -1,0 +1,47 @@
+@import "../../assets/css/variables";
+
+page {
+	padding-bottom: 1rpx;
+}
+
+.cells {
+	background: #ffffff;
+	margin: 20rpx 0;
+}
+
+side-slip {
+	&:not(:last-child) .cell {
+		border-bottom: 1rpx solid $lineColor;
+	}
+}
+
+.cell {
+	display: flex;
+	padding: 30rpx;
+
+	&__hd {
+		font-size: 0;
+
+		image {
+			width: 200rpx;
+			height: 200rpx;
+			border-radius: 4rpx;
+			margin-right: 30rpx;
+		}
+	}
+
+	&__bd {
+		flex: 1;
+
+		.name {
+			@include line(2);
+			margin-bottom: 32rpx;
+			font-size: 32rpx;
+		}
+
+		.des {
+			@include line(2);
+			color: $mainBlack2;
+		}
+	}
+}

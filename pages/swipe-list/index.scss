@@ -24,7 +24,7 @@ swiper {
 		padding: 30rpx;
 
 		&:not(:last-child) {
-			border-bottom: 1px solid $lineColor;
+			border-bottom: 1rpx solid $lineColor;
 		}
 
 		.hd {

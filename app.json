@@ -4,7 +4,8 @@
 		"pages/tab/index",
 		"pages/scroll/index",
 		"pages/date/index",
-		"pages/swipe-list/index"
+		"pages/swipe-list/index",
+		"pages/side-slip/index"
 	],
 	"permission": {
 		"scope.userLocation": {

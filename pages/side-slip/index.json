@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "购物车",
+  "usingComponents": {
+    "side-slip": "/components/side-slip/index"
+  }
+}
