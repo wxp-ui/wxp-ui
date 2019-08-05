@@ -1,5 +1,5 @@
 {
-	"navigationBarTitleText": "tab组件用法",
+	"navigationBarTitleText": "Tab 组件用法",
 	"usingComponents": {
 		"tab": "../../components/tab/index"
 	}

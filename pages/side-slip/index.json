@@ -1,6 +1,6 @@
 {
-  "navigationBarTitleText": "侧滑组件",
-  "usingComponents": {
-    "side-slip": "/components/side-slip/index"
-  }
+	"navigationBarTitleText": "侧滑组件",
+	"usingComponents": {
+		"side-slip": "/components/side-slip/index"
+	}
 }

@@ -8,14 +8,23 @@ Component({
 		open: false
 	},
 	methods: {
+		/**
+		 * 删除事件
+		 */
 		delete() {
 			this.triggerEvent('delete');
 		},
+		/**
+		 * movable-view 滚动监听
+		 */
 		change(e) {
 			this.setData({
 				x: e.detail.x
 			})
 		},
+		/**
+		 * movable-view 触摸结束事件
+		 */
 		touchend() {
 			let diff = this.data.x;
 			if (!this.data.open) {

@@ -7,7 +7,7 @@
 	</tab>
 </view>
 
-<swiper current="{{categoryCur}}" duration="300" bindchange="swipeChange">
+<swiper current="{{categoryCur}}" duration="{{duration}}" bindchange="swipeChange">
 	<swiper-item wx:for="{{categoryData}}" wx:key="{{index}}">
 		<scroll requesting="{{item.requesting}}"
 				end="{{item.end}}"

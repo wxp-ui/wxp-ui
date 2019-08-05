@@ -40,6 +40,7 @@ let testData = [
 
 Page({
 	data: {
+		duration: 300,  // swiper-item 切换过渡时间
 		categoryCur: 0,
 		categoryMenu: ["推荐", "精选集锦", "最新体验", "资料", "版本", "攻略", "排行", "热门"],
 		categoryData: [
@@ -132,16 +133,28 @@ Page({
 	// 顶部tab切换事件
 	toggleCategory(e) {
 		this.setData({
-			categoryCur: e.detail.index
+			duration: 0
 		})
+
+		setTimeout(() => {
+			this.setData({
+				categoryCur: e.detail.index,
+			})
+		}, 10)
 	},
 	// 页面滑动切换事件
 	swipeChange(e) {
-		categoryMenu.scrollByIndex(e.detail.current)
 		this.setData({
-			categoryCur: e.detail.current
+			duration: 300
 		})
-		this.loadData()
+
+		setTimeout(() => {
+			categoryMenu.scrollByIndex(e.detail.current)
+			this.setData({
+				categoryCur: e.detail.current,
+			})
+			this.loadData()
+		}, 10)
 	},
 	// 更新页面数据
 	setCurrentData(pageData) {
