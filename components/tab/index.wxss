@@ -27,8 +27,7 @@ scroll-view {
   line-height: 90rpx;
   padding: 0 30rpx;
   box-sizing: border-box;
-  -webkit-transition: color 0.3s, background-color 0.3s;
-  transition: color 0.3s, background-color 0.3s;
+  transition: color 0.5s ease-in-out;
 }
 .tabs__item--cur {
   color: #333333;

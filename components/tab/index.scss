@@ -34,8 +34,7 @@ scroll-view {
 		line-height: $top-height;
 		padding: 0 30rpx;
 		box-sizing: border-box;
-		-webkit-transition: color 0.3s, background-color 0.3s;
-		transition: color 0.3s, background-color 0.3s;
+		transition: color 0.5s ease-in-out;
 
 		&--cur {
 			color: $mainBlack1;
