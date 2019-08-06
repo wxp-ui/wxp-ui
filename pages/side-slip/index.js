@@ -50,7 +50,7 @@ Page({
 		});
 	},
 	onLoad() {
-		this.getList('refresh', pageStart);
+
 	}
 });
 

@@ -128,76 +128,35 @@ Component({
 		 *  监听颜色变化, 然后调用初始化函数
 		 */
 		colorChange(newVal, oldVal) {
-			this.init();
+			setTimeout(() => {
+				this.init()
+			},0)
 		},
 		/**
 		 *  初始化函数
 		 */
 		init() {
-			const {windowWidth, SDKVersion} = wx.getSystemInfoSync();
+			const {windowWidth} = wx.getSystemInfoSync();
 
 			// 获取屏幕宽度
 			this.setData({
 				windowWidth: windowWidth
 			});
 
-			// 对比版本号, 处理兼容问题
-			if (compareVersion(SDKVersion, '2.7.2')>=0) {
-				// 获取每一个tab的宽高信息并存储起来
-				let query = this.createSelectorQuery();
-				for (let i = 0; i < this.data.tabData.length; i++) {
-					query.select(`#item${i}`).boundingClientRect()
-				}
-				query.exec(function (res) {
-					this.setData({
-						items: res
-					})
-					this.scrollByIndex(0, false)
-				}.bind(this));
-			} else {
-				setTimeout(() => {
-					// 获取每一个tab的宽高信息并存储起来
-					let query = this.createSelectorQuery();
-					for (let i = 0; i < this.data.tabData.length; i++) {
-						query.select(`#item${i}`).boundingClientRect()
-					}
-					query.exec(function (res) {
-						this.setData({
-							items: res
-						})
-						this.scrollByIndex(0, false)
-					}.bind(this));
-				}, 300)
+			// 获取每一个tab的宽高信息并存储起来
+			let query = this.createSelectorQuery();
+			for (let i = 0; i < this.data.tabData.length; i++) {
+				query.select(`#item${i}`).boundingClientRect()
 			}
+			query.exec(function (res) {
+				this.setData({
+					items: res
+				})
+				this.scrollByIndex(0, false)
+			}.bind(this));
 		}
 	},
-	attached() {
+	ready() {
 		this.init();
 	}
 })
-
-function compareVersion(v1, v2) {
-	v1 = v1.split('.')
-	v2 = v2.split('.')
-	const len = Math.max(v1.length, v2.length)
-
-	while (v1.length < len) {
-		v1.push('0')
-	}
-	while (v2.length < len) {
-		v2.push('0')
-	}
-
-	for (let i = 0; i < len; i++) {
-		const num1 = parseInt(v1[i])
-		const num2 = parseInt(v2[i])
-
-		if (num1 > num2) {
-			return 1
-		} else if (num1 < num2) {
-			return -1
-		}
-	}
-
-	return 0
-}

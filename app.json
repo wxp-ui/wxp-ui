@@ -5,7 +5,8 @@
 		"pages/scroll/index",
 		"pages/date/index",
 		"pages/swipe-list/index",
-		"pages/side-slip/index"
+		"pages/side-slip/index",
+		"pages/index-list/index"
 	],
 	"permission": {
 		"scope.userLocation": {
