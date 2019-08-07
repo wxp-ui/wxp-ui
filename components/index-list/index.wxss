@@ -9,19 +9,21 @@ scroll-view {
 }
 
 .block-wrap {
+  position: relative;
   width: 100%;
   padding-right: 20rpx;
   box-sizing: border-box;
 }
 
-.title {
-  position: fixed;
+.sticky-title {
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   background: #f7f7f7;
   font-weight: bold;
   padding: 10rpx 20rpx;
+  z-index: 1;
 }
 
 .indicator {
@@ -36,6 +38,7 @@ scroll-view {
   font-size: 60rpx;
   font-weight: bold;
   display: none;
+  z-index: 3;
 }
 .indicator:after {
   content: "";
@@ -64,6 +67,7 @@ scroll-view {
   top: 50%;
   transform: translateY(-50%);
   text-align: center;
+  z-index: 3;
 }
 .tree__item {
   font-size: 20rpx;
@@ -84,10 +88,24 @@ scroll-view {
 }
 
 .block__title {
-  background: #f7f7f7;
-  font-weight: bold;
-  padding: 10rpx 20rpx;
+  height: 60rpx;
+  line-height: 60rpx;
   position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #ffffff;
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #767676;
+}
+.block__title > view {
+  border-top: 1rpx solid #ebedf0;
+  border-bottom: 1rpx solid #ebedf0;
+  padding: 0 20rpx;
+  background: #ededed;
+}
+.block__title--cur > view {
+  background: #ffffff;
 }
 .block__item {
   background: #ffffff;

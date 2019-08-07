@@ -11,19 +11,21 @@ scroll-view {
 }
 
 .block-wrap {
+	position: relative;
 	width: 100%;
 	padding-right: 20rpx;
 	box-sizing: border-box;
 }
 
-.title {
-	position: fixed;
+.sticky-title {
+	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	background: $mainBd;
 	font-weight: bold;
 	padding: 10rpx 20rpx;
+	z-index: 1;
 }
 
 .indicator {
@@ -38,6 +40,7 @@ scroll-view {
 	font-size: 60rpx;
 	font-weight: bold;
 	display: none;
+	z-index: 3;
 	&:after {
 		content: "";
 		position: absolute;
@@ -66,6 +69,7 @@ scroll-view {
 	top: 50%;
 	transform: translateY(-50%);
 	text-align: center;
+	z-index: 3;
 	&__item {
 		font-size: 20rpx;
 		padding: 0rpx 8rpx;
@@ -89,10 +93,27 @@ scroll-view {
 
 .block {
 	&__title {
-		background: $mainBd;
-		font-weight: bold;
-		padding: 10rpx 20rpx;
+		height: 60rpx;
+		line-height: 60rpx;
 		position: sticky;
+		top: 0;
+		z-index: 2;
+		background: #ffffff;
+		font-size: 24rpx;
+		font-weight: bold;
+		color: #767676;
+		& > view {
+			border-top: 1rpx solid $lineColor;
+			border-bottom: 1rpx solid $lineColor;
+			padding: 0 20rpx;
+			background: #ededed;
+		}
+		&--cur {
+			color: $mainColor;
+			& > view {
+				background: #ffffff;
+			}
+		}
 	}
 	&__item {
 		background: #ffffff;

@@ -13,6 +13,7 @@
 - tab组件
 - date-picker组件
 - side-slip组件(基于movable-view实现)
+- index-list组件
 
 ## 功能解析
 
@@ -95,6 +96,15 @@ git clone https://github.com/singletouch/small-demo
 | 方法名 | 说明 | 回调参数 |
 | --- | --- | --- |
 | delete | 点击删除按钮触发的事件 | -- |
+
+### IndexList 组件
+
+#### IndexList Attributes
+
+| 参数 | 说明 | 类型 | 可选值 | 默认值 |
+| --- | --- | --- | --- | --- |
+| listData | 数据源 | Array | -- | [] |
+| color | 颜色 | String | -- | #ff4158 |
 
 ## 贡献
 

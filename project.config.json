@@ -20,7 +20,7 @@
 		}
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.7.7",
+	"libVersion": "2.5.2",
 	"appid": "wxe14d4ca6edeb543e",
 	"projectname": "small-demo",
 	"simulatorType": "wechat",
