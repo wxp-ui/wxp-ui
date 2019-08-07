@@ -37,17 +37,6 @@ Component({
 			this.scrollByIndex(e.currentTarget.dataset.index)
 		},
 		/**
-		 * 获取当前tabItem的左边距离
-		 * @param tabCur: 当前激活的tabItem的索引
-		 */
-		getOffsetLeftByIndex(tabCur) {
-			let offsetLeft = 0;
-			for (let i = 0; i < tabCur; i++) {
-				offsetLeft += this.data.items[i].width
-			}
-			return offsetLeft;
-		},
-		/**
 		 * 滑动到指定位置
 		 * @param tabCur: 当前激活的tabItem的索引
 		 * @param needTransition: 下划线是否需要过渡动画, 第一次进来应设置为false
@@ -79,7 +68,7 @@ Component({
 				let itemWidth = res[0].width
 
 				// 父item左边距离
-				let offsetLeft = this.getOffsetLeftByIndex(tabCur)
+				let offsetLeft = this.data.items[tabCur].left
 
 				if (this.data.scroll) { // 超出滚动的情况
 					// 父item左边距

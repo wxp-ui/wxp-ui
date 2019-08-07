@@ -1,0 +1,102 @@
+@import "../../assets/css/variables";
+
+.view-wrap {
+	width: 100vw;
+	overflow: hidden;
+}
+
+scroll-view {
+	width: calc(100vw + 20rpx);
+	height: 100vh;
+}
+
+.block-wrap {
+	width: 100%;
+	padding-right: 20rpx;
+	box-sizing: border-box;
+}
+
+.title {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background: $mainBd;
+	font-weight: bold;
+	padding: 10rpx 20rpx;
+}
+
+.indicator {
+	position: fixed;
+	right: 80rpx;
+	width: 100rpx;
+	height: 100rpx;
+	border-radius: 10rpx;
+	text-align: center;
+	line-height: 100rpx;
+	color: #ffffff;
+	font-size: 60rpx;
+	font-weight: bold;
+	display: none;
+	&:after {
+		content: "";
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -1;
+		border-radius: 100% 0% 100% 100%;
+		background: rgba(0,0,0,0.3);
+		transform: rotate(45deg);
+	}
+	&--show {
+		display: block;
+	}
+	&--tran {
+		display: block;
+		opacity: 0;
+		transition: opacity 0.3s linear;
+	}
+}
+
+.tree {
+	position: fixed;
+	right: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	text-align: center;
+	&__item {
+		font-size: 20rpx;
+		padding: 0rpx 8rpx;
+		color: $mainBlack2;
+		font-weight: bold;
+		& > view {
+			width: 32rpx;
+			height: 32rpx;
+			border-radius: 50%;
+			line-height: 32rpx;
+		}
+		&--cur {
+			& > view {
+				background: $mainColor;
+				color: #FFFFFF;
+				border-radius: 50%;
+			}
+		}
+	}
+}
+
+.block {
+	&__title {
+		background: $mainBd;
+		font-weight: bold;
+		padding: 10rpx 20rpx;
+		position: sticky;
+	}
+	&__item {
+		background: #ffffff;
+		padding: 40rpx 20rpx;
+	}
+}
+

@@ -42,8 +42,15 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
-			"list": []
+			"current": 0,
+			"list": [
+				{
+					"id": -1,
+					"name": "pages/index-list/index",
+					"pathName": "pages/index-list/index",
+					"scene": null
+				}
+			]
 		}
 	}
 }

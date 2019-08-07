@@ -1,0 +1,30 @@
+<view>
+	<view class="view-wrap">
+		<scroll-view bind:scroll="scroll"
+					 disabled="{{touching}}"
+					 scroll-y
+					 scroll-top="{{scrollTop}}">
+			<view class="block-wrap">
+				<view class="block" wx:for="{{listData}}" wx:key="{{index}}">
+					<view class="block__title">
+						{{item.key}}
+					</view>
+					<view class="block__item" wx:for="{{item.data}}" wx:key="{{index}}">
+						{{item}}
+					</view>
+				</view>
+			</view>
+		</scroll-view>
+	</view>
+	<view class="indicator {{touching ? 'indicator--show' : ''}} {{treeKeyTran ? 'indicator--tran' : ''}}" style="top: {{treeKeyHeight}}px">
+		{{listData[treeItemCur].key}}
+	</view>
+	<view class="title">
+		{{listData[treeItemCur].key}}
+	</view>
+	<view id="tree" class="tree" catch:touchstart="touchStart" catch:touchmove="touchMove" catch:touchend="touchEnd">
+		<view class="tree__item {{index === treeItemCur ? 'tree__item--cur' : ''}}" wx:for="{{listData}}" wx:key="{{index}}">
+			<view>{{item.key}}</view>
+		</view>
+	</view>
+</view>

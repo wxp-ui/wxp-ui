@@ -1,0 +1,7 @@
+{
+	"navigationBarTitleText": "索引列表组件",
+	"backgroundColor": "#ffffff",
+	"usingComponents": {
+		"index-list": "/components/index-list/index"
+	}
+}
