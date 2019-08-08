@@ -50,24 +50,32 @@ Component({
 	},
 	data: {
 		treeItemCur: 0,
+		listItemCur: 0,
 		touching: false,
 		scrollTop: 0,
 		treeKeyHeight: 0,
 		treeKeyTran: false,
 		style1: "",
-		style2: ""
+		style2: "",
+		maxScrollTop: 0,
+		maxScrollIndex: 0
 	},
 	methods: {
+		/**
+		 * scroll-view 滚动监听
+		 */
 		scroll(e) {
 			if(this.data.touching) return;
 
 			let scrollTop = e.detail.scrollTop;
 
+			if(scrollTop >= this.data.maxScrollTop) return;
+
 			let blocks = this.blocks;
 
 			let stickyTitleHeight = this.remScale * 30
 
-			for (let i = 0, len = blocks.length; i < len; i++) {
+			for (let i = blocks.length - 1; i >=0 ; i--) {
 				let block = blocks[i];
 
 				if(scrollTop >= block.top && scrollTop < block.bottom) {
@@ -90,15 +98,35 @@ Component({
 					}
 
 					this.setData({
-						treeItemCur: i
+						treeItemCur: i,
+						listItemCur: i
 					});
 
 					break
 				}
 			}
-
-
 		},
+		/**
+		 * 触摸之后后设置对应value
+		 */
+		setValue(treeItemCur) {
+			let scrollTop = this.blocks[treeItemCur].top;
+
+			if (treeItemCur !== this.data.treeItemCur) {
+				wx.vibrateShort();
+
+				this.setData({
+					treeItemCur: treeItemCur,
+					scrollTop: (scrollTop >= this.data.maxScrollTop ? this.data.maxScrollTop : scrollTop),
+					listItemCur: (treeItemCur >= this.data.maxScrollIndex ? this.data.maxScrollIndex : treeItemCur)
+				});
+
+				this.setIndicatorHeight(treeItemCur);
+			}
+		},
+		/**
+		 * tree 触摸开始
+		 */
 		touchStart(e) {
 			if(this.data.touching) return;
 
@@ -106,33 +134,31 @@ Component({
 				touching: true
 			});
 
-			let treeItemCur = this.getCurrentTreeItem(e.changedTouches[0].pageY),
-				scrollTop = this.blocks[treeItemCur].top;
+			let treeItemCur = this.getCurrentTreeItem(e.changedTouches[0].pageY);
 
-			if (treeItemCur !== this.data.treeItemCur) {
-				wx.vibrateShort();
-				this.setData({
-					treeItemCur: treeItemCur,
-					scrollTop: scrollTop
-				});
-				this.setIndicatorHeight();
-			}
+			this.setValue(treeItemCur);
 		},
+		/**
+		 * tree 触摸移动
+		 */
 		touchMove(e) {
-			let treeItemCur = this.getCurrentTreeItem(e.changedTouches[0].pageY),
-				scrollTop = this.blocks[treeItemCur].top;
+			let treeItemCur = this.getCurrentTreeItem(e.changedTouches[0].pageY);
 
-			if (treeItemCur !== this.data.treeItemCur) {
-				wx.vibrateShort();
-				this.setData({
-					treeItemCur: treeItemCur,
-					scrollTop: scrollTop,
-				});
-				this.setIndicatorHeight();
-			}
+			this.setValue(treeItemCur);
 		},
-
+		/**
+		 * tree 触摸结束
+		 */
 		touchEnd(e) {
+			let {treeItemCur, listItemCur} = this.data;
+
+			if(treeItemCur != listItemCur) {
+				this.setData({
+					treeItemCur: listItemCur
+				});
+				this.setIndicatorHeight(listItemCur);
+			}
+
 			this.setData({
 				treeKeyTran: true
 			})
@@ -147,9 +173,8 @@ Component({
 		/**
 		 * 设置 indicator 顶部距离
 		 */
-		setIndicatorHeight() {
-			let {top, itemHeight, indicatorOffset} = this.treeInfo,
-				{treeItemCur} = this.data,
+		setIndicatorHeight(treeItemCur) {
+			let {top, itemHeight} = this.treeInfo,
 				remScale = this.remScale;
 
 			this.setData({
@@ -175,9 +200,17 @@ Component({
 		 *  初始化函数
 		 */
 		init() {
-			let {screenWidth} = wx.getSystemInfoSync();
+			this.colors = gradient(this.data.color, "#767676", 100);
 
-			this.remScale = (screenWidth || 375) / 375;
+			let {windowHeight, windowWidth}= wx.getSystemInfoSync();
+
+			this.remScale = (windowWidth || 375) / 375;
+
+			this.createSelectorQuery().select(".block-wrap").boundingClientRect((res) => {
+				this.setData({
+					maxScrollTop: res.height - windowHeight
+				});
+			}).exec()
 
 			this.createSelectorQuery().select("#tree").boundingClientRect((res) => {
 				this.treeInfo = {
@@ -190,18 +223,31 @@ Component({
 			}).exec()
 
 			this.createSelectorQuery().selectAll(".block").boundingClientRect((res) => {
-				this.blocks = res.map((item) => {
+				let blocks = res.map((item) => {
 					return {
 						top: item.top,
 						bottom: item.top + item.height
 					}
 				});
+
+
+				for (let i = blocks.length - 1; i >= 0; i--) {
+					let block = blocks[i];
+
+					if(this.data.maxScrollTop >= block.top && this.data.maxScrollTop < block.bottom) {
+						this.setData({
+							maxScrollIndex: i
+						});
+
+						break
+					}
+				}
+
+				this.blocks = blocks;
 			}).exec();
 		},
 	},
 	ready() {
-		this.colors = gradient(this.data.color, "#767676", 100);
-
 		this.init();
 	}
 })
