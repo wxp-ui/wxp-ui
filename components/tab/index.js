@@ -45,8 +45,8 @@ Component({
 			let animation;
 			if (needTransition) {
 				animation = wx.createAnimation({
-					duration: 500,
-					timingFunction: 'ease-in-out',
+					duration: 300,
+					timingFunction: 'linear',
 				})
 			} else {
 				animation = wx.createAnimation({
