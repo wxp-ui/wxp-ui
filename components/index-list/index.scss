@@ -30,7 +30,7 @@ scroll-view {
 
 .indicator {
 	position: fixed;
-	right: 80rpx;
+	right: 120rpx;
 	width: 100rpx;
 	height: 100rpx;
 	border-radius: 10rpx;
@@ -116,8 +116,11 @@ scroll-view {
 		}
 	}
 	&__item {
+		&:not(:last-child) {
+			border-bottom: 1rpx solid $lineColor;
+		}
 		background: #ffffff;
-		padding: 40rpx 20rpx;
+		padding: 30rpx 20rpx;
 	}
 }
 

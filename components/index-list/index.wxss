@@ -28,7 +28,7 @@ scroll-view {
 
 .indicator {
   position: fixed;
-  right: 80rpx;
+  right: 120rpx;
   width: 100rpx;
   height: 100rpx;
   border-radius: 10rpx;
@@ -104,10 +104,16 @@ scroll-view {
   padding: 0 20rpx;
   background: #ededed;
 }
+.block__title--cur {
+  color: #ff4158;
+}
 .block__title--cur > view {
   background: #ffffff;
 }
 .block__item {
   background: #ffffff;
-  padding: 40rpx 20rpx;
+  padding: 30rpx 20rpx;
+}
+.block__item:not(:last-child) {
+  border-bottom: 1rpx solid #ebedf0;
 }

@@ -69,7 +69,7 @@ Component({
 
 			let scrollTop = e.detail.scrollTop;
 
-			if(scrollTop >= this.data.maxScrollTop) return;
+			if(scrollTop > this.data.maxScrollTop) return;
 
 			let blocks = this.blocks;
 
@@ -142,6 +142,14 @@ Component({
 		 * tree 触摸移动
 		 */
 		touchMove(e) {
+			if(!this.data.touching) {
+				this.setData({
+					touching: true,
+					style1: "",
+					style2: ""
+				});
+			}
+
 			let treeItemCur = this.getCurrentTreeItem(e.changedTouches[0].pageY);
 
 			this.setValue(treeItemCur);
@@ -161,14 +169,14 @@ Component({
 
 			this.setData({
 				treeKeyTran: true
-			})
+			});
 
 			setTimeout(() => {
 				this.setData({
 					touching: false,
 					treeKeyTran: false
 				});
-			}, 300)
+			}, 300);
 		},
 		/**
 		 * 设置 indicator 顶部距离
