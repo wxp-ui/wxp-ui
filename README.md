@@ -47,7 +47,7 @@ git clone https://github.com/singletouch/small-demo
 | hasTop | 是否有header | Boolean | -- | false |
 | refreshSize | 下拉刷新的高度 | Number | -- | 90 |
 | bottomSize | 底部高度 | Number | -- | 0 |
-| color | 颜色 | String | -- | #ff4158 |
+| color | 颜色 | String | -- | "" |
 
 #### Scroll Events
 
@@ -71,7 +71,7 @@ git clone https://github.com/singletouch/small-demo
 | scroll | 是否可以超出滚动 | Boolean | -- | false |
 | tabData | 数据源 | Array | -- | [] |
 | size | tab高度 | Number | -- | 90 |
-| color | 颜色 | String | -- | #ff4158 |
+| color | 颜色 | String | -- | "" |
 
 #### Tab Events
 
@@ -104,7 +104,7 @@ git clone https://github.com/singletouch/small-demo
 | 参数 | 说明 | 类型 | 可选值 | 默认值 |
 | --- | --- | --- | --- | --- |
 | listData | 数据源 | Array | -- | [] |
-| color | 颜色 | String | -- | #ff4158 |
+| color | 颜色 | String | -- | "" |
 
 ## 贡献
 

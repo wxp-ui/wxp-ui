@@ -45,7 +45,7 @@ Component({
 		// 颜色
 		color: {
 			type: String,
-			value: "#ff4158",
+			value: "",
 			observer: "colorChange"
 		},
 	},
