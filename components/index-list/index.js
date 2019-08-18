@@ -116,6 +116,9 @@ Component({
 				wx.vibrateShort();
 
 				this.setData({
+					style1: "",
+					style2: "",
+					percent: 1,
 					treeItemCur: treeItemCur,
 					scrollTop: (scrollTop >= this.data.maxScrollTop ? this.data.maxScrollTop : scrollTop),
 					listItemCur: (treeItemCur >= this.data.maxScrollIndex ? this.data.maxScrollIndex : treeItemCur)
