@@ -118,6 +118,7 @@ Page({
 
 			if (type === 'refresh') {
 				pageData.listData = testData
+				pageData.end = false
 				pageData.page = currentPage + 1
 
 			} else {
