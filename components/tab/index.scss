@@ -54,5 +54,8 @@ scroll-view {
 		border-radius: 6rpx;
 		width: 0rpx;
 		display: inline-block;
+		&.transition {
+			transition: width 0.3s, transform 0.3s;
+		}
 	}
 }

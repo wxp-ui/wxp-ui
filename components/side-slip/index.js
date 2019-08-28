@@ -55,7 +55,7 @@ Component({
 		}
 	},
 	ready() {
-		let {screenWidth} = wx.getSystemInfoSync()
-		this.deleteBtnWidth = (screenWidth || 375) / 375 * 80;
+		let {windowWidth} = wx.getSystemInfoSync()
+		this.deleteBtnWidth = (windowWidth || 375) / 375 * 80;
 	}
 })

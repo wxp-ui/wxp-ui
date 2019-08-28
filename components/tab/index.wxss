@@ -45,3 +45,6 @@ scroll-view {
   width: 0rpx;
   display: inline-block;
 }
+.tabs__line.transition {
+  transition: width 0.3s, transform 0.3s;
+}

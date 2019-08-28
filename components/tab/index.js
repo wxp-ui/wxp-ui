@@ -24,7 +24,9 @@ Component({
 		}
 	},
 	data: {
-		windowWidth: 375, // 屏幕宽度
+		needTransition: false, // 下划线是否需要过渡动画
+		translateX: 0, // 下划 line 的左边距离
+		lineWidth: 100, // 下划 line 宽度
 		tabCur: 0, // 当前聚焦的tab
 		scrollLeft: 0, // scroll-view 左边滚动距离
 	},
@@ -42,66 +44,39 @@ Component({
 		 * @param needTransition: 下划线是否需要过渡动画, 第一次进来应设置为false
 		 */
 		scrollByIndex(tabCur, needTransition = true) {
-			let animation;
-			if (needTransition) {
-				animation = wx.createAnimation({
-					duration: 300,
-					timingFunction: 'linear',
-				})
-			} else {
-				animation = wx.createAnimation({
-					duration: 0
-				})
-			}
+			this.setData({
+				isScroll: true
+			})
 
-			let query = this.createSelectorQuery();
-
-			query.select(`#item-child${tabCur}`).boundingClientRect();
-
-			query.select(`#item${tabCur}`).fields({
-				size: true,
-				computedStyle: ['paddingLeft']
+			this.setData({
+				needTransition: needTransition
 			});
 
-			query.exec(function (res) {
-				// 子item宽度
-				let itemWidth = res[0].width
+			let item = this.items[tabCur];
 
-				// 父item左边距离
-				let offsetLeft = this.data.items[tabCur].left
+			// 子item宽度
+			let chItemWidth = item.width - this.itemPadding * 2;
 
-				if (this.data.scroll) { // 超出滚动的情况
-					// 父item左边距
-					let paddingLeft = parseInt(res[1].paddingLeft.slice(0, -2) || 0)
+			// 父item左边距离
+			let offsetLeft = item.left;
 
-					animation.width(res[0].width).translateX(offsetLeft + paddingLeft).step()
+			if (this.data.scroll) { // 超出滚动的情况
+				// 保持滚动后当前item'尽可能'在屏幕中间
+				let scrollLeft = offsetLeft - (this.windowWidth - item.width) / 2;
 
-					this.setData({
-						animationData: animation.export()
-					})
-
-					// 保持滚动后当前item'尽可能'在屏幕中间
-					let scrollLeft = offsetLeft - (this.data.windowWidth - itemWidth) / 2;
-
-					this.setData({
-						tabCur: tabCur,
-						scrollLeft: scrollLeft,
-					})
-				} else { // 不超出滚动的情况
-					// 父item宽度
-					let itemWrapWidth = res[1].width
-
-					animation.width(res[0].width).translateX(offsetLeft + (itemWrapWidth - itemWidth) / 2).step()
-
-					this.setData({
-						animationData: animation.export()
-					})
-
-					this.setData({
-						tabCur: tabCur,
-					})
-				}
-			}.bind(this));
+				this.setData({
+					tabCur: tabCur,
+					scrollLeft: scrollLeft,
+					translateX: offsetLeft + this.itemPadding,
+					lineWidth: chItemWidth,
+				})
+			} else { // 不超出滚动的情况
+				this.setData({
+					tabCur: tabCur,
+					translateX: offsetLeft + this.itemPadding,
+					lineWidth: chItemWidth,
+				})
+			}
 		},
 		/**
 		 *  监听tab高度变化, 最小值为80rpx
@@ -127,20 +102,20 @@ Component({
 		init() {
 			const {windowWidth} = wx.getSystemInfoSync();
 
-			// 获取屏幕宽度
-			this.setData({
-				windowWidth: windowWidth
-			});
+			// 设置屏幕宽度
+			this.windowWidth = windowWidth || 375;
+
+			// 动态item的padding大小
+			this.itemPadding = this.windowWidth / 375 * 15;
 
 			// 获取每一个tab的宽高信息并存储起来
 			let query = this.createSelectorQuery();
 			for (let i = 0; i < this.data.tabData.length; i++) {
 				query.select(`#item${i}`).boundingClientRect()
 			}
+
 			query.exec(function (res) {
-				this.setData({
-					items: res
-				})
+				this.items = res;
 				this.scrollByIndex(0, false)
 			}.bind(this));
 		}
