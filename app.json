@@ -17,7 +17,7 @@
 		"backgroundTextStyle": "dark",
 		"navigationBarTextStyle": "white",
 		"navigationBarBackgroundColor": "#ff4158",
-		"navigationBarTitleText": "小程序组件",
+		"navigationBarTitleText": "wx组件",
 		"backgroundColor": "#f7f7f7"
 	},
 	"sitemapLocation": "sitemap.json"
