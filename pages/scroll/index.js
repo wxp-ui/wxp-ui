@@ -110,11 +110,11 @@ Page({
 				this.setData({
 					listData: this.data.listData.concat(testData),
 					page: currentPage + 1,
-					end: true
+					end: false
 				})
 			}
 
-		}, 1000)
+		}, 0)
 
 	},
 

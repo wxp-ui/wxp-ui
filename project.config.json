@@ -45,9 +45,10 @@
 			"current": 0,
 			"list": [
 				{
-					"id": -1,
-					"name": "pages/index-list/index",
-					"pathName": "pages/index-list/index",
+					"id": 0,
+					"name": "pages/scroll/index",
+					"pathName": "pages/scroll/index",
+					"query": "",
 					"scene": null
 				}
 			]

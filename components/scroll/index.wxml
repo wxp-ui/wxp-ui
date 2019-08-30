@@ -12,6 +12,8 @@
 			class="scroll__view"
 			style="padding-bottom: {{bottomSize}}rpx;padding-top: {{ hasTop ? refreshSize : 0}}rpx;"
 			scroll-y="{{refreshStatus == 1}}"
+			bindscroll="scroll"
+			scroll-top="{{scrollTop}}"
 			lower-threshold="{{0}}"
 			bindscrolltolower="more">
 			<view id="refresh"

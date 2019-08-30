@@ -56,9 +56,21 @@ Component({
 		refreshStatus: 0, // 1: 下拉刷新, 2: 松开刷新, 3: 加载中, 4: 加载完成
 		move: -45, // movable-view 偏移量
 		scrollHeight1: 0, // refresh view 高度负值
-		scrollHeight2: 0  // refresh view - success view 高度负值
+		scrollHeight2: 0, // refresh view - success view 高度负值
+		scrollTop: 0
 	},
 	methods: {
+		/**
+		 * 处理 bindscrolltolower 失效情况
+		 */
+		scroll(e) {
+			clearTimeout(this.timer)
+			this.timer = setTimeout(() => {
+				this.setData({
+					scrollTop: e.detail.scrollTop
+				})
+			}, 100)
+		},
 		/**
 		 * movable-view 滚动监听
 		 */
