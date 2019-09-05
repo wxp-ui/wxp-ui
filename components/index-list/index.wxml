@@ -15,7 +15,7 @@
 						<view>{{item.key}}</view>
 					</view>
 					<view class="block__item" wx:for="{{item.data}}" wx:key="{{index}}">
-						{{item}}
+						<item item="{{item}}"></item>
 					</view>
 				</view>
 			</view>

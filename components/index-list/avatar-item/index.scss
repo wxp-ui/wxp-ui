@@ -1,0 +1,19 @@
+@import "../../../assets/css/variables";
+
+.item {
+	display: flex;
+	align-items: center;
+	&__hd {
+		width: 80rpx;
+		height: 80rpx;
+		border-radius: 50%;
+		font-weight: bold;
+		line-height: 80rpx;
+		text-align: center;
+		margin-right: 20rpx;
+		color: #ffffff;
+	}
+	&__bd {
+
+	}
+}

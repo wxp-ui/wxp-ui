@@ -3,6 +3,7 @@
 	"backgroundColor": "#ffffff",
 	"disableScroll": true,
 	"usingComponents": {
-		"index-list": "/components/index-list/index"
+		"index-list": "/components/index-list/index",
+		"avatar-item": "/components/index-list/avatar-item/index"
 	}
 }

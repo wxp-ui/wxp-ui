@@ -20,7 +20,7 @@
 		}
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.8.1",
+	"libVersion": "2.8.2",
 	"appid": "wxe14d4ca6edeb543e",
 	"projectname": "wx-plugin",
 	"simulatorType": "wechat",
@@ -46,8 +46,8 @@
 			"list": [
 				{
 					"id": 0,
-					"name": "pages/scroll/index",
-					"pathName": "pages/scroll/index",
+					"name": "pages/drag/index",
+					"pathName": "pages/drag/index",
 					"query": "",
 					"scene": null
 				}

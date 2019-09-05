@@ -1,0 +1,6 @@
+<view class="item">
+	<view class="item__hd" style="background-color: {{color}}">
+		{{firstChar}}
+	</view>
+	<view class="item__bd">{{item}}</view>
+</view>

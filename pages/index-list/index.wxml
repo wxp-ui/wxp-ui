@@ -1,3 +1,1 @@
-<index-list list-data="{{listData}}" color="#ff4158"></index-list>
-
-
+<index-list generic:item="avatar-item" list-data="{{listData}}" color="#ff4158"></index-list>

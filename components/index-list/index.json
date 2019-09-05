@@ -1,3 +1,8 @@
 {
-	"component": true
+	"component": true,
+	"componentGenerics": {
+		"item": {
+			"default": "../../components/index-list/item/index"
+		}
+	}
 }
