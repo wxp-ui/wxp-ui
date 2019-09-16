@@ -32,10 +32,10 @@ Page({
 		// 返回shareObj
 		return shareObj;
 	},
-	onLoad(option) {
-		if(option.page) {
+	onLoad(query) {
+		if(query.scene && query.scene != "main") {
 			wx.navigateTo({
-				url: `/pages/${option.page}/index`
+				url: `/pages/${query.scene}/index`
 			})
 		}
 	}

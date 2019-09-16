@@ -52,10 +52,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 1,
 					"name": "pages/main/index",
 					"pathName": "pages/main/index",
-					"query": "page=swipe-list",
+					"query": "scene=swipe-list",
 					"scene": null
 				}
 			]
