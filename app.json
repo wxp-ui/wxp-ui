@@ -19,7 +19,7 @@
 		"backgroundTextStyle": "dark",
 		"navigationBarTextStyle": "black",
 		"navigationBarBackgroundColor": "#ffffff",
-		"navigationBarTitleText": "WxP",
+		"navigationBarTitleText": "WxP UI",
 		"backgroundColor": "#f7f7f7"
 	},
 	"sitemapLocation": "sitemap.json"
