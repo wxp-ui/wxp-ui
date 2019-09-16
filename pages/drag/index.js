@@ -62,4 +62,7 @@ Page({
 			size: e.detail.value
 		})
 	},
+	change(e) {
+		console.log(e)
+	}
 })

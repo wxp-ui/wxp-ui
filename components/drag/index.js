@@ -117,16 +117,25 @@ Component({
 				return item
 			});
 
-			if(vibrate) {
-				this.setData({
-					itemTransition: true
-				})
-				wx.vibrateShort();
-			}
-
 			this.setData({
 				list: list
 			});
+
+			if(!vibrate) return;
+
+			this.setData({
+				itemTransition: true
+			})
+
+			wx.vibrateShort();
+
+			let listData= [];
+
+			list.forEach((item) => {
+				listData[item.key] = item.data
+			});
+
+			this.triggerEvent('change', {listData: listData});
 		},
 		/**
 		 * 根据起始key和目标key去重新计算每一项的新的key
@@ -181,16 +190,17 @@ Component({
 		 * 监听列数变化, 如果改变重新初始化参数
 		 */
 		columnsChange(newVal, oldVal) {
-			wx.pageScrollTo({
-				scrollTop: 0,
-				duration: 0
-			});
 			setTimeout(() => {
+				wx.pageScrollTo({
+					scrollTop: 0,
+					duration: 0
+				});
 				this.clearData();
 				this.init()
 			},0)
 		},
 		init() {
+			// 遍历数据源增加扩展项, 以用作排序使用
 			let list = this.data.listData.map((item, index) => {
 				let data = {
 					key: index,
@@ -208,9 +218,13 @@ Component({
 
 			this.windowHeight = wx.getSystemInfoSync().windowHeight;
 
+			// 获取每一项的宽高等属性
 			this.createSelectorQuery().select(".item").boundingClientRect((res) => {
+
 				let rows = Math.ceil(this.data.list.length / this.data.columns);
+
 				this.item = res;
+
 				this.getPosition(this.data.list, false);
 
 				let itemWrapHeight = rows * res.height;
@@ -218,6 +232,7 @@ Component({
 				this.setData({
 					itemWrapHeight: itemWrapHeight
 				});
+
 				this.createSelectorQuery().select(".item-wrap").boundingClientRect((res) => {
 					this.itemWrap = res;
 

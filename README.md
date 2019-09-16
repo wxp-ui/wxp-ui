@@ -1,16 +1,17 @@
-# 小程序组件
+# WxP
 
-一套小程序组件
+WxP 是一款提供高交互小程序插件的合集, 致力于简洁和高可用性的插件实现.
 
 ## 线上演示
 
-![微信小程序组件](./assets/image/code.jpg)
+![WxP](./assets/image/qrcode.jpeg)
 
 ## 组件列表 
 
 - swipe-list组件
 - scroll组件
 - tab组件
+- drag组件
 - date-picker组件
 - side-slip组件(基于movable-view实现)
 - index-list组件
@@ -105,6 +106,21 @@ git clone https://github.com/singletouch/small-demo
 | --- | --- | --- | --- | --- |
 | listData | 数据源 | Array | -- | [] |
 | color | 颜色 | String | -- | "" |
+
+### Drag 组件
+
+#### Drag Attributes
+
+| 参数 | 说明 | 类型 | 可选值 | 默认值 |
+| --- | --- | --- | --- | --- |
+| listData | 数据源 | Array | -- | [] |
+| columns | 列数 | Number | -- | 1 |
+
+#### Drag Events
+
+| 事件名称 | 说明 | 回调参数 |
+| --- | --- | --- |
+| change | 排序监听事件 | 排序后数据 |
 
 ## 贡献
 
