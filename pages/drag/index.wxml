@@ -1,5 +1,5 @@
 <view class="tip">
-	长按触发拖拽排序!! ps:该组件本身使用了catch事件,所以会阻塞页面滑动, 这里判断超过一屏时候会加个滑动指示器辅助滑动
+	<text style="color: red;">长按触发拖拽排序!!</text> ps:该组件本身使用了catch事件,所以会阻塞页面滑动, 这里判断超过一屏时候会加个滑动指示器辅助滑动
 </view>
 
 <drag generic:item="custom-item" columns="{{size}}" list-data="{{listData}}"></drag>
