@@ -1,0 +1,38 @@
+.item-wrap {
+  position: relative;
+}
+.item-wrap .item {
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+.item-wrap .item.itemTransition {
+  transition: transform 0.3s;
+}
+.item-wrap .item.cur {
+  z-index: 2;
+  background: rgba(63, 130, 253, 0.7);
+  transition: initial;
+}
+
+.indicator {
+  position: fixed;
+  z-index: 99999;
+  right: 0rpx;
+  top: 50%;
+  margin-top: -250rpx;
+  padding: 20rpx;
+}
+.indicator > view {
+  width: 36rpx;
+  height: 500rpx;
+  background: #ffffff;
+  border-radius: 30rpx;
+  box-shadow: 0 0 10rpx -4rpx rgba(0, 0, 0, 0.5);
+  color: #3F82FD;
+  padding-top: 90rpx;
+  box-sizing: border-box;
+  font-size: 24rpx;
+  text-align: center;
+  opacity: 0.8;
+}

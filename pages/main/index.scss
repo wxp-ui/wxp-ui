@@ -1,0 +1,152 @@
+@import "../../assets/css/variables";
+
+page {
+	padding-bottom: 1rpx;
+}
+
+.cells {
+	background: #ffffff;
+	margin: 30rpx;
+	position: relative;
+	box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.1);
+
+	&::before, &::after {
+		content: "";
+		position: absolute;
+		z-index: -1;
+		bottom: 30rpx;
+		left: 20rpx;
+		width: 50%;
+		height: 20%;
+		box-shadow: 0 30rpx 20rpx rgba(0, 0, 0, 0.2);
+		transform: rotate(-3deg);
+	}
+
+	&::after {
+		right: 20rpx;
+		left: auto;
+		transform: rotate(3deg);
+	}
+}
+
+.title {
+	position: relative;
+	display: flex;
+	align-items: center;
+	padding: 30rpx;
+	color: $mainColor;
+	font-weight: bold;
+	font-size: 36rpx;
+
+	&.hover {
+		color: $mainColorActive;
+	}
+
+	&:after {
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		border-bottom: 1px solid $lineColor;
+		transform-origin: 0% 100%;
+		transform: scaleY(0.5);
+	}
+
+	&__bd {
+		flex: 1;
+	}
+
+	&__ft {
+		font-size: 0;
+
+		image {
+			width: 60rpx;
+			height: 60rpx;
+		}
+	}
+
+	.iconfont {
+		font-size: 40rpx;
+	}
+}
+
+.cell {
+	position: relative;
+	display: flex;
+	padding: 30rpx 70rpx 30rpx 30rpx;
+	transition: background-color 0.3s;
+	font-size: 32rpx;
+
+	&:not(:last-child) {
+		&:before {
+			content: "";
+			position: absolute;
+			bottom: 0;
+			left: 30rpx;
+			right: 0;
+			border-bottom: 1px solid $lineColor;
+			transform-origin: 0% 100%;
+			transform: scaleY(0.5);
+		}
+	}
+
+	&:after {
+		content: " ";
+		display: inline-block;
+		height: 12rpx;
+		width: 12rpx;
+		border-width: 4rpx 4rpx 0 0;
+		border-color: #c6c6c6;
+		border-style: solid;
+		-webkit-transform: rotate(45deg);
+		transform: rotate(45deg);
+		position: absolute;
+		top: 50%;
+		right: 45rpx;
+		margin-top: -8rpx;
+	}
+
+	&__bd {
+		flex: 1;
+	}
+
+	&.hover {
+		background-color: $hoverBd;
+	}
+}
+
+.header {
+	margin: 60rpx 40rpx;
+	display: flex;
+	align-items: center;
+	&__hd {
+		font-size: 0;
+		image {
+			width: 150rpx;
+			height: 150rpx;
+			margin-right: 40rpx;
+		}
+	}
+	&__bd {
+		flex: 1;
+		font-size: 24rpx;
+		color: $mainBlack2;
+	}
+}
+
+.footer {
+	text-align: center;
+	margin: 60rpx;
+	color: $mainBlack3;
+	font-size: 24rpx;
+	image {
+		width: 40rpx;
+		height: 40rpx;
+		margin-right: 10rpx;
+		vertical-align: middle;
+	}
+	text {
+		vertical-align: middle;
+	}
+}

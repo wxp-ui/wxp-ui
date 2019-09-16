@@ -82,26 +82,26 @@ Component({
 					if(scrollTop > block.bottom - stickyTitleHeight) {
 						let percent = Math.floor(((scrollTop - (block.bottom - stickyTitleHeight)) / stickyTitleHeight) * 100);
 
+						console.log(percent)
+
 						let style1 = `background: rgba(237, 237, 237, ${percent}%);color: ${this.colors[percent]}`
 						let style2 = `background: rgba(237, 237, 237, ${100-percent}%);color: ${this.colors[100-percent]}`
 
 						this.setData({
 							style1: style1,
-							style2: style2
+							style2: style2,
+							treeItemCur: i,
+							listItemCur: i
 						});
 					} else if(scrollTop <= block.bottom - stickyTitleHeight) {
 						this.setData({
 							style1: "",
 							style2: "",
-							percent: 1
+							percent: 1,
+							treeItemCur: i,
+							listItemCur: i
 						});
 					}
-
-					this.setData({
-						treeItemCur: i,
-						listItemCur: i
-					});
-
 					break
 				}
 			}
@@ -236,11 +236,12 @@ Component({
 			this.createSelectorQuery().selectAll(".block").boundingClientRect((res) => {
 				let blocks = res.map((item) => {
 					return {
-						top: item.top,
-						bottom: item.top + item.height
+						top: Math.round(item.top),
+						bottom: Math.round(item.top + item.height)
 					}
 				});
 
+				console.log(blocks)
 
 				for (let i = blocks.length - 1; i >= 0; i--) {
 					let block = blocks[i];

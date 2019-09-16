@@ -11,6 +11,11 @@ Component({
 			type: Boolean,
 			value: false,
 		},
+		// 控制空状态的显示
+		emptyShow: {
+			type: Boolean,
+			value: false,
+		},
 		// 当前列表长度
 		listCount: {
 			type: Number,
@@ -45,8 +50,7 @@ Component({
 		// 颜色
 		color: {
 			type: String,
-			value: "",
-			observer: "colorChange"
+			value: ""
 		},
 	},
 	data: {

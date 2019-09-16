@@ -8,13 +8,11 @@ Page({
 		tabData: ["推荐", "精选集锦", "最新体验", "资料", "版本", "攻略", "排行", "热门"],
 		size: 90,
 		scroll: true,
-		color: "#ff4158",
+		color: "#3F82FD",
 		items: [
-			{name: 'red', value: '#ff4158', checked: 'true'},
-			{name: 'black', value: '#003333'},
-			{name: 'green', value: '#00FF33'},
-			{name: 'yellow', value: '#CCFF00'},
-		]
+			{name: '蓝', value: '#3F82FD', checked: 'true'},
+			{name: '红', value: '#ff4158'},
+		],
 	},
 	radioChange: function (e) {
 		this.setData({

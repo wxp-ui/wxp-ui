@@ -11,43 +11,45 @@ swiper {
   height: 100vh;
 }
 
-.list {
+.cells {
   background: #ffffff;
   margin-top: 20rpx;
 }
-.list .list-item {
+
+.cell {
   display: flex;
-  padding: 30rpx;
+  padding: 20rpx;
 }
-.list .list-item:not(:last-child) {
+.cell:not(:last-child) {
   border-bottom: 1rpx solid #ebedf0;
 }
-.list .list-item .hd {
+.cell__hd {
   font-size: 0;
 }
-.list .list-item .hd image {
-  width: 200rpx;
-  height: 200rpx;
-  border-radius: 4rpx;
-  margin-right: 30rpx;
+.cell__hd image {
+  width: 160rpx;
+  height: 160rpx;
+  margin-right: 20rpx;
+  border-radius: 12rpx;
 }
-.list .list-item .bd {
+.cell__bd {
   flex: 1;
 }
-.list .list-item .bd .name {
+.cell__bd .name {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
   word-break: break-all;
-  margin-bottom: 32rpx;
-  font-size: 32rpx;
+  font-size: 28rpx;
+  margin-bottom: 12rpx;
 }
-.list .list-item .bd .des {
+.cell__bd .des {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
   word-break: break-all;
   color: #666666;
+  font-size: 24rpx;
 }

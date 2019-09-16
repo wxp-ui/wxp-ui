@@ -1,0 +1,6 @@
+{
+	"usingComponents": {
+		"drag": "../../components/drag/index",
+		"custom-item": "/pages/drag/custom-item/index"
+	}
+}

@@ -1,5 +1,4 @@
 {
-	"navigationBarTitleText": "Scroll 组件用法",
 	"disableScroll": true,
 	"usingComponents": {
 		"scroll": "../../components/scroll/index"

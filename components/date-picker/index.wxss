@@ -70,7 +70,7 @@
 .picker .date-header .btn .iconfont {
   line-height: 80rpx;
   font-size: 40rpx;
-  color: #ff4158;
+  color: #3F82FD;
 }
 .picker .date-header .doubleLeft {
   left: 0;
@@ -124,7 +124,7 @@
   color: #999999;
 }
 .picker .date-body .tr > .td > .cell.cur {
-  background-color: #ff4158 !important;
+  background-color: #3F82FD !important;
   color: #ffffff;
 }
 .picker .date-body .tr > .td > .cell.disabled {
@@ -185,11 +185,11 @@
   background: rgba(153, 153, 153, 0.7);
 }
 .picker .bottom .btn-confirm > view {
-  background: #ff4158;
+  background: #3F82FD;
   transition: background-color 0.3s;
 }
 .picker .bottom .btn-confirm > view.hover {
-  background: rgba(255, 65, 88, 0.7);
+  background: rgba(63, 130, 253, 0.7);
 }
 
 .modal {

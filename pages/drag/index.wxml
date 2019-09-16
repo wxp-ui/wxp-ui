@@ -1,0 +1,14 @@
+<view class="tip">
+	长按触发拖拽排序!! ps:该组件本身使用了catch事件,所以会阻塞页面滑动, 这里判断超过一屏时候会加个滑动指示器辅助滑动
+</view>
+
+<drag generic:item="custom-item" columns="{{size}}" list-data="{{listData}}"></drag>
+
+<view class="control-panel {{isIphoneX ? 'isX' : ''}}">
+	<view class="panel-item">
+		<view class="panel-item__hd">size:</view>
+		<view class="panel-item__bd">
+			<slider bindchanging="sizeChange" value="{{size}}" show-value="{{true}}" min="1" max="8" step="1"/>
+		</view>
+	</view>
+</view>

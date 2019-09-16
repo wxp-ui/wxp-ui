@@ -30,7 +30,7 @@
 				<view>刷新成功</view>
 			</view>
 			<slot></slot>
-			<view wx:if="{{listCount === 0 && !requesting}}" class="scroll__empty">
+			<view wx:if="{{listCount === 0 && emptyShow}}" class="scroll__empty">
 				<image src="{{emptyUrl}}"></image>
 				<view>{{emptyText}}</view>
 			</view>

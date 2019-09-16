@@ -1,12 +1,14 @@
 {
 	"pages": [
-		"pages/index/index",
+		"pages/main/index",
 		"pages/tab/index",
 		"pages/scroll/index",
 		"pages/date/index",
 		"pages/swipe-list/index",
 		"pages/side-slip/index",
-		"pages/index-list/index"
+		"pages/index-list/index",
+		"pages/index-list/custom-style/index",
+		"pages/drag/index"
 	],
 	"permission": {
 		"scope.userLocation": {
@@ -15,9 +17,9 @@
 	},
 	"window": {
 		"backgroundTextStyle": "dark",
-		"navigationBarTextStyle": "white",
-		"navigationBarBackgroundColor": "#ff4158",
-		"navigationBarTitleText": "wx组件",
+		"navigationBarTextStyle": "black",
+		"navigationBarBackgroundColor": "#ffffff",
+		"navigationBarTitleText": "WxP",
 		"backgroundColor": "#f7f7f7"
 	},
 	"sitemapLocation": "sitemap.json"

@@ -5,13 +5,13 @@
 					 scroll-top="{{scrollTop}}">
 			<view class="block-wrap">
 				<view class="block" wx:for="{{listData}}" wx:key="{{index}}">
-					<view  wx:if="{{index === listItemCur}}" class="block__title block__title--cur" style="color: {{color}}">
+					<view wx:if="{{index == listItemCur}}" class="block__title block__title--cur" style="color: {{color}}">
 						<view style="{{style1}}">{{item.key}}</view>
 					</view>
 					<view wx:elif="{{index == listItemCur + 1}}" class="block__title">
 						<view style="{{style2}}">{{item.key}}</view>
 					</view>
-					<view wx:else class="block__title" >
+					<view wx:else class="block__title">
 						<view>{{item.key}}</view>
 					</view>
 					<view class="block__item" wx:for="{{item.data}}" wx:key="{{index}}">

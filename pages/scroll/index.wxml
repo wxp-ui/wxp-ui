@@ -4,6 +4,7 @@
 
 <scroll id="scroll"
 		requesting="{{requesting}}"
+		empty-show="{{emptyShow}}"
 		end="{{end}}"
 		listCount="{{listData.length}}"
 		has-top="{{hasTop}}"

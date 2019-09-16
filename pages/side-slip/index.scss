@@ -4,29 +4,33 @@ page {
 	padding-bottom: 1rpx;
 }
 
-.cells {
-	background: #ffffff;
-	margin: 20rpx 0;
-}
-
 side-slip {
 	&:not(:last-child) .cell {
 		border-bottom: 1rpx solid $lineColor;
 	}
 }
 
+.cells {
+	background: #ffffff;
+	margin: 20rpx 0;
+}
+
 .cell {
 	display: flex;
-	padding: 30rpx;
+	padding: 20rpx;
+
+	&:not(:last-child) {
+		border-bottom: 1rpx solid $lineColor;
+	}
 
 	&__hd {
 		font-size: 0;
 
 		image {
-			width: 200rpx;
-			height: 200rpx;
-			border-radius: 4rpx;
-			margin-right: 30rpx;
+			width: 160rpx;
+			height: 160rpx;
+			margin-right: 20rpx;
+			border-radius: 12rpx;
 		}
 	}
 
@@ -35,13 +39,14 @@ side-slip {
 
 		.name {
 			@include line(2);
-			margin-bottom: 32rpx;
-			font-size: 32rpx;
+			font-size: 28rpx;
+			margin-bottom: 12rpx;
 		}
 
 		.des {
 			@include line(2);
 			color: $mainBlack2;
+			font-size: 24rpx;
 		}
 	}
 }

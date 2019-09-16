@@ -45,7 +45,7 @@
 			"current": 0,
 			"list": [
 				{
-					"id": 0,
+					"id": -1,
 					"name": "pages/drag/index",
 					"pathName": "pages/drag/index",
 					"query": "",

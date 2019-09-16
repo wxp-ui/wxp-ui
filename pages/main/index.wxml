@@ -1,0 +1,79 @@
+<view class="header">
+	<view class="header__hd">
+		<image src="/assets/image/logo.png"></image>
+	</view>
+	<view class="header__bd">WxP 是一款提供高交互小程序插件的合集, 致力于简洁和高可用性的插件实现.</view>
+</view>
+
+<view class="cells">
+	<view class="title">
+		<view class="title__bd">多功能列表</view>
+		<view class="title__ft">
+			<image src="/assets/image/main/list.png"></image>
+		</view>
+	</view>
+	<navigator url="/pages/swipe-list/index" hover-class="hover" hover-start-time="{{0}}" class="cell">
+		<view class="cell__bd">swipe-list</view>
+	</navigator>
+	<navigator url="/pages/tab/index" hover-class="hover" hover-start-time="{{0}}" class="cell">
+		<view class="cell__bd">tab</view>
+	</navigator>
+	<navigator url="/pages/scroll/index" hover-class="hover" hover-start-time="{{0}}" class="cell">
+		<view class="cell__bd">scroll</view>
+	</navigator>
+</view>
+
+<view class="cells">
+	<view class="title">
+		<view class="title__bd">拖拽</view>
+		<view class="title__ft">
+			<image src="/assets/image/main/drag.png"></image>
+		</view>
+	</view>
+	<navigator url="/pages/drag/index" hover-class="hover" hover-start-time="{{0}}" class="cell">
+		<view class="cell__bd">drag</view>
+	</navigator>
+</view>
+
+<view class="cells">
+	<view class="title">
+		<view class="title__bd">索引列表</view>
+		<view class="title__ft">
+			<image src="/assets/image/main/index-list.png"></image>
+		</view>
+	</view>
+	<navigator url="/pages/index-list/index" hover-class="hover" hover-start-time="{{0}}" class="cell">
+		<view class="cell__bd">index-list</view>
+	</navigator>
+	<navigator url="/pages/index-list/custom-style/index" hover-class="hover" hover-start-time="{{0}}" class="cell">
+		<view class="cell__bd">自定义样式</view>
+	</navigator>
+</view>
+
+<view class="cells">
+	<view class="title">
+		<view class="title__bd">日历</view>
+		<view class="title__ft">
+			<image src="/assets/image/main/date.png"></image>
+		</view>
+	</view>
+	<navigator url="/pages/date/index" hover-class="hover" hover-start-time="{{0}}" class="cell">
+		<view class="cell__bd">date-picker</view>
+	</navigator>
+</view>
+
+<view class="cells">
+	<view class="title">
+		<view class="title__bd">侧滑</view>
+		<view class="title__ft">
+			<image src="/assets/image/main/side-slip.png"></image>
+		</view>
+	</view>
+	<navigator url="/pages/side-slip/index" hover-class="hover" hover-start-time="{{0}}" class="cell">
+		<view class="cell__bd">side-slip</view>
+	</navigator>
+</view>
+
+<view class="footer">
+	<image src="/assets/image/logo.png"></image> <text>Powered by SingleTouch</text>
+</view>

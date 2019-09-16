@@ -1,9 +1,7 @@
 {
-	"navigationBarTitleText": "索引列表组件",
 	"backgroundColor": "#ffffff",
 	"disableScroll": true,
 	"usingComponents": {
-		"index-list": "/components/index-list/index",
-		"avatar-item": "/components/index-list/avatar-item/index"
+		"index-list": "/components/index-list/index"
 	}
 }

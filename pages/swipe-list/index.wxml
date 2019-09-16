@@ -11,24 +11,25 @@
 	<swiper-item wx:for="{{categoryData}}" wx:key="{{index}}">
 		<scroll requesting="{{item.requesting}}"
 				end="{{item.end}}"
-				listCount="{{item.listData.length}}"
+				empty-show="{{item.emptyShow}}"
+				list-count="{{item.listData.length}}"
 				has-top="{{true}}"
 				refresh-size="{{80}}"
 				bind:refresh="refresh"
 				bind:more="more">
-			<view class="list">
-				<view class="list-item"
-					  wx:for="{{item.listData}}"
-					  wx:key="{{index}}">
-					<view class="hd">
-						<image mode="aspectFill" src="{{item.images}}" alt=""/>
-					</view>
-					<view class="bd">
-						<view class="name">{{item.title}}</view>
-						<view class="des">{{item.description}}</view>
+				<view class="cells">
+					<view class="cell"
+						  wx:for="{{item.listData}}"
+						  wx:key="{{index}}">
+						<view class="cell__hd">
+							<image mode="aspectFill" src="{{item.images}}" alt=""/>
+						</view>
+						<view class="cell__bd">
+							<view class="name">{{item.title}}</view>
+							<view class="des">{{item.description}}</view>
+						</view>
 					</view>
 				</view>
-			</view>
 		</scroll>
 	</swiper-item>
 </swiper>

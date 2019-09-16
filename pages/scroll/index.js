@@ -4,34 +4,54 @@ let pageSize = 15;
 
 let testData = [
 	{
-		title: "我要在这战火纷飞的俗世中打上停战的休止符，这就是神的使命。国国相战中，怎样才能迅速制止那战争呢？",
-		description: "感受痛苦吧，体验痛苦吧，接受痛苦吧，了解痛苦吧。不知道痛苦的人是不会知道什么是和平。",
-		images: "../../assets/image/swipe/1.jpg"
+		title: "这个绝望的世界没有存在的价值，所剩的只有痛楚",
+		description: "思念、愿望什么的都是一场空，被这种虚幻的东西绊住脚，什么都做不到",
+		images: "../../assets/image/swipe/1.png"
 	},
 	{
-		title: "在我归于沉眠的这段时间，将一切都交给你，让你走在我的前面！那是我开启的道路，你为了达成目标，应作为斑尽享天年才是！作为..拯救这个世界的救世主！",
-		description: "这世上的事并非皆能如你所愿，活得越久……看得越清，现实其实就是无奈，痛苦和空虚……听好了……在这世上，有光的地方就必定有阴影。诺以想一己之私，想要维持和平，必会招致战争，为了守护爱，便孕育出恨。此间因果，是无法斩断的，现实就是如此。现实世界，即是地狱。只有胜者，只有和平的世界，只有爱的世界，我就是想再造一个这样的世界。",
-		images: "../../assets/image/swipe/2.jpg"
+		title: "我早已闭上了双眼，我的目的，只有在黑暗中才能实现",
+		description: "有太多的羁绊只会让自己迷惘，强烈的想法和珍惜的思念，只会让自己变弱",
+		images: "../../assets/image/swipe/2.png"
 	},
 	{
-		title: "我现在决定了，我要走我自己的忍道，朝着一条绝对不会后悔的路，一直往前走！",
-		description: "孤单一个人的，那种痛苦，真的不是一般的难受，你的心情不知道为什么，我觉得很清楚，不过，对我来说，已经找到了最珍惜的人们。我最珍惜的人们，我不会让你伤害他们，就算要杀了你，我也要阻止你。",
-		images: "../../assets/image/swipe/3.jpg"
+		title: "感受痛苦吧，体验痛苦吧，接受痛苦吧，了解痛苦吧。不知道痛苦的人是不会知道什么是和平",
+		description: "但我已经在无限存在的痛苦之中，有了超越凡人的成长。从凡人化为神",
+		images: "../../assets/image/swipe/3.png"
 	},
 	{
-		title: "你知道你为什么这么弱吗，那是因为你的仇恨还不够深！！",
-		description: "你逃吧，直到有了我一样的眼睛你再来找我，在此之前你就苟延残喘一样的活下去吧，哇哈哈哈哈哈~~~~~~",
-		images: "../../assets/image/swipe/4.jpg"
+		title: "我决定了 从今天起 我要选择一条不会让自己后悔的路 我要创造出属于自己的忍道 ",
+		description: "我才不要在这种时候放弃,即使当不成中忍,我也会通过其他的途径成为火影的,这就是我的忍道",
+		images: "../../assets/image/swipe/4.png"
 	},
 	{
-		title: "我早已闭上了双眼，我的目的，只有在黑暗中才能实现。",
-		description: "因为我认同你，你的确是很强，你跟我是一样的，我们都了解孤独的痛苦是什么，而且，那种痛苦可以让人变得更强，就是因为这样，我要借由断掉这层关系，得到比现在更强大的力量，从现在开始，我要跟你对等的交手。",
-		images: "../../assets/image/swipe/5.jpg"
+		title: "为什么你会这么弱？就是因为你对我的仇恨...还不够深...",
+		description: "你没有杀的价值...愚蠢的弟弟啊...想要杀死我的话...仇恨吧！憎恨吧！然后丑陋地活下去吧！逃吧 逃吧...然后苟且偷生下去吧！",
+		images: "../../assets/image/swipe/5.png"
 	},
 	{
-		title: "不能保护同伴的人，不配称之为忍者。",
+		title: "对于忍者而言怎样活着无所谓，怎样死去才是最重要的...",
+		description: "所谓的忍者就是忍人所不能忍，忍受不了饿肚子，而沦落为盗贼的人，根本不能称之为忍者",
+		images: "../../assets/image/swipe/6.png"
+	},
+	{
+		title: "在这世上，有光的地方就必定有黑暗，所谓的胜者，也就是相对败者而言",
+		description: "若以一己之思念要维持和平，必会招致战争，为了守护爱，变回孕育出恨。此间因果，是无法斩断的。现实就是如此",
+		images: "../../assets/image/swipe/7.png"
+	},
+	{
+		title: "世界上...只有没有实力的人,才整天希望别人赞赏...",
 		description: "很不巧的是我只有一个人，你说的那些家伙们已经一个都没有了，已经??全部被杀死了",
-		images: "../../assets/image/swipe/6.jpg"
+		images: "../../assets/image/swipe/8.png"
+	},
+	{
+		title: "千代婆婆，父亲大人和母亲大人回来了吗？？？",
+		description: "明明剩下的只有痛苦了，既然你这么想活命，我就方你一条生路好了。不过，你中的毒不出三日就会要了你的命",
+		images: "../../assets/image/swipe/9.png"
+	},
+	{
+		title: "艺术就是爆炸！！~~ 嗯 ~~ 芸术は爆発します！",
+		description: "我的艺术就是爆炸那一瞬，和蝎那种让人吃惊的人偶喜剧从根本上就是不同的！",
+		images: "../../assets/image/swipe/10.png"
 	}
 ]
 
@@ -40,17 +60,16 @@ Page({
 		isIphoneX: app.globalData.isIphoneX,
 		requesting: false,
 		end: false,
+		emptyShow: false,
 		page: pageStart,
 		listData: [],
 		hasTop: true,
 		refreshSize: 90,
-		bottomSize: 300,
-		color: "#ff4158",
+		bottomSize: 350,
+		color: "#3F82FD",
 		items: [
-			{name: 'red', value: '#ff4158', checked: 'true'},
-			{name: 'black', value: '#003333'},
-			{name: 'green', value: '#00FF33'},
-			{name: 'yellow', value: '#CCFF00'},
+			{name: '蓝', value: '#3F82FD', checked: 'true'},
+			{name: '红', value: '#ff4158'},
 		],
 		empty: false
 	},
@@ -78,11 +97,13 @@ Page({
 		if (e.detail.value) {
 			this.setData({
 				listData: [],
+				emptyShow: true,
 				end: true
 			})
 		} else {
 			this.setData({
 				listData: testData,
+				emptyShow: false,
 				end: false
 			})
 		}
@@ -114,7 +135,7 @@ Page({
 				})
 			}
 
-		}, 0)
+		}, 1000)
 
 	},
 

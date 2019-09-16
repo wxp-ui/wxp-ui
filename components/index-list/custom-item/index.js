@@ -18,7 +18,7 @@ Component({
 			return color;
 		}
 	},
-	ready() {
+	attached() {
 		let firstChar = this.data.item.slice(0,1);
 
 		this.setData({

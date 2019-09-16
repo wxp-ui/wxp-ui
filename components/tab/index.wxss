@@ -39,9 +39,8 @@ scroll-view {
   position: absolute;
   left: 0;
   bottom: 0;
-  background-color: #ff4158;
-  height: 6rpx;
-  border-radius: 6rpx;
+  background-color: #3F82FD;
+  height: 4rpx;
   width: 0rpx;
   display: inline-block;
 }

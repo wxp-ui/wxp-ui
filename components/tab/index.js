@@ -19,8 +19,7 @@ Component({
 		// 颜色
 		color: {
 			type: String,
-			value: "",
-			observer: "colorChange"
+			value: ""
 		}
 	},
 	data: {
@@ -87,14 +86,6 @@ Component({
 					size: 80
 				})
 			}
-		},
-		/**
-		 *  监听颜色变化, 然后调用初始化函数
-		 */
-		colorChange(newVal, oldVal) {
-			setTimeout(() => {
-				this.init()
-			},0)
 		},
 		/**
 		 *  初始化函数

@@ -1,0 +1,40 @@
+@import "../../assets/css/variables";
+
+page {
+	padding-bottom: 130rpx;
+}
+
+.tip {
+	padding: 20rpx;
+	color: $mainBlack3;
+	font-size: 24rpx;
+}
+
+.control-panel {
+	border-top: 1rpx solid $lineColor;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 111;
+	background: #ffffff;
+	padding: 20rpx;
+	box-sizing: border-box;
+
+	&.isX {
+		padding-bottom: 80rpx;
+	}
+}
+
+.panel-item {
+	display: flex;
+	align-items: center;
+
+	&_hd {
+
+	}
+
+	&__bd {
+		flex: 1;
+	}
+}

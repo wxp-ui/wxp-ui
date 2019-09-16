@@ -23,7 +23,7 @@ movable-area {
   font-size: 24rpx;
   text-align: center;
   opacity: 0;
-  color: #ff4158;
+  color: #3F82FD;
 }
 .scroll__success:after {
   content: " ";
@@ -102,7 +102,7 @@ movable-area {
   margin: 0 auto;
   display: block;
   font-size: 0;
-  color: #ff4158;
+  color: #3F82FD;
 }
 
 .la-square-jelly-box > view {

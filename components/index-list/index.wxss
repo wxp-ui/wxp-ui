@@ -28,7 +28,7 @@ scroll-view {
 
 .indicator {
   position: fixed;
-  right: 120rpx;
+  right: 140rpx;
   width: 100rpx;
   height: 100rpx;
   border-radius: 10rpx;
@@ -82,7 +82,7 @@ scroll-view {
   line-height: 32rpx;
 }
 .tree__item--cur > view {
-  background: #ff4158;
+  background: #3F82FD;
   color: #FFFFFF;
   border-radius: 50%;
 }
@@ -105,7 +105,7 @@ scroll-view {
   background: #ededed;
 }
 .block__title--cur {
-  color: #ff4158;
+  color: #3F82FD;
 }
 .block__title--cur > view {
   background: #ffffff;

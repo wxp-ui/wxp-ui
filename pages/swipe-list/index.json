@@ -1,5 +1,4 @@
 {
-	"navigationBarTitleText": "多页列表切换组件",
 	"disableScroll": true,
 	"usingComponents": {
 		"tab": "../../components/tab/index",
