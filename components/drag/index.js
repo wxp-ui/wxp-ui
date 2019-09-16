@@ -19,7 +19,7 @@ Component({
 		itemWrapHeight: 0, // 动态计算父级元素高度
 		touch: false, // 是否在移动中
 		list: [],
-		overOnePage: false, // 是否隐藏, 数据多的情况, 因为做了触底自动上滑功能, 如果不隐藏会出现横向滚动条
+		overOnePage: false, // 整个区域是否超过一个屏幕
 		itemTransition: false, // item 变换是否需要过渡动画, 首次渲染不需要
 	},
 	methods: {
@@ -38,10 +38,11 @@ Component({
 
 			if(this.data.columns === 1) { // 单列时候X轴初始不做位移
 				this.tranX = 0;
-			} else {  // 多列行时候X轴初始位移, 使 item 中心移动到点击处
+			} else {  // 多列的时候计算X轴初始位移, 使 item 水平中心移动到点击处
 				this.tranX = this.startX - this.item.width / 2 - this.itemWrap.left;
 			}
 
+			// 计算Y轴初始位移, 使 item 垂直中心移动到点击处
 			this.tranY = this.startY - this.item.height / 2 - this.itemWrap.top;
 
 			this.setData({
