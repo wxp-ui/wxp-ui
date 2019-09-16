@@ -32,7 +32,12 @@ Page({
 		// 返回shareObj
 		return shareObj;
 	},
-	onLoad() {
+	onLoad(option) {
+		if(option.page) {
+			wx.navigateTo({
+				url: `/pages/${option.page}/index`
+			})
+		}
 	}
 });
 

@@ -42,13 +42,20 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 1,
 			"list": [
 				{
 					"id": -1,
 					"name": "pages/drag/index",
 					"pathName": "pages/drag/index",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/main/index",
+					"pathName": "pages/main/index",
+					"query": "page=swipe-list",
 					"scene": null
 				}
 			]
