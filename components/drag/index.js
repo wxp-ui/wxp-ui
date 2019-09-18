@@ -81,11 +81,9 @@ Component({
 
 			let endKey = this.calculateMoving(tranX, tranY);
 
-			if ((this.originKey == originKey && this.endKey == endKey) || originKey == endKey) return;
+			if (originKey == endKey || this.originKey == originKey) return;
 
 			this.originKey = originKey;
-
-			this.endKey = endKey;
 
 			this.insert(originKey, endKey);
 		},
