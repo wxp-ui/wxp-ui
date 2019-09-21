@@ -81,6 +81,7 @@ Component({
 
 			let endKey = this.calculateMoving(tranX, tranY);
 
+			// 防止拖拽过程中发生乱序问题
 			if (originKey == endKey || this.originKey == originKey) return;
 
 			this.originKey = originKey;
@@ -97,7 +98,6 @@ Component({
 		 */
 		clearData() {
 			this.originKey = -1;
-			this.endKey = -1;
 
 			this.setData({
 				touch: false,
