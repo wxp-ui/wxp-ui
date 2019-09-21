@@ -22,6 +22,8 @@ WxP UI 是一款提供高交互小程序插件的合集, 致力于简洁和高�
 
 ## 功能解析
 
+[drag组件实现分析](https://www.cnblogs.com/haha1212/p/11562944.html)
+
 [swipe-list组件实现分析](https://www.cnblogs.com/haha1212/p/11184595.html)
 
 [date-picker组件实现分析](https://www.cnblogs.com/haha1212/p/11191035.html)
@@ -29,7 +31,7 @@ WxP UI 是一款提供高交互小程序插件的合集, 致力于简洁和高�
 ## 如何使用
 
 ```
-git clone https://github.com/singletouch/small-demo
+git clone https://github.com/singletouch/wx-plugin.git
 ```
 
 将需要使用的组件代码拷至自己的小程序项目中，按照小程序官方[引入组件](https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component)方式引入即可
