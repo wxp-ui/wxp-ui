@@ -1,3 +1,0 @@
-<view class="item">
-	{{item}}
-</view>

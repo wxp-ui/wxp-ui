@@ -15,7 +15,12 @@
 						<view>{{item.key}}</view>
 					</view>
 					<view class="block__item" wx:for="{{item.data}}" wx:key="{{index}}">
-						<view>{{item}}</view>
+						<view class="item">
+							<view class="item__hd" style="background-color: {{item.color}}">
+								{{item.firstChar}}
+							</view>
+							<view class="item__bd">{{item.data}}</view>
+						</view>
 					</view>
 				</view>
 			</view>

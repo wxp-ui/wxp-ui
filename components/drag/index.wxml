@@ -1,7 +1,7 @@
 <view>
 	<view style="overflow-x: {{overOnePage ? 'hidden' : 'initial'}}">
 		<view class="item-wrap" style="height: {{ itemWrapHeight }}px;">
-			<view class="item {{cur == index? 'cur':''}} {{itemTransition ? 'itemTransition':''}}"
+			<view class="item {{cur == index? 'cur':''}} {{curZ == index? 'zIndex':''}} {{itemTransition ? 'itemTransition':''}}"
 				  wx:for="{{list}}"
 				  wx:key="{{index}}"
 				  id="item{{index}}"
@@ -11,10 +11,13 @@
 				  bind:longpress="longPress"
 				  catch:touchmove="touchMove"
 				  catch:touchend="touchEnd">
-				<item item="{{item.data}}"></item>
+				<view class="info">
+					<view>
+						<image src="{{item.data.images}}"></image>
+					</view>
+				</view>
 			</view>
 		</view>
-
 	</view>
 	<view wx:if="{{overOnePage}}" class="indicator">
 		<view>滑动此区域滚动页面</view>

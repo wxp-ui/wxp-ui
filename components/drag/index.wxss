@@ -9,10 +9,33 @@
 .item-wrap .item.itemTransition {
   transition: transform 0.3s;
 }
-.item-wrap .item.cur {
+.item-wrap .item.zIndex {
   z-index: 2;
-  background: rgba(63, 130, 253, 0.7);
+}
+.item-wrap .item.cur {
+  background: #c6c6c6;
   transition: initial;
+}
+
+.info {
+  position: relative;
+  padding-top: 100%;
+  background: #ffffff;
+}
+.info > view {
+  position: absolute;
+  border: 1rpx solid #ebedf0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  padding: 10rpx;
+  box-sizing: border-box;
+}
+.info > view image {
+  width: 100%;
+  height: 100%;
 }
 
 .indicator {

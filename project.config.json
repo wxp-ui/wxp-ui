@@ -20,7 +20,7 @@
 		}
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.6.5",
+	"libVersion": "2.8.3",
 	"appid": "wxe14d4ca6edeb543e",
 	"projectname": "wx-plugin",
 	"simulatorType": "wechat",
@@ -42,12 +42,12 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 3,
 			"list": [
 				{
-					"id": -1,
-					"name": "pages/drag/index",
-					"pathName": "pages/drag/index",
+					"id": 0,
+					"name": "pages/index-list/index",
+					"pathName": "pages/index-list/index",
 					"query": "",
 					"scene": null
 				},
@@ -56,6 +56,20 @@
 					"name": "pages/main/index",
 					"pathName": "pages/main/index",
 					"query": "scene=swipe-list",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/swipe-list/index",
+					"pathName": "pages/swipe-list/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 3,
+					"name": "pages/drag/index",
+					"pathName": "pages/drag/index",
+					"query": "",
 					"scene": null
 				}
 			]

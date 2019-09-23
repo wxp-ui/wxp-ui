@@ -14,6 +14,7 @@ Component({
 	},
 	data: {
 		cur: -1, // 当前激活的元素
+		curZ: -1, // 当前激活的元素, 用于控制激活元素z轴显示
 		tranX: 0, // 当前激活元素的 X轴 偏移量
 		tranY: 0, // 当前激活元素的 Y轴 偏移量
 		itemWrapHeight: 0, // 动态计算父级元素高度
@@ -47,6 +48,7 @@ Component({
 
 			this.setData({
 				cur: index,
+				curZ: index,
 				tranX: this.tranX,
 				tranY: this.tranY,
 			});
@@ -105,6 +107,13 @@ Component({
 				tranX: 0,
 				tranY: 0
 			});
+
+			// 延迟清空
+			setTimeout(() => {
+				this.setData({
+					curZ: -1,
+				})
+			}, 300)
 		},
 		/**
 		 * 根据排序后 list 数据进行位移计算

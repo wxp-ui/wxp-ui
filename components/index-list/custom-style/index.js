@@ -32,6 +32,15 @@ function gradient(startColor, endColor, step) {
 	return gradientColorArr;
 }
 
+// 生成随机颜色值
+function  generateColor() {
+	let color="#";
+	for(let i=0;i<6;i++){
+		color += (Math.random()*16 | 0).toString(16);
+	}
+	return color;
+}
+
 Component({
 	properties: {
 		// 数据源
@@ -263,10 +272,27 @@ Component({
 					this.blocks = blocks;
 				}).exec();
 			}).exec();
-
 		},
 	},
 	ready() {
+		let listData = this.data.listData.map((item, index) => {
+			let data = item.data.map((chItem, chIndex) => {
+				return {
+					data: chItem,
+					firstChar: chItem.slice(0,1),
+					color: generateColor()
+				}
+			});
+
+			item.data = data;
+
+			return item
+		});
+
+		this.setData({
+			listData: listData
+		});
+
 		this.init();
 	}
 })

@@ -2,7 +2,6 @@
 	"backgroundColor": "#ffffff",
 	"disableScroll": true,
 	"usingComponents": {
-		"index-list": "/components/index-list/index",
-		"custom-item": "/components/index-list/custom-item/index"
+		"index-list": "/components/index-list/custom-style/index"
 	}
 }

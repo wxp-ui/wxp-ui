@@ -1,5 +1,0 @@
-<view class="item">
-	<view>
-		<image src="{{item.images}}"></image>
-	</view>
-</view>
