@@ -129,7 +129,7 @@ Component({
 				indicatorTop: indicatorTop
 			});
 
-			wx.vibrateShort();
+			if(this.platform != "devtools") wx.vibrateShort();
 		},
 		/**
 		 * tree 触摸开始
@@ -209,6 +209,8 @@ Component({
 
 			// 获取系统信息
 			let {windowHeight, windowWidth, platform} = wx.getSystemInfoSync();
+
+			this.platform = platform;
 
 			// 计算缩放比
 			this.remScale = (windowWidth || 375) / 375;

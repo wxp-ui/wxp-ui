@@ -135,7 +135,7 @@ Component({
 				itemTransition: true
 			})
 
-			wx.vibrateShort();
+			if(this.platform != "devtools") wx.vibrateShort();
 
 			let listData= [];
 
@@ -224,7 +224,10 @@ Component({
 				itemTransition: false
 			});
 
-			this.windowHeight = wx.getSystemInfoSync().windowHeight;
+			let {windowHeight, platform} = wx.getSystemInfoSync();
+
+			this.windowHeight = windowHeight;
+			this.platform = platform;
 
 			// 获取每一项的宽高等属性
 			this.createSelectorQuery().select(".item").boundingClientRect((res) => {
