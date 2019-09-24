@@ -28,6 +28,10 @@ Component({
 		 * 长按触发移动排序
 		 */
 		longPress(e) {
+			let index = e.currentTarget.dataset.index;
+
+			if(this.data.list[index].fixed) return;
+
 			this.setData({
 				touch: true
 			});
@@ -35,7 +39,6 @@ Component({
 			this.startX = e.changedTouches[0].pageX
 			this.startY = e.changedTouches[0].pageY
 
-			let index = e.currentTarget.dataset.index;
 
 			if(this.data.columns === 1) { // 单列时候X轴初始不做位移
 				this.tranX = 0;
@@ -82,6 +85,8 @@ Component({
 			let originKey = e.currentTarget.dataset.key;
 
 			let endKey = this.calculateMoving(tranX, tranY);
+
+			if(this.data.list[endKey].fixed) return;
 
 			// 防止拖拽过程中发生乱序问题
 			if (originKey == endKey || this.originKey == originKey) return;
@@ -131,10 +136,6 @@ Component({
 
 			if(!vibrate) return;
 
-			this.setData({
-				itemTransition: true
-			})
-
 			if(this.platform != "devtools") wx.vibrateShort();
 
 			let listData= [];
@@ -146,31 +147,67 @@ Component({
 			this.triggerEvent('change', {listData: listData});
 		},
 		/**
+		 * 正序拖动 key 值和固定项判断逻辑
+		 */
+		l2r(key, origin) {
+			if(key == origin) return origin;
+
+			if(this.data.list[key].fixed) {
+				return this.l2r(key - 1, origin);
+			} else {
+				return key;
+			}
+		},
+		/**
+		 * 倒序拖动 key 值和固定项判断逻辑
+		 */
+		r2l(key, origin) {
+			if(key == origin) return origin;
+
+			if(this.data.list[key].fixed) {
+				return this.r2l(key + 1, origin);
+			} else {
+				return key;
+			}
+		},
+		/**
 		 * 根据起始key和目标key去重新计算每一项的新的key
 		 */
 		insert(origin, end) {
+			this.setData({
+				itemTransition: true
+			});
+
 			let list;
 
-			if (origin < end) {
+			if (origin < end) { // 正序拖动
 				list = this.data.list.map((item) => {
+					if(item.fixed) return item;
+
 					if (item.key > origin && item.key <= end) {
-						item.key = item.key - 1;
+						item.key = this.l2r(item.key - 1, origin);
 					} else if (item.key == origin) {
 						item.key = end;
 					}
+
 					return item
 				});
+
 				this.getPosition(list);
 
-			} else if (origin > end) {
+			} else if (origin > end) { // 倒序拖动
 				list = this.data.list.map((item) => {
+					if(item.fixed) return item;
+
 					if (item.key >= end && item.key < origin) {
-						item.key = item.key + 1;
+						item.key = this.r2l(item.key + 1, origin);
 					} else if (item.key == origin) {
 						item.key = end;
 					}
+
 					return item
 				});
+
 				this.getPosition(list);
 			}
 		},
@@ -211,12 +248,13 @@ Component({
 			// 遍历数据源增加扩展项, 以用作排序使用
 			let list = this.data.listData.map((item, index) => {
 				let data = {
+					fixed: item.fixed,
 					key: index,
 					tranX: 0,
 					tranY: 0,
 					data: item
 				}
-				return data
+				return data;
 			});
 
 			this.setData({

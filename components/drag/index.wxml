@@ -1,7 +1,7 @@
 <view>
 	<view style="overflow-x: {{overOnePage ? 'hidden' : 'initial'}}">
 		<view class="item-wrap" style="height: {{ itemWrapHeight }}px;">
-			<view class="item {{cur == index? 'cur':''}} {{curZ == index? 'zIndex':''}} {{itemTransition ? 'itemTransition':''}}"
+			<view class="item {{cur == index? 'cur':''}} {{curZ == index? 'zIndex':''}} {{itemTransition ? 'itemTransition':''}} {{item.fixed ? 'fixed' : ''}}"
 				  wx:for="{{list}}"
 				  wx:key="{{index}}"
 				  id="item{{index}}"
@@ -11,11 +11,15 @@
 				  bind:longpress="longPress"
 				  catch:touchmove="touchMove"
 				  catch:touchend="touchEnd">
-				<view class="info">
+				<view class="info" wx:if="{{index == list.length -1}}">
+					<view class="plus"></view>
+				</view>
+				<view class="info" wx:else>
 					<view>
 						<image src="{{item.data.images}}"></image>
 					</view>
 				</view>
+
 			</view>
 		</view>
 	</view>

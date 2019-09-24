@@ -54,6 +54,12 @@ Page({
 				title: "艺术就是爆炸！！~~ 嗯 ~~ 芸术は爆発します！",
 				description: "我的艺术就是爆炸那一瞬，和蝎那种让人吃惊的人偶喜剧从根本上就是不同的！",
 				images: "/assets/image/swipe/10.png"
+			},
+			{
+				title: "艺术就是爆炸！！~~ 嗯 ~~ 芸术は爆発します！",
+				description: "我的艺术就是爆炸那一瞬，和蝎那种让人吃惊的人偶喜剧从根本上就是不同的！",
+				images: "/assets/image/swipe/10.png",
+				fixed: true
 			}
 		],
 	},
