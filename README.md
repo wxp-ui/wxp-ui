@@ -126,17 +126,17 @@ tip: 最新新增 topSize 和 bottomSize 以应对有顶部和底部有固定区
 | topSize | 顶部固定区域高度 | Number | -- | 0(rpx) |
 | bottomSize | 底部固定区域高度 | Number | -- | 0(rpx) |
 
-#### Drag listData Attributes
-| 参数 | 说明 | 类型 | 可选值 | 默认值 |
-| --- | --- | --- | --- | --- |
-| fixed | 是否固定该项 | true | -- | -- |
-| ... | -- | -- | -- | -- |
-
 #### Drag Events
 
 | 事件名称 | 说明 | 回调参数 |
 | --- | --- | --- |
 | change | 排序监听事件 | 排序后数据 |
+
+#### listData Attributes
+| 参数 | 说明 | 类型 | 可选值 | 默认值 |
+| --- | --- | --- | --- | --- |
+| fixed | 是否固定该项 | Boolean | -- | -- |
+| ... | ... | ... | ... | ... |
 
 ## 贡献
 
