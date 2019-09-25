@@ -115,12 +115,22 @@ git clone https://github.com/singletouch/wx-plugin.git
 
 ### Drag 组件
 
+tip: 最新新增 topSize 和 bottomSize 以应对有顶部和底部有固定区域时的入参, 这两个参数可以保证数据较多时候拖拽到顶部和底部时页面能正确滚动.
+
 #### Drag Attributes
 
 | 参数 | 说明 | 类型 | 可选值 | 默认值 |
 | --- | --- | --- | --- | --- |
 | listData | 数据源 | Array | -- | [] |
 | columns | 列数 | Number | -- | 1 |
+| topSize | 顶部固定区域高度 | Number | -- | 0(rpx) |
+| bottomSize | 底部固定区域高度 | Number | -- | 0(rpx) |
+
+#### Drag listData Attributes
+| 参数 | 说明 | 类型 | 可选值 | 默认值 |
+| --- | --- | --- | --- | --- |
+| fixed | 是否固定该项 | true | -- | -- |
+| ... | -- | -- | -- | -- |
 
 #### Drag Events
 

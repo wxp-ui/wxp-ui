@@ -1,11 +1,26 @@
 page {
-  padding-bottom: 130rpx;
+  padding-top: 200rpx;
+}
+
+.empty-bottom {
+  padding-bottom: 300rpx;
+}
+.empty-bottom.isX {
+  padding-bottom: 380rpx;
 }
 
 .tip {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   padding: 20rpx;
-  color: #999999;
   font-size: 24rpx;
+  color: #999999;
+  z-index: 999;
+  background: #FFFFFF;
+  box-sizing: border-box;
+  border-bottom: 1rpx solid #ebedf0;
 }
 
 .control-panel {
@@ -29,4 +44,50 @@ page {
 }
 .panel-item__bd {
   flex: 1;
+}
+
+.circle-wrap {
+  display: inline-block;
+  text-align: center;
+  padding: 20rpx 8rpx;
+}
+.circle-wrap .circle {
+  width: 50rpx;
+  height: 50rpx;
+  border: 2rpx solid #ebedf0;
+  border-radius: 50%;
+}
+.circle-wrap .cur {
+  color: #fff;
+  line-height: 50rpx;
+  background: #3F82FD;
+  border: 2rpx solid #3F82FD;
+}
+
+.plus {
+  width: 100%;
+  height: 100%;
+  background: #efefef;
+}
+.plus:before {
+  position: absolute;
+  content: "";
+  width: 50%;
+  height: 2px;
+  top: 50%;
+  left: 50%;
+  margin-top: -1px;
+  margin-left: -25%;
+  background: #cbcbcb;
+}
+.plus:after {
+  position: absolute;
+  content: "";
+  width: 2px;
+  height: 50%;
+  top: 50%;
+  left: 50%;
+  margin-top: -25%;
+  margin-left: -1px;
+  background: #cbcbcb;
 }

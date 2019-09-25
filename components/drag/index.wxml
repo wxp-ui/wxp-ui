@@ -11,14 +11,23 @@
 				  bind:longpress="longPress"
 				  catch:touchmove="touchMove"
 				  catch:touchend="touchEnd">
-				<view class="info" wx:if="{{index == list.length -1}}">
-					<view class="plus"></view>
-				</view>
-				<view class="info" wx:else>
+
+				<!-- start:请在该区域编写自己的渲染逻辑 -->
+				<view class="info" wx:if="{{columns >= 2}}">
 					<view>
 						<image src="{{item.data.images}}"></image>
 					</view>
 				</view>
+				<view wx:else class="cell">
+					<view class="cell__hd">
+						<image mode="aspectFill" src="{{item.data.images}}" alt=""/>
+					</view>
+					<view class="cell__bd">
+						<view class="name">{{item.data.title}}</view>
+						<view class="des">{{item.data.description}}</view>
+					</view>
+				</view>
+				<!-- end:请在该区域编写自己的渲染逻辑 -->
 
 			</view>
 		</view>

@@ -3,13 +3,26 @@ Component({
 		// 数据源
 		listData: {
 			type: Array,
-			value: []
+			value: [],
+			observer: 'dataChange'
 		},
 		// 列数
 		columns: {
 			type: Number,
 			value: 1,
-			observer: 'columnsChange'
+			observer: 'dataChange'
+		},
+		// 顶部高度
+		topSize: {
+			type: Number,
+			value: 0,
+			observer: 'dataChange'
+		},
+		// 底部高度
+		bottomSize: {
+			type: Number,
+			value: 0,
+			observer: 'dataChange'
 		},
 	},
 	data: {
@@ -67,14 +80,16 @@ Component({
 
 			// 判断是否超过一屏幕, 超过则需要判断当前位置动态滚动page的位置
 			if(overOnePage) {
-				if(e.touches[0].clientY > this.windowHeight - this.item.height) {
+				if(e.touches[0].clientY > this.windowHeight - this.item.height - this.bottomSize) {
+					// 当前触摸点pageY + item高度 - (屏幕高度 - 底部固定区域高度)
 					wx.pageScrollTo({
-						scrollTop: e.touches[0].pageY + this.item.height - this.windowHeight,
+						scrollTop: e.touches[0].pageY + this.item.height - (this.windowHeight - this.bottomSize),
 						duration: 300
 					});
-				} else if(e.touches[0].clientY < this.item.height) {
+				} else if(e.touches[0].clientY < this.item.height + this.topSize) {
+					// 当前触摸点pageY - item高度 - 顶部固定区域高度
 					wx.pageScrollTo({
-						scrollTop: e.touches[0].pageY - this.item.height,
+						scrollTop: e.touches[0].pageY - this.item.height - this.topSize,
 						duration: 300
 					});
 				}
@@ -234,7 +249,7 @@ Component({
 		/**
 		 * 监听列数变化, 如果改变重新初始化参数
 		 */
-		columnsChange(newVal, oldVal) {
+		dataChange(newVal, oldVal) {
 			setTimeout(() => {
 				wx.pageScrollTo({
 					scrollTop: 0,
@@ -262,10 +277,15 @@ Component({
 				itemTransition: false
 			});
 
-			let {windowHeight, platform} = wx.getSystemInfoSync();
+			let {windowWidth, windowHeight, platform} = wx.getSystemInfoSync();
 
 			this.windowHeight = windowHeight;
 			this.platform = platform;
+
+			// 根据屏幕比例计算对应的 topSize 和 bottomSize 实际高度
+			let remScale = windowWidth / 750;
+			this.topSize = this.data.topSize * remScale;
+			this.bottomSize = this.data.bottomSize * remScale;
 
 			// 获取每一项的宽高等属性
 			this.createSelectorQuery().select(".item").boundingClientRect((res) => {
@@ -285,7 +305,8 @@ Component({
 				this.createSelectorQuery().select(".item-wrap").boundingClientRect((res) => {
 					this.itemWrap = res;
 
-					let overOnePage = itemWrapHeight + res.top > this.windowHeight;
+					// (列表的底部到页面顶部距离 > 屏幕高度 - 底部固定区域高度) 用该公式来计算是否超过一页
+					let overOnePage = res.bottom > this.windowHeight - this.bottomSize;
 
 					this.setData({
 						overOnePage: overOnePage
