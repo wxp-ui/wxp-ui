@@ -1,6 +1,7 @@
 <view class="top-wrap">
 	<tab id="category"
 		 tab-data="{{categoryMenu}}"
+		 tab-cur="{{categoryCur}}"
 		 size="{{80}}"
 		 scroll="{{true}}"
 		 bindchange="toggleCategory">

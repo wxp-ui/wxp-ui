@@ -76,6 +76,7 @@ git clone https://github.com/singletouch/wx-plugin.git
 | 参数 | 说明 | 类型 | 可选值 | 默认值 |
 | --- | --- | --- | --- | --- |
 | scroll | 是否可以超出滚动 | Boolean | -- | false |
+| tabCur | 当前聚焦项索引 | Number | -- | 0 |
 | tabData | 数据源 | Array | -- | [] |
 | size | tab高度 | Number | -- | 90 |
 | color | 颜色 | String | -- | "" |

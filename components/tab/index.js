@@ -1,6 +1,12 @@
 Component({
 	properties: {
 		// 是否可以超出滚动
+		tabCur: {
+			type: Number,
+			value: 0,
+			observer: "tacCurChange"
+		},
+		// 是否可以超出滚动
 		scroll: {
 			type: Boolean,
 			value: false
@@ -88,6 +94,14 @@ Component({
 			}
 		},
 		/**
+		 *  监听tabCur变化, 做对应处理
+		 */
+		tacCurChange(newVal, oldVal) {
+			if(newVal != oldVal) {
+				this.scrollByIndex(newVal);
+			}
+		},
+		/**
 		 *  初始化函数
 		 */
 		init() {
@@ -107,7 +121,7 @@ Component({
 
 			query.exec(function (res) {
 				this.items = res;
-				this.scrollByIndex(0, false)
+				this.scrollByIndex(this.data.tabCur, false)
 			}.bind(this));
 		}
 	},

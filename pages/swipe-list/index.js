@@ -3,8 +3,6 @@ const app = getApp()
 let pageStart = 0;
 let pageSize = 15;
 
-let categoryMenu
-
 let testData = [
 	{
 		title: "这个绝望的世界没有存在的价值，所剩的只有痛楚",
@@ -163,27 +161,24 @@ Page({
 	toggleCategory(e) {
 		this.setData({
 			duration: 0
-		})
-
+		});
 		setTimeout(() => {
 			this.setData({
-				categoryCur: e.detail.index,
-			})
-		}, 0)
+				categoryCur: e.detail.index
+			});
+		}, 0);
 	},
 	// 页面滑动切换事件
 	swipeChange(e) {
 		this.setData({
 			duration: 300
-		})
-
+		});
 		setTimeout(() => {
-			categoryMenu.scrollByIndex(e.detail.current)
 			this.setData({
 				categoryCur: e.detail.current
-			})
+			});
 			this.loadData()
-		}, 0)
+		}, 0);
 	},
 	// 更新页面数据
 	setCurrentData(pageData) {
@@ -213,8 +208,6 @@ Page({
 		this.getList('more', this.getCurrentData().page);
 	},
 	onLoad() {
-		categoryMenu = this.selectComponent('#category')
-
 		this.getList('refresh', pageStart);
 	}
 });

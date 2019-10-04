@@ -1,5 +1,6 @@
 <view class="top">
 	<tab id="tabs"
+		 tab-cur="{{tabCur}}"
 		 tab-data="{{tabData}}"
 		 color="{{color}}"
 		 size="{{size}}"
