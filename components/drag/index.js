@@ -76,6 +76,10 @@ Component({
 			let tranX = e.touches[0].pageX - this.startX + this.tranX,
 				tranY = e.touches[0].pageY - this.startY + this.tranY;
 
+			if(this.data.columns === 1) { // 单列时候X轴初始不做位移
+				tranX = 0;
+			}
+
 			let overOnePage = this.data.overOnePage;
 
 			// 判断是否超过一屏幕, 超过则需要判断当前位置动态滚动page的位置
