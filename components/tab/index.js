@@ -3,7 +3,7 @@ Component({
 		// 是否可以超出滚动
 		tabCur: {
 			type: Number,
-			value: 0,
+			value: -1,
 			observer: "tacCurChange"
 		},
 		// 是否可以超出滚动
@@ -97,7 +97,7 @@ Component({
 		 *  监听tabCur变化, 做对应处理
 		 */
 		tacCurChange(newVal, oldVal) {
-			if(newVal != oldVal && this.firstFlag) {
+			if(this.firstFlag) {
 				this.scrollByIndex(newVal);
 			}
 			this.firstFlag = true;
