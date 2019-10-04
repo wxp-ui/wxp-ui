@@ -97,9 +97,10 @@ Component({
 		 *  监听tabCur变化, 做对应处理
 		 */
 		tacCurChange(newVal, oldVal) {
-			if(newVal != oldVal) {
+			if(newVal != oldVal && this.firstFlag) {
 				this.scrollByIndex(newVal);
 			}
+			this.firstFlag = true;
 		},
 		/**
 		 *  初始化函数
