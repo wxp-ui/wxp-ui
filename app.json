@@ -22,5 +22,6 @@
 		"navigationBarTitleText": "WxP UI",
 		"backgroundColor": "#f7f7f7"
 	},
+	"style": "v2",
 	"sitemapLocation": "sitemap.json"
 }
