@@ -8,7 +8,7 @@ WxP UI 是一款提供高交互小程序插件的合集, 致力于简洁和高�
 
 ## 线上演示
 
-![WxP](./assets/image/qrcode.jpeg)
+![WxP](http://148.70.195.95/dist/qrcode.jpeg)
 
 ## 组件列表 
 
