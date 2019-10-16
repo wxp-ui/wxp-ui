@@ -4,7 +4,7 @@
 					 scroll-y
 					 scroll-top="{{scrollTop}}">
 			<view class="block-wrap">
-				<view class="block" wx:for="{{listData}}" wx:key="{{index}}">
+				<view class="block" wx:for="{{list}}" wx:key="{{index}}">
 					<view wx:if="{{index == listItemCur}}" class="block__title block__title--cur" style="color: {{color}}">
 						<view style="{{style1}}">{{item.key}}</view>
 					</view>
@@ -15,7 +15,7 @@
 						<view>{{item.key}}</view>
 					</view>
 					<view class="block__item" wx:for="{{item.data}}" wx:key="{{index}}">
-						<view>{{item}}</view>
+						<view>{{item.text}}</view>
 					</view>
 				</view>
 			</view>

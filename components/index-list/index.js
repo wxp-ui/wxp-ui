@@ -37,7 +37,8 @@ Component({
 		// 数据源
 		listData: {
 			type: Array,
-			value: []
+			value: [],
+			observer: "dataChange"
 		},
 		// 颜色
 		color: {
@@ -46,6 +47,7 @@ Component({
 		}
 	},
 	data: {
+		list: [],
 		treeItemCur: 0, // 索引树的聚焦项
 		listItemCur: 0, // 节点树的聚焦项
 		touching: false, // 是否在触摸索引树中
@@ -195,6 +197,23 @@ Component({
 		 *  初始化函数
 		 */
 		init() {
+			let list = this.data.listData.map((item, index) => {
+
+				let data = item.data.map((chItem, chIndex) => {
+					return {
+						text: chItem
+					}
+				});
+
+				item.data = data;
+
+				return item
+			});
+
+			this.setData({
+				list: list
+			});
+
 			// 获取主题色到灰色之间100阶色值
 			this.colors = gradient(this.data.color, "#767676", 100);
 
@@ -267,9 +286,20 @@ Component({
 			}).exec();
 
 		},
+		/**
+		 * 监听列数变化, 如果改变重新初始化参数
+		 */
+		dataChange(newVal, oldVal) {
+			if(newVal.length > 0) {
+				this.init();
+			}
+		},
 	},
 	ready() {
-		this.init();
+		console.log(`init listData length: ${this.data.listData.length}`)
+		if(this.data.listData.length > 0) {
+			this.init();
+		}
 	}
 })
 
