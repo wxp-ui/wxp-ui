@@ -79,8 +79,6 @@ Component({
 					if (scrollTop > block.bottom - stickyTitleHeight) {
 						let percent = Math.floor(((scrollTop - (block.bottom - stickyTitleHeight)) / stickyTitleHeight) * 100);
 
-						console.log(percent)
-
 						let style1 = `background: rgba(237, 237, 237, ${percent}%);color: ${this.colors[percent]}`
 						let style2 = `background: rgba(237, 237, 237, ${100 - percent}%);color: ${this.colors[100 - percent]}`
 
