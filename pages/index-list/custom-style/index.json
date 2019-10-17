@@ -1,7 +1,0 @@
-{
-	"backgroundColor": "#ffffff",
-	"disableScroll": true,
-	"usingComponents": {
-		"index-list": "/components/index-list/custom-style/index"
-	}
-}

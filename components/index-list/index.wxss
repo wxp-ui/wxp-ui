@@ -1,11 +1,27 @@
 .view-wrap {
   width: 100vw;
   overflow: hidden;
+  position: relative;
+}
+.view-wrap__empty {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 30rpx;
+  text-align: center;
+}
+.view-wrap .empty-image {
+  width: 200rpx;
+  height: 200rpx;
+  margin: 160rpx auto 60rpx;
+}
+.view-wrap .empty-text {
+  color: #999999;
 }
 
-scroll-view {
+.scroll-view {
   width: calc(100vw + 20rpx);
-  height: 100vh;
 }
 
 .block-wrap {
@@ -75,13 +91,13 @@ scroll-view {
   color: #666666;
   font-weight: bold;
 }
-.tree__item > view {
+.tree__item > .key {
   width: 32rpx;
   height: 32rpx;
   border-radius: 50%;
   line-height: 32rpx;
 }
-.tree__item--cur > view {
+.tree__item--cur > .key {
   background: #3F82FD;
   color: #FFFFFF;
   border-radius: 50%;
@@ -98,7 +114,7 @@ scroll-view {
   font-weight: bold;
   color: #767676;
 }
-.block__title > view {
+.block__title > .title-item {
   border-top: 1rpx solid #ebedf0;
   border-bottom: 1rpx solid #ebedf0;
   padding: 0 20rpx;
@@ -107,7 +123,7 @@ scroll-view {
 .block__title--cur {
   color: #3F82FD;
 }
-.block__title--cur > view {
+.block__title--cur > .title-item {
   background: #ffffff;
 }
 .block__item {
@@ -116,4 +132,26 @@ scroll-view {
 }
 .block__item:not(:last-child) {
   border-bottom: 1rpx solid #ebedf0;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+}
+.item__hd {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  font-weight: bold;
+  line-height: 80rpx;
+  text-align: center;
+  margin-right: 20rpx;
+  color: #ffffff;
+}
+
+.info__name {
+  margin-bottom: 10rpx;
+}
+.info__title {
+  color: #999999;
 }

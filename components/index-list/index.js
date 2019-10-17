@@ -32,6 +32,15 @@ function gradient(startColor, endColor, step) {
 	return gradientColorArr;
 }
 
+// 生成随机颜色值
+function  generateColor() {
+	let color="#";
+	for(let i=0;i<6;i++){
+		color += (Math.random()*16 | 0).toString(16);
+	}
+	return color;
+}
+
 Component({
 	properties: {
 		// 数据源
@@ -44,10 +53,37 @@ Component({
 		color: {
 			type: String,
 			value: ""
-		}
+		},
+		// 顶部高度
+		topSize: {
+			type: Number,
+			value: 0,
+			observer: 'dataChange'
+		},
+		// 底部高度
+		bottomSize: {
+			type: Number,
+			value: 0,
+			observer: 'dataChange'
+		},
+		// 空状态的图片
+		emptyUrl: {
+			type: String,
+			value: "/assets/image/empty/empty.png"
+		},
+		// 空状态的文字提示
+		emptyText: {
+			type: String,
+			value: "未找到数据"
+		},
+		// 控制空状态的显示
+		emptyShow: {
+			type: Boolean,
+			value: false,
+		},
 	},
 	data: {
-		list: [],
+		list: [], // 处理后数据
 		treeItemCur: 0, // 索引树的聚焦项
 		listItemCur: 0, // 节点树的聚焦项
 		touching: false, // 是否在触摸索引树中
@@ -66,21 +102,24 @@ Component({
 
 			let scrollTop = e.detail.scrollTop;
 
+			// 大于最大滚动距离时候返回
 			if (scrollTop > this.maxScrollTop) return;
 
 			let blocks = this.blocks;
 
+			// 计算获得 .block__title 高度
 			let stickyTitleHeight = this.remScale * 30
 
 			for (let i = blocks.length - 1; i >= 0; i--) {
 				let block = blocks[i];
 
+				// 判断当前滚动值 scrollTop 所在区间, 以得到当前聚焦项
 				if (scrollTop >= block.top && scrollTop < block.bottom) {
+					// 判断当前滚动值 scrollTop 是否在当前聚焦项底一个 .block__title 高度范围内, 如果是则开启过度色值计算
 					if (scrollTop > block.bottom - stickyTitleHeight) {
 						let percent = Math.floor(((scrollTop - (block.bottom - stickyTitleHeight)) / stickyTitleHeight) * 100);
-
-						let style1 = `background: rgba(237, 237, 237, ${percent}%);color: ${this.colors[percent]}`
-						let style2 = `background: rgba(237, 237, 237, ${100 - percent}%);color: ${this.colors[100 - percent]}`
+						let style1 = `background: rgba(237, 237, 237, ${percent}%);color: ${this.colors[percent]}`;
+						let style2 = `background: rgba(237, 237, 237, ${100 - percent}%);color: ${this.colors[100 - percent]}`;
 
 						this.setData({
 							style1: style1,
@@ -92,12 +131,11 @@ Component({
 						this.setData({
 							style1: "",
 							style2: "",
-							percent: 1,
 							treeItemCur: i,
 							listItemCur: i
 						});
 					}
-					break
+					break;
 				}
 			}
 		},
@@ -105,7 +143,7 @@ Component({
 		 * 触摸之后后设置对应value
 		 */
 		setValue(treeItemCur) {
-			if (treeItemCur == this.data.treeItemCur) return;
+			if (treeItemCur == this.data.treeItemCur || !this.blocks[treeItemCur]) return;
 
 			let {scrollTop, scrollIndex} = this.blocks[treeItemCur];
 			let indicatorTop = this.indicatorTopList[treeItemCur];
@@ -113,7 +151,6 @@ Component({
 			this.setData({
 				style1: "",
 				style2: "",
-				percent: 1,
 				treeItemCur: treeItemCur,
 				scrollTop: scrollTop,
 				listItemCur: scrollIndex,
@@ -126,8 +163,6 @@ Component({
 		 * tree 触摸开始
 		 */
 		touchStart(e) {
-			if(this.data.touching) return;
-
 			this.setData({
 				touching: true
 			});
@@ -140,11 +175,10 @@ Component({
 		 * tree 触摸移动
 		 */
 		touchMove(e) {
+			// 滑动结束后迅速开始第二次滑动时候 touching 为 false 造成不显示 indicator 问题
 			if(!this.data.touching) {
 				this.setData({
-					touching: true,
-					style1: "",
-					style2: ""
+					touching: true
 				});
 			}
 
@@ -185,21 +219,23 @@ Component({
 
 			if (pageY < top) {
 				return 0
-			} else if (pageY > bottom) {
+			} else if (pageY >= bottom) {
 				return len - 1
 			} else {
 				return Math.floor((pageY - top) / itemHeight)
 			}
 		},
 		/**
-		 *  初始化函数
+		 *  初始化处理数据, 不于 init 方法合并以防止2.7.1版本及以下版本无法及时获取到dom信息
 		 */
-		init() {
+		initData(){
 			let list = this.data.listData.map((item, index) => {
 
 				let data = item.data.map((chItem, chIndex) => {
 					return {
-						text: chItem
+						firstChar: chItem.name.slice(0,1),
+						color: generateColor(),
+						...chItem
 					}
 				});
 
@@ -211,7 +247,11 @@ Component({
 			this.setData({
 				list: list
 			});
-
+		},
+		/**
+		 *  初始化函数
+		 */
+		init() {
 			// 获取主题色到灰色之间100阶色值
 			this.colors = gradient(this.data.color, "#767676", 100);
 
@@ -222,6 +262,8 @@ Component({
 
 			// 计算缩放比
 			this.remScale = (windowWidth || 375) / 375;
+			this.topSize = this.data.topSize * this.remScale / 2;
+			this.bottomSize = this.data.bottomSize * this.remScale / 2;
 
 			// 获取索引树元素信息
 			this.createSelectorQuery().select("#tree").boundingClientRect((res) => {
@@ -250,7 +292,7 @@ Component({
 			// 获取整个列表元素信息
 			this.createSelectorQuery().select(".block-wrap").boundingClientRect((res) => {
 				// 获取最大滚动高度
-				let maxScrollTop = res.height - windowHeight;
+				let maxScrollTop = Math.round(res.height - (windowHeight - this.topSize - this.bottomSize));
 
 				this.maxScrollTop = maxScrollTop;
 
@@ -261,7 +303,7 @@ Component({
 
 					// 保存每个块的 top 和 bottom 信息
 					let blocks = res.map((item, index) => {
-						let top = Math.round(item.top), bottom = Math.round(item.top + item.height);
+						let top = Math.round(item.top - this.topSize) , bottom = Math.round(item.top + item.height - this.topSize) ;
 
 						let scrollTop = top >= maxScrollTop ? maxScrollTop : top;
 
@@ -274,31 +316,56 @@ Component({
 						return {
 							scrollTop: scrollTop,
 							scrollIndex: scrollIndex,
-							top: Math.round(item.top),
-							bottom: Math.round(item.top + item.height)
+							top: top,
+							bottom: bottom
 						}
 					});
-
 					this.blocks = blocks;
 				}).exec();
 			}).exec();
-
+		},
+		/**
+		 * 清除参数
+		 */
+		clearData() {
+			this.setData({
+				treeItemCur: 0, // 索引树的聚焦项
+				listItemCur: 0, // 节点树的聚焦项
+				touching: false, // 是否在触摸索引树中
+				scrollTop: 0, // 节点树滚动高度
+				indicatorTop: -1, // 指示器顶部距离
+				treeKeyTran: false,
+				style1: "",
+				style2: ""
+			});
 		},
 		/**
 		 * 监听列数变化, 如果改变重新初始化参数
 		 */
 		dataChange(newVal, oldVal) {
-			if(newVal.length > 0) {
-				this.init();
+			// 防止初次进入init方法无法获取到dom信息
+			if(newVal.length > 0 || (oldVal.length > 0 && newVal.length == 0)) {
+				this.clearData();
+				this.initData();
+				setTimeout(() => this.init(),10)
 			}
 		},
+		/**
+		 * 点击每一项后触发事件
+		 */
+		itemClick(e) {
+			let {i, j} = e.currentTarget.dataset;
+
+			let data = this.data.list[i].data[j];
+
+			this.triggerEvent('click', data);
+		}
 	},
 	ready() {
 		console.log(`init listData length: ${this.data.listData.length}`)
 		if(this.data.listData.length > 0) {
-			this.init();
+			this.initData();
+			setTimeout(() => this.init(),10)
 		}
 	}
 })
-
-

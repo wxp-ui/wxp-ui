@@ -1,32 +1,46 @@
 <view>
 	<view class="view-wrap">
-		<scroll-view bind:scroll="scroll"
+		<scroll-view class="scroll-view"
+					 style="height: calc(100vh - {{topSize + bottomSize}}rpx);"
 					 scroll-y
-					 scroll-top="{{scrollTop}}">
+					 scroll-top="{{scrollTop}}"
+					 bind:scroll="scroll">
 			<view class="block-wrap">
 				<view class="block" wx:for="{{list}}" wx:key="{{index}}">
 					<view wx:if="{{index == listItemCur}}" class="block__title block__title--cur" style="color: {{color}}">
-						<view style="{{style1}}">{{item.key}}</view>
+						<view class="title-item" style="{{style1}}">{{item.key}}</view>
 					</view>
 					<view wx:elif="{{index == listItemCur + 1}}" class="block__title">
-						<view style="{{style2}}">{{item.key}}</view>
+						<view class="title-item" style="{{style2}}">{{item.key}}</view>
 					</view>
 					<view wx:else class="block__title">
-						<view>{{item.key}}</view>
+						<view class="title-item">{{item.key}}</view>
 					</view>
-					<view class="block__item" wx:for="{{item.data}}" wx:key="{{index}}">
-						<view>{{item.text}}</view>
+					<view class="block__item" wx:for="{{item.data}}" wx:key="{{j}}" wx:for-index="j" bindtap="itemClick" data-i="{{index}}" data-j="{{j}}">
+						<view class="item">
+							<view class="item__hd" style="background-color: {{item.color}}">
+								{{item.firstChar}}
+							</view>
+							<view class="item__bd">
+								<view class="info__name">{{item.name}}-{{item.short}}</view>
+								<view class="info__title">{{item.code}}</view>
+							</view>
+						</view>
 					</view>
 				</view>
 			</view>
+			<view class="indicator {{touching && indicatorTop != -1 ? 'indicator--show' : ''}} {{treeKeyTran ? 'indicator--tran' : ''}}" style="top: {{indicatorTop}}px">
+				{{listData[treeItemCur].key}}
+			</view>
+			<view id="tree" class="tree" catch:touchstart="touchStart" catch:touchmove="touchMove" catch:touchend="touchEnd">
+				<view class="tree__item {{index === treeItemCur ? 'tree__item--cur' : ''}}" wx:for="{{listData}}" wx:key="{{index}}">
+					<view class="key" style="background: {{index === treeItemCur ? color : 'initial'}}">{{item.key}}</view>
+				</view>
+			</view>
 		</scroll-view>
-	</view>
-	<view class="indicator {{touching && indicatorTop != -1 ? 'indicator--show' : ''}} {{treeKeyTran ? 'indicator--tran' : ''}}" style="top: {{indicatorTop}}px">
-		{{listData[treeItemCur].key}}
-	</view>
-	<view id="tree" class="tree" catch:touchstart="touchStart" catch:touchmove="touchMove" catch:touchend="touchEnd">
-		<view class="tree__item {{index === treeItemCur ? 'tree__item--cur' : ''}}" wx:for="{{listData}}" wx:key="{{index}}">
-			<view style="background: {{index === treeItemCur ? color : 'initial'}}">{{item.key}}</view>
+		<view wx:if="{{list.length === 0 && emptyShow}}" class="view-wrap__empty">
+			<image class="empty-image" src="{{emptyUrl}}"></image>
+			<view class="empty-text">{{emptyText}}</view>
 		</view>
 	</view>
 </view>

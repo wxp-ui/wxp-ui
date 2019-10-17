@@ -7,7 +7,6 @@
 		"pages/swipe-list/index",
 		"pages/side-slip/index",
 		"pages/index-list/index",
-		"pages/index-list/custom-style/index",
 		"pages/drag/index"
 	],
 	"permission": {

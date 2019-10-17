@@ -3,11 +3,29 @@
 .view-wrap {
 	width: 100vw;
 	overflow: hidden;
+	position: relative;
+	&__empty {
+		position: absolute;
+		top: 35%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		padding: 30rpx;
+		text-align: center;
+	}
+
+	.empty-image {
+		width: 200rpx;
+		height: 200rpx;
+		margin: 160rpx auto 60rpx;
+	}
+
+	.empty-text {
+		color: #999999;
+	}
 }
 
-scroll-view {
+.scroll-view {
 	width: calc(100vw + 20rpx);
-	height: 100vh;
 }
 
 .block-wrap {
@@ -75,14 +93,14 @@ scroll-view {
 		padding: 0rpx 8rpx;
 		color: $mainBlack2;
 		font-weight: bold;
-		& > view {
+		& > .key {
 			width: 32rpx;
 			height: 32rpx;
 			border-radius: 50%;
 			line-height: 32rpx;
 		}
 		&--cur {
-			& > view {
+			& > .key {
 				background: $mainColor;
 				color: #FFFFFF;
 				border-radius: 50%;
@@ -102,7 +120,7 @@ scroll-view {
 		font-size: 24rpx;
 		font-weight: bold;
 		color: #767676;
-		& > view {
+		& > .title-item {
 			border-top: 1rpx solid $lineColor;
 			border-bottom: 1rpx solid $lineColor;
 			padding: 0 20rpx;
@@ -110,7 +128,7 @@ scroll-view {
 		}
 		&--cur {
 			color: $mainColor;
-			& > view {
+			& > .title-item {
 				background: #ffffff;
 			}
 		}
@@ -124,3 +142,29 @@ scroll-view {
 	}
 }
 
+.item {
+	display: flex;
+	align-items: center;
+	&__hd {
+		width: 80rpx;
+		height: 80rpx;
+		border-radius: 50%;
+		font-weight: bold;
+		line-height: 80rpx;
+		text-align: center;
+		margin-right: 20rpx;
+		color: #ffffff;
+	}
+	&__bd {
+
+	}
+}
+
+.info {
+	&__name {
+		margin-bottom: 10rpx;
+	}
+	&__title {
+		color: $mainBlack3;
+	}
+}

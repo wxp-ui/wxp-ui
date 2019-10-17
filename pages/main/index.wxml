@@ -45,9 +45,6 @@
 	<navigator url="/pages/index-list/index" hover-class="hover" hover-start-time="{{0}}" class="cell">
 		<view class="cell__bd">index-list</view>
 	</navigator>
-	<navigator url="/pages/index-list/custom-style/index" hover-class="hover" hover-start-time="{{0}}" class="cell">
-		<view class="cell__bd">自定义样式</view>
-	</navigator>
 </view>
 
 <view class="cells">

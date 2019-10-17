@@ -48,6 +48,7 @@ git clone https://github.com/singletouch/wx-plugin.git
 | --- | --- | --- | --- | --- |
 | requesting | 列表数据是否处于加载中 | Boolean | -- | false |
 | end | 列表数据加载完成 | Boolean | -- | false |
+| emptyShow | 控制空状态显示 | Boolean | -- | false |
 | listCount | 当前列表长度 | Number | -- | 0 |
 | emptyUrl | 空列表的展示图片 | String | * | /assets/image/empty/empty.png |
 | emptyText | 空列表的文字提示 | String | * | 未找到数据 |
@@ -113,6 +114,11 @@ git clone https://github.com/singletouch/wx-plugin.git
 | --- | --- | --- | --- | --- |
 | listData | 数据源 | Array | -- | [] |
 | color | 颜色 | String | -- | "" |
+| topSize | 顶部固定区域高度 | Number | -- | 0(rpx) |
+| bottomSize | 底部固定区域高度 | Number | -- | 0(rpx) |
+| emptyUrl | 空列表的展示图片 | String | * | /assets/image/empty/empty.png |
+| emptyText | 空列表的文字提示 | String | * | 未找到数据 |
+| emptyShow | 控制空状态显示 | Boolean | -- | false |
 
 #### listData Attributes
 | 参数 | 说明 | 类型 | 可选值 | 默认值 |
@@ -120,42 +126,66 @@ git clone https://github.com/singletouch/wx-plugin.git
 | key | 索引值 | String | -- | -- |
 | data | 索引值对应数据 | Array | ... | ... |
 
-数据结构演示, 其中 data 下的每一项数据结构为字符串格式, 如需更多数据结构和渲染样式, 需自行修改渲染和初始化部分代码.
+数据结构演示, 如需更多数据结构和渲染样式, 需自行修改渲染和初始化部分代码.
 ```
 [
     {
         key: "A",
         data: [
-            "数据1",
-            "数据2",
-            "数据3",
-            "数据4",
+            {   
+                name: "城市1", 
+                code: "0001", 
+                short: "city1"
+            },
+            {   
+                name: "城市2", 
+                code: "0002", 
+                short: "city2"
+            },
             ...
         ]
     },
     {
         key: "B",
         data: [
-            "数据1",
-            "数据2",
-            "数据3",
-            "数据4",
+            {   
+                name: "城市1", 
+                code: "0001", 
+                short: "city1"
+            },
+            {   
+                name: "城市2", 
+                code: "0002", 
+                short: "city2"
+            },
             ...
         ]
     },
     {
         key: "C",
         data: [
-            "数据1",
-            "数据2",
-            "数据3",
-            "数据4",
+            {   
+                name: "城市1", 
+                code: "0001", 
+                short: "city1"
+            },
+            {   
+                name: "城市2", 
+                code: "0002", 
+                short: "city2"
+            },
             ...
         ]
     }
     ...
 ]
 ```
+
+#### IndexList Events
+
+| 事件名称 | 说明 | 回调参数 |
+| --- | --- | --- |
+| _click_ | 点击item | 当前item的数据信息 |
 
 ### Drag 组件
 

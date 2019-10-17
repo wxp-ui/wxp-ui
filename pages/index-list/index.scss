@@ -1,0 +1,43 @@
+@import "../../assets/css/variables";
+
+page {
+	padding-top: 100rpx;
+}
+
+.search {
+	position: fixed;
+	padding: 20rpx;
+	background: #ffffff;
+	top: 0;
+	left: 0;
+	right: 0;
+	display: flex;
+	align-items: center;
+	.hd {
+		font-size: 0;
+		image {
+			width: 36rpx;
+			height: 36rpx;
+			margin-right: 20rpx;
+		}
+	}
+	.bd {
+		flex: 1;
+		input {
+			width: 100%;
+			height: 60rpx;
+			border-radius: 10rpx;
+			box-sizing: border-box;
+		}
+	}
+	.ft {
+		font-size: 0;
+		padding: 30rpx;
+		margin: -30rpx;
+		image {
+			width: 36rpx;
+			height: 36rpx;
+			margin-left: 20rpx;
+		}
+	}
+}
