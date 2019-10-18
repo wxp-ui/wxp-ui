@@ -98,7 +98,7 @@ Component({
 		 * scroll-view 滚动监听
 		 */
 		scroll(e) {
-			if (this.data.touching) return;
+			if (this.data.touching && !this.blocks) return;
 
 			let scrollTop = e.detail.scrollTop;
 
