@@ -98,12 +98,15 @@ Component({
 		 * scroll-view 滚动监听
 		 */
 		scroll(e) {
-			if (this.data.touching && !this.blocks) return;
+			if (this.data.touching) return;
 
 			let scrollTop = e.detail.scrollTop;
 
 			// 大于最大滚动距离时候返回
 			if (scrollTop > this.maxScrollTop) return;
+
+			// 处理未获到 blocks 异常时候返回
+			if (!this.blocks) return;
 
 			let blocks = this.blocks;
 
