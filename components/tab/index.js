@@ -32,7 +32,6 @@ Component({
 		needTransition: false, // 下划线是否需要过渡动画
 		translateX: 0, // 下划 line 的左边距离
 		lineWidth: 100, // 下划 line 宽度
-		tabCur: 0, // 当前聚焦的tab
 		scrollLeft: 0, // scroll-view 左边滚动距离
 	},
 	methods: {
@@ -50,14 +49,12 @@ Component({
 		 */
 		scrollByIndex(tabCur, needTransition = true) {
 			this.setData({
-				isScroll: true
-			})
-
-			this.setData({
 				needTransition: needTransition
 			});
 
 			let item = this.items[tabCur];
+
+			if(!item) return;
 
 			// 子item宽度
 			let chItemWidth = item.width - this.itemPadding * 2;
