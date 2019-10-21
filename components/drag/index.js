@@ -263,6 +263,20 @@ Component({
 				this.init()
 			},0)
 		},
+		/**
+		 * 点击每一项后触发事件
+		 */
+		itemClick(e) {
+			let {index} = e.currentTarget.dataset;
+
+			let item = this.data.list[index];
+
+			this.triggerEvent('click', {
+				oldKey: index,
+				newKey: item.key,
+				data: item.data
+			});
+		},
 		init() {
 			// 遍历数据源增加扩展项, 以用作排序使用
 			let list = this.data.listData.map((item, index) => {

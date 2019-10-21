@@ -75,6 +75,9 @@ Page({
 			size: e.detail.value
 		})
 	},
+	itemClick(e) {
+		console.log(e);
+	},
 	toggleFixed(e) {
 		let key = e.currentTarget.dataset.key;
 
