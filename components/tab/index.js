@@ -57,7 +57,7 @@ Component({
 			if(!item) return;
 
 			// 子item宽度
-			let chItemWidth = item.width - this.itemPadding * 2;
+			let chItemWidth = item.width;
 
 			// 父item左边距离
 			let offsetLeft = item.left;
@@ -69,13 +69,13 @@ Component({
 				this.setData({
 					tabCur: tabCur,
 					scrollLeft: scrollLeft,
-					translateX: offsetLeft + this.itemPadding,
+					translateX: offsetLeft,
 					lineWidth: chItemWidth,
 				})
 			} else { // 不超出滚动的情况
 				this.setData({
 					tabCur: tabCur,
-					translateX: offsetLeft + this.itemPadding,
+					translateX: offsetLeft,
 					lineWidth: chItemWidth,
 				})
 			}
