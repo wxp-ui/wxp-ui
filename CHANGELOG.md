@@ -1,5 +1,13 @@
 # 假装有个 CHANGELOG ~~
 
+## [1.0.3] - 2019-10-22
+### Added
+- drag 组件新增 `click` 方法
+
+### Fixed
+- 调整 tab line 宽度
+- 修复线上 tab 报错信息
+
 ## [1.0.2] - 2019-10-17
 ### Added
 - index-list 新增 `topSize`, `bottomSize`, `emptyUrl`, `emptyText`, `emptyShow` 属性
@@ -9,9 +17,6 @@
 ### Fixed
 - 修复 index-list 索引树滑动和 scroll-view 弹性滚动冲突问题
 - 修复 index-list 索引树滑动偶尔报错问题
-```
-undefined is not an object (evaluating 'e.scrollTop'); [Component] Event Handler Error @ components/index-list/custom-style/index#touchMove
-```
 
 ### Removed
 - index-list/custom-style 移除该页面功能合并到 index-list, 维护两个代码差不多的组件真的太累了OTZ～～
