@@ -1,10 +1,9 @@
 <view class="tip">
 	<text style="color: red;">长按触发拖拽排序!!</text>
-	<text>ps:该组件本身使用了catch事件,所以会阻塞页面滑动, 这里判断超过一屏时候会加个滑动指示器辅助滑动.</text>
-	<view style="color: #3F82FD;">最新版本增加顶部固定区域高度和底部固定区域高度, 以响应超过一屏时候可以正确滑动</view>
+	<text style="color: #3F82FD;">最新版本增加顶部固定区域高度和底部固定区域高度, 以响应超过一屏时候可以正确滑动</text>
 </view>
 
-<drag bind:click="itemClick" columns="{{size}}" list-data="{{listData}}" top-size="200" bottom-size="{{isIphoneX ? 380 : 300 }}" bind:change="change"></drag>
+<drag bind:click="itemClick" columns="{{size}}" list-data="{{listData}}" top-size="110" bottom-size="{{isIphoneX ? 380 : 300 }}" bind:change="change"></drag>
 
 <view class="empty-bottom {{isIphoneX ? 'isX' : ''}}"></view>
 
