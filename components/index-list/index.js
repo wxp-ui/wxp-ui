@@ -99,23 +99,16 @@ Component({
 		 */
 		scroll(e) {
 			if (this.data.touching) return;
-
 			let scrollTop = e.detail.scrollTop;
-
 			// 大于最大滚动距离时候返回
 			if (scrollTop > this.maxScrollTop) return;
-
 			// 处理未获到 blocks 异常时候返回
 			if (!this.blocks) return;
-
 			let blocks = this.blocks;
-
 			// 计算获得 .block__title 高度
 			let stickyTitleHeight = this.remScale * 30
-
 			for (let i = blocks.length - 1; i >= 0; i--) {
 				let block = blocks[i];
-
 				// 判断当前滚动值 scrollTop 所在区间, 以得到当前聚焦项
 				if (scrollTop >= block.top && scrollTop < block.bottom) {
 					// 判断当前滚动值 scrollTop 是否在当前聚焦项底一个 .block__title 高度范围内, 如果是则开启过度色值计算
@@ -123,7 +116,6 @@ Component({
 						let percent = Math.floor(((scrollTop - (block.bottom - stickyTitleHeight)) / stickyTitleHeight) * 100);
 						let style1 = `background: rgba(237, 237, 237, ${percent}%);color: ${this.colors[percent]}`;
 						let style2 = `background: rgba(237, 237, 237, ${100 - percent}%);color: ${this.colors[100 - percent]}`;
-
 						this.setData({
 							style1: style1,
 							style2: style2,
@@ -147,10 +139,8 @@ Component({
 		 */
 		setValue(treeItemCur) {
 			if (treeItemCur == this.data.treeItemCur || !this.blocks[treeItemCur]) return;
-
 			let {scrollTop, scrollIndex} = this.blocks[treeItemCur];
 			let indicatorTop = this.indicatorTopList[treeItemCur];
-
 			this.setData({
 				style1: "",
 				style2: "",
@@ -159,34 +149,33 @@ Component({
 				listItemCur: scrollIndex,
 				indicatorTop: indicatorTop
 			});
-
 			if(this.platform != "devtools") wx.vibrateShort();
 		},
 		/**
 		 * tree 触摸开始
 		 */
 		touchStart(e) {
-			this.setData({
-				touching: true
-			});
-
-			let treeItemCur = this.getCurrentTreeItem(e.changedTouches[0].pageY);
-
+			// 获取触摸点信息
+			let startTouch = e.changedTouches[0];
+			if(!startTouch) return;
+			this.setData({touching: true});
+			let treeItemCur = this.getCurrentTreeItem(startTouch.pageY);
 			this.setValue(treeItemCur);
 		},
 		/**
 		 * tree 触摸移动
 		 */
 		touchMove(e) {
+			// 获取触摸点信息
+			let currentTouch = e.changedTouches[0];
+			if(!currentTouch) return;
 			// 滑动结束后迅速开始第二次滑动时候 touching 为 false 造成不显示 indicator 问题
 			if(!this.data.touching) {
 				this.setData({
 					touching: true
 				});
 			}
-
-			let treeItemCur = this.getCurrentTreeItem(e.changedTouches[0].pageY);
-
+			let treeItemCur = this.getCurrentTreeItem(currentTouch.pageY);
 			this.setValue(treeItemCur);
 		},
 		/**
@@ -194,18 +183,15 @@ Component({
 		 */
 		touchEnd(e) {
 			let {treeItemCur, listItemCur} = this.data;
-
 			if (treeItemCur != listItemCur) {
 				this.setData({
 					treeItemCur: listItemCur,
 					indicatorTop: this.indicatorTopList[treeItemCur]
 				});
 			}
-
 			this.setData({
 				treeKeyTran: true
 			});
-
 			setTimeout(() => {
 				this.setData({
 					touching: false,
@@ -219,7 +205,6 @@ Component({
 		 */
 		getCurrentTreeItem(pageY) {
 			let {top, bottom, itemHeight, len} = this.treeInfo;
-
 			if (pageY < top) {
 				return 0
 			} else if (pageY >= bottom) {
@@ -233,7 +218,6 @@ Component({
 		 */
 		initData(){
 			let list = this.data.listData.map((item, index) => {
-
 				let data = item.data.map((chItem, chIndex) => {
 					return {
 						firstChar: chItem.name.slice(0,1),
@@ -241,12 +225,9 @@ Component({
 						...chItem
 					}
 				});
-
 				item.data = data;
-
 				return item
 			});
-
 			this.setData({
 				list: list
 			});
@@ -257,17 +238,13 @@ Component({
 		init() {
 			// 获取主题色到灰色之间100阶色值
 			this.colors = gradient(this.data.color, "#767676", 100);
-
 			// 获取系统信息
 			let {windowHeight, windowWidth, platform} = wx.getSystemInfoSync();
-
 			this.platform = platform;
-
 			// 计算缩放比
 			this.remScale = (windowWidth || 375) / 375;
 			this.topSize = this.data.topSize * this.remScale / 2;
 			this.bottomSize = this.data.bottomSize * this.remScale / 2;
-
 			// 获取索引树元素信息
 			this.createSelectorQuery().select("#tree").boundingClientRect((res) => {
 				// 保存索引树节点信息
@@ -277,45 +254,32 @@ Component({
 					top: res.top,
 					bottom: res.top + res.height
 				};
-
 				// 保存指示器节点信息
 				let indicatorTopList = this.data.listData.map((item, index) => {
-					let {top, itemHeight} = this.treeInfo,
-						remScale = this.remScale;
-
+					let {top, itemHeight} = this.treeInfo, remScale = this.remScale;
 					let indicatorTop = itemHeight / 2 + index * itemHeight + top - remScale * 25;
-
 					return indicatorTop
 				});
-
 				this.indicatorTopList = indicatorTopList;
-
 			}).exec();
 
 			// 获取整个列表元素信息
 			this.createSelectorQuery().select(".block-wrap").boundingClientRect((res) => {
 				// 获取最大滚动高度
 				let maxScrollTop = Math.round(res.height - (windowHeight - this.topSize - this.bottomSize));
-
 				this.maxScrollTop = maxScrollTop;
-
 				// 获取每个块的节点信息
 				this.createSelectorQuery().selectAll(".block").boundingClientRect((res) => {
 					// 获取最大滚动项的index
 					let maxScrollIndex = -1;
-
 					// 保存每个块的 top 和 bottom 信息
 					let blocks = res.map((item, index) => {
 						let top = Math.round(item.top - this.topSize) , bottom = Math.round(item.top + item.height - this.topSize) ;
-
 						let scrollTop = top >= maxScrollTop ? maxScrollTop : top;
-
 						if (maxScrollTop >= top && maxScrollTop < bottom) {
 							maxScrollIndex = index;
 						}
-
 						let scrollIndex = maxScrollIndex == -1 ? index : maxScrollIndex;
-
 						return {
 							scrollTop: scrollTop,
 							scrollIndex: scrollIndex,
@@ -358,9 +322,7 @@ Component({
 		 */
 		itemClick(e) {
 			let {i, j} = e.currentTarget.dataset;
-
 			let data = this.data.list[i].data[j];
-
 			this.triggerEvent('click', data);
 		}
 	},

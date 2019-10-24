@@ -15,13 +15,13 @@
 
 				<!-- start:请在该区域编写自己的渲染逻辑 -->
 				<view class="info" wx:if="{{columns >= 2}}">
-					<view>
-						<image src="{{item.data.images}}"></image>
+					<view class="info__item">
+						<image class="image" src="{{item.data.images}}"></image>
 					</view>
 				</view>
 				<view wx:else class="cell">
 					<view class="cell__hd">
-						<image mode="aspectFill" src="{{item.data.images}}" alt=""/>
+						<image class="image" mode="aspectFill" src="{{item.data.images}}" alt=""/>
 					</view>
 					<view class="cell__bd">
 						<view class="name">{{item.data.title}}</view>
@@ -34,6 +34,6 @@
 		</view>
 	</view>
 	<view wx:if="{{overOnePage}}" class="indicator">
-		<view>滑动此区域滚动页面</view>
+		<view class="indicator__item">滑动此区域滚动页面</view>
 	</view>
 </view>
