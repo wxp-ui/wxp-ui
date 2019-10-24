@@ -70,25 +70,3 @@
 		}
 	}
 }
-
-.indicator {
-	position: fixed;
-	z-index: 99999;
-	right: 0rpx;
-	top: 50%;
-	margin-top: -250rpx;
-	padding: 20rpx;
-	&__item {
-		width: 36rpx;
-		height: 500rpx;
-		background: #ffffff;
-		border-radius: 30rpx;
-		box-shadow: 0 0 10rpx -4rpx rgba(0, 0, 0, 0.5);
-		color: $mainColor;
-		padding-top: 90rpx;
-		box-sizing: border-box;
-		font-size: 24rpx;
-		text-align: center;
-		opacity: 0.8;
-	}
-}

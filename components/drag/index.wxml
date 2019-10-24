@@ -10,8 +10,8 @@
 				  style="transform: translate3d({{index === cur ? tranX : item.tranX}}px, {{index === cur ? tranY: item.tranY}}px, 0px);width: {{100 / columns}}%"
 				  bindtap="itemClick"
 				  bind:longpress="longPress"
-				  catch:touchmove="touchMove"
-				  catch:touchend="touchEnd">
+					catch:touchmove="{{dragging?'touchMove':''}}"
+					catch:touchend="{{dragging?'touchEnd':''}}">
 
 				<!-- start:请在该区域编写自己的渲染逻辑 -->
 				<view class="info" wx:if="{{columns >= 2}}">
@@ -32,8 +32,5 @@
 
 			</view>
 		</view>
-	</view>
-	<view wx:if="{{overOnePage}}" class="indicator">
-		<view class="indicator__item">滑动此区域滚动页面</view>
 	</view>
 </view>
