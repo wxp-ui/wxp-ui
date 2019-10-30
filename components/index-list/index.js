@@ -138,7 +138,8 @@ Component({
 		 * 触摸之后后设置对应value
 		 */
 		setValue(treeItemCur) {
-			if (treeItemCur == this.data.treeItemCur || !this.blocks[treeItemCur]) return;
+			if (treeItemCur == this.data.treeItemCur) return;
+			if(!(this.blocks && this.blocks[treeItemCur])) return;
 			let {scrollTop, scrollIndex} = this.blocks[treeItemCur];
 			let indicatorTop = this.indicatorTopList[treeItemCur];
 			this.setData({
