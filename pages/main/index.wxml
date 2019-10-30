@@ -21,6 +21,9 @@
 	<navigator url="/pages/scroll/index" hover-class="hover" hover-start-time="{{0}}" class="cell">
 		<view class="cell__bd">scroll</view>
 	</navigator>
+	<navigator url="/pages/add-cart/index" hover-class="hover" hover-start-time="{{0}}" class="cell">
+		<view class="cell__bd">加入购物车动画</view>
+	</navigator>
 </view>
 
 <view class="cells">

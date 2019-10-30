@@ -1,0 +1,22 @@
+<view class="cells">
+	<view wx:for='{{listData}}' wx:key='{{item.id}}' class="cell" bindtap="cellClick" data-index="{{index}}">
+		<view class="cell__hd">
+			<image id="image{{index}}" mode="aspectFill" src="{{item.images}}" alt=""/>
+		</view>
+		<view class="cell__bd">
+			<view class="name">{{item.title}}</view>
+			<view class="des">{{item.description}}</view>
+		</view>
+	</view>
+</view>
+
+<view class="cart">
+	<image src="/assets/image/icon/shop-cart.png"></image>
+</view>
+
+<view wx:for="{{dotList}}"
+			wx:key="{{item.id}}"
+			class="dot"
+			style="visibility: {{item.show ? 'visible' : 'hidden'}};left: {{item.left}}px;top: {{item.top}}px;transform: scale({{item.scale}});">
+	<image src="{{dotImage}}"></image>
+</view>

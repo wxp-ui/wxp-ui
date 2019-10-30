@@ -23,7 +23,7 @@ Component({
 			type: Boolean,
 			value: true
 		},
-		pickerShow: {  // 控制控件显示
+		pickerShow: { // 控制控件显示
 			type: Boolean,
 			value: false
 		}

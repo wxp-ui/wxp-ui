@@ -42,7 +42,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 4,
 			"list": [
 				{
 					"id": 0,
@@ -69,6 +69,13 @@
 					"id": 3,
 					"name": "pages/drag/index",
 					"pathName": "pages/drag/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/add-cart/index",
+					"pathName": "pages/add-cart/index",
 					"query": "",
 					"scene": null
 				}

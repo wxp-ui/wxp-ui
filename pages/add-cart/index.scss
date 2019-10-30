@@ -1,0 +1,77 @@
+@import "../../assets/css/variables";
+
+page {
+	padding-bottom: 1rpx;
+}
+
+.cells {
+	background: #ffffff;
+	margin: 20rpx 0;
+}
+
+.cell {
+	display: flex;
+	padding: 20rpx;
+
+	&:not(:last-child) {
+		border-bottom: 1rpx solid $lineColor;
+	}
+
+	&__hd {
+		font-size: 0;
+
+		image {
+			width: 160rpx;
+			height: 160rpx;
+			margin-right: 20rpx;
+			border-radius: 12rpx;
+		}
+	}
+
+	&__bd {
+		flex: 1;
+
+		.name {
+			@include line(2);
+			font-size: 28rpx;
+			margin-bottom: 12rpx;
+		}
+
+		.des {
+			@include line(2);
+			color: $mainBlack2;
+			font-size: 24rpx;
+		}
+	}
+}
+
+.cart {
+	position: fixed;
+	bottom: 30rpx;
+	right: 30rpx;
+	width: 100rpx;
+	height: 100rpx;
+	border-radius: 50%;
+	background: #ffffff;
+	box-shadow: $shadow;
+	padding: 24rpx;
+	box-sizing: border-box;
+	z-index: 9998;
+	image {
+		width: 100%;
+		height: 100%;
+	}
+}
+
+.dot {
+	position: fixed;
+	border-radius: 50%;
+	z-index: 9999;
+	transform-origin: 50% 50%;
+	transition: transform linear 0.4s, left linear 0.4s, top cubic-bezier(.3,-.2,1,0) 0.4s !important;
+	image {
+		width: 100rpx;
+		height: 100rpx;
+		border-radius: 50%;
+	}
+}
