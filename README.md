@@ -10,6 +10,10 @@ WxP UI 是一款提供高交互小程序插件的合集, 致力于简洁和高�
 
 ![WxP](http://148.70.195.95/dist/qrcode.jpeg)
 
+## 微信交流群
+
++我微信 a1003367083 拉你进群, 加的时候请备注: WxP UI
+
 ## 组件列表 
 
 - swipe-list组件
@@ -121,6 +125,7 @@ git clone https://github.com/singletouch/wx-plugin.git
 | emptyShow | 控制空状态显示 | Boolean | -- | false |
 
 #### listData Attributes
+
 | 参数 | 说明 | 类型 | 可选值 | 默认值 |
 | --- | --- | --- | --- | --- |
 | key | 索引值 | String | -- | -- |
@@ -208,6 +213,7 @@ tip: 最新新增 topSize 和 bottomSize 以应对有顶部和底部有固定区
 | click | 点击item监听 | item数据和排序key值 |
 
 #### listData Attributes
+
 | 参数 | 说明 | 类型 | 可选值 | 默认值 |
 | --- | --- | --- | --- | --- |
 | fixed | 是否固定该项 | Boolean | -- | -- |
@@ -216,9 +222,6 @@ tip: 最新新增 topSize 和 bottomSize 以应对有顶部和底部有固定区
 ## 贡献
 
 如果有什么好的建议欢迎提issues
-
-## 微信交流群
-+微信 a1003367083 拉进, 加时候备注: WxP UI
 
 ## License
 
