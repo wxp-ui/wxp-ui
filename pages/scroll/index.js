@@ -136,9 +136,7 @@ Page({
 			}
 
 		}, 1000)
-
 	},
-
 	// 刷新数据
 	refresh() {
 		this.getList('refresh', pageStart);

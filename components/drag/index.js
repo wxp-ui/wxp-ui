@@ -3,8 +3,7 @@ Component({
 		// 数据源
 		listData: {
 			type: Array,
-			value: [],
-			observer: 'dataChange'
+			value: []
 		},
 		// 列数
 		columns: {

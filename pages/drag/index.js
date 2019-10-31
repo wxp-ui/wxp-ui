@@ -68,12 +68,14 @@ Page({
 		],
 	},
 	change(e) {
-		console.log(e)
+		this.setData({
+			listData: e.detail.listData
+		});
 	},
 	sizeChange(e) {
 		this.setData({
 			size: e.detail.value
-		})
+		});
 	},
 	itemClick(e) {
 		console.log(e);
@@ -87,6 +89,11 @@ Page({
 
 		this.setData({
 			listData: listData
-		})
+		});
+
+		this.drag.dataChange();
+	},
+	onLoad() {
+		this.drag = this.selectComponent('#drag');
 	}
 })
