@@ -260,6 +260,8 @@ Component({
 			});
 		},
 		init() {
+			// 增加空值判断, 避免获取不到节点信息报错问题
+			if(this.data.listData.length == 0) return;
 			// 遍历数据源增加扩展项, 以用作排序使用
 			let list = this.data.listData.map((item, index) => {
 				let data = {
