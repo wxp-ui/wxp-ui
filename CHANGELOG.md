@@ -4,10 +4,10 @@
 ### Added
 - 增加 github 地址说明
 - 优化 swipe-list 体验:
-    1.修改 loading 动画, 并增加对应状态显示
-    2.修复第一次进入加载过快无法显示 loading 问题
-    3.修复第一次进入 tab 组件 line 跳动问题
-    4.调整 success 提示框的位置, 优化显示体验
+1. 修改 loading 动画, 并增加对应状态显示
+2. 修复第一次进入加载过快无法显示 loading 问题
+3. 修复第一次进入 tab 组件 line 跳动问题
+4. 调整 success 提示框的位置, 优化显示体验
 
 ### Fixed
 - 去除 drag 组件 listData 字段数据监听, 防止反复设置时候出现异常, 需要动态设置 listData 请手动调用 dataChange 方法
