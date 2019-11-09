@@ -57,17 +57,22 @@ Component({
 		mode: 'refresh', // refresh 和 more 两种模式
 		successShow: false, // 显示success
 		successTran: false, // 过度success
-		refreshStatus: 0, // 1: 下拉刷新, 2: 松开刷新, 3: 加载中, 4: 加载完成
+		refreshStatus: 1, // 1: 下拉刷新, 2: 松开更新, 3: 加载中, 4: 加载完成
 		move: -45, // movable-view 偏移量
 		scrollHeight1: 0, // refresh view 高度负值
 		scrollHeight2: 0, // refresh view - success view 高度负值
-		scrollTop: 0
+		scrollTop: 0,
+		overOnePage: false
 	},
 	methods: {
 		/**
 		 * 处理 bindscrolltolower 失效情况
 		 */
 		scroll(e) {
+			// 可以触发滚动表示超过一屏
+			this.setData({
+				overOnePage: true
+			})
 			clearTimeout(this.timer)
 			this.timer = setTimeout(() => {
 				this.setData({
@@ -143,36 +148,32 @@ Component({
 
 			if (oldVal === true && newVal === false) {
 				this.setData({
+					successShow: true,
 					refreshStatus: 4,
 					move: this.data.scrollHeight2
 				});
-
 				setTimeout(() => {
 					this.setData({
-						successShow: true,
+						successTran: true,
+						move: this.data.scrollHeight1
 					});
 					setTimeout(() => {
 						this.setData({
-							successTran: true,
+							refreshStatus: 1,
+							successShow: false,
+							successTran: false,
 							move: this.data.scrollHeight1
 						});
-						setTimeout(() => {
-							this.setData({
-								refreshStatus: 1,
-								successShow: false,
-								successTran: false,
-								move: this.data.scrollHeight1
-							});
-						}, 350)
-					}, 1000)
-				}, 650)
-
+					}, 350)
+				}, 1500)
 			} else {
 				if (this.data.refreshStatus != 3) {
-					this.setData({
-						refreshStatus: 3,
-						move: 0
-					})
+					setTimeout(() => {
+						this.setData({
+							refreshStatus: 3,
+							move: 0
+						});
+					}, 350)
 				}
 			}
 		},
@@ -194,10 +195,8 @@ Component({
 		 */
 		init() {
 			let query = this.createSelectorQuery();
-
 			query.select("#refresh").boundingClientRect()
 			query.select("#success").boundingClientRect()
-
 			query.exec(function (res) {
 				this.setData({
 					scrollHeight1: -res[0].height,
