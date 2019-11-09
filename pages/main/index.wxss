@@ -2,6 +2,10 @@ page {
   padding-bottom: 1rpx;
 }
 
+.blue {
+  color: #3F82FD;
+}
+
 .cells {
   background: #ffffff;
   margin: 30rpx;

@@ -32,6 +32,17 @@ Page({
 		// 返回shareObj
 		return shareObj;
 	},
+	copyUrl(e) {
+		wx.setClipboardData({
+			data: 'https://github.com/singletouch/wx-plugin',
+			success (res) {
+				wx.showToast({
+					icon: "none",
+					title: "已复制到剪切板"
+				})
+			}
+		})
+	},
 	onLoad(query) {
 		if(query.scene && query.scene != "main") {
 			wx.navigateTo({

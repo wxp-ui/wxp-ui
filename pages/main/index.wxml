@@ -2,7 +2,9 @@
 	<view class="header__hd">
 		<image src="/assets/image/logo.png"></image>
 	</view>
-	<view class="header__bd">WxP UI 是一款提供高交互小程序插件的合集, 致力于简洁和高可用性的插件实现.</view>
+	<view class="header__bd">
+		WxP UI 是一款提供高交互小程序插件的合集, 致力于简洁和高可用性的插件实现.地址: <text bindtap="copyUrl" class="blue">https://github.com/singletouch/wx-plugin</text>
+	</view>
 </view>
 
 <view class="cells">

@@ -1,7 +1,7 @@
 <view>
 	<view id="success"
 		  class="success {{successShow ? 'success--show' : ''}} {{successTran ? 'success--tran' : ''}}"
-		  style="top: {{refreshSize}}rpx;color: {{color}}">
+		  style="top: {{hasTop ? refreshSize : 0}}rpx;color: {{color}}">
 		<view class="info">刷新成功</view>
 	</view>
 	<movable-area class="movable-area">
@@ -46,7 +46,7 @@
 					</view>
 				</view>
 				<slot></slot>
-				<view wx:if="{{listCount === 0 && emptyShow}}" class="scroll__empty">
+				<view wx:if="{{listCount === 0 && emptyShow}}" class="empty">
 					<image class="empty__image" src="{{emptyUrl}}"></image>
 					<view class="empty__text">{{emptyText}}</view>
 				</view>

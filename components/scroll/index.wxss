@@ -82,8 +82,8 @@
 }
 .success--tran {
   opacity: 0;
-  top: 0 !important;
-  transition: opacity 0.35s linear, top 0.35s linear;
+  transform: translateY(-100%);
+  transition: opacity 0.35s linear, transform 0.35s linear;
 }
 
 .empty {
