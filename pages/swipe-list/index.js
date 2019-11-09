@@ -154,7 +154,7 @@ Page({
 			}
 
 			this.setCurrentData(pageData)
-		}, 1000)
+		}, 10)
 
 	},
 	// 顶部tab切换事件

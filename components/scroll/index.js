@@ -147,33 +147,33 @@ Component({
 			}
 
 			if (oldVal === true && newVal === false) {
-				this.setData({
-					successShow: true,
-					refreshStatus: 4,
-					move: this.data.scrollHeight2
-				});
 				setTimeout(() => {
 					this.setData({
-						successTran: true,
-						move: this.data.scrollHeight1
+						successShow: true,
+						refreshStatus: 4,
+						move: this.data.scrollHeight2
 					});
 					setTimeout(() => {
 						this.setData({
-							refreshStatus: 1,
-							successShow: false,
-							successTran: false,
+							successTran: true,
 							move: this.data.scrollHeight1
 						});
-					}, 350)
-				}, 1500)
+						setTimeout(() => {
+							this.setData({
+								refreshStatus: 1,
+								successShow: false,
+								successTran: false,
+								move: this.data.scrollHeight1
+							});
+						}, 350)
+					}, 1500)
+				}, 1000)
 			} else {
 				if (this.data.refreshStatus != 3) {
-					setTimeout(() => {
-						this.setData({
-							refreshStatus: 3,
-							move: 0
-						});
-					}, 350)
+					this.setData({
+						refreshStatus: 3,
+						move: 0
+					});
 				}
 			}
 		},
@@ -201,7 +201,6 @@ Component({
 				this.setData({
 					scrollHeight1: -res[0].height,
 					scrollHeight2: res[1].height - res[0].height,
-					move: -res[0].height
 				})
 			}.bind(this));
 		},
