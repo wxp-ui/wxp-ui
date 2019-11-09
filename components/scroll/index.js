@@ -167,7 +167,7 @@ Component({
 							});
 						}, 350)
 					}, 1500)
-				}, 1000)
+				}, 600)
 			} else {
 				if (this.data.refreshStatus != 3) {
 					this.setData({
