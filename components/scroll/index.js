@@ -200,7 +200,8 @@ Component({
 			query.exec(function (res) {
 				this.setData({
 					scrollHeight1: -res[0].height,
-					scrollHeight2: res[1].height - res[0].height,
+          scrollHeight2: res[1].height - res[0].height,
+          move: -res[0].height /*修复当高度不是默认的90rpx时，this.data.move没有计算，采用默认的-45导致出现顶部的一大段空白（下拉刷新后就会正常）的问题。*/
 				})
 			}.bind(this));
 		},
