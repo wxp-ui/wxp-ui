@@ -54,6 +54,7 @@ Component({
 		},
 	},
 	data: {
+		/* 未渲染数据 */
 		mode: 'refresh', // refresh 和 more 两种模式
 		successShow: false, // 显示success
 		successTran: false, // 过度success
@@ -61,6 +62,9 @@ Component({
 		move: -45, // movable-view 偏移量
 		scrollHeight1: 0, // refresh view 高度负值
 		scrollHeight2: 0, // refresh view - success view 高度负值
+		timer: null,
+
+		/* 渲染数据 */
 		scrollTop: 0,
 		overOnePage: false
 	},
@@ -72,59 +76,55 @@ Component({
 			// 可以触发滚动表示超过一屏
 			this.setData({
 				overOnePage: true
-			})
-			clearTimeout(this.timer)
-			this.timer = setTimeout(() => {
-				this.setData({
-					scrollTop: e.detail.scrollTop
-				})
-			}, 100)
+			});
+			clearTimeout(this.data.timer);
+			this.setData({
+				timer: setTimeout(() => {
+					this.setData({
+						scrollTop: e.detail.scrollTop
+					})
+				}, 100)
+			});
 		},
 		/**
 		 * movable-view 滚动监听
 		 */
 		change(e) {
-			const {refreshStatus} = this.data;
+			let refreshStatus = this.data.refreshStatus,
+				diff = e.detail.y;
 
-			// 判断如果状态大于3则返回
-			if (refreshStatus >= 3) {
-				return
-			}
-
-			let diff = e.detail.y
+			if (refreshStatus >= 3) return;
 
 			if (diff > -10) {
 				this.setData({
 					refreshStatus: 2
-				})
+				});
 			} else {
 				this.setData({
 					refreshStatus: 1
-				})
+				});
 			}
 		},
 		/**
 		 * movable-view 触摸结束事件
 		 */
 		touchend() {
-			const {refreshStatus} = this.data;
+			let refreshStatus = this.data.refreshStatus;
 
-			if (refreshStatus >= 3) {
-				return
-			}
+			if (refreshStatus >= 3) return;
 
-			if (refreshStatus == 2) {
+			if (refreshStatus === 2) {
 				wx.vibrateShort();
 				this.setData({
 					refreshStatus: 3,
 					move: 0,
 					mode: 'refresh'
-				})
+				});
 				this.triggerEvent('refresh');
-			} else if (refreshStatus == 1) {
+			} else if (refreshStatus === 1) {
 				this.setData({
 					move: this.data.scrollHeight1
-				})
+				});
 			}
 		},
 		/**
@@ -134,7 +134,7 @@ Component({
 			if (!this.properties.end) {
 				this.setData({
 					mode: 'more'
-				})
+				});
 				this.triggerEvent('more');
 			}
 		},
@@ -142,9 +142,7 @@ Component({
 		 * 监听 requesting 字段变化, 来处理下拉刷新对应的状态变化
 		 */
 		requestingEnd(newVal, oldVal) {
-			if (this.data.mode == 'more') {
-				return
-			}
+			if (this.data.mode === 'more') return;
 
 			if (oldVal === true && newVal === false) {
 				setTimeout(() => {
@@ -169,7 +167,7 @@ Component({
 					}, 1500)
 				}, 600)
 			} else {
-				if (this.data.refreshStatus != 3) {
+				if (this.data.refreshStatus !== 3) {
 					this.setData({
 						refreshStatus: 3,
 						move: 0
@@ -184,28 +182,27 @@ Component({
 			if (newVal <= 80) {
 				this.setData({
 					refreshSize: 80
-				})
+				});
 			}
-			setTimeout(() => {
-				this.init()
-			},0)
+			// 异步加载数据时候, 延迟执行 init 方法, 防止基础库 2.7.1 版本及以下无法正确获取 dom 信息
+			setTimeout(() => this.init(), 10);
 		},
 		/**
 		 * 初始化scroll组件参数, 动态获取 下拉刷新区域 和 success 的高度
 		 */
 		init() {
 			let query = this.createSelectorQuery();
-			query.select("#refresh").boundingClientRect()
-			query.select("#success").boundingClientRect()
-			query.exec(function (res) {
+			query.select("#refresh").boundingClientRect();
+			query.select("#success").boundingClientRect();
+			query.exec((res) => {
 				this.setData({
 					scrollHeight1: -res[0].height,
-					scrollHeight2: res[1].height - res[0].height,
-				})
-			}.bind(this));
+					scrollHeight2: res[1].height - res[0].height
+				});
+			});
 		},
 	},
 	ready() {
-		this.init()
+		this.init();
 	}
-})
+});

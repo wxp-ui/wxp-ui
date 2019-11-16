@@ -35,15 +35,64 @@
 	box-sizing: border-box;
 }
 
-.sticky-title {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	background: $mainBd;
-	font-weight: bold;
-	padding: 10rpx 20rpx;
-	z-index: 1;
+.block {
+	&__title {
+		height: 60rpx;
+		line-height: 60rpx;
+		position: sticky;
+		top: 0;
+		z-index: 2;
+		background: #ffffff;
+		font-size: 24rpx;
+		font-weight: bold;
+		color: #767676;
+		& > .title-item {
+			border-top: 1rpx solid $lineColor;
+			border-bottom: 1rpx solid $lineColor;
+			padding: 0 20rpx;
+			background: #ededed;
+		}
+		&--cur {
+			color: $mainColor;
+			& > .title-item {
+				background: #ffffff;
+			}
+		}
+	}
+	&__item {
+		&:not(:last-child) {
+			border-bottom: 1rpx solid $lineColor;
+		}
+		background: #ffffff;
+		padding: 30rpx 20rpx;
+	}
+}
+
+.item {
+	display: flex;
+	align-items: center;
+	&__hd {
+		width: 80rpx;
+		height: 80rpx;
+		border-radius: 50%;
+		font-weight: bold;
+		line-height: 80rpx;
+		text-align: center;
+		margin-right: 20rpx;
+		color: #ffffff;
+	}
+	&__bd {
+
+	}
+}
+
+.info {
+	&__name {
+		margin-bottom: 10rpx;
+	}
+	&__title {
+		color: $mainBlack3;
+	}
 }
 
 .indicator {
@@ -106,65 +155,5 @@
 				border-radius: 50%;
 			}
 		}
-	}
-}
-
-.block {
-	&__title {
-		height: 60rpx;
-		line-height: 60rpx;
-		position: sticky;
-		top: 0;
-		z-index: 2;
-		background: #ffffff;
-		font-size: 24rpx;
-		font-weight: bold;
-		color: #767676;
-		& > .title-item {
-			border-top: 1rpx solid $lineColor;
-			border-bottom: 1rpx solid $lineColor;
-			padding: 0 20rpx;
-			background: #ededed;
-		}
-		&--cur {
-			color: $mainColor;
-			& > .title-item {
-				background: #ffffff;
-			}
-		}
-	}
-	&__item {
-		&:not(:last-child) {
-			border-bottom: 1rpx solid $lineColor;
-		}
-		background: #ffffff;
-		padding: 30rpx 20rpx;
-	}
-}
-
-.item {
-	display: flex;
-	align-items: center;
-	&__hd {
-		width: 80rpx;
-		height: 80rpx;
-		border-radius: 50%;
-		font-weight: bold;
-		line-height: 80rpx;
-		text-align: center;
-		margin-right: 20rpx;
-		color: #ffffff;
-	}
-	&__bd {
-
-	}
-}
-
-.info {
-	&__name {
-		margin-bottom: 10rpx;
-	}
-	&__title {
-		color: $mainBlack3;
 	}
 }

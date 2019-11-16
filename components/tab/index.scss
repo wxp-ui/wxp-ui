@@ -2,8 +2,14 @@
 
 $top-height: 90rpx;
 
-scroll-view {
+.scroll-view {
 	width: 100%;
+	height: $top-height;
+	overflow: hidden;
+}
+
+.tabs-wrap {
+	padding-bottom: 20rpx;
 }
 
 .tabs {
@@ -21,6 +27,7 @@ scroll-view {
 		flex: initial !important;
 		text-align: initial !important;
 		display: inline-block !important;
+		padding: 0 30rpx;
 	}
 
 	&--scroll &__item-child {
@@ -32,7 +39,7 @@ scroll-view {
 		text-align: center;
 		height: $top-height;
 		line-height: $top-height;
-		padding: 0 30rpx;
+		padding: 0 10rpx;
 		box-sizing: border-box;
 		transition: color 0.3s ease-in-out;
 

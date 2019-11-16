@@ -1,15 +1,19 @@
-<scroll-view scroll-x
-			 scroll-with-animation
-			 scroll-left="{{scrollLeft}}">
-	<view class="tabs {{scroll ? 'tabs--scroll' : ''}}" style="height: {{size}}rpx">
-		<view class="tabs__item {{index === tabCur ? 'tabs__item--cur': ''}}"
-			  style="height: {{size}}rpx;line-height: {{size}}rpx"
-			  wx:for="{{tabData}}"
-			  wx:key="{{index}}"
-			  bindtap="toggleTab"
-			  data-index="{{index}}">
-			<view id="item{{index}}" class="tabs__item-child">{{item}}</view>
+<scroll-view class="scroll-view"
+						 style="height: {{size}}rpx;"
+						 scroll-x="{{scrolling}}"
+						 scroll-with-animation="{{scrolling}}"
+						 scroll-left="{{scrollLeft}}">
+	<view class="tabs-wrap">
+		<view class="tabs {{scroll ? 'tabs--scroll' : ''}}" style="height: {{size}}rpx">
+			<view class="tabs__item {{index === tabCur ? 'tabs__item--cur': ''}}"
+						style="height: {{size}}rpx;line-height: {{size}}rpx"
+						wx:for="{{tabData}}"
+						wx:key="*this"
+						bindtap="toggleTab"
+						data-index="{{index}}">
+				<view class="tabs__item-child">{{item}}</view>
+			</view>
+			<view class="tabs__line {{needTransition ? 'transition' : ''}}" style="background: {{color}};width: {{lineWidth}}px;transform: translateX({{translateX}}px)"></view>
 		</view>
-		<view class="tabs__line {{needTransition ? 'transition' : ''}}" style="background: {{color}};width: {{lineWidth}}px;transform: translateX({{translateX}}px)"></view>
 	</view>
 </scroll-view>

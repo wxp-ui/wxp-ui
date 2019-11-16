@@ -1,11 +1,13 @@
 Component({
-	properties: {
-
-	},
+	properties: {},
 	data: {
-		x: 0,
-		move: 0,
-		open: false
+		/* 未渲染数据 */
+		deleteBtnWidth: 0, // 删除按钮宽度
+		diff: 0, // x轴位移偏移距离
+		open: false, // 是否是侧滑状态
+
+		/* 渲染数据 */
+		move: 0 // 手动设置位移值
 	},
 	methods: {
 		/**
@@ -19,18 +21,19 @@ Component({
 		 */
 		change(e) {
 			this.setData({
-				x: e.detail.x
+				diff: e.detail.x
 			})
 		},
 		/**
 		 * movable-view 触摸结束事件
 		 */
-		touchend() {
-			let diff = this.data.x;
+		touchend(e) {
+			let {diff, deleteBtnWidth} = this.data;
+
 			if (!this.data.open) {
 				if (diff < -20) {
 					this.setData({
-						move: -this.deleteBtnWidth,
+						move: -deleteBtnWidth,
 						open: true
 					})
 				} else {
@@ -40,14 +43,14 @@ Component({
 					})
 				}
 			} else {
-				if (diff > -this.deleteBtnWidth + 10) {
+				if (diff > -deleteBtnWidth + 10) {
 					this.setData({
 						move: 0,
 						open: false
 					})
 				} else {
 					this.setData({
-						move: -this.deleteBtnWidth,
+						move: -deleteBtnWidth,
 						open: true
 					})
 				}
@@ -55,7 +58,9 @@ Component({
 		}
 	},
 	ready() {
-		let {windowWidth} = wx.getSystemInfoSync()
-		this.deleteBtnWidth = (windowWidth || 375) / 375 * 80;
+		let {windowWidth} = wx.getSystemInfoSync();
+		this.setData({
+			deleteBtnWidth: (windowWidth || 375) / 375 * 80
+		});
 	}
-})
+});

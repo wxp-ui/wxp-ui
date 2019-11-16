@@ -6,6 +6,7 @@ Page({
 		listData: [],
 		searchValue: '',
 		emptyShow: false,
+		topSize: 100
 	},
 	formatList(list) {
 		let tempArr = [];
@@ -54,7 +55,7 @@ Page({
 		// 模拟异步获取数据场景
 		setTimeout(() => {
 			this.setList(this.formatList(CityList));
-		},1000)
+		},100)
 	}
 });
 

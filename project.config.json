@@ -20,7 +20,7 @@
 		}
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.9.2",
+	"libVersion": "2.9.3",
 	"appid": "wxe14d4ca6edeb543e",
 	"projectname": "wx-plugin",
 	"simulatorType": "wechat",
@@ -39,6 +39,10 @@
 			"list": []
 		},
 		"game": {
+			"list": []
+		},
+		"gamePlugin": {
+			"current": -1,
 			"list": []
 		},
 		"miniprogram": {
@@ -76,6 +80,20 @@
 					"id": -1,
 					"name": "pages/add-cart/index",
 					"pathName": "pages/add-cart/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/tab/index",
+					"pathName": "pages/tab/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/scroll/index",
+					"pathName": "pages/scroll/index",
 					"query": "",
 					"scene": null
 				}

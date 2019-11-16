@@ -1,13 +1,13 @@
-const app = getApp()
-let tabs
+const app = getApp();
 
 Page({
 	data: {
 		isIphoneX: app.globalData.isIphoneX,
-		tabCur: 0,
-		tabData: ["推荐", "精选集锦", "最新体验", "资料", "版本", "攻略", "排行", "热门"],
+		tabCur1: 3,
+		tabData1: [],
+		tabCur2: 2,
+		tabData2: [],
 		size: 90,
-		scroll: true,
 		color: "#3F82FD",
 		items: [
 			{name: '蓝', value: '#3F82FD', checked: 'true'},
@@ -24,26 +24,17 @@ Page({
 			size: e.detail.value
 		})
 	},
-	scrollChange(e) {
-		if (e.detail.value) {
-			this.setData({
-				tabData: ["推荐", "精选集锦", "最新体验", "资料", "版本", "攻略", "排行", "热门"]
-			})
-		} else {
-			this.setData({
-				tabData: ["推荐", "版本", "攻略", "排行", "热门"]
-			})
-		}
-		this.setData({
-			scroll: e.detail.value
-		});
-		tabs.init();
-	},
 	tabChange(e) {
 		console.log(e)
 	},
 	onLoad() {
-		tabs = this.selectComponent('#tabs');
+		// 模拟异步获取数据场景
+		setTimeout(() => {
+			this.setData({
+				tabData1: ["推荐", "精选集锦", "最新体验", "资料", "版本", "攻略", "排行", "热门"],
+				tabData2: ["推荐", "精选", "最新", "资料", "版本"]
+			});
+		}, 100)
 	}
 });
 

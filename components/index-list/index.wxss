@@ -31,15 +31,57 @@
   box-sizing: border-box;
 }
 
-.sticky-title {
-  position: absolute;
+.block__title {
+  height: 60rpx;
+  line-height: 60rpx;
+  position: sticky;
   top: 0;
-  left: 0;
-  width: 100%;
-  background: #f7f7f7;
+  z-index: 2;
+  background: #ffffff;
+  font-size: 24rpx;
   font-weight: bold;
-  padding: 10rpx 20rpx;
-  z-index: 1;
+  color: #767676;
+}
+.block__title > .title-item {
+  border-top: 1rpx solid #ebedf0;
+  border-bottom: 1rpx solid #ebedf0;
+  padding: 0 20rpx;
+  background: #ededed;
+}
+.block__title--cur {
+  color: #3F82FD;
+}
+.block__title--cur > .title-item {
+  background: #ffffff;
+}
+.block__item {
+  background: #ffffff;
+  padding: 30rpx 20rpx;
+}
+.block__item:not(:last-child) {
+  border-bottom: 1rpx solid #ebedf0;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+}
+.item__hd {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  font-weight: bold;
+  line-height: 80rpx;
+  text-align: center;
+  margin-right: 20rpx;
+  color: #ffffff;
+}
+
+.info__name {
+  margin-bottom: 10rpx;
+}
+.info__title {
+  color: #999999;
 }
 
 .indicator {
@@ -101,57 +143,4 @@
   background: #3F82FD;
   color: #FFFFFF;
   border-radius: 50%;
-}
-
-.block__title {
-  height: 60rpx;
-  line-height: 60rpx;
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  background: #ffffff;
-  font-size: 24rpx;
-  font-weight: bold;
-  color: #767676;
-}
-.block__title > .title-item {
-  border-top: 1rpx solid #ebedf0;
-  border-bottom: 1rpx solid #ebedf0;
-  padding: 0 20rpx;
-  background: #ededed;
-}
-.block__title--cur {
-  color: #3F82FD;
-}
-.block__title--cur > .title-item {
-  background: #ffffff;
-}
-.block__item {
-  background: #ffffff;
-  padding: 30rpx 20rpx;
-}
-.block__item:not(:last-child) {
-  border-bottom: 1rpx solid #ebedf0;
-}
-
-.item {
-  display: flex;
-  align-items: center;
-}
-.item__hd {
-  width: 80rpx;
-  height: 80rpx;
-  border-radius: 50%;
-  font-weight: bold;
-  line-height: 80rpx;
-  text-align: center;
-  margin-right: 20rpx;
-  color: #ffffff;
-}
-
-.info__name {
-  margin-bottom: 10rpx;
-}
-.info__title {
-  color: #999999;
 }

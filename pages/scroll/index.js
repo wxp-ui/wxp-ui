@@ -1,6 +1,4 @@
-const app = getApp()
-let pageStart = 0;
-let pageSize = 15;
+let app = getApp(), pageStart = 0;
 
 let testData = [
 	{
@@ -135,7 +133,7 @@ Page({
 				})
 			}
 
-		}, 1000)
+		}, 1000);
 	},
 	// 刷新数据
 	refresh() {

@@ -1,11 +1,19 @@
-<view class="top">
-	<tab id="tabs"
-		 tab-cur="{{tabCur}}"
-		 tab-data="{{tabData}}"
-		 color="{{color}}"
-		 size="{{size}}"
-		 scroll="{{scroll}}"
-		 bindchange="tabChange">
+<view class="tab-wrap">
+	<tab tab-cur="{{tabCur1}}"
+			 tab-data="{{tabData1}}"
+			 color="{{color}}"
+			 size="{{size}}"
+			 scroll
+			 bindchange="tabChange">
+	</tab>
+</view>
+
+<view class="tab-wrap">
+	<tab tab-cur="{{tabCur2}}"
+			 tab-data="{{tabData2}}"
+			 color="{{color}}"
+			 size="{{size}}"
+			 bindchange="tabChange">
 	</tab>
 </view>
 
@@ -15,12 +23,6 @@
 		<view class="panel-item__hd">size:</view>
 		<view class="panel-item__bd">
 			<slider bindchanging="sizeChange" value="{{size}}" show-value="{{true}}" min="80" max="200" step="10"/>
-		</view>
-	</view>
-	<view class="panel-item">
-		<view class="panel-item__hd">scroll:</view>
-		<view class="panel-item__bd">
-			<switch checked="{{scroll}}" bindchange="scrollChange"/>
 		</view>
 	</view>
 	<view class="panel-item">

@@ -80,9 +80,9 @@ git clone https://github.com/singletouch/wx-plugin.git
 
 | 参数 | 说明 | 类型 | 可选值 | 默认值 |
 | --- | --- | --- | --- | --- |
-| scroll | 是否可以超出滚动 | Boolean | -- | false |
-| tabCur | 当前聚焦项索引 | Number | -- | -1 |
 | tabData | 数据源 | Array | -- | [] |
+| tabCur | 当前聚焦项索引 | Number | -- | 0 |
+| scroll | 是否可以超出滚动 | Boolean | -- | false |
 | size | tab高度 | Number | -- | 90 |
 | color | 颜色 | String | -- | "" |
 
@@ -117,9 +117,9 @@ git clone https://github.com/singletouch/wx-plugin.git
 | 参数 | 说明 | 类型 | 可选值 | 默认值 |
 | --- | --- | --- | --- | --- |
 | listData | 数据源 | Array | -- | [] |
-| color | 颜色 | String | -- | "" |
 | topSize | 顶部固定区域高度 | Number | -- | 0(rpx) |
 | bottomSize | 底部固定区域高度 | Number | -- | 0(rpx) |
+| color | 颜色 | String | -- | "" |
 | emptyUrl | 空列表的展示图片 | String | * | /assets/image/empty/empty.png |
 | emptyText | 空列表的文字提示 | String | * | 未找到数据 |
 | emptyShow | 控制空状态显示 | Boolean | -- | false |

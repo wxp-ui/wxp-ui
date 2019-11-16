@@ -1,5 +1,16 @@
 # 假装有个 CHANGELOG ~~
 
+## [1.0.8] - 2019-11-16
+### Added
+- 优化 drag index-list scroll side-slip tab 等基础组件代码结构, 方便移植代码到其他平台
+- 增加 tab 组件动态设置数据源功能
+
+### Fixed
+- 修复 tab 组件安卓端有滚动条问题
+
+### Removed
+- 去除 tab 组件 scroll 属性动态响应, 仍支持预设改字段
+
 ## [1.0.7] - 2019-11-09
 ### Added
 - 增加 github 地址说明

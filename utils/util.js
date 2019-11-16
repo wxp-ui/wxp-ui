@@ -1,5 +1,5 @@
 //工具方法
-const appUtils = {
+const AppUtils = {
 	combineArray: function (a, b) {//合并数组
 		if (a && b && a.constructor === Array && b.constructor === Array) {
 			if (a.length > b.length) {
@@ -40,5 +40,5 @@ const appUtils = {
 }
 
 module.exports = {
-	appUtils: appUtils
+	AppUtils: AppUtils
 }

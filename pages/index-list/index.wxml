@@ -3,4 +3,4 @@
 	<view class="bd"><input bindinput="search" value="{{searchValue}}" placeholder="搜索"/></view>
 	<view wx:if="{{searchValue != ''}}" bindtap="clear" class="ft"><image src="/assets/image/icon/delete.png"></image></view>
 </view>
-<index-list bind:click="itemClick" empty-show="{{emptyShow}}" top-size="100" list-data="{{listData}}" color="#3F82FD"></index-list>
+<index-list bind:click="itemClick" empty-show="{{emptyShow}}" top-size="{{topSize}}" list-data="{{listData}}" color="#3F82FD"></index-list>

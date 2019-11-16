@@ -1,13 +1,8 @@
 @import "../../assets/css/variables";
 
-.top {
-	position: fixed;
-	left: 0;
-	top: 0;
-	width: 100%;
-	background-color: #ffffff;
-	z-index: 99;
-	box-shadow: $shadow;
+.tab-wrap {
+	background: #ffffff;
+	margin-bottom: 40rpx;
 }
 
 .control-panel {
