@@ -125,12 +125,13 @@ Component({
 		 */
 		scroll(e) {
 			if (this.data.touching) return;
+
 			let scrollTop = e.detail.scrollTop;
-			// 大于最大滚动距离时候返回
 			if (scrollTop > this.data.maxScrollTop) return;
-			let blocks = this.data.blocks;
-			// 计算获得 .block__title 高度
-			let stickyTitleHeight = this.data.remScale * 30;
+
+			let blocks = this.data.blocks,
+				stickyTitleHeight = this.data.remScale * 30;
+
 			for (let i = blocks.length - 1; i >= 0; i--) {
 				let block = blocks[i];
 				// 判断当前滚动值 scrollTop 所在区间, 以得到当前聚焦项
@@ -165,7 +166,9 @@ Component({
 			// 获取触摸点信息
 			let startTouch = e.changedTouches[0];
 			if (!startTouch) return;
+
 			this.setData({touching: true});
+
 			let treeItemCur = this.getCurrentTreeItem(startTouch.pageY);
 			this.setValue(treeItemCur);
 		},
@@ -176,12 +179,14 @@ Component({
 			// 获取触摸点信息
 			let currentTouch = e.changedTouches[0];
 			if (!currentTouch) return;
+
 			// 滑动结束后迅速开始第二次滑动时候 touching 为 false 造成不显示 indicator 问题
 			if (!this.data.touching) {
 				this.setData({
 					touching: true
 				});
 			}
+
 			let treeItemCur = this.getCurrentTreeItem(currentTouch.pageY);
 			this.setValue(treeItemCur);
 		},
@@ -212,6 +217,7 @@ Component({
 		 */
 		getCurrentTreeItem(pageY) {
 			let {treeTop, treeBottom, itemHeight, itemMount} = this.data.treeInfo;
+
 			if (pageY < treeTop) {
 				return 0;
 			} else if (pageY >= treeBottom) {
@@ -225,10 +231,16 @@ Component({
 		 */
 		setValue(treeItemCur) {
 			if (treeItemCur === this.data.treeItemCur) return;
+
 			let block = this.data.blocks[treeItemCur];
 			if (!block) return;
-			let {scrollTop, scrollIndex} = block;
-			let indicatorTop = this.data.indicatorTopList[treeItemCur];
+
+			let {
+					scrollTop,
+					scrollIndex
+				} = block,
+				indicatorTop = this.data.indicatorTopList[treeItemCur];
+
 			this.setData({
 				style1: "",
 				style2: "",
@@ -237,6 +249,7 @@ Component({
 				listItemCur: scrollIndex,
 				indicatorTop: indicatorTop
 			});
+
 			if (this.data.platform !== "devtools") wx.vibrateShort();
 		},
 		/**

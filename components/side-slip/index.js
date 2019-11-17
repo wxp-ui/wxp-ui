@@ -3,7 +3,7 @@ Component({
 	data: {
 		/* 未渲染数据 */
 		deleteBtnWidth: 0, // 删除按钮宽度
-		diff: 0, // x轴位移偏移距离
+		diff: 0, // x轴 偏移距离
 		open: false, // 是否是侧滑状态
 
 		/* 渲染数据 */
@@ -22,7 +22,7 @@ Component({
 		change(e) {
 			this.setData({
 				diff: e.detail.x
-			})
+			});
 		},
 		/**
 		 * movable-view 触摸结束事件

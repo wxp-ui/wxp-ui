@@ -105,6 +105,6 @@ Page({
 				listData: listData
 			});
 			this.drag.dataChange();
-		}, 1000)
+		}, 100)
 	}
 })

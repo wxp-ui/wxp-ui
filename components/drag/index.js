@@ -234,7 +234,7 @@ Component({
 					} else if (item.key === origin) {
 						item.key = end;
 					}
-					return item
+					return item;
 				});
 				this.getPosition(list);
 			} else if (origin > end) { // 倒序拖动
@@ -245,7 +245,7 @@ Component({
 					} else if (item.key === origin) {
 						item.key = end;
 					}
-					return item
+					return item;
 				});
 				this.getPosition(list);
 			}
