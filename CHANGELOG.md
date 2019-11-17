@@ -3,13 +3,13 @@
 ## [1.0.8] - 2019-11-16
 ### Added
 - 优化 drag index-list scroll side-slip tab 等基础组件代码结构, 方便移植代码到其他平台
-- 增加 tab 组件动态设置数据源功能
+- 增加 tab 组件动态设置数据源功能, 如异步加载 tab 数据的时候
 
 ### Fixed
 - 修复 tab 组件安卓端有滚动条问题
 
 ### Removed
-- 去除 tab 组件 scroll 属性动态响应, 仍支持预设改字段
+- 去除 tab 组件 `scroll` 属性动态响应, 但仍支持预设该字段
 
 ## [1.0.7] - 2019-11-09
 ### Added
@@ -21,7 +21,7 @@
     4. 调整 success 提示框的位置, 优化显示体验
 
 ### Fixed
-- 去除 drag 组件 listData 字段数据监听, 防止反复设置时候出现异常, 需要动态设置 listData 请手动调用 dataChange 方法
+- 去除 drag 组件 `listData` 字段数据监听, 防止反复设置时候出现异常, 需要动态设置 `listData` 请手动调用 `dataChange` 方法
 - index-list 增加空值判断
 - drag 增加空值判断, 避免获取不到节点信息报错问题
 - 解决 drag 数据设置为空时无法清除问题
