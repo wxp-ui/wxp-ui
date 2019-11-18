@@ -19,7 +19,7 @@
 					scroll-y="{{refreshStatus == 1}}"
 					bindscroll="scroll"
 					scroll-top="{{scrollTop}}"
-					lower-threshold="{{0}}"
+					lower-threshold="{{80}}rpx"
 					bindscrolltolower="more">
 				<view id="refresh"
 					  class="scroll__refresh {{successShow ? 'scroll__refresh--hidden' : ''}}"
@@ -50,7 +50,7 @@
 					<image class="empty__image" src="{{emptyUrl}}"></image>
 					<view class="empty__text">{{emptyText}}</view>
 				</view>
-				<view wx:if="{{listCount !== 0 && overOnePage && (requesting || end)}}" class="scroll__bottom">
+				<view wx:if="{{listCount !== 0 && overOnePage}}" class="scroll__bottom">
 					<view class="scroll__loading" wx:if="{{end}}">
 						已全部加载
 					</view>
