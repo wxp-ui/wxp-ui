@@ -63,6 +63,7 @@ Component({
 		scrollHeight1: 0, // refresh view 高度负值
 		scrollHeight2: 0, // refresh view - success view 高度负值
 		timer: null,
+    enableBackToTop: false, // iOS点击顶部状态栏、安卓双击标题栏时，滚动条返回顶部，只支持竖向
 
 		/* 渲染数据 */
 		scrollTop: 0,
