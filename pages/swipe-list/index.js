@@ -1,4 +1,4 @@
-const app = getApp()
+const app = getApp();
 
 let pageStart = 0;
 let pageSize = 15;
@@ -130,32 +130,31 @@ Page({
 		]
 	},
 	getList(type, currentPage) {
-		let pageData = this.getCurrentData()
+		let pageData = this.getCurrentData();
 
-		pageData.requesting = true
+		pageData.requesting = true;
 
-		this.setCurrentData(pageData)
+		this.setCurrentData(pageData);
 
-		wx.showNavigationBarLoading()
+		wx.showNavigationBarLoading();
 
 		setTimeout(() => {
-			pageData.requesting = false
+			pageData.requesting = false;
 
-			wx.hideNavigationBarLoading()
+			wx.hideNavigationBarLoading();
 
 			if (type === 'refresh') {
-				pageData.listData = testData
-				pageData.end = false
-				pageData.page = currentPage + 1
+				pageData.listData = testData;
+				pageData.end = false;
+				pageData.page = currentPage + 1;
 			} else {
-				pageData.listData = pageData.listData.concat(testData)
-				pageData.end = true
-				pageData.page = currentPage + 1
+				pageData.listData = pageData.listData.concat(testData);
+				pageData.end = true;
+				pageData.page = currentPage + 1;
 			}
 
-			this.setCurrentData(pageData)
-		}, 10)
-
+			this.setCurrentData(pageData);
+		}, 10);
 	},
 	// 顶部tab切换事件
 	toggleCategory(e) {
@@ -195,7 +194,7 @@ Page({
 	// 判断是否为加载新的页面,如果是去加载数据
 	loadData() {
 		let pageData = this.getCurrentData();
-		if (pageData.listData.length == 0) {
+		if (pageData.listData.length === 0) {
 			this.getList('refresh', pageStart);
 		}
 	},
@@ -208,7 +207,10 @@ Page({
 		this.getList('more', this.getCurrentData().page);
 	},
 	onLoad() {
-		this.getList('refresh', pageStart);
+		// 第一次加载延迟 350 毫秒 防止第一次动画效果不能完全体验
+		setTimeout(() => {
+			this.getList('refresh', pageStart);
+		}, 350);
 	}
 });
 
