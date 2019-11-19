@@ -62,6 +62,7 @@ Page({
 		page: pageStart,
 		listData: [],
 		hasTop: true,
+    enableBackToTop: false,
 		refreshSize: 90,
 		bottomSize: 350,
 		color: "#3F82FD",
@@ -76,6 +77,11 @@ Page({
 			hasTop: e.detail.value
 		})
 	},
+  enableBackToTopChange(e) {
+    this.setData({
+      enableBackToTop: e.detail.value
+    })
+  },
 	refreshChange(e) {
 		this.setData({
 			refreshSize: e.detail.value

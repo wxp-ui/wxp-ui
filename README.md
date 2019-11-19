@@ -60,6 +60,7 @@ git clone https://github.com/singletouch/wx-plugin.git
 | refreshSize | 下拉刷新的高度 | Number | -- | 90 |
 | bottomSize | 底部高度 | Number | -- | 0 |
 | color | 颜色 | String | -- | "" |
+| enableBackToTop | 双击顶部状态栏回到顶部 | Boolean | -- | false |
 
 #### Scroll Events
 

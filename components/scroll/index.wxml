@@ -19,6 +19,7 @@
 					scroll-y="{{refreshStatus == 1}}"
 					bindscroll="scroll"
 					scroll-top="{{scrollTop}}"
+          enable-back-to-top="{{enableBackToTop}}"
 					lower-threshold="{{80}}rpx"
 					bindscrolltolower="more">
 				<view id="refresh"

@@ -8,6 +8,7 @@
 		end="{{end}}"
 		listCount="{{listData.length}}"
 		has-top="{{hasTop}}"
+    enable-back-to-top="{{enableBackToTop}}"
 		refresh-size="{{refreshSize}}"
 		bottom-size="{{bottomSize}}"
 		color="{{color}}"
@@ -51,6 +52,10 @@
 		<view class="panel-item__hd">空列表:</view>
 		<view class="panel-item__bd">
 			<switch checked="{{empty}}" bindchange="emptyChange"/>
+		</view>
+    <view class="panel-item__hd">双击回顶部:</view>
+		<view class="panel-item__bd">
+			<switch checked="{{enableBackToTop}}" bindchange="enableBackToTopChange"/>
 		</view>
 	</view>
 	<view class="panel-item">
