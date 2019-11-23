@@ -50,6 +50,7 @@
   font-size: 24rpx;
   text-align: center;
   opacity: 0;
+  transform: scale(0);
   color: #3F82FD;
 }
 .success:after {
@@ -76,6 +77,7 @@
 }
 .success--show {
   opacity: 1;
+  transform: scale(1);
 }
 .success--show:after {
   transform: scaleX(1);

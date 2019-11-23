@@ -62,7 +62,8 @@ $loading-color: #a5a5a5;
   font-size: 24rpx;
   text-align: center;
   opacity: 0;
-  color: $mainColor;
+	transform: scale(0);
+	color: $mainColor;
 
   &:after {
     content: " ";
@@ -90,6 +91,7 @@ $loading-color: #a5a5a5;
 
   &--show {
     opacity: 1;
+		transform: scale(1);
 
     &:after {
       transform: scaleX(1);

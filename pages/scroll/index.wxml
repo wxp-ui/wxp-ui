@@ -17,7 +17,8 @@
 	<view class="cells">
 		<view class="cell"
 			  wx:for="{{listData}}"
-			  wx:key="{{index}}">
+			  wx:key="{{index}}"
+				bindtap="itemClick">
 			<view class="cell__hd">
 				<image mode="aspectFill" src="{{item.images}}" alt=""/>
 			</view>

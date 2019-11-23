@@ -72,6 +72,9 @@ Page({
 		],
 		empty: false
 	},
+	itemClick(e) {
+		console.log(e);
+	},
 	hasTopChange(e) {
 		this.setData({
 			hasTop: e.detail.value

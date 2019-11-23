@@ -196,15 +196,15 @@ Component({
 		 * 初始化scroll组件参数, 动态获取 下拉刷新区域 和 success 的高度
 		 */
 		init() {
-			let query = this.createSelectorQuery();
-			query.select("#refresh").boundingClientRect();
-			query.select("#success").boundingClientRect();
-			query.exec((res) => {
+			let {windowWidth} = wx.getSystemInfoSync();
+			let successHeight = (windowWidth || 375) / 750 * 70;
+
+			this.createSelectorQuery().select("#refresh").boundingClientRect((res) => {
 				this.setData({
-					scrollHeight1: -res[0].height,
-					scrollHeight2: res[1].height - res[0].height
+					scrollHeight1: -res.height,
+					scrollHeight2: successHeight - res.height
 				});
-			});
+			}).exec();
 		},
 	},
 	ready() {
