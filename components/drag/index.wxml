@@ -7,7 +7,7 @@
 				  id="item{{index}}"
 				  data-key="{{item.key}}"
 				  data-index="{{index}}"
-				  style="transform: translate3d({{index === cur ? tranX : item.tranX}}px, {{index === cur ? tranY: item.tranY}}px, 0px);width: {{100 / columns}}%"
+				  style="transform: translate3d({{index === cur ? tranX + 'px' : item.x * 100 + '%'}}, {{index === cur ? tranY + 'px' : item.y * 100 + '%'}}, 0px);width: {{100 / columns}}%"
 				  bindtap="itemClick"
 				  bind:longpress="longPress"
 					catch:touchmove="{{dragging?'touchMove':''}}"

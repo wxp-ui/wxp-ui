@@ -276,11 +276,11 @@ Component({
 		 * 根据排序后 list 数据进行位移计算
 		 */
 		getPosition(data, vibrate = true) {
-			let {platform, itemDom} = this.data;
+			let {platform} = this.data;
 
 			let list = data.map((item, index) => {
-				item.tranX = itemDom.width * (item.key % this.data.columns);
-				item.tranY = Math.floor(item.key / this.data.columns) * itemDom.height;
+				item.x = item.key % this.data.columns;
+				item.y = Math.floor(item.key / this.data.columns);
 				return item;
 			});
 			this.setData({list: list});
@@ -349,8 +349,6 @@ Component({
 					itemWrapHeight: rows * res.height
 				});
 
-				this.getPosition(this.data.list, false);
-
 				this.createSelectorQuery().select(".item-wrap").boundingClientRect((res) => {
 					// (列表的底部到页面顶部距离 > 屏幕高度 - 底部固定区域高度) 用该公式来计算是否超过一页
 					let overOnePage = res.bottom > windowHeight - realBottomSize;
@@ -367,6 +365,7 @@ Component({
 		 */
 		init() {
 			this.clearData();
+			this.setData({itemTransition: false});
 			// 避免获取不到节点信息报错问题
 			if (this.data.listData.length === 0) {
 				this.setData({list: []});
@@ -377,15 +376,12 @@ Component({
 				return {
 					fixed: item.fixed,
 					key: index,
-					tranX: 0,
-					tranY: 0,
+					x: 0,
+					y: 0,
 					data: item
 				};
 			});
-			this.setData({
-				list: list,
-				itemTransition: false
-			});
+			this.getPosition(list, false);
 			// 异步加载数据时候, 延迟执行 initDom 方法, 防止基础库 2.7.1 版本及以下无法正确获取 dom 信息
 			setTimeout(() => this.initDom(), 10);
 		}
