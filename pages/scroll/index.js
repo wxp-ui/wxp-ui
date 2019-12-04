@@ -122,6 +122,7 @@ Page({
 
 		wx.showNavigationBarLoading()
 
+		// 模拟异步获取数据场景
 		setTimeout(() => {
 			this.setData({
 				requesting: false
