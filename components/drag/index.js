@@ -368,7 +368,7 @@ Component({
 			this.setData({itemTransition: false});
 			// 避免获取不到节点信息报错问题
 			if (this.data.listData.length === 0) {
-				this.setData({list: []});
+				this.setData({list: [], itemWrapHeight: 0});
 				return;
 			}
 			// 遍历数据源增加扩展项, 以用作排序使用
