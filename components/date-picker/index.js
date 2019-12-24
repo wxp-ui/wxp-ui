@@ -89,8 +89,8 @@ Component({
 			let year = selectedDate.getFullYear(), month = selectedDate.getMonth(), day = selectedDate.getDate();
 			let timeValue = this.data.timeValue;
 			let newDate = new Date(year, month, day, timeValue[0], timeValue[1], timeValue[2]);
-			let dateStr = [year, month, day].map(this.fixZero).join('-');
-			let dateTimeStr = [year, month, day].map(this.fixZero).join('-') + ' ' + timeValue.map(this.fixZero).join(':');
+			let dateStr = [year, month + 1, day].map(this.fixZero).join('-');
+			let dateTimeStr = [year, month + 1, day].map(this.fixZero).join('-') + ' ' + timeValue.map(this.fixZero).join(':');
 			this.triggerEvent('select', {date: newDate, dateStr: dateStr, dateTimeStr: dateTimeStr});
 		},
 		isValidDay(date) {
