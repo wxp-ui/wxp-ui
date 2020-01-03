@@ -12,7 +12,7 @@
 		<view class="panel-item__hd">请选择需要固定住的item:</view>
 	</view>
 	<view>
-		<view wx:for="{{listData}}" wx:key="{{index}}" bind:tap="toggleFixed" data-key="{{index}}" class="circle-wrap">
+		<view wx:for="{{listData}}" wx:key="index" bind:tap="toggleFixed" data-key="{{index}}" class="circle-wrap">
 			<view wx:if="{{item.fixed}}" class="circle cur">✓</view>
 			<view wx:else class="circle"></view>
 			<view>{{index}}</view>

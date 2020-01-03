@@ -3,7 +3,7 @@
 		<view class="item-wrap" style="height: {{ itemWrapHeight }}px;">
 			<view class="item {{cur == index? 'cur':''}} {{curZ == index? 'zIndex':''}} {{itemTransition && index !== cur ? 'itemTransition':''}} {{item.fixed ? 'fixed' : ''}}"
 				  wx:for="{{list}}"
-				  wx:key="{{index}}"
+				  wx:key="index"
 				  id="item{{index}}"
 				  data-key="{{item.key}}"
 				  data-index="{{index}}"

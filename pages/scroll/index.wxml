@@ -17,7 +17,7 @@
 	<view class="cells">
 		<view class="cell"
 			  wx:for="{{listData}}"
-			  wx:key="{{index}}"
+			  wx:key="index"
 				bindtap="itemClick">
 			<view class="cell__hd">
 				<image mode="aspectFill" src="{{item.images}}" alt=""/>
@@ -63,7 +63,7 @@
 		<view class="panel-item__hd">color:</view>
 		<view class="panel-item__bd">
 			<radio-group class="radio-group" bindchange="radioChange">
-				<label class="radio" wx:for="{{items}}" wx:key="{{index}}">
+				<label class="radio" wx:for="{{items}}" wx:key="index">
 					<radio value="{{item.value}}" checked="{{item.checked}}"/>{{item.name}}
 				</label>
 			</radio-group>

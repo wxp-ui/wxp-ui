@@ -6,7 +6,7 @@
 					 scroll-top="{{scrollTop}}"
 					 bind:scroll="scroll">
 			<view class="block-wrap">
-				<view class="block" wx:for="{{list}}" wx:key="{{index}}">
+				<view class="block" wx:for="{{list}}" wx:key="index">
 					<view wx:if="{{index == listItemCur}}" class="block__title block__title--cur" style="color: {{color}}">
 						<view class="title-item" style="{{style1}}">{{item.key}}</view>
 					</view>
@@ -33,7 +33,7 @@
 				{{listData[treeItemCur].key}}
 			</view>
 			<view id="tree" class="tree" catch:touchstart="touchStart" catch:touchmove="touchMove" catch:touchend="touchEnd">
-				<view class="tree__item {{index === treeItemCur ? 'tree__item--cur' : ''}}" wx:for="{{listData}}" wx:key="{{index}}">
+				<view class="tree__item {{index === treeItemCur ? 'tree__item--cur' : ''}}" wx:for="{{listData}}" wx:key="index">
 					<view class="key" style="background: {{index === treeItemCur ? color : 'initial'}}">{{item.key}}</view>
 				</view>
 			</view>
