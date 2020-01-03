@@ -1,5 +1,5 @@
 <view class="cells">
-	<side-slip wx:for='{{listData}}' wx:key='{{item.id}}' bind:delete="delete" data-index="{{index}}">
+	<side-slip wx:for="{{listData}}" wx:key="id" bind:delete="delete" data-index="{{index}}">
 		<view class="cell" bindtap="cellClick" data-index="{{index}}">
 			<view class="cell__hd">
 				<image mode="aspectFill" src="{{item.images}}" alt=""/>

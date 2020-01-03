@@ -16,7 +16,7 @@
 					<view wx:else class="block__title">
 						<view class="title-item">{{item.key}}</view>
 					</view>
-					<view class="block__item" wx:for="{{item.data}}" wx:key="{{j}}" wx:for-index="j" bindtap="itemClick" data-i="{{index}}" data-j="{{j}}">
+					<view class="block__item" wx:for="{{item.data}}" wx:key="j" wx:for-index="j" bindtap="itemClick" data-i="{{index}}" data-j="{{j}}">
 						<view class="item">
 							<view class="item__hd" style="background-color: {{item.color}}">
 								{{item.firstChar}}

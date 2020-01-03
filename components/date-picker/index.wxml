@@ -44,12 +44,12 @@
 			</view>
 			<view class="tr"
 				  wx:for="{{currentData}}"
-				  wx:key="{{i}}"
+				  wx:key="i"
 				  wx:for-item="tr"
 				  wx:for-index="i">
 				<view class="td"
 					  wx:for="{{tr}}"
-					  wx:key="{{j}}"
+					  wx:key="j"
 					  wx:for-item="td"
 					  wx:for-index="j"
 					  data-i="{{i}}"
