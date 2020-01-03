@@ -1,36 +1,32 @@
-<view>
-	<view style="overflow-x: {{overOnePage ? 'hidden' : 'initial'}}">
-		<view class="item-wrap" style="height: {{ itemWrapHeight }}px;">
-			<view class="item {{cur == index? 'cur':''}} {{curZ == index? 'zIndex':''}} {{itemTransition && index !== cur ? 'itemTransition':''}} {{item.fixed ? 'fixed' : ''}}"
-				  wx:for="{{list}}"
-				  wx:key="index"
-				  id="item{{index}}"
-				  data-key="{{item.key}}"
-				  data-index="{{index}}"
-				  style="transform: translate3d({{index === cur ? tranX + 'px' : item.x * 100 + '%'}}, {{index === cur ? tranY + 'px' : item.y * 100 + '%'}}, 0px);width: {{100 / columns}}%"
-				  bindtap="itemClick"
-				  bind:longpress="longPress"
-					catch:touchmove="{{dragging?'touchMove':''}}"
-					catch:touchend="{{dragging?'touchEnd':''}}">
+<view class="item-wrap" style="height: {{ itemWrapHeight }}px;">
+	<view class="item {{cur == index? 'cur':''}} {{curZ == index? 'zIndex':''}} {{itemTransition && index !== cur ? 'itemTransition':''}} {{item.fixed ? 'fixed' : ''}}"
+				wx:for="{{list}}"
+				wx:key="index"
+				id="item{{index}}"
+				data-key="{{item.key}}"
+				data-index="{{index}}"
+				style="transform: translate3d({{index === cur ? tranX + 'px' : item.x * 100 + '%'}}, {{index === cur ? tranY + 'px' : item.y * 100 + '%'}}, 0px);width: {{100 / columns}}%"
+				bindtap="itemClick"
+				bind:longpress="longPress"
+				catch:touchmove="{{dragging?'touchMove':''}}"
+				catch:touchend="{{dragging?'touchEnd':''}}">
 
-				<!-- start:请在该区域编写自己的渲染逻辑 -->
-				<view class="info" wx:if="{{columns >= 2}}">
-					<view class="info__item">
-						<image class="image" src="{{item.data.images}}"></image>
-					</view>
-				</view>
-				<view wx:else class="cell">
-					<view class="cell__hd">
-						<image class="image" mode="aspectFill" src="{{item.data.images}}" alt=""/>
-					</view>
-					<view class="cell__bd">
-						<view class="name">{{item.data.title}}</view>
-						<view class="des">{{item.data.description}}</view>
-					</view>
-				</view>
-				<!-- end:请在该区域编写自己的渲染逻辑 -->
-
+		<!-- start:请在该区域编写自己的渲染逻辑 -->
+		<view class="info" wx:if="{{columns >= 2}}">
+			<view class="info__item">
+				<image class="image" src="{{item.data.images}}"></image>
 			</view>
 		</view>
+		<view wx:else class="cell">
+			<view class="cell__hd">
+				<image class="image" mode="aspectFill" src="{{item.data.images}}" alt=""/>
+			</view>
+			<view class="cell__bd">
+				<view class="name">{{item.data.title}}</view>
+				<view class="des">{{item.data.description}}</view>
+			</view>
+		</view>
+		<!-- end:请在该区域编写自己的渲染逻辑 -->
+
 	</view>
 </view>

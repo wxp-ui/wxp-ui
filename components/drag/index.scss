@@ -7,7 +7,7 @@
 		width: 100%;
 		z-index: 1;
 		&.itemTransition {
-			transition: transform 0.3s;
+			transition: transform 0.3s !important;
 		}
 		&.zIndex {
 			z-index: 2;

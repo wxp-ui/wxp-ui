@@ -20,7 +20,7 @@
 		}
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.9.4",
+	"libVersion": "2.10.0",
 	"appid": "wxe14d4ca6edeb543e",
 	"projectname": "WxP%20UI",
 	"simulatorType": "wechat",

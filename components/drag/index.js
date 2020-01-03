@@ -25,11 +25,12 @@ Component({
 		},
 	},
 	data: {
-		/* 渲染数据 */
+		/* 未渲染数据 */
 		windowHeight: 0, // 视窗高度
 		platform: '', // 平台信息
 		realTopSize: 0, // 计算后顶部高度实际值
 		realBottomSize: 0, // 计算后底部高度实际值
+		queryWrap: true, // 是否已经查询过 wrap 的值
 		itemDom: { // 每一项 item 的 dom 信息, 由于大小一样所以只存储一个
 			width: 0,
 			height: 0,
@@ -51,7 +52,7 @@ Component({
 		startTranY: 0, // 当前激活元素的初始 Y轴 偏移量
 		preOriginKey: -1, // 前一次排序时候的起始 key 值
 
-		/* 未渲染数据 */
+		/* 渲染数据 */
 		list: [],
 		cur: -1, // 当前激活的元素
 		curZ: -1, // 当前激活的元素, 用于控制激活元素z轴显示
@@ -59,7 +60,6 @@ Component({
 		tranY: 0, // 当前激活元素的 Y轴 偏移量
 		itemWrapHeight: 0, // 动态计算父级元素高度
 		dragging: false, // 是否在拖拽中
-		overOnePage: false, // 整个区域是否超过一个屏幕
 		itemTransition: false, // item 变换是否需要过渡动画, 首次渲染不需要
 	},
 	methods: {
@@ -96,6 +96,7 @@ Component({
 					pageY: startPageY
 				} = startTouch,
 				{
+					platform,
 					itemDom,
 					itemWrapDom
 				} = this.data,
@@ -109,16 +110,17 @@ Component({
 			// 计算Y轴初始位移, 使 item 垂直中心移动到点击处
 			startTranY = startPageY - itemDom.height / 2 - itemWrapDom.top;
 
+			this.data.startTouch = startTouch;
+			this.data.startTranX = startTranX;
+			this.data.startTranY = startTranY;
 			this.setData({
-				startTouch: startTouch,
-				startTranX: startTranX,
-				startTranY: startTranY,
 				cur: index,
 				curZ: index,
 				tranX: startTranX,
 				tranY: startTranY,
 			});
-			wx.vibrateShort();
+
+			if (platform !== "devtools") wx.vibrateShort();
 		},
 		touchMove(e) {
 			// 获取触摸点信息
@@ -159,21 +161,19 @@ Component({
 			// 单列时候X轴初始不做位移
 			if (this.data.columns === 1) tranX = 0;
 
-			// 判断是否超过一屏幕, 超过则需要判断当前位置动态滚动page的位置
-			if (this.data.overOnePage) {
-				if (currentClientY > windowHeight - itemDom.height - realBottomSize) {
-					// 当前触摸点pageY + item高度 - (屏幕高度 - 底部固定区域高度)
-					wx.pageScrollTo({
-						scrollTop: currentPageY + itemDom.height - (windowHeight - realBottomSize),
-						duration: 300
-					});
-				} else if (currentClientY < itemDom.height + realTopSize) {
-					// 当前触摸点pageY - item高度 - 顶部固定区域高度
-					wx.pageScrollTo({
-						scrollTop: currentPageY - itemDom.height - realTopSize,
-						duration: 300
-					});
-				}
+			// 到顶到底自动滑动
+			if (currentClientY > windowHeight - itemDom.height - realBottomSize) {
+				// 当前触摸点pageY + item高度 - (屏幕高度 - 底部固定区域高度)
+				wx.pageScrollTo({
+					scrollTop: currentPageY + itemDom.height - (windowHeight - realBottomSize),
+					duration: 300
+				});
+			} else if (currentClientY < itemDom.height + realTopSize) {
+				// 当前触摸点pageY - item高度 - 顶部固定区域高度
+				wx.pageScrollTo({
+					scrollTop: currentPageY - itemDom.height - realTopSize,
+					duration: 300
+				});
 			}
 
 			// 设置当前激活元素偏移量
@@ -191,7 +191,7 @@ Component({
 
 			// 防止拖拽过程中发生乱序问题
 			if (originKey === endKey || preOriginKey === originKey) return;
-			this.setData({preOriginKey: originKey});
+			this.data.preOriginKey = originKey;
 
 			// 触发排序
 			this.insert(originKey, endKey);
@@ -329,35 +329,31 @@ Component({
 		 *  初始化获取 dom 信息
 		 */
 		initDom() {
-			wx.pageScrollTo({scrollTop: 0, duration: 0});
 			let {windowWidth, windowHeight, platform} = wx.getSystemInfoSync();
 			let remScale = (windowWidth || 375) / 375,
 				realTopSize = this.data.topSize * remScale / 2,
 				realBottomSize = this.data.bottomSize * remScale / 2;
 
-			this.setData({
-				windowHeight: windowHeight,
-				platform: platform,
-				realTopSize: realTopSize,
-				realBottomSize: realBottomSize
-			});
+			this.data.windowHeight = windowHeight;
+			this.data.platform = platform;
+			this.data.realTopSize = realTopSize;
+			this.data.realBottomSize = realBottomSize;
 
 			this.createSelectorQuery().select(".item").boundingClientRect((res) => {
 				let rows = Math.ceil(this.data.list.length / this.data.columns);
+
+				this.data.itemDom = res;
 				this.setData({
-					itemDom: res,
-					itemWrapHeight: rows * res.height
+					itemWrapHeight: rows * res.height,
 				});
 
-				this.createSelectorQuery().select(".item-wrap").boundingClientRect((res) => {
-					// (列表的底部到页面顶部距离 > 屏幕高度 - 底部固定区域高度) 用该公式来计算是否超过一页
-					let overOnePage = res.bottom > windowHeight - realBottomSize;
-
-					this.setData({
-						itemWrapDom: res,
-						overOnePage: overOnePage
-					});
-				}).exec();
+				if (this.data.queryWrap) {
+					this.createSelectorQuery().select(".item-wrap").boundingClientRect((res) => {
+						// (列表的底部到页面顶部距离 > 屏幕高度 - 底部固定区域高度) 用该公式来计算是否超过一页
+						this.data.queryWrap = false;
+						this.data.itemWrapDom = res;
+					}).exec();
+				}
 			}).exec();
 		},
 		/**
@@ -383,7 +379,7 @@ Component({
 			});
 			this.getPosition(list, false);
 			// 异步加载数据时候, 延迟执行 initDom 方法, 防止基础库 2.7.1 版本及以下无法正确获取 dom 信息
-			setTimeout(() => this.initDom(), 10);
+			setTimeout(() => this.initDom(), 0);
 		}
 	},
 	ready() {

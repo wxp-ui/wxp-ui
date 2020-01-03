@@ -7,7 +7,7 @@
   z-index: 1;
 }
 .item-wrap .item.itemTransition {
-  transition: transform 0.3s;
+  transition: transform 0.3s !important;
 }
 .item-wrap .item.zIndex {
   z-index: 2;
