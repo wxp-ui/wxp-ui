@@ -23,6 +23,11 @@ Component({
 			value: 0,
 			observer: 'dataChange'
 		},
+		// 页面滚动高度
+		scrollTop: {
+			type: Number,
+			value: 0
+		},
 	},
 	data: {
 		/* 未渲染数据 */
@@ -30,7 +35,6 @@ Component({
 		platform: '', // 平台信息
 		realTopSize: 0, // 计算后顶部高度实际值
 		realBottomSize: 0, // 计算后底部高度实际值
-		queryWrap: true, // 是否已经查询过 wrap 的值
 		itemDom: { // 每一项 item 的 dom 信息, 由于大小一样所以只存储一个
 			width: 0,
 			height: 0,
@@ -347,13 +351,10 @@ Component({
 					itemWrapHeight: rows * res.height,
 				});
 
-				if (this.data.queryWrap) {
-					this.createSelectorQuery().select(".item-wrap").boundingClientRect((res) => {
-						// (列表的底部到页面顶部距离 > 屏幕高度 - 底部固定区域高度) 用该公式来计算是否超过一页
-						this.data.queryWrap = false;
-						this.data.itemWrapDom = res;
-					}).exec();
-				}
+				this.createSelectorQuery().select(".item-wrap").boundingClientRect((res) => {
+					this.data.itemWrapDom = res;
+					this.data.itemWrapDom.top += this.data.scrollTop
+				}).exec();
 			}).exec();
 		},
 		/**

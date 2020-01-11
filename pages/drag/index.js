@@ -67,9 +67,8 @@ Page({
 	data: {
 		isIphoneX: app.globalData.isIphoneX,
 		size: 4,
-		listData: [
-
-		],
+		listData: [],
+		scrollTop: 0
 	},
 	change(e) {
 		this.setData({
@@ -96,6 +95,12 @@ Page({
 		});
 
 		this.drag.dataChange();
+	},
+	// 页面滚动
+	onPageScroll(e) {
+		this.setData({
+			scrollTop: e.scrollTop
+		});
 	},
 	onLoad() {
 		this.drag = this.selectComponent('#drag');

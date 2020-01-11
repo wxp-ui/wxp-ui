@@ -3,7 +3,15 @@
 	<text style="color: #3F82FD;">最新版本增加顶部固定区域高度和底部固定区域高度, 以响应超过一屏时候可以正确滑动</text>
 </view>
 
-<drag id="drag" bind:click="itemClick" columns="{{size}}" list-data="{{listData}}" top-size="110" bottom-size="{{isIphoneX ? 380 : 300 }}" bind:change="change"></drag>
+<drag id="drag"
+			bind:click="itemClick"
+			bind:change="change"
+			list-data="{{listData}}"
+			columns="{{size}}"
+			scroll-top="{{scrollTop}}"
+			top-size="110"
+			bottom-size="{{isIphoneX ? 380 : 300 }}">
+</drag>
 
 <view class="empty-bottom {{isIphoneX ? 'isX' : ''}}"></view>
 
