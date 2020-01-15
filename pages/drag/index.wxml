@@ -6,11 +6,22 @@
 <drag id="drag"
 			bind:click="itemClick"
 			bind:change="change"
+			before-extra-nodes="{{beforeExtraNodes}}"
+			after-extra-nodes="{{afterExtraNodes}}"
 			list-data="{{listData}}"
 			columns="{{size}}"
 			scroll-top="{{scrollTop}}"
 			top-size="110"
 			bottom-size="{{isIphoneX ? 380 : 300 }}">
+	<view slot="before" class="extra">
+		 第0个元素之前插入该元素, 该元素不参与排序
+	</view>
+	<view slot="after" class="extra">
+		第0个元素之后插入该元素, 该元素不参与排序
+	</view>
+	<view slot="plus" class="plus-wrap" bindtap="add">
+		<view class="plus"></view>
+	</view>
 </drag>
 
 <view class="empty-bottom {{isIphoneX ? 'isX' : ''}}"></view>
@@ -19,7 +30,7 @@
 	<view class="panel-item">
 		<view class="panel-item__hd">请选择需要固定住的item:</view>
 	</view>
-	<view>
+	<view class="radio">
 		<view wx:for="{{listData}}" wx:key="index" bind:tap="toggleFixed" data-key="{{index}}" class="circle-wrap">
 			<view wx:if="{{item.fixed}}" class="circle cur">✓</view>
 			<view wx:else class="circle"></view>

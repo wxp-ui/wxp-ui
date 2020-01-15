@@ -65,7 +65,7 @@
   overflow: hidden;
   word-break: break-all;
   font-size: 28rpx;
-  margin-bottom: 12rpx;
+  margin-bottom: 4rpx;
 }
 .cell__bd .des {
   display: -webkit-box;

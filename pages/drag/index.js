@@ -66,8 +66,27 @@ let listData = [
 Page({
 	data: {
 		isIphoneX: app.globalData.isIphoneX,
-		size: 4,
+		size: 1,
 		listData: [],
+		beforeExtraNodes: [
+			{
+				key: 0,
+				slot: "before",
+				fixed: true
+			}
+		],
+		afterExtraNodes: [
+			{
+				key: 0,
+				slot: "after",
+				fixed: true
+			},
+			{
+				key: 9,
+				slot: "plus",
+				fixed: true
+			}
+		],
 		scrollTop: 0
 	},
 	change(e) {
@@ -76,6 +95,7 @@ Page({
 		});
 	},
 	sizeChange(e) {
+		wx.pageScrollTo({scrollTop: 0})
 		this.setData({
 			size: e.detail.value
 		});
@@ -94,6 +114,31 @@ Page({
 			listData: listData
 		});
 
+		this.drag.dataChange();
+	},
+	add(e) {
+		let listData = this.data.listData;
+		listData.push({
+			title: "这个绝望的世界没有存在的价值，所剩的只有痛楚",
+			description: "思念、愿望什么的都是一场空，被这种虚幻的东西绊住脚，什么都做不到",
+			images: "/assets/image/swipe/1.png",
+			fixed: false
+		});
+		this.setData({
+			listData,
+			afterExtraNodes: [
+				{
+					key: 0,
+					slot: "after",
+					fixed: true
+				},
+				{
+					key: listData.length - 1,
+					slot: "plus",
+					fixed: true
+				}
+			]
+		});
 		this.drag.dataChange();
 	},
 	// 页面滚动

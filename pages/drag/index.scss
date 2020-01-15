@@ -72,30 +72,53 @@ page {
 	}
 }
 
-.plus {
+.plus-wrap {
+	position: relative;
 	width: 100%;
 	height: 100%;
-	background: #efefef;
-	&:before {
+}
+
+.plus {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	&::before {
+		content: '';
 		position: absolute;
-		content: "";
-		width: 50%;
-		height: 2px;
 		top: 50%;
 		left: 50%;
-		margin-top: -1px;
-		margin-left: -25%;
-		background: #cbcbcb;
+		height: 60rpx;
+		margin-top: -30rpx;
+		margin-left: -2rpx;
+		border-left: 4rpx solid #cccccc;
 	}
-	&:after {
+	&::after {
+		content: '';
 		position: absolute;
-		content: "";
-		width: 2px;
-		height: 50%;
 		top: 50%;
 		left: 50%;
-		margin-top: -25%;
-		margin-left: -1px;
-		background: #cbcbcb;
+		width: 60rpx;
+		margin-left: -30rpx;
+		margin-top: -2rpx;
+		border-top: 4rpx solid #cccccc;
 	}
+}
+
+.radio {
+	overflow-x: auto;
+	white-space: nowrap;
+}
+
+.extra {
+	background: #cccccc;
+	color: $mainColor;
+	font-size: 24rpx;
+	padding: 10rpx;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	overflow: hidden;
+
 }

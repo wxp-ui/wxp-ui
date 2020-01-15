@@ -64,7 +64,7 @@ Page({
 			});
 		}
 		wx.createSelectorQuery().select(`#image${index}`).boundingClientRect((res) => {
-			let index = this.data.dotList.length
+			let index = this.data.dotList.length;
 			this.setData({
 				dotList: [
 					...this.data.dotList,

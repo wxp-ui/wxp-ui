@@ -203,10 +203,13 @@ tip: 最新新增 topSize 和 bottomSize 以应对有顶部和底部有固定区
 
 | 参数 | 说明 | 类型 | 可选值 | 默认值 |
 | --- | --- | --- | --- | --- |
+| beforeExtraNodes | 额外节点(正常节点之前) | Array | -- | [] |
+| afterExtraNodes | 额外节点(正常节点之后) | Array | -- | [] |
 | listData | 数据源 | Array | -- | [] |
 | columns | 列数 | Number | -- | 1 |
 | topSize | 顶部固定区域高度 | Number | -- | 0(rpx) |
 | bottomSize | 底部固定区域高度 | Number | -- | 0(rpx) |
+| scrollTop | 页面滚动高度(用于页面滚动时候正确计算) | Number | -- | 0(rpx) |
 
 #### Drag Events
 
@@ -221,6 +224,14 @@ tip: 最新新增 topSize 和 bottomSize 以应对有顶部和底部有固定区
 | --- | --- | --- | --- | --- |
 | fixed | 是否固定该项 | Boolean | -- | -- |
 | ... | ... | ... | ... | ... |
+
+#### beforeExtraNodes && afterExtraNodes Attributes
+
+| 参数 | 说明 | 类型 | 可选值 | 默认值 |
+| --- | --- | --- | --- | --- |
+| key | 要插入的位置 | Number | -- | -- |
+| fixed | 额外节点是否固定 | Boolean | -- | -- |
+| slot | 额外节点展示的所使用的 slot 名称 | String | -- | -- |
 
 ## 贡献
 

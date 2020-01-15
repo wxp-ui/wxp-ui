@@ -1,5 +1,25 @@
 Component({
+	options: {
+		multipleSlots: true
+	},
 	properties: {
+		/**
+		 * {
+		 *	 key: 0,        // 要插入的位置
+		 *	 fixed: true,   // 额外节点是否固定
+		 *	 slot: "test"   // 额外节点展示的所使用的 slot
+		 * }
+		 */
+		// 插入正常节点之前的额外节点
+		beforeExtraNodes: {
+			type: Array,
+			value: []
+		},
+		// 插入正常节点之后的额外节点
+		afterExtraNodes: {
+			type: Array,
+			value: []
+		},
 		// 数据源
 		listData: {
 			type: Array,
@@ -72,12 +92,33 @@ Component({
 		 */
 		itemClick(e) {
 			let {index} = e.currentTarget.dataset;
-			let item = this.data.list[index];
-			this.triggerEvent('click', {
-				oldKey: index,
-				newKey: item.key,
-				data: item.data
-			});
+			let list = this.data.list;
+			let currentItem = list[index];
+
+			if(!currentItem.isExtra) {
+				let _list = [];
+
+				list.forEach((item) => {
+					_list[item.key] = item;
+				});
+
+				let currentKey = -1;
+
+				for (let i = 0, len = _list.length; i < len; i++) {
+					let item = _list[i];
+					if(!item.isExtra) {
+						currentKey ++;
+					}
+					if(item.key === currentItem.key) {
+						break;
+					}
+				}
+
+				this.triggerEvent('click', {
+					key: currentKey,
+					data: currentItem.data,
+				});
+			}
 		},
 		/**
 		 * 长按触发移动排序
@@ -291,10 +332,19 @@ Component({
 
 			if (!vibrate) return;
 			if (platform !== "devtools") wx.vibrateShort();
-			let listData = [];
+
+			let _list = [], listData = [];
+
 			list.forEach((item) => {
-				listData[item.key] = item.data
+				_list[item.key] = item;
 			});
+
+			_list.forEach((item) => {
+				if (!item.isExtra) {
+					listData.push(item.data);
+				}
+			});
+
 			this.triggerEvent('change', {listData: listData});
 		},
 		/**
@@ -368,16 +418,53 @@ Component({
 				this.setData({list: [], itemWrapHeight: 0});
 				return;
 			}
+
+			let {listData, beforeExtraNodes, afterExtraNodes} = this.data;
+			let _listData = [];
+
 			// 遍历数据源增加扩展项, 以用作排序使用
-			let list = this.data.listData.map((item, index) => {
-				return {
-					fixed: item.fixed,
-					key: index,
+			listData.forEach((item, index) => {
+				beforeExtraNodes.forEach((_item, _index) => {
+					if (_item.key === index) {
+						_listData.push({
+							x: 0,
+							y: 0,
+							slot: _item.slot,
+							isExtra: true,
+							fixed: _item.fixed,
+							data: {}
+						});
+					}
+				});
+				_listData.push({
 					x: 0,
 					y: 0,
+					slot: "",
+					isExtra: false,
+					fixed: item.fixed,
 					data: item
+				});
+				afterExtraNodes.forEach((_item, _index) => {
+					if (_item.key === index) {
+						_listData.push({
+							x: 0,
+							y: 0,
+							slot: _item.slot,
+							isExtra: true,
+							fixed: _item.fixed,
+							data: {}
+						});
+					}
+				});
+			});
+
+			let list = _listData.map((item, index) => {
+				return {
+					key: index,
+					...item
 				};
 			});
+
 			this.getPosition(list, false);
 			// 异步加载数据时候, 延迟执行 initDom 方法, 防止基础库 2.7.1 版本及以下无法正确获取 dom 信息
 			setTimeout(() => this.initDom(), 0);
