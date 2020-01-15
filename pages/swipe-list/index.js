@@ -240,33 +240,43 @@ Page({
 	},
 	// 顶部tab切换事件
 	toggleCategory(e) {
+		this.setData({
+			duration: 0
+		});
+
 		let categoryCur = e.detail.index;
 		let {renderData, categoryData, categoryCur: lastCur} = this.data;
 
 		const diff = categoryCur - lastCur;
 		if (diff === 0) return;
 
-		let current = this.data._last;
-
-		console.log(current)
-
+		let current = categoryCur % 3;
 
 		const direction = diff > 0 ? 'swipe-left' : 'swipe-right';
 
-		if (direction === 'swipe-left') {
-			current = (current + 1) % 3;
-		}
-
-		if (direction === 'swipe-right') {
-			current = (current - 1 + 3) % 3;
-		}
-
-		renderData[(current - 1 + 3) % 3] = categoryData[categoryCur - 1];
 		renderData[current] = categoryData[categoryCur];
-		renderData[(current + 1) % 3] = categoryData[categoryCur + 1];
+
+		if (direction === 'swipe-left') {
+			if (categoryCur + 1 < categoryData.length) {
+				renderData[(current + 1) % 3] = categoryData[categoryCur + 1];
+			} else {
+				renderData[(current + 1) % 3] = null;
+			}
+
+			renderData[(current - 1 + 3) % 3] = categoryData[categoryCur - 1];
+		}
+		if (direction === 'swipe-right') {
+			if (categoryCur - 1 >= 0) {
+				renderData[(current - 1 + 3) % 3] = categoryData[categoryCur - 1];
+			} else {
+				renderData[(current - 1 + 3) % 3] = null;
+			}
+
+			renderData[(current + 1) % 3] = categoryData[categoryCur + 1];
+		}
 
 		let circular = true;
-		if(categoryCur === 0 || categoryCur === categoryData.length - 1) {
+		if (categoryCur === 0 || categoryCur === categoryData.length - 1) {
 			circular = false;
 		}
 
@@ -284,8 +294,6 @@ Page({
 	},
 	// 页面切换结束
 	animationFinish(e) {
-		console.log()
-
 		const {_last, renderData, categoryData} = this.data;
 		const current = e.detail.current;
 		const diff = current - _last;
@@ -297,14 +305,14 @@ Page({
 		const direction = (diff === 1 || diff === -2) ? 'swipe-left' : 'swipe-right';
 
 		if (direction === 'swipe-left') {
-			if(categoryCur + 1 < categoryData.length) {
+			if (categoryCur + 1 < categoryData.length) {
 				renderData[(current + 1) % 3] = categoryData[categoryCur + 1];
 			} else {
 				renderData[(current + 1) % 3] = null;
 			}
 		}
 		if (direction === 'swipe-right') {
-			if(categoryCur - 1 >= 0) {
+			if (categoryCur - 1 >= 0) {
 				renderData[(current - 1 + 3) % 3] = categoryData[categoryCur - 1];
 			} else {
 				renderData[(current - 1 + 3) % 3] = null;
@@ -312,11 +320,12 @@ Page({
 		}
 
 		let circular = true;
-		if(categoryCur === 0 || categoryCur === categoryData.length - 1) {
+		if (categoryCur === 0 || categoryCur === categoryData.length - 1) {
 			circular = false;
 		}
 
 		this.setData({
+			duration: 300,
 			circular,
 			categoryCur,
 			renderData
