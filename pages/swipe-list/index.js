@@ -112,11 +112,11 @@ let testData2 = [
 Page({
 	data: {
 		duration: 300,  // swiper-item 切换过渡时间
-		showPage: -1, // 控制列表空状态的显示时机
 		categoryCur: 0,
 		categoryMenu: ["推荐", "精选集锦", "最新体验", "资料", "版本", "攻略", "排行", "热门"],
 		categoryData: [
 			{
+				cur: 0,
 				name: "推荐",
 				requesting: false,
 				end: false,
@@ -125,6 +125,7 @@ Page({
 				listData: []
 			},
 			{
+				cur: 1,
 				name: "精选集锦",
 				requesting: false,
 				end: false,
@@ -133,6 +134,7 @@ Page({
 				listData: []
 			},
 			{
+				cur: 2,
 				name: "最新体验",
 				requesting: false,
 				end: false,
@@ -141,6 +143,7 @@ Page({
 				listData: []
 			},
 			{
+				cur: 3,
 				name: "资料",
 				requesting: false,
 				end: false,
@@ -149,6 +152,7 @@ Page({
 				listData: []
 			},
 			{
+				cur: 4,
 				name: "版本",
 				requesting: false,
 				end: false,
@@ -157,6 +161,7 @@ Page({
 				listData: []
 			},
 			{
+				cur: 5,
 				name: "攻略",
 				requesting: false,
 				end: false,
@@ -165,6 +170,7 @@ Page({
 				listData: []
 			},
 			{
+				cur: 6,
 				name: "排行",
 				requesting: false,
 				end: false,
@@ -173,6 +179,7 @@ Page({
 				listData: []
 			},
 			{
+				cur: 7,
 				name: "热门",
 				requesting: false,
 				end: false,
@@ -180,18 +187,20 @@ Page({
 				page: pageStart,
 				listData: []
 			}
-		]
+		],
+		_last: 0,
+		current: 0,
+		circular: false, // 是否循环
+		renderData: []
 	},
 	getList(type, currentPage) {
 		let currentCur = this.data.categoryCur;
 
 		let _data = testData1;
-		if(currentCur % 2 == 1) _data = testData2;
+		if (currentCur % 2 === 1) _data = testData2;
 
 		let pageData = this.getCurrentData(currentCur);
-
 		pageData.requesting = true;
-
 		this.setCurrentData(currentCur, pageData);
 
 		wx.showNavigationBarLoading();
@@ -201,7 +210,6 @@ Page({
 			pageData.requesting = false;
 
 			wx.hideNavigationBarLoading();
-
 
 			if (type === 'refresh') {
 				pageData.listData = _data;
@@ -214,46 +222,111 @@ Page({
 			}
 
 			this.setCurrentData(currentCur, pageData);
+
 		}, 1000);
-	},
-	// 顶部tab切换事件
-	toggleCategory(e) {
-		this.setData({
-			duration: 0
-		});
-		setTimeout(() => {
-			this.setData({
-				categoryCur: e.detail.index
-			});
-		}, 0);
-	},
-	// 页面滑动切换事件
-	swipeChange(e) {
-		this.setData({
-			duration: 300
-		});
-		setTimeout(() => {
-			this.setData({
-				categoryCur: e.detail.current
-			});
-			this.loadData()
-		}, 0);
 	},
 	// 更新页面数据
 	setCurrentData(currentCur, pageData) {
-		let categoryData = this.data.categoryData
-		categoryData[currentCur] = pageData
+		let categoryData = this.data.categoryData;
+		categoryData[currentCur] = pageData;
 		this.setData({
-			categoryData: categoryData
-		})
+			categoryData: categoryData,
+			renderData: this.data.renderData,
+		});
 	},
 	// 获取当前激活页面的数据
 	getCurrentData(currentCur) {
-		return this.data.categoryData[currentCur]
+		return this.data.categoryData[currentCur];
+	},
+	// 顶部tab切换事件
+	toggleCategory(e) {
+		let categoryCur = e.detail.index;
+		let {renderData, categoryData, categoryCur: lastCur} = this.data;
+
+		const diff = categoryCur - lastCur;
+		if (diff === 0) return;
+
+		let current = this.data._last;
+
+		console.log(current)
+
+
+		const direction = diff > 0 ? 'swipe-left' : 'swipe-right';
+
+		if (direction === 'swipe-left') {
+			current = (current + 1) % 3;
+		}
+
+		if (direction === 'swipe-right') {
+			current = (current - 1 + 3) % 3;
+		}
+
+		renderData[(current - 1 + 3) % 3] = categoryData[categoryCur - 1];
+		renderData[current] = categoryData[categoryCur];
+		renderData[(current + 1) % 3] = categoryData[categoryCur + 1];
+
+		let circular = true;
+		if(categoryCur === 0 || categoryCur === categoryData.length - 1) {
+			circular = false;
+		}
+
+		this.setData({
+			circular,
+			categoryCur,
+			renderData
+		});
+
+		this.loadData(categoryCur);
+
+		setTimeout(() => {
+			this.setData({current});
+		}, 10);
+	},
+	// 页面切换结束
+	animationFinish(e) {
+		console.log()
+
+		const {_last, renderData, categoryData} = this.data;
+		const current = e.detail.current;
+		const diff = current - _last;
+		if (diff === 0) return;
+
+		this.data._last = current;
+		let categoryCur = renderData[current].cur;
+
+		const direction = (diff === 1 || diff === -2) ? 'swipe-left' : 'swipe-right';
+
+		if (direction === 'swipe-left') {
+			if(categoryCur + 1 < categoryData.length) {
+				renderData[(current + 1) % 3] = categoryData[categoryCur + 1];
+			} else {
+				renderData[(current + 1) % 3] = null;
+			}
+		}
+		if (direction === 'swipe-right') {
+			if(categoryCur - 1 >= 0) {
+				renderData[(current - 1 + 3) % 3] = categoryData[categoryCur - 1];
+			} else {
+				renderData[(current - 1 + 3) % 3] = null;
+			}
+		}
+
+		let circular = true;
+		if(categoryCur === 0 || categoryCur === categoryData.length - 1) {
+			circular = false;
+		}
+
+		this.setData({
+			circular,
+			categoryCur,
+			renderData
+		});
+
+		this.loadData(categoryCur);
 	},
 	// 判断是否为加载新的页面,如果是去加载数据
-	loadData() {
-		let pageData = this.getCurrentData(this.data.categoryCur);
+	loadData(categoryCur) {
+		let pageData = this.getCurrentData(categoryCur);
 		if (pageData.listData.length === 0) {
 			this.getList('refresh', pageStart);
 		}
@@ -267,6 +340,10 @@ Page({
 		this.getList('more', this.getCurrentData(this.data.categoryCur).page);
 	},
 	onLoad() {
+		let renderData = this.data.categoryData.slice(0, 3);
+		this.setData({
+			renderData: renderData
+		});
 		// 第一次加载延迟 350 毫秒 防止第一次动画效果不能完全体验
 		setTimeout(() => {
 			this.getList('refresh', pageStart);

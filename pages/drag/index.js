@@ -66,7 +66,7 @@ let listData = [
 Page({
 	data: {
 		isIphoneX: app.globalData.isIphoneX,
-		size: 1,
+		size: 4,
 		listData: [],
 		beforeExtraNodes: [
 			{
