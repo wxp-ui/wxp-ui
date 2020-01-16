@@ -16,7 +16,7 @@ WxP UI 是一款提供高交互小程序插件的合集, 致力于简洁和高�
 
 +我微信 a1003367083 拉你进群, 加的时候请备注: WxP UI. 您的 star 是我前进的动力～～.
 
-## scss 转 wxss 设置
+## Scss 转 Wxss 设置
 
 ### Visual Studio Code
 
