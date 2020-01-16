@@ -1,7 +1,6 @@
 .tab-wrap {
   background: #ffffff;
-  margin-bottom: 40rpx;
-}
+  margin-bottom: 40rpx; }
 
 .control-panel {
   border-top: 1rpx solid #ebedf0;
@@ -12,16 +11,12 @@
   z-index: 12213;
   background: #ffffff;
   padding: 20rpx;
-  box-sizing: border-box;
-}
-.control-panel.isX {
-  padding-bottom: 60rpx;
-}
+  box-sizing: border-box; }
+  .control-panel.isX {
+    padding-bottom: 60rpx; }
 
 .panel-item {
   display: flex;
-  align-items: center;
-}
-.panel-item__bd {
-  flex: 1;
-}
+  align-items: center; }
+  .panel-item__bd {
+    flex: 1; }

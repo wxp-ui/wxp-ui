@@ -1,56 +1,45 @@
 .scroll-view {
   width: 100%;
   height: 90rpx;
-  overflow: hidden;
-}
+  overflow: hidden; }
 
 .tabs-wrap {
-  padding-bottom: 20rpx;
-}
+  padding-bottom: 20rpx; }
 
 .tabs {
   position: relative;
   height: 90rpx;
   color: #999999;
-  display: flex;
-}
-.tabs--scroll {
-  white-space: nowrap !important;
-  display: block !important;
-}
-.tabs--scroll .tabs__item {
-  flex: initial !important;
-  text-align: initial !important;
-  display: inline-block !important;
-  padding: 0 30rpx;
-}
-.tabs--scroll .tabs__item-child {
-  display: block !important;
-}
-.tabs__item {
-  flex: 1;
-  text-align: center;
-  height: 90rpx;
-  line-height: 90rpx;
-  padding: 0 10rpx;
-  box-sizing: border-box;
-  transition: color 0.3s ease-in-out;
-}
-.tabs__item--cur {
-  color: #333333;
-}
-.tabs__item-child {
-  display: inline-block;
-}
-.tabs__line {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  background-color: #3F82FD;
-  height: 4rpx;
-  width: 0rpx;
-  display: inline-block;
-}
-.tabs__line.transition {
-  transition: width 0.3s, transform 0.3s;
-}
+  display: flex; }
+  .tabs--scroll {
+    white-space: nowrap !important;
+    display: block !important; }
+  .tabs--scroll .tabs__item {
+    flex: initial !important;
+    text-align: initial !important;
+    display: inline-block !important;
+    padding: 0 30rpx; }
+  .tabs--scroll .tabs__item-child {
+    display: block !important; }
+  .tabs__item {
+    flex: 1;
+    text-align: center;
+    height: 90rpx;
+    line-height: 90rpx;
+    padding: 0 10rpx;
+    box-sizing: border-box;
+    transition: color 0.3s ease-in-out; }
+    .tabs__item--cur {
+      color: #333333; }
+  .tabs__item-child {
+    display: inline-block; }
+  .tabs__line {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: #3F82FD;
+    height: 4rpx;
+    width: 0rpx;
+    display: inline-block; }
+    .tabs__line.transition {
+      transition: width 0.3s, transform 0.3s; }

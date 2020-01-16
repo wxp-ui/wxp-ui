@@ -1,35 +1,29 @@
 .view-wrap {
   width: 100vw;
   overflow: hidden;
-  position: relative;
-}
-.view-wrap__empty {
-  position: absolute;
-  top: 35%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 30rpx;
-  text-align: center;
-}
-.view-wrap .empty-image {
-  width: 200rpx;
-  height: 200rpx;
-  margin: 160rpx auto 60rpx;
-}
-.view-wrap .empty-text {
-  color: #999999;
-}
+  position: relative; }
+  .view-wrap__empty {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30rpx;
+    text-align: center; }
+  .view-wrap .empty-image {
+    width: 200rpx;
+    height: 200rpx;
+    margin: 160rpx auto 60rpx; }
+  .view-wrap .empty-text {
+    color: #999999; }
 
 .scroll-view {
-  width: calc(100vw + 20rpx);
-}
+  width: calc(100vw + 20rpx); }
 
 .block-wrap {
   position: relative;
   width: 100%;
   padding-right: 20rpx;
-  box-sizing: border-box;
-}
+  box-sizing: border-box; }
 
 .block__title {
   height: 60rpx;
@@ -40,49 +34,41 @@
   background: #ffffff;
   font-size: 24rpx;
   font-weight: bold;
-  color: #767676;
-}
-.block__title > .title-item {
-  border-top: 1rpx solid #ebedf0;
-  border-bottom: 1rpx solid #ebedf0;
-  padding: 0 20rpx;
-  background: #ededed;
-}
-.block__title--cur {
-  color: #3F82FD;
-}
-.block__title--cur > .title-item {
-  background: #ffffff;
-}
+  color: #767676; }
+  .block__title > .title-item {
+    border-top: 1rpx solid #ebedf0;
+    border-bottom: 1rpx solid #ebedf0;
+    padding: 0 20rpx;
+    background: #ededed; }
+  .block__title--cur {
+    color: #3F82FD; }
+    .block__title--cur > .title-item {
+      background: #ffffff; }
+
 .block__item {
   background: #ffffff;
-  padding: 30rpx 20rpx;
-}
-.block__item:not(:last-child) {
-  border-bottom: 1rpx solid #ebedf0;
-}
+  padding: 30rpx 20rpx; }
+  .block__item:not(:last-child) {
+    border-bottom: 1rpx solid #ebedf0; }
 
 .item {
   display: flex;
-  align-items: center;
-}
-.item__hd {
-  width: 80rpx;
-  height: 80rpx;
-  border-radius: 50%;
-  font-weight: bold;
-  line-height: 80rpx;
-  text-align: center;
-  margin-right: 20rpx;
-  color: #ffffff;
-}
+  align-items: center; }
+  .item__hd {
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 50%;
+    font-weight: bold;
+    line-height: 80rpx;
+    text-align: center;
+    margin-right: 20rpx;
+    color: #ffffff; }
 
 .info__name {
-  margin-bottom: 10rpx;
-}
+  margin-bottom: 10rpx; }
+
 .info__title {
-  color: #999999;
-}
+  color: #999999; }
 
 .indicator {
   position: fixed;
@@ -96,28 +82,24 @@
   font-size: 60rpx;
   font-weight: bold;
   display: none;
-  z-index: 3;
-}
-.indicator:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  border-radius: 100% 0% 100% 100%;
-  background: rgba(0, 0, 0, 0.3);
-  transform: rotate(45deg);
-}
-.indicator--show {
-  display: block;
-}
-.indicator--tran {
-  display: block;
-  opacity: 0;
-  transition: opacity 0.3s linear;
-}
+  z-index: 3; }
+  .indicator:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    border-radius: 100% 0% 100% 100%;
+    background: rgba(0, 0, 0, 0.3);
+    transform: rotate(45deg); }
+  .indicator--show {
+    display: block; }
+  .indicator--tran {
+    display: block;
+    opacity: 0;
+    transition: opacity 0.3s linear; }
 
 .tree {
   position: fixed;
@@ -125,22 +107,18 @@
   top: 50%;
   transform: translateY(-50%);
   text-align: center;
-  z-index: 3;
-}
-.tree__item {
-  font-size: 20rpx;
-  padding: 0rpx 8rpx;
-  color: #666666;
-  font-weight: bold;
-}
-.tree__item > .key {
-  width: 32rpx;
-  height: 32rpx;
-  border-radius: 50%;
-  line-height: 32rpx;
-}
-.tree__item--cur > .key {
-  background: #3F82FD;
-  color: #FFFFFF;
-  border-radius: 50%;
-}
+  z-index: 3; }
+  .tree__item {
+    font-size: 20rpx;
+    padding: 0rpx 8rpx;
+    color: #666666;
+    font-weight: bold; }
+    .tree__item > .key {
+      width: 32rpx;
+      height: 32rpx;
+      border-radius: 50%;
+      line-height: 32rpx; }
+    .tree__item--cur > .key {
+      background: #3F82FD;
+      color: #FFFFFF;
+      border-radius: 50%; }

@@ -16,6 +16,30 @@ WxP UI 是一款提供高交互小程序插件的合集, 致力于简洁和高�
 
 +我微信 a1003367083 拉你进群, 加的时候请备注: WxP UI. 您的 star 是我前进的动力～～.
 
+## scss 转 wxss 设置
+
+### Visual Studio Code
+
+[Live Sass Compiler 插件](https://marketplace.visualstudio.com/items?itemName=ritwickdey.live-sass)
+
+本项目默认包含.vscode 配置文件, 安装完插件即可使用
+
+### WebStorm
+
+preferences -> file watchers -> + scss 文件 ->
+
+![scss1](http://148.70.195.95/dist/webstorm_scss1.jpg)
+
+将上图参数替换
+- `Arguments` 参数替换为 `--no-cache --update --style nested --sourcemap=none $FileName$:$FileNameWithoutExtension$.wxss`
+- `Output paths to refresh` 参数替换为 `$FileNameWithoutExtension$.wxss`
+
+接着配置 `Scope` 即 `File Watcher` 在项目中作用域, 我们点击最外层文件夹然后选择 `Include Recursively` 即递归整个项目文件
+
+![scss2](http://148.70.195.95/dist/webstorm_scss2.jpg)
+
+完成之后 `Apply` 即可
+
 ## 组件列表 
 
 - swipe-list组件
