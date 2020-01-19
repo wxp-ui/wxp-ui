@@ -95,7 +95,7 @@ Component({
 			let list = this.data.list;
 			let currentItem = list[index];
 
-			if(!currentItem.isExtra) {
+			if (!currentItem.isExtra) {
 				let _list = [];
 
 				list.forEach((item) => {
@@ -106,10 +106,10 @@ Component({
 
 				for (let i = 0, len = _list.length; i < len; i++) {
 					let item = _list[i];
-					if(!item.isExtra) {
-						currentKey ++;
+					if (!item.isExtra) {
+						currentKey++;
 					}
-					if(item.key === currentItem.key) {
+					if (item.key === currentItem.key) {
 						break;
 					}
 				}
@@ -427,6 +427,7 @@ Component({
 				beforeExtraNodes.forEach((_item, _index) => {
 					if (_item.key === index) {
 						_listData.push({
+							id: _item.dragId,
 							x: 0,
 							y: 0,
 							slot: _item.slot,
@@ -437,6 +438,7 @@ Component({
 					}
 				});
 				_listData.push({
+					id: item.dragId,
 					x: 0,
 					y: 0,
 					slot: "",
@@ -447,6 +449,7 @@ Component({
 				afterExtraNodes.forEach((_item, _index) => {
 					if (_item.key === index) {
 						_listData.push({
+							id: _item.dragId,
 							x: 0,
 							y: 0,
 							slot: _item.slot,
