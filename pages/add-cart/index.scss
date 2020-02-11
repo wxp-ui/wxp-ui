@@ -14,7 +14,7 @@ page {
 	padding: 20rpx;
 
 	&:not(:last-child) {
-		border-bottom: 1rpx solid $lineColor;
+		border-bottom: 1rpx solid $line-color;
 	}
 
 	&__hd {
@@ -39,7 +39,7 @@ page {
 
 		.des {
 			@include line(2);
-			color: $mainBlack2;
+			color: $black2;
 			font-size: 24rpx;
 		}
 	}

@@ -88,7 +88,7 @@ Component({
 				scrolling: false
 			});
 			// 异步加载数据时候, 延迟执行 init 方法, 防止基础库 2.7.1 版本及以下无法正确获取 dom 信息
-			setTimeout(() => this.init(), 10);
+			setTimeout(() => this.init(), 0);
 		},
 		/**
 		 *  监听 tabCur 变化, 做对应处理

@@ -47,13 +47,13 @@
 		font-weight: bold;
 		color: #767676;
 		& > .title-item {
-			border-top: 1rpx solid $lineColor;
-			border-bottom: 1rpx solid $lineColor;
+			border-top: 1rpx solid $line-color;
+			border-bottom: 1rpx solid $line-color;
 			padding: 0 20rpx;
 			background: #ededed;
 		}
 		&--cur {
-			color: $mainColor;
+			color: $theme-color;
 			& > .title-item {
 				background: #ffffff;
 			}
@@ -61,7 +61,7 @@
 	}
 	&__item {
 		&:not(:last-child) {
-			border-bottom: 1rpx solid $lineColor;
+			border-bottom: 1rpx solid $line-color;
 		}
 		background: #ffffff;
 		padding: 30rpx 20rpx;
@@ -91,7 +91,7 @@
 		margin-bottom: 10rpx;
 	}
 	&__title {
-		color: $mainBlack3;
+		color: $black3;
 	}
 }
 
@@ -140,7 +140,7 @@
 	&__item {
 		font-size: 20rpx;
 		padding: 0rpx 8rpx;
-		color: $mainBlack2;
+		color: $black2;
 		font-weight: bold;
 		& > .key {
 			width: 32rpx;
@@ -150,7 +150,7 @@
 		}
 		&--cur {
 			& > .key {
-				background: $mainColor;
+				background: $theme-color;
 				color: #FFFFFF;
 				border-radius: 50%;
 			}

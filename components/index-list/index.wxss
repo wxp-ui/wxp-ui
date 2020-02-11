@@ -44,7 +44,6 @@
     color: #3F82FD; }
     .block__title--cur > .title-item {
       background: #ffffff; }
-
 .block__item {
   background: #ffffff;
   padding: 30rpx 20rpx; }
@@ -66,7 +65,6 @@
 
 .info__name {
   margin-bottom: 10rpx; }
-
 .info__title {
   color: #999999; }
 

@@ -63,7 +63,7 @@ $loading-color: #a5a5a5;
   text-align: center;
   opacity: 0;
 	transform: scale(0);
-	color: $mainColor;
+	color: $theme-color;
 
   &:after {
     content: " ";

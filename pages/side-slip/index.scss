@@ -6,7 +6,7 @@ page {
 
 side-slip {
 	&:not(:last-child) .cell {
-		border-bottom: 1rpx solid $lineColor;
+		border-bottom: 1rpx solid $line-color;
 	}
 }
 
@@ -20,7 +20,7 @@ side-slip {
 	padding: 20rpx;
 
 	&:not(:last-child) {
-		border-bottom: 1rpx solid $lineColor;
+		border-bottom: 1rpx solid $line-color;
 	}
 
 	&__hd {
@@ -45,7 +45,7 @@ side-slip {
 
 		.des {
 			@include line(2);
-			color: $mainBlack2;
+			color: $black2;
 			font-size: 24rpx;
 		}
 	}

@@ -184,13 +184,11 @@
       transform: rotate(330deg); }
       .loading__item:nth-child(12):before {
         animation-delay: -0.1s; }
-
 @keyframes fadeDelay {
   0%, 39%, 100% {
     opacity: 0.2; }
   40% {
     opacity: 1; } }
-
 @-webkit-keyframes fadeDelay {
   0%, 39%, 100% {
     opacity: 0.2; }

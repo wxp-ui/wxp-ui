@@ -4,7 +4,8 @@
   top: 0;
   width: 100%;
   background-color: #ffffff;
-  z-index: 99; }
+  z-index: 99;
+  box-shadow: 0 0 20rpx -5rpx rgba(0, 0, 0, 0.1); }
 
 swiper {
   height: 100vh; }
@@ -18,28 +19,31 @@ swiper {
   padding: 20rpx; }
   .cell:not(:last-child) {
     border-bottom: 1rpx solid #ebedf0; }
-  .cell__hd {
-    font-size: 0; }
-    .cell__hd image {
-      width: 160rpx;
-      height: 160rpx;
-      margin-right: 20rpx;
-      border-radius: 12rpx; }
   .cell__bd {
     flex: 1; }
     .cell__bd .name {
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-      overflow: hidden;
-      word-break: break-all;
+      height: 80rpx;
       font-size: 28rpx;
       margin-bottom: 12rpx; }
-    .cell__bd .des {
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-      overflow: hidden;
-      word-break: break-all;
-      color: #666666;
-      font-size: 24rpx; }
+      .cell__bd .name > view {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        word-break: break-all; }
+    .cell__bd .tags {
+      display: flex;
+      align-items: center; }
+      .cell__bd .tags .tags__bd {
+        flex: 1; }
+        .cell__bd .tags .tags__bd > view {
+          display: inline-block;
+          border: 1px solid rgba(63, 130, 253, 0.6);
+          color: rgba(63, 130, 253, 0.6);
+          font-size: 20rpx;
+          height: 30rpx;
+          line-height: 30rpx;
+          padding: 0 8rpx; }
+      .cell__bd .tags .date {
+        color: #999999;
+        font-size: 24rpx; }

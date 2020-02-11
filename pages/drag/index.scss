@@ -18,15 +18,15 @@ page {
 	right: 0;
 	padding: 20rpx;
 	font-size: 24rpx;
-	color: $mainBlack3;
+	color: $black3;
 	z-index: 999;
 	background: #FFFFFF;
 	box-sizing: border-box;
-	border-bottom: 1rpx solid $lineColor;
+	border-bottom: 1rpx solid $line-color;
 }
 
 .control-panel {
-	border-top: 1rpx solid $lineColor;
+	border-top: 1rpx solid $line-color;
 	position: fixed;
 	bottom: 0;
 	left: 0;
@@ -61,14 +61,14 @@ page {
 	.circle {
 		width: 50rpx;
 		height: 50rpx;
-		border: 2rpx solid $lineColor;
+		border: 2rpx solid $line-color;
 		border-radius: 50%;
 	}
 	.cur {
 		color: #fff;
 		line-height: 50rpx;
-		background: $mainColor;
-		border: 2rpx solid $mainColor;
+		background: $theme-color;
+		border: 2rpx solid $theme-color;
 	}
 }
 
@@ -113,7 +113,7 @@ page {
 
 .extra {
 	background: #cccccc;
-	color: $mainColor;
+	color: $theme-color;
 	font-size: 24rpx;
 	padding: 10rpx;
 	width: 100%;

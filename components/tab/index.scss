@@ -15,7 +15,7 @@ $top-height: 90rpx;
 .tabs {
 	position: relative;
 	height: $top-height;
-	color: $mainBlack3;
+	color: $black3;
 	display: flex;
 
 	&--scroll {
@@ -44,7 +44,7 @@ $top-height: 90rpx;
 		transition: color 0.3s ease-in-out;
 
 		&--cur {
-			color: $mainBlack1;
+			color: $black1;
 		}
 	}
 
@@ -56,7 +56,7 @@ $top-height: 90rpx;
 		position: absolute;
 		left: 0;
 		bottom: 0;
-		background-color: $mainColor;
+		background-color: $theme-color;
 		height: 4rpx;
 		width: 0rpx;
 		display: inline-block;

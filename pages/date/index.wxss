@@ -12,6 +12,5 @@ Page .list {
       border-bottom: 1rpx solid #ebedf0; }
     Page .list .listItem .bd {
       flex: 1; }
-
 Page .app-btn {
   margin-bottom: 100rpx; }

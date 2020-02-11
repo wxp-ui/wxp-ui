@@ -5,7 +5,7 @@ page {
 }
 
 .blue {
-	color: $mainColor;
+	color: $theme-color;
 }
 
 .cells {
@@ -38,13 +38,9 @@ page {
 	display: flex;
 	align-items: center;
 	padding: 30rpx;
-	color: $mainColor;
+	color: $theme-color;
 	font-weight: bold;
 	font-size: 36rpx;
-
-	&.hover {
-		color: $mainColorActive;
-	}
 
 	&:after {
 		content: "";
@@ -52,7 +48,7 @@ page {
 		bottom: 0;
 		left: 0;
 		right: 0;
-		border-bottom: 1px solid $lineColor;
+		border-bottom: 1px solid $line-color;
 		transform-origin: 0% 100%;
 		transform: scaleY(0.5);
 	}
@@ -89,7 +85,7 @@ page {
 			bottom: 0;
 			left: 30rpx;
 			right: 0;
-			border-bottom: 1px solid $lineColor;
+			border-bottom: 1px solid $line-color;
 			transform-origin: 0% 100%;
 			transform: scaleY(0.5);
 		}
@@ -116,7 +112,7 @@ page {
 	}
 
 	&.hover {
-		background-color: $hoverBd;
+		background-color: #eeeeee;
 	}
 }
 
@@ -135,14 +131,14 @@ page {
 	&__bd {
 		flex: 1;
 		font-size: 24rpx;
-		color: $mainBlack2;
+		color: $black2;
 	}
 }
 
 .footer {
 	text-align: center;
 	margin: 60rpx;
-	color: $mainBlack3;
+	color: $black3;
 	font-size: 24rpx;
 	image {
 		width: 40rpx;

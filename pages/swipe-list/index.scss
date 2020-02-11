@@ -9,6 +9,7 @@ $top-height: 90rpx;
 	width: 100%;
 	background-color: #ffffff;
 	z-index: 99;
+	box-shadow: $shadow;
 }
 
 swiper {
@@ -25,33 +26,38 @@ swiper {
 	padding: 20rpx;
 
 	&:not(:last-child) {
-		border-bottom: 1rpx solid $lineColor;
+		border-bottom: 1rpx solid $line-color;
 	}
-
-	&__hd {
-		font-size: 0;
-
-		image {
-			width: 160rpx;
-			height: 160rpx;
-			margin-right: 20rpx;
-			border-radius: 12rpx;
-		}
-	}
-
 	&__bd {
 		flex: 1;
-
 		.name {
-			@include line(2);
+			height: 80rpx;
 			font-size: 28rpx;
 			margin-bottom: 12rpx;
+			& > view {
+				@include line(2);
+			}
 		}
 
-		.des {
-			@include line(2);
-			color: $mainBlack2;
-			font-size: 24rpx;
+		.tags {
+			display: flex;
+			align-items: center;
+			.tags__bd {
+				flex: 1;
+				& > view {
+					display: inline-block;
+					border: 1px solid rgba($theme-color, 0.6);
+					color: rgba($theme-color, 0.6);
+					font-size: 20rpx;
+					height: 30rpx;
+					line-height: 30rpx;
+					padding: 0 8rpx;
+				}
+			}
+			.date {
+				color: $black3;
+				font-size: 24rpx;
+			}
 		}
 	}
 }

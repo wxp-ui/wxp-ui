@@ -32,8 +32,6 @@ page {
   color: #3F82FD;
   font-weight: bold;
   font-size: 36rpx; }
-  .title.hover {
-    color: rgba(63, 130, 253, 0.7); }
   .title:after {
     content: "";
     position: absolute;

@@ -27,7 +27,7 @@
 	background: #ffffff;
 	&__item {
 		position: absolute;
-		border: 1rpx solid $lineColor;
+		border: 1rpx solid $line-color;
 		top: 0;
 		left: 0;
 		width: 100%;
@@ -45,7 +45,7 @@
 .cell {
 	display: flex;
 	padding: 20rpx;
-	border-bottom: 1rpx solid $lineColor;
+	border-bottom: 1rpx solid $line-color;
 	background: #FFFFFF;
 	&__hd {
 		font-size: 0;
@@ -65,7 +65,7 @@
 		}
 		.des {
 			@include line(2);
-			color: $mainBlack2;
+			color: $black2;
 			font-size: 24rpx;
 		}
 	}

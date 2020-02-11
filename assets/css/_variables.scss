@@ -1,11 +1,12 @@
-$mainColor: #3F82FD;
-$mainColorActive: rgba($mainColor, 0.7);
-$mainBd: #f7f7f7;
-$hoverBd: #eeeeee;
-$mainBlack1: #333333;
-$mainBlack2: #666666;
-$mainBlack3: #999999;
-$lineColor: #ebedf0;
+$theme-color: #3F82FD;
+$theme-color--active: rgba($theme-color, 0.7);
+
+$line-color: #ebedf0;
+
+$black1: #333333;
+$black2: #666666;
+$black3: #999999;
+
 $shadow: 0 0 20rpx -5rpx rgba(0, 0, 0, 0.1);
 
 %clear-float {

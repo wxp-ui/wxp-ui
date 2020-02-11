@@ -25,7 +25,7 @@ $top-height: 90rpx;
 	padding: 20rpx;
 
 	&:not(:last-child) {
-		border-bottom: 1rpx solid $lineColor;
+		border-bottom: 1rpx solid $line-color;
 	}
 
 	&__hd {
@@ -50,14 +50,14 @@ $top-height: 90rpx;
 
 		.des {
 			@include line(2);
-			color: $mainBlack2;
+			color: $black2;
 			font-size: 24rpx;
 		}
 	}
 }
 
 .control-panel {
-	border-top: 1rpx solid $lineColor;
+	border-top: 1rpx solid $line-color;
 	position: fixed;
 	bottom: 0;
 	left: 0;
