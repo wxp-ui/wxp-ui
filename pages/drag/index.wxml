@@ -6,6 +6,7 @@
 <drag id="drag"
 			bind:click="itemClick"
 			bind:change="change"
+			bind:touchend="touchend"
 			before-extra-nodes="{{beforeExtraNodes}}"
 			after-extra-nodes="{{afterExtraNodes}}"
 			list-data="{{listData}}"

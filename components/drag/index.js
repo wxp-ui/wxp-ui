@@ -88,6 +88,26 @@ Component({
 	},
 	methods: {
 		/**
+		 * 封装自定义事件
+		 * @param list 当前渲染的数据
+		 * @param type 事件类型
+		 */
+		triggerCustomEvent(list, type) {
+			let _list = [], listData = [];
+
+			list.forEach((item) => {
+				_list[item.key] = item;
+			});
+
+			_list.forEach((item) => {
+				if (!item.isExtra) {
+					listData.push(item.data);
+				}
+			});
+
+			this.triggerEvent(type, {listData: listData});
+		},
+		/**
 		 * 点击每一项后触发事件
 		 */
 		itemClick(e) {
@@ -243,6 +263,7 @@ Component({
 		},
 		touchEnd() {
 			if (!this.data.dragging) return;
+			this.triggerCustomEvent(this.data.list, "touchend");
 			this.clearData();
 		},
 		/**
@@ -333,19 +354,7 @@ Component({
 			if (!vibrate) return;
 			if (platform !== "devtools") wx.vibrateShort();
 
-			let _list = [], listData = [];
-
-			list.forEach((item) => {
-				_list[item.key] = item;
-			});
-
-			_list.forEach((item) => {
-				if (!item.isExtra) {
-					listData.push(item.data);
-				}
-			});
-
-			this.triggerEvent('change', {listData: listData});
+			this.triggerCustomEvent(list, "change");
 		},
 		/**
 		 * 判断是否是固定的 item
