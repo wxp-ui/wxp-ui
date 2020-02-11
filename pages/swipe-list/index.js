@@ -89,9 +89,18 @@ Page({
 		this.getList('more', this.getCurrentData(this.data.categoryCur).page);
 	},
 	showArticle(e) {
-		wx.navigateTo({
-			url: `/pages/swipe-list/webview/index?link=${e.currentTarget.dataset.link}`
+		wx.setClipboardData({
+			data: e.currentTarget.dataset.link,
+			success (res) {
+				wx.showToast({
+					icon: "none",
+					title: "链接已复制到剪切板"
+				})
+			}
 		})
+		// wx.navigateTo({
+		// 	url: `/pages/swipe-list/webview/index?link=${e.currentTarget.dataset.link}`
+		// })
 	},
 	onLoad() {
 		app.httpGet("/wxarticle/chapters/json").then((res) => {

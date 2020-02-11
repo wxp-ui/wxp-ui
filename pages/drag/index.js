@@ -102,8 +102,8 @@ Page({
 		],
 		scrollTop: 0
 	},
-	touchend(e) {
-		console.log("touchend", e.detail.listData)
+	sortEnd(e) {
+		console.log("sortEnd", e.detail.listData)
 		this.setData({
 			listData: e.detail.listData
 		});

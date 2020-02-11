@@ -263,7 +263,7 @@ Component({
 		},
 		touchEnd() {
 			if (!this.data.dragging) return;
-			this.triggerCustomEvent(this.data.list, "touchend");
+			this.triggerCustomEvent(this.data.list, "sortend");
 			this.clearData();
 		},
 		/**

@@ -240,7 +240,7 @@ tip: 最新新增 topSize 和 bottomSize 以应对有顶部和底部有固定区
 | 事件名称 | 说明 | 回调参数 |
 | --- | --- | --- |
 | change | 排序监听事件 | 排序后数据 |
-| touchend | 排序结束事件 | 排序后数据 |
+| sortend | 排序结束事件 | 排序后数据 |
 | click | 点击item监听 | item数据和排序key值 |
 
 #### listData Attributes

@@ -98,6 +98,12 @@
 					"pathName": "pages/scroll/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/drag/index",
+					"pathName": "pages/drag/index",
+					"scene": null
 				}
 			]
 		}
