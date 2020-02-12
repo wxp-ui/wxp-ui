@@ -116,6 +116,7 @@ Page({
 		this.setData({
 			size: e.detail.value
 		});
+		this.drag.init();
 	},
 	itemClick(e) {
 		console.log(e);
@@ -131,7 +132,7 @@ Page({
 			listData: listData
 		});
 
-		this.drag.dataChange();
+		this.drag.init();
 	},
 	add(e) {
 		let listData = this.data.listData;
@@ -156,7 +157,7 @@ Page({
 				}
 			]
 		});
-		this.drag.dataChange();
+		this.drag.init();
 	},
 	// 页面滚动
 	onPageScroll(e) {
@@ -171,7 +172,7 @@ Page({
 			this.setData({
 				listData: listData
 			});
-			this.drag.dataChange();
+			this.drag.init();
 		}, 100)
 	}
 })

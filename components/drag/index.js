@@ -28,20 +28,17 @@ Component({
 		// 列数
 		columns: {
 			type: Number,
-			value: 1,
-			observer: 'dataChange'
+			value: 1
 		},
 		// 顶部高度
 		topSize: {
 			type: Number,
-			value: 0,
-			observer: 'dataChange'
+			value: 0
 		},
 		// 底部高度
 		bottomSize: {
 			type: Number,
-			value: 0,
-			observer: 'dataChange'
+			value: 0
 		},
 		// 页面滚动高度
 		scrollTop: {
@@ -383,12 +380,6 @@ Component({
 			}, 300)
 		},
 		/**
-		 * 监听列数变化, 如果改变重新初始化参数
-		 */
-		dataChange(newVal, oldVal) {
-			this.init();
-		},
-		/**
 		 *  初始化获取 dom 信息
 		 */
 		initDom() {
@@ -417,7 +408,8 @@ Component({
 			}).exec();
 		},
 		/**
-		 *  初始化
+		 *  初始化函数
+		 *  {listData, columns, topSize, bottomSize} 参数改变需要重新调用初始化方法
 		 */
 		init() {
 			this.clearData();
