@@ -81,7 +81,7 @@ Page({
 		beforeExtraNodes: [
 			{
 				dragId: "before0",
-				key: 0,
+				destKey: 0,
 				slot: "before",
 				fixed: true
 			}
@@ -89,13 +89,13 @@ Page({
 		afterExtraNodes: [
 			{
 				dragId: "after0",
-				key: 0,
+				destKey: 0,
 				slot: "after",
 				fixed: true
 			},
 			{
 				dragId: "after9",
-				key: 9,
+				destKey: 9,
 				slot: "plus",
 				fixed: true
 			}
@@ -137,27 +137,31 @@ Page({
 	add(e) {
 		let listData = this.data.listData;
 		listData.push({
+			dragId: `item${listData.length}`,
 			title: "这个绝望的世界没有存在的价值，所剩的只有痛楚",
 			description: "思念、愿望什么的都是一场空，被这种虚幻的东西绊住脚，什么都做不到",
 			images: "/assets/image/swipe/1.png",
 			fixed: false
 		});
-		this.setData({
-			listData,
-			afterExtraNodes: [
-				{
-					key: 0,
-					slot: "after",
-					fixed: true
-				},
-				{
-					key: listData.length - 1,
-					slot: "plus",
-					fixed: true
-				}
-			]
-		});
-		this.drag.init();
+		setTimeout(() => {
+			this.setData({
+				listData,
+				afterExtraNodes: [
+					{
+						destKey: 0,
+						slot: "after",
+						fixed: true
+					},
+					{
+						destKey: listData.length - 1,
+						slot: "plus",
+						fixed: true
+					}
+				]
+			});
+			this.drag.init();
+		}, 300)
+
 	},
 	// 页面滚动
 	onPageScroll(e) {

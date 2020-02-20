@@ -1,23 +1,23 @@
 <view class="item-wrap" style="height: {{ itemWrapHeight }}px;">
-	<view class="item {{cur == index? 'cur':''}} {{curZ == index? 'zIndex':''}} {{itemTransition && index !== cur ? 'itemTransition':''}} {{item.fixed ? 'fixed' : ''}}"
-				wx:for="{{list}}"
-				wx:key="id"
-				id="item{{index}}"
-				data-key="{{item.key}}"
-				data-index="{{index}}"
-				style="transform: translate3d({{index === cur ? tranX + 'px' : item.x * 100 + '%'}}, {{index === cur ? tranY + 'px' : item.y * 100 + '%'}}, 0px);width: {{100 / columns}}%"
-				bindtap="itemClick"
-				bind:longpress="longPress"
-				catch:touchmove="{{dragging?'touchMove':''}}"
-				catch:touchend="{{dragging?'touchEnd':''}}">
+	<view
+		class="item {{cur == index ? 'cur':''}} {{curZ == index ? 'zIndex':''}} {{itemTransition && index !== cur ? 'itemTransition':''}} {{item.fixed ? 'fixed' : ''}}"
+		wx:for="{{list}}"
+		wx:key="id"
+		data-key="{{item.sortKey}}"
+		data-index="{{index}}"
+		style="transform: translate3d({{index === cur ? tranX + 'px' : item.tranX}}, {{index === cur ? tranY + 'px' : item.tranY}}, 0);width: {{100 / columns}}%"
+		bindtap="itemClick"
+		bind:longpress="longPress"
+		catch:touchmove="{{dragging?'touchMove':''}}"
+		catch:touchend="{{dragging?'touchEnd':''}}">
 
 		<!-- start:请在该区域编写自己的渲染逻辑 -->
-		<view wx:if="{{columns === 1 && item.isExtra}}" class="cell">
+		<view wx:if="{{columns === 1 && item.extraNode}}" class="cell">
 			<view class="cell__bd" style="height: 160rpx;">
 				<slot name="{{item.slot}}"></slot>
 			</view>
 		</view>
-		<view wx:elif="{{columns === 1 && !item.isExtra}}" class="cell">
+		<view wx:elif="{{columns === 1 && !item.extraNode}}" class="cell">
 			<view class="cell__hd">
 				<image class="image" mode="aspectFill" src="{{item.data.images}}" alt=""/>
 			</view>
@@ -26,12 +26,12 @@
 				<view class="des">{{item.data.description}}</view>
 			</view>
 		</view>
-		<view wx:elif="{{columns > 1 && item.isExtra}}" class="info">
+		<view wx:elif="{{columns > 1 && item.extraNode}}" class="info">
 			<view class="info__item">
 				<slot name="{{item.slot}}"></slot>
 			</view>
 		</view>
-		<view wx:elif="{{columns > 1 && !item.isExtra}}" class="info">
+		<view wx:elif="{{columns > 1 && !item.extraNode}}" class="info">
 			<view class="info__item">
 				<image class="image" src="{{item.data.images}}"></image>
 			</view>

@@ -257,7 +257,7 @@ tip: 最新版本去除 `dataChange` 方法, 改为直接使用 `this.drag.init(
 | 参数 | 说明 | 类型 | 可选值 | 默认值 |
 | --- | --- | --- | --- | --- |
 | dragId | 每个数据项唯一标识(必填, 提升渲染性能) | String/Int | -- | -- |
-| key | 要插入的位置 | Number | -- | -- |
+| destKey | 要插入的位置 | Number | -- | -- |
 | fixed | 额外节点是否固定 | Boolean | -- | -- |
 | slot | 额外节点展示的所使用的 slot 名称 | String | -- | -- |
 
