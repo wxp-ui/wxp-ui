@@ -88,7 +88,7 @@ Component({
 			let tranX = currentPageX - itemDom.width / 2 - itemWrapDom.left,
 				tranY = currentPageY - itemDom.height / 2 - itemWrapDom.top;
 			// 单列时候X轴初始不做位移
-			if (this.data.columns === 1) tranX = 0;
+			if (columns === 1) tranX = 0;
 
 			// 到顶到底自动滑动
 			if (currentClientY > windowHeight - itemDom.height - realBottomSize) {
