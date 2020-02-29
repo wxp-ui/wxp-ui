@@ -9,7 +9,7 @@
 		"coverView": true,
 		"nodeModules": true,
 		"autoAudits": false,
-		"showShadowRootInWxmlPanel": true,
+		"showShadowRootInWxmlPanel": false,
 		"scopeDataCheck": false,
 		"uglifyFileName": true,
 		"checkInvalidKey": true,
@@ -22,7 +22,7 @@
 		}
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.10.1",
+	"libVersion": "2.10.2",
 	"appid": "wxe14d4ca6edeb543e",
 	"projectname": "WxP%20UI",
 	"simulatorType": "wechat",
@@ -48,29 +48,8 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 4,
+			"current": -1,
 			"list": [
-				{
-					"id": 0,
-					"name": "pages/index-list/index",
-					"pathName": "pages/index-list/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 1,
-					"name": "pages/main/index",
-					"pathName": "pages/main/index",
-					"query": "scene=swipe-list",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/swipe-list/index",
-					"pathName": "pages/swipe-list/index",
-					"query": "",
-					"scene": null
-				},
 				{
 					"id": 3,
 					"name": "pages/drag/index",
@@ -79,30 +58,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/add-cart/index",
-					"pathName": "pages/add-cart/index",
+					"id": 1,
+					"name": "pages/x-drag/index",
+					"pathName": "pages/x-drag/index",
 					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/tab/index",
-					"pathName": "pages/tab/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/scroll/index",
-					"pathName": "pages/scroll/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/drag/index",
-					"pathName": "pages/drag/index",
 					"scene": null
 				}
 			]

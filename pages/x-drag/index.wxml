@@ -1,0 +1,46 @@
+<view class="tip">
+	<text style="color: red;">长按触发拖拽排序!!</text>
+	<text style="color: #3F82FD;">最新版本增加顶部固定区域高度和底部固定区域高度, 以响应超过一屏时候可以正确滑动</text>
+</view>
+
+<view class="dragWrap">
+	<drag id="drag"
+				bind:click="itemClick"
+				bind:change="change"
+				bind:sortend="sortEnd"
+				bind:dragdown="dragDown"
+				need-drag-down="{{true}}"
+				need-sort="{{true}}"
+				need-scroll="{{true}}"
+				drag-down-distance="120"
+				list-data="{{listData}}"
+				mode="single"
+				columns="{{size}}"
+				scroll-top="{{scrollTop}}"
+				top-size="110"
+				bottom-size="{{isIphoneX ? 380 : 300 }}">
+	</drag>
+</view>
+<view class="line">
+	拖拽新增
+</view>
+<!--<drag id="drag2"-->
+<!--			bind:click="itemClick"-->
+<!--			bind:change="change"-->
+<!--			bind:sortend="sortEnd"-->
+<!--			list-data="{{listData2}}"-->
+<!--			mode="single"-->
+<!--			columns="{{size}}"-->
+<!--			scroll-top="{{scrollTop}}"-->
+<!--			top-size="110"-->
+<!--			bottom-size="{{isIphoneX ? 380 : 300 }}">-->
+<!--	<view slot="before" class="extra">-->
+<!--		第0个元素之前插入该元素, 该元素不参与排序-->
+<!--	</view>-->
+<!--	<view slot="after" class="extra">-->
+<!--		第0个元素之后插入该元素, 该元素不参与排序-->
+<!--	</view>-->
+<!--	<view slot="plus" class="plus-wrap" bindtap="add">-->
+<!--		<view class="plus"></view>-->
+<!--	</view>-->
+<!--</drag>-->

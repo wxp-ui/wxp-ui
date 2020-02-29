@@ -46,17 +46,10 @@ preferences -> file watchers -> + scss 文件 ->
 - scroll组件
 - tab组件
 - drag组件
+- x-drag组件
 - date-picker组件
 - side-slip组件(基于movable-view实现)
 - index-list组件
-
-## 功能解析
-
-[drag组件实现分析](https://www.cnblogs.com/haha1212/p/11562944.html)
-
-[swipe-list组件实现分析](https://www.cnblogs.com/haha1212/p/11184595.html)
-
-[date-picker组件实现分析](https://www.cnblogs.com/haha1212/p/11191035.html)
 
 ## 如何使用
 

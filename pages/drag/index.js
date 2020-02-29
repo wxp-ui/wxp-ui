@@ -100,6 +100,7 @@ Page({
 				fixed: true
 			}
 		],
+		pageMetaScrollTop: 0,
 		scrollTop: 0
 	},
 	sortEnd(e) {
@@ -162,6 +163,11 @@ Page({
 			this.drag.init();
 		}, 300)
 
+	},
+	scroll(e) {
+		this.setData({
+			pageMetaScrollTop: e.detail.scrollTop
+		})
 	},
 	// 页面滚动
 	onPageScroll(e) {

@@ -1,39 +1,4 @@
-/**
- * 判断是否超出范围
- */
-const IsOutRange = (x1, y1, x2, y2, x3, y3) => {
-	return x1 < 0 || x1 >= y1 || x2 < 0 || x2 >= y2 || x3 < 0 || x3 >= y3
-};
-
-/**
- * 版本号比较
- */
-const compareVersion = (v1, v2) => {
-	v1 = v1.split('.')
-	v2 = v2.split('.')
-	const len = Math.max(v1.length, v2.length)
-
-	while (v1.length < len) {
-		v1.push('0')
-	}
-	while (v2.length < len) {
-		v2.push('0')
-	}
-
-	for (let i = 0; i < len; i++) {
-		const num1 = parseInt(v1[i])
-		const num2 = parseInt(v2[i])
-
-		if (num1 > num2) {
-			return 1
-		} else if (num1 < num2) {
-			return -1
-		}
-	}
-
-	return 0
-}
-
+let time = 100, gap = 100;
 
 Component({
 	options: {
@@ -43,22 +8,19 @@ Component({
 		beforeExtraNodes: {type: Array, value: []},            // 插入正常节点之前的额外节点
 		afterExtraNodes: {type: Array, value: []},             // 插入正常节点之后的额外节点
 		listData: {type: Array, value: []},                    // 数据源
-		columns: {type: Number, value: 1},                     // 列数
-		topSize: {type: Number, value: 0},                     // 顶部高度
-		bottomSize: {type: Number, value: 0},                  // 底部高度
-		scrollTop: {type: Number, value: 0}                    // 页面滚动高度
+		dragDownDistance: {type: Number, value: 0},            // 下拉触发事件距离
+		needDragDown: {type: Boolean, value: false},           // 是否需要下拉事件
+		needSort: {type: Boolean, value: true},                // 是否需要排序
+		needScroll: {type: Boolean, value: true},              // 是否需要排序
 	},
 	data: {
 		/* 未渲染数据 */
-		pageMetaSupport: false,                                 // 当前版本是否支持 page-meta 标签
-		windowHeight: 0,                                        // 视窗高度
+		windowWidth: 0,                                         // 视窗宽度
 		platform: '',                                           // 平台信息
-		realTopSize: 0,                                         // 计算后顶部固定高度实际值
-		realBottomSize: 0,                                      // 计算后底部固定高度实际值
-		rows: 0,                                                // 行数
+		maxScroll: 0,                                           // 最大滚动距离
 		itemDom: {width: 0, height: 0, left: 0, top: 0},        // 每一项 item 的 dom 信息, 由于大小一样所以只存储一个
 		itemWrapDom: {width: 0, height: 0, left: 0, top: 0},    // 整个拖拽区域的 dom 信息
-		startId: 0,                                             // 初始触摸点 identifier
+		startTouch: {pageX: 0, pageY: 0, identifier: 0},        // 初始触摸点 identifier
 		preStartKey: -1,                                        // 前一次排序时候的起始 sortKey 值
 
 		/* 渲染数据 */
@@ -67,41 +29,109 @@ Component({
 		curZ: -1,                                               // 当前激活的元素, 用于控制激活元素z轴显示
 		tranX: 0,                                               // 当前激活元素的 X轴 偏移量
 		tranY: 0,                                               // 当前激活元素的 Y轴 偏移量
-		itemWrapHeight: 0,                                      // 动态计算父级元素高度
+		wrapStyle: "",                                          // 父级 item 元素样式
 		dragging: false,                                        // 是否在拖拽中
 		itemTransition: false,                                  // item 变换是否需要过渡动画, 首次渲染不需要
+		scrollTransition: false,                                // 最外层 scroll 是否需要过渡动画
+		scrollLeft: 0,                                          // 最外层 scroll 元素左边滚动距离
+		currentItem: {},                                        // 最外层 scroll 元素左边滚动距离
+		animationData: {},                                        // 最外层 scroll 元素左边滚动距离
 	},
 	methods: {
+		scrollStart(e) {
+			this.setData({scrollTransition: false})
+			let startTouch = e.changedTouches[0];
+			this.startClientX = startTouch.clientX;
+			this.scrollLeft = this.data.scrollLeft;
+		},
+		scrollMove(e) {
+			if (this.data.scrollTransition) return;
+			let {maxScroll} = this.data;
+			let currentTouch = e.changedTouches[0];
+			let _scrollLeft = this.startClientX - currentTouch.clientX + this.scrollLeft;
+			_scrollLeft = _scrollLeft >= maxScroll ? maxScroll : _scrollLeft;
+			_scrollLeft = _scrollLeft <= 0 ? 0 : _scrollLeft;
+
+			this.setData({
+				scrollLeft: _scrollLeft,
+			})
+		},
+		scrollEnd(e) {
+
+		},
+		scroll(e) {
+			this.data.scrollLeft = e.detail.scrollLeft;
+		},
+		getKeyByClientX(clientX) {
+			let {scrollLeft, itemDom} = this.data;
+
+			let tranX = clientX - itemDom.width / 2 + scrollLeft;
+
+			return Math.round(tranX / itemDom.width);
+		},
 		/**
 		 * 长按触发移动排序
 		 */
 		longPress(e) {
+
+
+			this.setData({
+				scrollTransition: true
+			})
 			// 获取触摸点信息
 			let startTouch = e.changedTouches[0];
 			if (!startTouch) return;
 
+			this.startKey = this.getKeyByClientX(startTouch.clientX);
+
+			const currentItem = this.data.list.find(item => item.sortKey === this.startKey);
+			const index = this.data.list.findIndex(item => item.sortKey === this.startKey);
+			this.setData({currentItem});
+
+			console.log(currentItem)
+
 			// 固定项则返回
-			let index = e.currentTarget.dataset.index;
 			if (this.isFixed(index)) return;
 
 			// 防止多指触发 drag 动作, 如果已经在 drag 中则返回, touchstart 事件中有效果
 			if (this.data.dragging) return;
 			this.setData({dragging: true});
 
-			let {platform, itemDom, itemWrapDom} = this.data,
+			let {platform, maxScroll, scrollLeft, itemDom, itemWrapDom, windowWidth} = this.data,
 				{pageX: startPageX, pageY: startPageY, identifier: startId} = startTouch;
 
 			// 计算X,Y轴初始位移, 使 item 中心移动到点击处
-			let tranX = startPageX - itemDom.width / 2 - itemWrapDom.left,
+			let tranX = startPageX - itemDom.width / 2,
 				tranY = startPageY - itemDom.height / 2 - itemWrapDom.top;
-			// 单列时候X轴初始不做位移
-			if (this.data.columns === 1) tranX = 0;
 
-			this.data.startId = startId;
-			this.setData({cur: index, curZ: index, tranX, tranY});
+			this.data.startTouch = startTouch;
+			this.setData({cur: index, tranX, tranY});
+
+			if (this.data.needScroll) {
+				clearTimeout(this.timer)
+				// 到侧边底自动滑动
+				if (startPageX + itemDom.width / 2 >= windowWidth - gap) {
+					this.timer = setTimeout(() => {
+						let _scrollLeft = scrollLeft + gap;
+						_scrollLeft = _scrollLeft >= maxScroll ? maxScroll : _scrollLeft;
+						_scrollLeft = _scrollLeft <= 0 ? 0 : _scrollLeft;
+						this.setData({scrollLeft: _scrollLeft})
+						this.touchMove(e);
+					}, time)
+				} else if (startPageX - itemDom.width / 2 <= gap) {
+					this.timer = setTimeout(() => {
+						let _scrollLeft = scrollLeft - gap;
+						_scrollLeft = _scrollLeft >= maxScroll ? maxScroll : _scrollLeft;
+						_scrollLeft = _scrollLeft <= 0 ? 0 : _scrollLeft;
+						this.setData({scrollLeft: _scrollLeft})
+						this.touchMove(e);
+					}, time)
+				}
+			}
 
 			if (platform !== "devtools") wx.vibrateShort();
 		},
+
 		touchMove(e) {
 			// 获取触摸点信息
 			let currentTouch = e.changedTouches[0];
@@ -109,57 +139,70 @@ Component({
 
 			if (!this.data.dragging) return;
 
-			let {pageMetaSupport, windowHeight, realTopSize, realBottomSize, itemDom, itemWrapDom, preStartKey, columns, rows} = this.data,
-				{pageX: currentPageX, pageY: currentPageY, identifier: currentId, clientY: currentClientY} = currentTouch;
+			let {windowWidth, maxScroll, scrollLeft, itemDom, itemWrapDom, preStartKey, startTouch, needDragDown, needSort, needScroll} = this.data,
+				{pageX: currentPageX, pageY: currentPageY, identifier: currentId, clientX: currentClientX, clientY: currentClientY} = currentTouch;
 
 			// 如果不是同一个触发点则返回
-			if (this.data.startId !== currentId) return;
+			if (startTouch.identifier !== currentId) return;
 
 			// 通过 当前坐标点, 初始坐标点, 初始偏移量 来计算当前偏移量
-			let tranX = currentPageX - itemDom.width / 2 - itemWrapDom.left,
-				tranY = currentPageY - itemDom.height / 2 - itemWrapDom.top;
-			// 单列时候X轴初始不做位移
-			if (columns === 1) tranX = 0;
-
-			// 到顶到底自动滑动
-			if (currentClientY > windowHeight - itemDom.height - realBottomSize) {
-				// 当前触摸点pageY + item高度 - (屏幕高度 - 底部固定区域高度)
-
-				if (pageMetaSupport) {
-					this.triggerEvent("scroll", {
-						scrollTop: currentPageY + itemDom.height - (windowHeight - realBottomSize)
-					});
-				} else {
-					wx.pageScrollTo({
-						scrollTop: currentPageY + itemDom.height - (windowHeight - realBottomSize),
-						duration: 300
-					});
-				}
-			} else if (currentClientY < itemDom.height + realTopSize) {
-				// 当前触摸点pageY - item高度 - 顶部固定区域高度
-
-				if (pageMetaSupport) {
-					this.triggerEvent("scroll", {
-						scrollTop: currentPageY - itemDom.height - realTopSize
-					});
-				} else {
-					wx.pageScrollTo({
-						scrollTop: currentPageY - itemDom.height - realTopSize,
-						duration: 300
-					});
-				}
-			}
+			let tranX = currentClientX - itemDom.width / 2, tranY = currentClientY - itemDom.height / 2 - itemWrapDom.top;
 
 			// 设置当前激活元素偏移量
 			this.setData({tranX: tranX, tranY: tranY});
 
 			// 获取 startKey 和 endKey
-			let startKey = parseInt(e.currentTarget.dataset.key);
-			let curX = Math.round(tranX / itemDom.width), curY = Math.round(tranY / itemDom.height);
-			let endKey = curX + columns * curY;
+			let startKey = this.startKey;
+			let endKey = this.getKeyByClientX(currentClientX), curY = Math.round(tranY / itemDom.height);
 
-			// 遇到固定项和超出范围则返回
-			if (this.isFixed(endKey) || IsOutRange(curX, columns, curY, rows, endKey, this.data.list.length)) return;
+			// if (needDragDown && tranY > this.data.dragDownDistance) {
+			// 	let index = e.currentTarget.dataset.index;
+			//
+			// 	let list = this.data.list;
+			//
+			// 	let item = list[index];
+			//
+			// 	if (item.data.marked) return;
+			//
+			// 	item.data.marked = true
+			//
+			// 	this.setData({
+			// 		list
+			// 	})
+			//
+			// 	this.setData({
+			// 		itemTransition: false
+			// 	})
+			// 	this.touchEnd();
+			// 	this.triggerEvent("dragdown", {clientX: currentClientX, item: item.data});
+			// 	return;
+			// }
+
+			let _scrollLeft = scrollLeft;
+
+			if (needScroll) {
+				clearTimeout(this.timer)
+				this.clearAnimation('#scroll', {translateX: true})
+				// 到侧边底自动滑动
+				if (currentClientX + itemDom.width / 2 >= windowWidth - gap) {
+					_scrollLeft = scrollLeft + gap;
+					_scrollLeft = _scrollLeft >= maxScroll ? maxScroll : _scrollLeft;
+					_scrollLeft = _scrollLeft <= 0 ? 0 : _scrollLeft;
+					this.setData({
+						scrollLeft: _scrollLeft,
+					});
+				} else if (currentClientX - itemDom.width / 2 <= gap) {
+					_scrollLeft = scrollLeft - gap;
+					_scrollLeft = _scrollLeft >= maxScroll ? maxScroll : _scrollLeft;
+					_scrollLeft = _scrollLeft <= 0 ? 0 : _scrollLeft;
+					this.setData({
+						scrollLeft: _scrollLeft,
+					})
+				}
+			}
+
+			// 遇到固定项和超出范围则返回,以及是否需要排序
+			if (this.isFixed(endKey) || curY !== 0 || endKey < 0 || endKey >= this.data.list.length || !needSort) return;
 
 			// 防止拖拽过程中发生乱序问题
 			if (startKey === endKey || startKey === preStartKey) return;
@@ -167,6 +210,7 @@ Component({
 
 			// 触发排序
 			this.sort(startKey, endKey);
+			this.startKey = endKey;
 		},
 		touchEnd() {
 			if (!this.data.dragging) return;
@@ -215,13 +259,14 @@ Component({
 		 */
 		updateList(data, vibrate = true) {
 			let {platform} = this.data;
-
 			let list = data.map((item, index) => {
-				item.tranX = `${(item.sortKey % this.data.columns) * 100}%`;
-				item.tranY = `${Math.floor(item.sortKey / this.data.columns) * 100}%`;
+				item.tranX = `${item.sortKey * 100}%`;
+				item.tranY = 0;
 				return item;
 			});
-			this.setData({list: list});
+			this.setData({
+				list: list
+			});
 
 			if (!vibrate) return;
 			if (platform !== "devtools") wx.vibrateShort();
@@ -310,32 +355,25 @@ Component({
 		/**
 		 *  初始化获取 dom 信息
 		 */
-		initDom() {
-			let {windowWidth, windowHeight, platform, SDKVersion} = wx.getSystemInfoSync();
+		initDom(isMaxScroll) {
+			let {windowWidth, platform} = wx.getSystemInfoSync();
+			let remScale = (windowWidth || 375) / 375;
 
-			this.data.pageMetaSupport = compareVersion(SDKVersion, '2.9.0') >= 0;
-
-			let remScale = (windowWidth || 375) / 375,
-				realTopSize = this.data.topSize * remScale / 2,
-				realBottomSize = this.data.bottomSize * remScale / 2;
-
-			this.data.windowHeight = windowHeight;
+			this.data.windowWidth = windowWidth;
 			this.data.platform = platform;
-			this.data.realTopSize = realTopSize;
-			this.data.realBottomSize = realBottomSize;
 
 			this.createSelectorQuery().select(".item").boundingClientRect((res) => {
-				let rows = Math.ceil(this.data.list.length / this.data.columns);
-
-				this.data.rows = rows;
 				this.data.itemDom = res;
+				let wrapStyle = `width: ${this.data.list.length * res.width}px;height: ${res.height}px;`
 				this.setData({
-					itemWrapHeight: rows * res.height,
+					wrapStyle: wrapStyle
 				});
 
-				this.createSelectorQuery().select(".item-wrap").boundingClientRect((res) => {
+				this.createSelectorQuery().select("#item-wrap").boundingClientRect((res) => {
+					let maxScroll = res.width - windowWidth;
+					maxScroll = maxScroll < 0 ? 0 : maxScroll;
+					this.data.maxScroll = maxScroll;
 					this.data.itemWrapDom = res;
-					this.data.itemWrapDom.top += this.data.scrollTop
 				}).exec();
 			}).exec();
 		},
@@ -343,12 +381,12 @@ Component({
 		 *  初始化函数
 		 *  {listData, columns, topSize, bottomSize} 参数改变需要重新调用初始化方法
 		 */
-		init() {
+		init(needTranFirst = false) {
 			this.clearData();
-			this.setData({itemTransition: false});
+			this.setData({itemTransition: needTranFirst});
 			// 避免获取不到节点信息报错问题
 			if (this.data.listData.length === 0) {
-				this.setData({list: [], itemWrapHeight: 0});
+				this.setData({list: [], wrapStyle: ""});
 				return;
 			}
 

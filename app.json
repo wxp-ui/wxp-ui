@@ -9,7 +9,8 @@
 		"pages/side-slip/index",
 		"pages/index-list/index",
 		"pages/add-cart/index",
-		"pages/drag/index"
+		"pages/drag/index",
+		"pages/x-drag/index"
 	],
 	"permission": {
 		"scope.userLocation": {
@@ -21,7 +22,7 @@
 		"navigationBarTextStyle": "black",
 		"navigationBarBackgroundColor": "#ffffff",
 		"navigationBarTitleText": "WxP UI",
-		"backgroundColor": "#f7f7f7"
+		"backgroundColor": "#f8f9fa"
 	},
 	"style": "v2",
 	"sitemapLocation": "sitemap.json"

@@ -38,6 +38,9 @@
 	<navigator url="/pages/drag/index" hover-class="hover" hover-start-time="{{0}}" class="cell">
 		<view class="cell__bd">drag</view>
 	</navigator>
+	<navigator url="/pages/x-drag/index" hover-class="hover" hover-start-time="{{0}}" class="cell">
+		<view class="cell__bd">x-drag</view>
+	</navigator>
 </view>
 
 <view class="cells">
