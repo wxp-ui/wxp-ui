@@ -1,10 +1,10 @@
-<view class="item-wrap">
-	<view id="scroll"
-				style="opacity: 0"
-				bind:touchstart="scrollStart"
-				bind:touchmove="scrollMove"
-				bind:touchend="scrollEnd"
-				style="transform: translateX({{-scrollLeft}}px);{{scrollTransition ? 'transition: transform 0.3s' : ''}}">
+<view class="item-wrap" >
+	<scroll-view
+		scroll-x
+		style="position: relative"
+		bindscroll="scroll"
+		scroll-with-animation
+		scroll-left="{{scrollLeft}}">
 		<view id="item-wrap" class="item-wrap" style="{{wrapStyle}}">
 			<view
 				class="item {{index === cur ? 'cur' : ''}} {{itemTransition  ? 'itemTransition':''}} {{item.fixed ? 'fixed' : ''}}"
@@ -29,17 +29,19 @@
 
 			</view>
 
-			<view style="position: absolute;z-index: 9;top: 0;left: 0;width: 100%;height: 100%;"
+			<view style="position: absolute;z-index: 22;top: 0;left: 0;width: 100%;height: 100%;"
 						bind:longpress="longPress"
 						catch:touchmove="{{dragging?'touchMove':''}}"
-						catch:touchend="{{dragging?'touchEnd':''}}"></view>
-		</view>
-	</view>
+						catch:touchend="{{dragging?'touchEnd':''}}">
 
-	<view wx:if="{{dragging}}" class="item"
-				style="top:0;left:0;transform: translate3d({{tranX }}px,{{tranY}}px, 0);width: 100px;opacity: 0.8">
+			</view>
+		</view>
+
+	</scroll-view>
+
+	<view wx:if="{{dragging}}"  class="item" style="top:0;left:0;transform: translate3d({{tranX }}px,{{tranY}}px, 0);width: 100px;opacity: 0.8">
 		<view class="info">
-			<view class="info__item">
+			<view class="info__item" >
 				<image class="image" src="{{currentItem.data.images}}"></image>
 			</view>
 		</view>

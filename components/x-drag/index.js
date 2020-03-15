@@ -1,17 +1,11 @@
-let time = 100, gap = 100;
-
 Component({
 	options: {
 		multipleSlots: true
 	},
 	properties: {
-		beforeExtraNodes: {type: Array, value: []},            // 插入正常节点之前的额外节点
-		afterExtraNodes: {type: Array, value: []},             // 插入正常节点之后的额外节点
-		listData: {type: Array, value: []},                    // 数据源
-		dragDownDistance: {type: Number, value: 0},            // 下拉触发事件距离
-		needDragDown: {type: Boolean, value: false},           // 是否需要下拉事件
-		needSort: {type: Boolean, value: true},                // 是否需要排序
-		needScroll: {type: Boolean, value: true},              // 是否需要排序
+		beforeExtraNodes: {type: Array, value: []},             // 插入正常节点之前的额外节点
+		afterExtraNodes: {type: Array, value: []},              // 插入正常节点之后的额外节点
+		listData: {type: Array, value: []},                     // 数据源
 	},
 	data: {
 		/* 未渲染数据 */
@@ -32,33 +26,10 @@ Component({
 		wrapStyle: "",                                          // 父级 item 元素样式
 		dragging: false,                                        // 是否在拖拽中
 		itemTransition: false,                                  // item 变换是否需要过渡动画, 首次渲染不需要
-		scrollTransition: false,                                // 最外层 scroll 是否需要过渡动画
-		scrollLeft: 0,                                          // 最外层 scroll 元素左边滚动距离
-		currentItem: {},                                        // 最外层 scroll 元素左边滚动距离
-		animationData: {},                                        // 最外层 scroll 元素左边滚动距离
+		scrollLeft: 0,                                          // scroll-view 滚动距离
+		currentItem: {},                                        // 当前拖拽元素信息
 	},
 	methods: {
-		scrollStart(e) {
-			this.setData({scrollTransition: false})
-			let startTouch = e.changedTouches[0];
-			this.startClientX = startTouch.clientX;
-			this.scrollLeft = this.data.scrollLeft;
-		},
-		scrollMove(e) {
-			if (this.data.scrollTransition) return;
-			let {maxScroll} = this.data;
-			let currentTouch = e.changedTouches[0];
-			let _scrollLeft = this.startClientX - currentTouch.clientX + this.scrollLeft;
-			_scrollLeft = _scrollLeft >= maxScroll ? maxScroll : _scrollLeft;
-			_scrollLeft = _scrollLeft <= 0 ? 0 : _scrollLeft;
-
-			this.setData({
-				scrollLeft: _scrollLeft,
-			})
-		},
-		scrollEnd(e) {
-
-		},
 		scroll(e) {
 			this.data.scrollLeft = e.detail.scrollLeft;
 		},
@@ -73,11 +44,6 @@ Component({
 		 * 长按触发移动排序
 		 */
 		longPress(e) {
-
-
-			this.setData({
-				scrollTransition: true
-			})
 			// 获取触摸点信息
 			let startTouch = e.changedTouches[0];
 			if (!startTouch) return;
@@ -87,8 +53,6 @@ Component({
 			const currentItem = this.data.list.find(item => item.sortKey === this.startKey);
 			const index = this.data.list.findIndex(item => item.sortKey === this.startKey);
 			this.setData({currentItem});
-
-			console.log(currentItem)
 
 			// 固定项则返回
 			if (this.isFixed(index)) return;
@@ -107,28 +71,6 @@ Component({
 			this.data.startTouch = startTouch;
 			this.setData({cur: index, tranX, tranY});
 
-			if (this.data.needScroll) {
-				clearTimeout(this.timer)
-				// 到侧边底自动滑动
-				if (startPageX + itemDom.width / 2 >= windowWidth - gap) {
-					this.timer = setTimeout(() => {
-						let _scrollLeft = scrollLeft + gap;
-						_scrollLeft = _scrollLeft >= maxScroll ? maxScroll : _scrollLeft;
-						_scrollLeft = _scrollLeft <= 0 ? 0 : _scrollLeft;
-						this.setData({scrollLeft: _scrollLeft})
-						this.touchMove(e);
-					}, time)
-				} else if (startPageX - itemDom.width / 2 <= gap) {
-					this.timer = setTimeout(() => {
-						let _scrollLeft = scrollLeft - gap;
-						_scrollLeft = _scrollLeft >= maxScroll ? maxScroll : _scrollLeft;
-						_scrollLeft = _scrollLeft <= 0 ? 0 : _scrollLeft;
-						this.setData({scrollLeft: _scrollLeft})
-						this.touchMove(e);
-					}, time)
-				}
-			}
-
 			if (platform !== "devtools") wx.vibrateShort();
 		},
 
@@ -139,8 +81,8 @@ Component({
 
 			if (!this.data.dragging) return;
 
-			let {windowWidth, maxScroll, scrollLeft, itemDom, itemWrapDom, preStartKey, startTouch, needDragDown, needSort, needScroll} = this.data,
-				{pageX: currentPageX, pageY: currentPageY, identifier: currentId, clientX: currentClientX, clientY: currentClientY} = currentTouch;
+			let {windowWidth, maxScroll, scrollLeft, itemDom, itemWrapDom, preStartKey, startTouch} = this.data,
+				{identifier: currentId, clientX: currentClientX, clientY: currentClientY} = currentTouch;
 
 			// 如果不是同一个触发点则返回
 			if (startTouch.identifier !== currentId) return;
@@ -155,54 +97,38 @@ Component({
 			let startKey = this.startKey;
 			let endKey = this.getKeyByClientX(currentClientX), curY = Math.round(tranY / itemDom.height);
 
-			// if (needDragDown && tranY > this.data.dragDownDistance) {
-			// 	let index = e.currentTarget.dataset.index;
-			//
-			// 	let list = this.data.list;
-			//
-			// 	let item = list[index];
-			//
-			// 	if (item.data.marked) return;
-			//
-			// 	item.data.marked = true
-			//
-			// 	this.setData({
-			// 		list
-			// 	})
-			//
-			// 	this.setData({
-			// 		itemTransition: false
-			// 	})
-			// 	this.touchEnd();
-			// 	this.triggerEvent("dragdown", {clientX: currentClientX, item: item.data});
-			// 	return;
-			// }
+			clearTimeout(this.timer)
+			// 到侧边自动滑动
+			if (currentClientX + itemDom.width / 2 >= windowWidth - 20) {
+				// 根据偏移距离计算速度
+				let speed = (currentClientX + itemDom.width / 2) - (windowWidth - 20);
+				if (speed > 0 && speed < 40) speed = 2;
 
-			let _scrollLeft = scrollLeft;
-
-			if (needScroll) {
-				clearTimeout(this.timer)
-				this.clearAnimation('#scroll', {translateX: true})
-				// 到侧边底自动滑动
-				if (currentClientX + itemDom.width / 2 >= windowWidth - gap) {
-					_scrollLeft = scrollLeft + gap;
+				this.timer = setTimeout(() => {
+					let _scrollLeft = scrollLeft + speed;
 					_scrollLeft = _scrollLeft >= maxScroll ? maxScroll : _scrollLeft;
-					_scrollLeft = _scrollLeft <= 0 ? 0 : _scrollLeft;
 					this.setData({
 						scrollLeft: _scrollLeft,
 					});
-				} else if (currentClientX - itemDom.width / 2 <= gap) {
-					_scrollLeft = scrollLeft - gap;
-					_scrollLeft = _scrollLeft >= maxScroll ? maxScroll : _scrollLeft;
+					this.touchMove(e);
+				}, 10)
+			} else if (currentClientX - itemDom.width / 2 <= 20) {
+				// 根据距离计算速度
+				let speed = 20 - (currentClientX - itemDom.width / 2);
+				if (speed > 0 && speed < 40) speed = 2;
+
+				this.timer = setTimeout(() => {
+					let _scrollLeft = scrollLeft - speed;
 					_scrollLeft = _scrollLeft <= 0 ? 0 : _scrollLeft;
 					this.setData({
 						scrollLeft: _scrollLeft,
 					})
-				}
+					this.touchMove(e);
+				}, 10)
 			}
 
 			// 遇到固定项和超出范围则返回,以及是否需要排序
-			if (this.isFixed(endKey) || curY !== 0 || endKey < 0 || endKey >= this.data.list.length || !needSort) return;
+			if (this.isFixed(endKey) || curY !== 0 || endKey < 0 || endKey >= this.data.list.length) return;
 
 			// 防止拖拽过程中发生乱序问题
 			if (startKey === endKey || startKey === preStartKey) return;
@@ -216,6 +142,9 @@ Component({
 			if (!this.data.dragging) return;
 			this.triggerCustomEvent(this.data.list, "sortend");
 			this.clearData();
+			clearInterval(this.interval)
+			this.interval = null;
+
 		},
 		/**
 		 * 根据 startKey 和 endKey 去重新计算每一项 sortKey
