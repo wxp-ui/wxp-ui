@@ -19,7 +19,7 @@ App({
 	 * @param loading 请求加载效果 {0: 正常加载, 1: 表单提交加载效果 }
 	 * @param loadingMsg 请求提示信息
 	 */
-	httpBase: function (method, url, data, loading = false, loadingMsg) {
+	httpBase: function (method, url, data, loading, loadingMsg) {
 		let _this = this;
 
 		let requestUrl = this.baseUrl + url;
@@ -80,10 +80,10 @@ App({
 
 		return new Promise(request);
 	},
-	httpGet: function (url, data, loading, loadingMsg) {
+	httpGet: function ({url = "", data = {}, loading = false, loadingMsg = ""} = {}) {
 		return this.httpBase("GET", url, data, loading, loadingMsg);
 	},
-	httpPost: function (url, data, loading, loadingMsg) {
+	httpPost: function ({url, data, loading, loadingMsg}) {
 		return this.httpBase("POST", url, data, loading, loadingMsg);
 	},
 	globalData: {

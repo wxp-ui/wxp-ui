@@ -18,7 +18,9 @@ Page({
 		pageData.requesting = true;
 		this.setCurrentData(currentCur, pageData);
 
-		app.httpGet(`/wxarticle/list/${pageData.id}/${currentPage}/json`).then((res) => {
+		app.httpGet({
+			url: `/wxarticle/list/${pageData.id}/${currentPage}/json`
+		}).then((res) => {
 			let data = res.data || {
 				datas: [],
 				over: false
@@ -91,7 +93,7 @@ Page({
 	showArticle(e) {
 		wx.setClipboardData({
 			data: e.currentTarget.dataset.link,
-			success (res) {
+			success(res) {
 				wx.showToast({
 					icon: "none",
 					title: "链接已复制到剪切板"
@@ -103,7 +105,9 @@ Page({
 		// })
 	},
 	onLoad() {
-		app.httpGet("/wxarticle/chapters/json").then((res) => {
+		app.httpGet({
+			url: "/wxarticle/chapters/json"
+		}).then((res) => {
 			let menus = res.data || [];
 
 			let categoryMenu = [];
