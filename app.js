@@ -83,7 +83,7 @@ App({
 	httpGet: function ({url = "", data = {}, loading = false, loadingMsg = ""} = {}) {
 		return this.httpBase("GET", url, data, loading, loadingMsg);
 	},
-	httpPost: function ({url, data, loading, loadingMsg}) {
+	httpPost: function ({url = "", data = {}, loading = false, loadingMsg = ""} = {}) {
 		return this.httpBase("POST", url, data, loading, loadingMsg);
 	},
 	globalData: {
