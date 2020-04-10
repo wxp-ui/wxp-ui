@@ -13,7 +13,7 @@ Page({
 		let currentCur = this.data.categoryCur;
 		let pageData = this.getCurrentData(currentCur);
 
-		if (pageData.end) return;
+		if (type !== "refresh" && pageData.end) return;
 
 		pageData.requesting = true;
 		this.setCurrentData(currentCur, pageData);
