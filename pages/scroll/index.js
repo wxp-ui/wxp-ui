@@ -61,10 +61,10 @@ Page({
 		emptyShow: false,
 		page: pageStart,
 		listData: [],
-		hasTop: true,
     enableBackToTop: false,
 		refreshSize: 90,
-		bottomSize: 350,
+		topSize: 90,
+		bottomSize: 400,
 		color: "#3F82FD",
 		items: [
 			{name: '蓝', value: '#3F82FD', checked: 'true'},
@@ -88,6 +88,11 @@ Page({
 	refreshChange(e) {
 		this.setData({
 			refreshSize: e.detail.value
+		})
+	},
+	topChange(e) {
+		this.setData({
+			topSize: e.detail.value
 		})
 	},
 	bottomChange(e) {

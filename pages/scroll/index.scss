@@ -9,10 +9,12 @@ $top-height: 90rpx;
 	width: 100%;
 	background-color: #ffffff;
 	z-index: 99;
+	height: 90rpx;
 	line-height: 90rpx;
 	text-align: center;
 	font-weight: bold;
 	box-shadow: $shadow;
+	overflow: hidden;
 }
 
 .cells {

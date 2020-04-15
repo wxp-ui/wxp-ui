@@ -75,8 +75,8 @@ git clone https://github.com/singletouch/wx-plugin.git
 | listCount | 当前列表长度 | Number | -- | 0 |
 | emptyUrl | 空列表的展示图片 | String | * | /assets/image/empty/empty.png |
 | emptyText | 空列表的文字提示 | String | * | 未找到数据 |
-| hasTop | 是否有header | Boolean | -- | false |
 | refreshSize | 下拉刷新的高度 | Number | -- | 90 |
+| topSize | 顶部高度 | Number | -- | 0 |
 | bottomSize | 底部高度 | Number | -- | 0 |
 | color | 颜色 | String | -- | "" |
 | enableBackToTop | 双击顶部状态栏回到顶部 | Boolean | -- | false |

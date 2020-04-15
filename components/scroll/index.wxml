@@ -1,7 +1,7 @@
 <view>
 	<view id="success"
 		  class="success {{successShow ? 'success--show' : ''}} {{successTran ? 'success--tran' : ''}}"
-		  style="top: {{hasTop ? refreshSize : 0}}rpx;color: {{color}}">
+		  style="top: {{topSize}}rpx;color: {{color}}">
 		<view class="info">刷新成功</view>
 	</view>
 	<movable-area class="movable-area">
@@ -15,7 +15,7 @@
 				y='{{move}}'>
 			<scroll-view
 					class="scroll__view"
-					style="padding-bottom: {{bottomSize}}rpx;padding-top: {{ hasTop ? refreshSize : 0}}rpx;"
+					style="padding-bottom: {{bottomSize}}rpx;padding-top: {{topSize}}rpx;"
 					scroll-y="{{refreshStatus == 1}}"
 					bindscroll="scroll"
 					scroll-top="{{scrollTop}}"

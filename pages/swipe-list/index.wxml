@@ -15,7 +15,7 @@
 				empty-show="{{item.emptyShow}}"
 				list-count="{{item.listData.length}}"
 				has-top="{{true}}"
-				refresh-size="{{80}}"
+				top-size="{{80}}"
 				bind:refresh="refresh"
 				bind:more="more">
 				<view class="cells">

@@ -1,4 +1,4 @@
-<view class="title" style="line-height: {{refreshSize < 80 ? 80 : refreshSize }}rpx" wx:if="{{hasTop}}">
+<view class="title" style="height: {{topSize}}rpx;line-height: {{topSize}}rpx;">
 	标题
 </view>
 
@@ -10,6 +10,7 @@
 		has-top="{{hasTop}}"
     enable-back-to-top="{{enableBackToTop}}"
 		refresh-size="{{refreshSize}}"
+		top-size="{{topSize}}"
 		bottom-size="{{bottomSize}}"
 		color="{{color}}"
 		bind:refresh="refresh"
@@ -39,17 +40,20 @@
 		</view>
 	</view>
 	<view class="panel-item">
+		<view class="panel-item__hd">top-size:</view>
+		<view class="panel-item__bd">
+			<slider bindchanging="topChange" value="{{topSize}}" show-value="{{true}}" min="0" max="200"
+							step="10"/>
+		</view>
+	</view>
+	<view class="panel-item">
 		<view class="panel-item__hd">bottom-size:</view>
 		<view class="panel-item__bd">
-			<slider bindchanging="bottomChange" value="{{bottomSize}}" show-value="{{true}}" min="250" max="400"
+			<slider bindchanging="bottomChange" value="{{bottomSize}}" show-value="{{true}}" min="300" max="400"
 					step="10"/>
 		</view>
 	</view>
 	<view class="panel-item">
-		<view class="panel-item__hd">has-top:</view>
-		<view class="panel-item__bd">
-			<switch checked="{{hasTop}}" bindchange="hasTopChange"/>
-		</view>
 		<view class="panel-item__hd">空列表:</view>
 		<view class="panel-item__bd">
 			<switch checked="{{empty}}" bindchange="emptyChange"/>
