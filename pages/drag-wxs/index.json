@@ -1,0 +1,5 @@
+{
+	"usingComponents": {
+		"drag": "../../components/drag-wxs/index"
+	}
+}

@@ -3,11 +3,12 @@
 	"setting": {
 		"urlCheck": false,
 		"es6": true,
+		"enhance": false,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
 		"coverView": true,
-		"nodeModules": true,
+		"nodeModules": false,
 		"autoAudits": false,
 		"showShadowRootInWxmlPanel": false,
 		"scopeDataCheck": false,
@@ -19,10 +20,11 @@
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		}
+		},
+		"bundle": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.10.3",
+	"libVersion": "2.11.0",
 	"appid": "wxe14d4ca6edeb543e",
 	"projectname": "WxP%20UI",
 	"simulatorType": "wechat",
@@ -62,6 +64,12 @@
 					"name": "pages/x-drag/index",
 					"pathName": "pages/x-drag/index",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/drag-wxs/index",
+					"pathName": "pages/drag-wxs/index",
 					"scene": null
 				}
 			]

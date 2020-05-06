@@ -10,6 +10,7 @@
 		"pages/index-list/index",
 		"pages/add-cart/index",
 		"pages/drag/index",
+		"pages/drag-wxs/index",
 		"pages/x-drag/index"
 	],
 	"permission": {

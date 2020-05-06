@@ -1,0 +1,49 @@
+<wxs module="handler" src="./index.wxs"></wxs>
+
+<view class="item-wrap"
+			style="height: {{ itemWrapHeight }}px;"
+			baseData="{{baseData}}"
+			change:baseData="{{handler.baseDataObserver}}"
+			list="{{list}}"
+			change:list="{{handler.listObserver}}">
+	<view
+		class="item"
+		wx:for="{{list}}"
+		wx:key="id"
+		data-key="{{item.sortKey}}"
+		data-index="{{index}}"
+		style="width: {{100/columns}}%"
+		bindtap="itemClick"
+		bind:longpress="{{handler.longPress}}"
+		catch:touchmove="{{dragging ? handler.touchMove : ''}}"
+		catch:touchend="{{dragging ? handler.touchEnd : ''}}">
+
+		<!-- start:请在该区域编写自己的渲染逻辑 -->
+		<view wx:if="{{columns === 1 && item.extraNode}}" class="cell">
+			<view class="cell__bd" style="height: 160rpx;">
+				<slot name="{{item.slot}}"></slot>
+			</view>
+		</view>
+		<view wx:elif="{{columns === 1 && !item.extraNode}}" class="cell">
+			<view class="cell__hd">
+				<image class="image" mode="aspectFill" src="{{item.data.images}}" alt=""/>
+			</view>
+			<view class="cell__bd">
+				<view class="name">{{item.data.title}}</view>
+				<view class="des">{{item.data.description}}</view>
+			</view>
+		</view>
+		<view wx:elif="{{columns > 1 && item.extraNode}}" class="info">
+			<view class="info__item">
+				<slot name="{{item.slot}}"></slot>
+			</view>
+		</view>
+		<view wx:elif="{{columns > 1 && !item.extraNode}}" class="info">
+			<view class="info__item">
+				<image class="image" src="{{item.data.images}}"></image>
+			</view>
+		</view>
+		<!-- end:请在该区域编写自己的渲染逻辑 -->
+
+	</view>
+</view>
