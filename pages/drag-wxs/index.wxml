@@ -81,7 +81,7 @@
 	<view class="panel-item">
 		<view class="panel-item__hd">columns:</view>
 		<view class="panel-item__bd">
-			<slider bindchanging="sizeChange" value="{{4}}" show-value="{{true}}" min="1" max="8" step="1"/>
+			<slider bindchange="sizeChange" value="{{4}}" show-value="{{true}}" min="1" max="8" step="1"/>
 		</view>
 	</view>
 </view>
