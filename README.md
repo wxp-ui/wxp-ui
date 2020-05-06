@@ -221,8 +221,7 @@ tip: 最新版本去除 `dataChange` 方法, 改为直接使用 `this.drag.init(
 
 | 参数 | 说明 | 类型 | 可选值 | 默认值 |
 | --- | --- | --- | --- | --- |
-| beforeExtraNodes | 额外节点(正常节点之前) | Array | -- | [] |
-| afterExtraNodes | 额外节点(正常节点之后) | Array | -- | [] |
+| extraNodes | 额外节点 | Array | -- | [] |
 | listData | 数据源 | Array | -- | [] |
 | columns | 列数 | Number | -- | 1 |
 | topSize | 顶部固定区域高度 | Number | -- | 0(rpx) |
@@ -245,10 +244,11 @@ tip: 最新版本去除 `dataChange` 方法, 改为直接使用 `this.drag.init(
 | fixed | 是否固定该项 | Boolean | -- | -- |
 | ... | ... | ... | ... | ... |
 
-#### beforeExtraNodes && afterExtraNodes Attributes
+#### extraNodes Attributes
 
 | 参数 | 说明 | 类型 | 可选值 | 默认值 |
 | --- | --- | --- | --- | --- |
+| type | 额外节点类型 | String/Int | -- | -- |
 | dragId | 每个数据项唯一标识(必填, 提升渲染性能) | String/Int | -- | -- |
 | destKey | 要插入的位置 | Number | -- | -- |
 | fixed | 额外节点是否固定 | Boolean | -- | -- |

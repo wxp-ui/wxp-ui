@@ -78,24 +78,24 @@ Page({
 		isIphoneX: app.globalData.isIphoneX,
 		size: 4,
 		listData: [],
-		beforeExtraNodes: [
+		extraNodes: [
 			{
-				dragId: "before0",
+				type: "destBefore",
+				dragId: "destBefore0",
 				destKey: 0,
 				slot: "before",
 				fixed: true
-			}
-		],
-		afterExtraNodes: [
+			},
 			{
-				dragId: "after0",
+				type: "destAfter",
+				dragId: "destAfter0",
 				destKey: 0,
 				slot: "after",
 				fixed: true
 			},
 			{
-				dragId: "after9",
-				destKey: 9,
+				type: "after",
+				dragId: "plus",
 				slot: "plus",
 				fixed: true
 			}
@@ -147,18 +147,6 @@ Page({
 		setTimeout(() => {
 			this.setData({
 				listData,
-				afterExtraNodes: [
-					{
-						destKey: 0,
-						slot: "after",
-						fixed: true
-					},
-					{
-						destKey: listData.length - 1,
-						slot: "plus",
-						fixed: true
-					}
-				]
 			});
 			this.drag.init();
 		}, 300)

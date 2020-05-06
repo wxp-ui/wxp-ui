@@ -40,8 +40,7 @@ Component({
 		multipleSlots: true
 	},
 	properties: {
-		beforeExtraNodes: {type: Array, value: []},            // 插入正常节点之前的额外节点
-		afterExtraNodes: {type: Array, value: []},             // 插入正常节点之后的额外节点
+		extraNodes: {type: Array, value: []},                  // 额外节点
 		listData: {type: Array, value: []},                    // 数据源
 		columns: {type: Number, value: 1},                     // 列数
 		topSize: {type: Number, value: 0},                     // 顶部高度
@@ -346,14 +345,6 @@ Component({
 		init() {
 			this.clearData();
 			this.setData({itemTransition: false});
-			// 避免获取不到节点信息报错问题
-			if (this.data.listData.length === 0) {
-				this.setData({list: [], itemWrapHeight: 0});
-				return;
-			}
-
-			let {listData, beforeExtraNodes, afterExtraNodes} = this.data;
-			let _listData = [];
 
 			let delItem = (item, extraNode) => ({
 				id: item.dragId,
@@ -365,25 +356,43 @@ Component({
 				data: item
 			});
 
+			let {listData, extraNodes} = this.data;
+			let _list = [], _before=[], _after=[], destBefore = [], destAfter = [];
+
+			extraNodes.forEach((item, index) => {
+				if(item.type === "before") {
+					_before.push(delItem(item, true));
+				} else if(item.type === "after") {
+					_after.push(delItem(item, true));
+				} else if(item.type === "destBefore") {
+					destBefore.push(delItem(item, true));
+				} else if(item.type === "destAfter") {
+					destAfter.push(delItem(item, true));
+				}
+			});
+
 			// 遍历数据源增加扩展项, 以用作排序使用
 			listData.forEach((item, index) => {
-				beforeExtraNodes.forEach((_item) => {
-					if (_item.destKey === index) _listData.push(delItem(_item, true));
+				destBefore.forEach((i) => {
+					if (i.data.destKey === index) _list.push(i);
 				});
-
-				_listData.push(delItem(item, false));
-
-				afterExtraNodes.forEach((_item, _index) => {
-					if (_item.destKey === index) _listData.push(delItem(_item, true));
+				_list.push(delItem(item, false));
+				destAfter.forEach((i) => {
+					if (i.data.destKey === index) _list.push(i);
 				});
 			});
 
-			let list = _listData.map((item, index) => {
-				return {
-					sortKey: index, // 初始化 sortKey 为当前项索引值
-					...item
-				};
+			let list = _before.concat(_list, _after).map((item, index) => {
+				item.sortKey = index; // 初始化 sortKey 为当前项索引值
+				item.tranX = `${(item.sortKey % this.data.columns) * 100}%`;
+				item.tranY = `${Math.floor(item.sortKey / this.data.columns) * 100}%`;
+				return item;
 			});
+
+			if (list.length === 0) {
+				this.setData({itemWrapHeight: 0});
+				return;
+			}
 
 			this.updateList(list, false);
 			// 异步加载数据时候, 延迟执行 initDom 方法, 防止基础库 2.7.1 版本及以下无法正确获取 dom 信息
