@@ -6,29 +6,40 @@ var sortCore = function (sKey, eKey, st) {
 	var _ = st.baseData;
 
 	var excludeFix = function (cKey, type) {
-		if (st.list[cKey].fixed) {
+		if (st.list[cKey].fixed) { // fixed 元素位置不会变化, 这里直接用 cKey(sortKey) 获取, 更加快捷
 			var _cKey = type ? --cKey : ++cKey;
 			return excludeFix(cKey, type);
 		}
 		return cKey;
 	}
 
+	// 先获取到 endKey 对应的 realKey, 防止下面排序过程中该 realKey 被修改
+	var endRealKey = -1;
+	st.list.forEach(function (item) {
+		if(item.sortKey === eKey) endRealKey = item.realKey;
+	});
+
 	return st.list.map(function (item) {
 		if (item.fixed) return item;
 		var cKey = item.sortKey;
+		var rKey = item.realKey;
 
 		if (sKey < eKey) {
 			// 正序拖动
 			if (cKey > sKey && cKey <= eKey) {
+				--rKey;
 				cKey = excludeFix(--cKey, true);
 			} else if (cKey === sKey) {
+				rKey = endRealKey;
 				cKey = eKey;
 			}
 		} else if (sKey > eKey) {
 			// 倒序拖动
 			if (cKey >= eKey && cKey < sKey) {
+				++rKey
 				cKey = excludeFix(++cKey, false);
 			} else if (cKey === sKey) {
+				rKey = endRealKey;
 				cKey = eKey;
 			}
 		}
@@ -37,6 +48,7 @@ var sortCore = function (sKey, eKey, st) {
 			item.tranX = (cKey % _.columns) * 100 + "%";
 			item.tranY = Math.floor(cKey / _.columns) * 100 + "%";
 			item.sortKey = cKey;
+			item.realKey = rKey;
 		}
 		return item;
 	});
@@ -156,6 +168,7 @@ var touchMove = function (event, ownerInstance) {
 	});
 
 	ownerInstance.callMethod("vibrate");
+	ownerInstance.callMethod("listChange", {list: list});
 	triggerCustomEvent(list, "change", ownerInstance);
 }
 

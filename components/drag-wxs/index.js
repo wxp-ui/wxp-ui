@@ -62,6 +62,7 @@ Component({
 		baseData: {},
 		pageMetaSupport: false,                                 // 当前版本是否支持 page-meta 标签
 		platform: '',                                           // 平台信息
+		listWxs: [],                                            // wxs 传回的最新 list 数据
 
 		/* 渲染数据 */
 		list: [],                                               // 渲染数据列
@@ -69,39 +70,6 @@ Component({
 		dragging: false,
 	},
 	methods: {
-		/**
-		 * 点击每一项后触发事件
-		 */
-		itemClick(e) {
-			let {index, key} = e.currentTarget.dataset;
-			let list = this.data.list;
-			let currentItem = list[index];
-
-			if (!currentItem.extraNode) {
-				let _list = [];
-
-				list.forEach((item) => {
-					_list[item.sortKey] = item;
-				});
-
-				let currentKey = -1;
-
-				for (let i = 0, len = _list.length; i < len; i++) {
-					let item = _list[i];
-					if (!item.extraNode) {
-						currentKey++;
-					}
-					if (item.sortKey === currentItem.sortKey) {
-						break;
-					}
-				}
-
-				this.triggerEvent('click', {
-					key: currentKey,
-					data: currentItem.data
-				});
-			}
-		},
 		vibrate() {
 			if (this.data.platform !== "devtools") wx.vibrateShort();
 		},
@@ -121,6 +89,19 @@ Component({
 			this.setData({
 				dragging: e.dragging
 			})
+		},
+		listChange(e) {
+			this.data.listWxs = e.list;
+		},
+		itemClick(e) {
+			let index = e.currentTarget.dataset.index;
+			let item = this.data.listWxs[index];
+
+			this.triggerEvent('click', {
+				key: item.realKey,
+				data: item.data,
+				extra: e.detail
+			});
 		},
 		/**
 		 *  初始化获取 dom 信息
@@ -169,25 +150,23 @@ Component({
 
 			let delItem = (item, extraNode) => ({
 				id: item.dragId,
-				slot: item.slot,
-				fixed: item.fixed,
 				extraNode: extraNode,
-				tranX: "0%",
-				tranY: "0%",
+				fixed: item.fixed,
+				slot: item.slot,
 				data: item
 			});
 
 			let {listData, extraNodes} = this.data;
-			let _list = [], _before=[], _after=[], destBefore = [], destAfter = [];
+			let _list = [], _before = [], _after = [], destBefore = [], destAfter = [];
 
 			extraNodes.forEach((item, index) => {
-				if(item.type === "before") {
+				if (item.type === "before") {
 					_before.push(delItem(item, true));
-				} else if(item.type === "after") {
+				} else if (item.type === "after") {
 					_after.push(delItem(item, true));
-				} else if(item.type === "destBefore") {
+				} else if (item.type === "destBefore") {
 					destBefore.push(delItem(item, true));
-				} else if(item.type === "destAfter") {
+				} else if (item.type === "destAfter") {
 					destAfter.push(delItem(item, true));
 				}
 			});
@@ -203,15 +182,18 @@ Component({
 				});
 			});
 
-			let list = _before.concat(_list, _after).map((item, index) => {
-				item.sortKey = index; // 初始化 sortKey 为当前项索引值
-				item.tranX = `${(item.sortKey % this.data.columns) * 100}%`;
-				item.tranY = `${Math.floor(item.sortKey / this.data.columns) * 100}%`;
+			let i = 0, columns = this.data.columns;
+			let list = (_before.concat(_list, _after) || []).map((item, index) => {
+				item.realKey = item.extraNode ? -1 : i++; // 真实顺序
+				item.sortKey = index; // 整体顺序
+				item.tranX = `${(item.sortKey % columns) * 100}%`;
+				item.tranY = `${Math.floor(item.sortKey / columns) * 100}%`;
 				return item;
 			});
 
 			this.setData({
-				list
+				list,
+				listWxs: list
 			});
 
 			if (list.length === 0) {

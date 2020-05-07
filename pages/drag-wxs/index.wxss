@@ -100,8 +100,8 @@ page {
 .cell {
   display: flex;
   padding: 20rpx;
-  border-bottom: 1rpx solid #ebedf0;
-  background: #FFFFFF; }
+  background: #FFFFFF;
+  box-sizing: border-box; }
   .cell__hd {
     font-size: 0; }
     .cell__hd .image {
@@ -131,10 +131,10 @@ page {
 .info {
   position: relative;
   padding-top: 100%;
-  background: #ffffff; }
+  background: #ffffff;
+  box-sizing: border-box; }
   .info__item {
     position: absolute;
-    border: 1rpx solid #ebedf0;
     top: 0;
     left: 0;
     width: 100%;

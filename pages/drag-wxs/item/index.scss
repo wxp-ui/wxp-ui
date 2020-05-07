@@ -4,9 +4,9 @@
 	position: relative;
 	padding-top: 100%;
 	background: #ffffff;
+	box-sizing: border-box;
 	&__item {
 		position: absolute;
-		border: 1rpx solid $line-color;
 		top: 0;
 		left: 0;
 		width: 100%;
@@ -24,7 +24,7 @@
 .cell {
 	display: flex;
 	padding: 20rpx;
-	border-bottom: 1rpx solid $line-color;
+	box-sizing: border-box;
 	background: #FFFFFF;
 	&__hd {
 		font-size: 0;

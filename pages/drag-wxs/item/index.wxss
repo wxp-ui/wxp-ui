@@ -1,10 +1,10 @@
 .info {
   position: relative;
   padding-top: 100%;
-  background: #ffffff; }
+  background: #ffffff;
+  box-sizing: border-box; }
   .info__item {
     position: absolute;
-    border: 1rpx solid #ebedf0;
     top: 0;
     left: 0;
     width: 100%;
@@ -19,7 +19,7 @@
 .cell {
   display: flex;
   padding: 20rpx;
-  border-bottom: 1rpx solid #ebedf0;
+  box-sizing: border-box;
   background: #FFFFFF; }
   .cell__hd {
     font-size: 0; }

@@ -8,7 +8,6 @@
   position: relative; }
   .item-wrap .item {
     position: absolute;
-    width: 100%;
     z-index: 1; }
     .item-wrap .item.tran {
       transition: transform 0.3s !important; }

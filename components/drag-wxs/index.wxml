@@ -1,16 +1,17 @@
 <wxs module="handler" src="./index.wxs"></wxs>
 
-<view class="item-wrap" style="height: {{ itemWrapHeight }}px;"
-			baseData="{{baseData}}" change:baseData="{{handler.baseDataObserver}}"
-			list="{{list}}" change:list="{{handler.listObserver}}">
+<view class="item-wrap"
+			style="height: {{ itemWrapHeight }}px;"
+			list="{{list}}"
+			baseData="{{baseData}}"
+			change:list="{{handler.listObserver}}"
+			change:baseData="{{handler.baseDataObserver}}">
 	<view
 		class="item"
 		wx:for="{{list}}"
 		wx:key="id"
-		data-key="{{item.sortKey}}"
 		data-index="{{index}}"
 		style="width: {{100/columns}}%"
-		bindtap="itemClick"
 		bind:longpress="{{handler.longPress}}"
 		catch:touchmove="{{dragging ? handler.touchMove : ''}}"
 		catch:touchend="{{dragging ? handler.touchEnd : ''}}">
@@ -19,7 +20,11 @@
 			<slot name="{{item.slot}}"></slot>
 		</block>
 		<block wx:else>
-			<item columns="{{columns}}" item="{{item}}"></item>
+			<item data-index="{{index}}"
+						columns="{{columns}}"
+						item-data="{{item.data}}"
+						bind:click="itemClick">
+			</item>
 		</block>
 
 	</view>

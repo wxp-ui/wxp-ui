@@ -10,7 +10,6 @@
 	position: relative;
 	.item {
 		position: absolute;
-		width: 100%;
 		z-index: 1;
 		&.tran {
 			transition: transform 0.3s !important;
