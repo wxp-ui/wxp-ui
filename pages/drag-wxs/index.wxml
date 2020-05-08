@@ -13,7 +13,7 @@
 				bind:change="change"
 				bind:sortend="sortEnd"
 				bind:scroll="scroll"
-				item-wrap-class="item-wrap"
+				item-wrap-class="drag-item-wrap"
 				extra-nodes="{{extraNodes}}"
 				list-data="{{listData}}"
 				columns="{{size}}"
