@@ -43,8 +43,7 @@ Component({
 		},
 		columns: {               // 列数
 			type: Number,
-			value: 1,
-			observer: "columnChange"
+			value: 1
 		},
 		topSize: {               // 顶部固定高度
 			type: Number,
@@ -141,8 +140,10 @@ Component({
 				});
 			});
 		},
+		/**
+		 * column 改变时候需要清空 list, 以防页面溢出
+		 */
 		columnChange() {
-			// column 改变时候需要清空 list, 以防页面溢出
 			this.setData({
 				list: []
 			})

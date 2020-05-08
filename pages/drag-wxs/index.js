@@ -117,6 +117,7 @@ Page({
 		this.setData({
 			size: e.detail.value
 		});
+		this.drag.columnChange();
 	},
 	itemClick(e) {
 		console.log(e);
