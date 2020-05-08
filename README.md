@@ -226,6 +226,7 @@ tip: 最新版本去除 `dataChange` 方法, 改为直接使用 `this.drag.init(
 | columns | 列数 | Number | -- | 1 |
 | topSize | 顶部固定区域高度 | Number | -- | 0(rpx) |
 | bottomSize | 底部固定区域高度 | Number | -- | 0(rpx) |
+| itemHeight | 每个 item 高度(用于计算 item-wrap 高度) | Number | -- | 0(rpx) |
 | scrollTop | 页面滚动高度(用于页面滚动时候正确计算) | Number | -- | 0(rpx) |
 
 #### Drag Events
@@ -248,7 +249,7 @@ tip: 最新版本去除 `dataChange` 方法, 改为直接使用 `this.drag.init(
 
 | 参数 | 说明 | 类型 | 可选值 | 默认值 |
 | --- | --- | --- | --- | --- |
-| type | 额外节点类型 | String/Int | -- | -- |
+| type | 额外节点类型 | String/Int | before/after/destBefore/destAfter | -- |
 | dragId | 每个数据项唯一标识(必填, 提升渲染性能) | String/Int | -- | -- |
 | destKey | 要插入的位置 | Number | -- | -- |
 | fixed | 额外节点是否固定 | Boolean | -- | -- |

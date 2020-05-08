@@ -28,6 +28,7 @@ const compareVersion = (v1, v2) => {
 }
 
 Component({
+	externalClasses: ['item-wrap-class'],
 	options: {
 		multipleSlots: true
 	},
@@ -42,7 +43,8 @@ Component({
 		},
 		columns: {               // 列数
 			type: Number,
-			value: 1
+			value: 1,
+			observer: "columnChange"
 		},
 		topSize: {               // 顶部固定高度
 			type: Number,
@@ -52,10 +54,14 @@ Component({
 			type: Number,
 			value: 0
 		},
+		itemHeight: {            // 每个 item 高度, 用于计算 item-wrap 高度
+			type: Number,
+			value: 0
+		},
 		scrollTop: {             // 页面滚动高度
 			type: Number,
 			value: 0
-		}
+		},
 	},
 	data: {
 		/* 未渲染数据 */
@@ -63,10 +69,11 @@ Component({
 		pageMetaSupport: false,                                 // 当前版本是否支持 page-meta 标签
 		platform: '',                                           // 平台信息
 		listWxs: [],                                            // wxs 传回的最新 list 数据
+		rows: 0,                                                // 行数
 
 		/* 渲染数据 */
+		wrapStyle: '',                                          // item-wrap 样式
 		list: [],                                               // 渲染数据列
-		itemWrapHeight: 0,                                      // 动态计算父级元素高度
 		dragging: false,
 	},
 	methods: {
@@ -117,32 +124,33 @@ Component({
 			baseData.windowHeight = windowHeight;
 			baseData.realTopSize = this.data.topSize * remScale / 2;
 			baseData.realBottomSize = this.data.bottomSize * remScale / 2;
+			baseData.columns = this.data.columns;
+			baseData.rows =  this.data.rows;
 
-			this.createSelectorQuery().select(".item").boundingClientRect((res) => {
-				let columns = this.data.columns;
-				let rows = Math.ceil(this.data.list.length / columns);
-
-				baseData.columns = columns;
-				baseData.rows = rows;
-				baseData.itemWidth = res.width;
-				baseData.itemHeight = res.height;
+			const query = this.createSelectorQuery();
+			query.select(".item").boundingClientRect();
+			query.select(".item-wrap").boundingClientRect();
+			query.exec((res) => {
+				baseData.itemWidth = res[0].width;
+				baseData.itemHeight = res[0].height;
+				baseData.wrapLeft = res[1].left;
+				baseData.wrapTop = res[1].top + this.data.scrollTop;
 				this.setData({
 					dragging: false,
-					itemWrapHeight: rows * res.height,
+					baseData
 				});
-
-				this.createSelectorQuery().select(".item-wrap").boundingClientRect((res) => {
-					baseData.wrapLeft = res.left;
-					baseData.wrapTop = res.top + this.data.scrollTop;
-					this.setData({
-						baseData
-					});
-				}).exec();
-			}).exec();
+			});
+		},
+		columnChange() {
+			// column 改变时候需要清空 list, 以防页面溢出
+			this.setData({
+				list: []
+			})
+			this.init();
 		},
 		/**
 		 *  初始化函数
-		 *  {listData, columns, topSize, bottomSize} 参数改变需要重新调用初始化方法
+		 *  {listData, topSize, bottomSize, itemHeight} 参数改变需要手动调用初始化方法
 		 */
 		init() {
 			// 初始必须为true以绑定wxs中的函数,
@@ -191,15 +199,15 @@ Component({
 				return item;
 			});
 
+			this.data.rows = Math.ceil(list.length / columns);
+
 			this.setData({
 				list,
-				listWxs: list
+				listWxs: list,
+				wrapStyle: `height: ${this.data.rows * this.data.itemHeight}rpx`
 			});
+			if (list.length === 0) return;
 
-			if (list.length === 0) {
-				this.setData({itemWrapHeight: 0});
-				return;
-			}
 			// 异步加载数据时候, 延迟执行 initDom 方法, 防止基础库 2.7.1 版本及以下无法正确获取 dom 信息
 			setTimeout(() => this.initDom(), 0);
 		}

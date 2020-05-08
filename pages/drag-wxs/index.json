@@ -1,6 +1,6 @@
 {
 	"usingComponents": {
 		"drag": "../../components/drag-wxs/index",
-		"item": "/pages/drag-wxs/item/index"
+		"drag-item": "./drag-item/index"
 	}
 }

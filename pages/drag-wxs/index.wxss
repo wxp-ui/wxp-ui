@@ -1,6 +1,9 @@
 page {
   padding-top: 110rpx; }
 
+.item-wrap {
+  background: #f7f7f7; }
+
 .empty-bottom {
   padding-bottom: 300rpx; }
   .empty-bottom.isX {

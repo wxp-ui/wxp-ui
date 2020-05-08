@@ -1,11 +1,12 @@
 <wxs module="handler" src="./index.wxs"></wxs>
 
-<view class="item-wrap"
-			style="height: {{ itemWrapHeight }}px;"
+<view class="item-wrap item-wrap-class"
 			list="{{list}}"
+			style="{{wrapStyle}}"
 			baseData="{{baseData}}"
 			change:list="{{handler.listObserver}}"
 			change:baseData="{{handler.baseDataObserver}}">
+
 	<view
 		class="item"
 		wx:for="{{list}}"
@@ -20,11 +21,7 @@
 			<slot name="{{item.slot}}"></slot>
 		</block>
 		<block wx:else>
-			<item data-index="{{index}}"
-						columns="{{columns}}"
-						item-data="{{item.data}}"
-						bind:click="itemClick">
-			</item>
+			<item data-index="{{index}}" columns="{{columns}}" item-data="{{item.data}}" bind:click="itemClick"/>
 		</block>
 
 	</view>

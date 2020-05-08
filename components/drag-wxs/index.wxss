@@ -1,14 +1,10 @@
-.test111 {
-  background: red; }
-
-.test222 {
-  background: green; }
-
 .item-wrap {
   position: relative; }
   .item-wrap .item {
     position: absolute;
-    z-index: 1; }
+    z-index: 1;
+    top: 0;
+    left: 0; }
     .item-wrap .item.tran {
       transition: transform 0.3s !important; }
     .item-wrap .item.cur {

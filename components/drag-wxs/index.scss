@@ -1,16 +1,12 @@
 @import "../../assets/css/variables";
 
-.test111 {
-	background: red;
-}
-.test222 {
-	background: green;
-}
 .item-wrap {
 	position: relative;
 	.item {
 		position: absolute;
 		z-index: 1;
+		top: 0;
+		left: 0;
 		&.tran {
 			transition: transform 0.3s !important;
 		}

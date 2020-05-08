@@ -6,17 +6,19 @@
 </view>
 
 <!--  drag 组件 外层需要适当加一定距离的margin, 防止某些情况精度计算误差导致drag宽度大于屏幕宽度, 从而出现横向滚动条 -->
-<view style="margin: 2px">
+<view style="margin: 4rpx;">
 	<drag id="drag"
-				generic:item="item"
+				generic:item="drag-item"
 				bind:click="itemClick"
 				bind:change="change"
 				bind:sortend="sortEnd"
 				bind:scroll="scroll"
+				item-wrap-class="item-wrap"
 				extra-nodes="{{extraNodes}}"
 				list-data="{{listData}}"
 				columns="{{size}}"
 				scroll-top="{{scrollTop}}"
+				item-height="{{(750 - 8) / size}}"
 				top-size="110"
 				bottom-size="{{isIphoneX ? 380 : 300 }}">
 

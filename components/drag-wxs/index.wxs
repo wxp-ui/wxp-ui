@@ -201,16 +201,16 @@ var listObserver = function (newVal, oldVal, ownerInstance, ins) {
 	var st = ownerInstance.getState();
 	st.itemsInstance = ownerInstance.selectAllComponents('.item');
 
-	st.list = (newVal || []).map(function (item, index) {
+	st.list = newVal || [];
+
+	st.list.forEach(function (item, index) {
 		var itemIns = st.itemsInstance[index];
 		if (item && itemIns) {
-			itemIns.removeClass("tran").removeClass("cur").removeClass("fixed");
 			itemIns.setStyle({
 				'transform': 'translate3d(' + item.tranX + ',' + item.tranY + ', 0)'
 			});
 			if (item.fixed) itemIns.addClass("fixed");
 		}
-		return item;
 	})
 }
 
