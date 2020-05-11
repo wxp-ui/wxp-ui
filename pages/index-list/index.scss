@@ -31,13 +31,15 @@ page {
 		}
 	}
 	.ft {
+		$gap: 30rpx;
 		font-size: 0;
-		padding: 30rpx;
-		margin: -30rpx;
+		padding: $gap;
+		margin-right: -$gap;
+		margin-top: -$gap;
+		margin-bottom: -$gap;
 		image {
 			width: 36rpx;
 			height: 36rpx;
-			margin-left: 20rpx;
 		}
 	}
 }

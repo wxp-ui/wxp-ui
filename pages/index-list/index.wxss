@@ -26,8 +26,9 @@ page {
   .search .ft {
     font-size: 0;
     padding: 30rpx;
-    margin: -30rpx; }
+    margin-right: -30rpx;
+    margin-top: -30rpx;
+    margin-bottom: -30rpx; }
     .search .ft image {
       width: 36rpx;
-      height: 36rpx;
-      margin-left: 20rpx; }
+      height: 36rpx; }
