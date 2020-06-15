@@ -10,7 +10,7 @@ WxP UI 是一款提供高交互小程序插件的合集, 致力于简洁和高�
 
 ## 线上演示
 
-![WxP](https://www.zhouzhiguo.com/qrcode.jpeg)
+![WxP](http://www.singletouch.me/qrcode.jpeg)
 
 ## 微信交流群
 
@@ -28,7 +28,7 @@ WxP UI 是一款提供高交互小程序插件的合集, 致力于简洁和高�
 
 preferences -> file watchers -> + scss 文件 ->
 
-![scss1](https://www.zhouzhiguo.com/webstorm_scss1.jpg)
+![scss1](http://www.singletouch.me/webstorm_scss1.jpg)
 
 将上图参数替换
 - `Arguments` 参数替换为 `--no-cache --update --style nested --sourcemap=none $FileName$:$FileNameWithoutExtension$.wxss`
@@ -36,7 +36,7 @@ preferences -> file watchers -> + scss 文件 ->
 
 接着配置 `Scope` 即 `File Watcher` 在项目中作用域, 我们点击最外层文件夹然后选择 `Include Recursively` 即递归整个项目文件
 
-![scss2](https://www.zhouzhiguo.com/webstorm_scss2.jpg)
+![scss2](http://www.singletouch.me/webstorm_scss2.jpg)
 
 完成之后 `Apply` 即可
 
