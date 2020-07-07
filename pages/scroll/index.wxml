@@ -7,7 +7,6 @@
 		empty-show="{{emptyShow}}"
 		end="{{end}}"
 		listCount="{{listData.length}}"
-		has-top="{{hasTop}}"
     enable-back-to-top="{{enableBackToTop}}"
 		refresh-size="{{refreshSize}}"
 		top-size="{{topSize}}"

@@ -75,11 +75,6 @@ Page({
 	itemClick(e) {
 		console.log(e);
 	},
-	hasTopChange(e) {
-		this.setData({
-			hasTop: e.detail.value
-		})
-	},
   enableBackToTopChange(e) {
     this.setData({
       enableBackToTop: e.detail.value

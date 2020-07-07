@@ -31,11 +31,6 @@ Component({
 			type: String,
 			value: "未找到数据"
 		},
-		// 是否有header
-		hasTop: {
-			type: Boolean,
-			value: false
-		},
 		// 下拉刷新的高度
 		refreshSize: {
 			type: Number,
