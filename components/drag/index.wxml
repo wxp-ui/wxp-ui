@@ -1,42 +1,28 @@
-<view class="item-wrap" style="height: {{ itemWrapHeight }}px;">
+<wxs module="handler" src="./index.wxs"></wxs>
+
+<view class="item-wrap item-wrap-class"
+			list="{{list}}"
+			style="{{wrapStyle}}"
+			baseData="{{baseData}}"
+			change:list="{{handler.listObserver}}"
+			change:baseData="{{handler.baseDataObserver}}">
+
 	<view
-		class="item {{cur == index ? 'cur':''}} {{curZ == index ? 'zIndex':''}} {{itemTransition && index !== cur ? 'itemTransition':''}} {{item.fixed ? 'fixed' : ''}}"
+		class="item"
 		wx:for="{{list}}"
 		wx:key="id"
-		data-key="{{item.sortKey}}"
 		data-index="{{index}}"
-		style="transform: translate3d({{index === cur ? tranX + 'px' : item.tranX}}, {{index === cur ? tranY + 'px' : item.tranY}}, 0);width: {{100 / columns}}%"
-		bindtap="itemClick"
-		bind:longpress="longPress"
-		catch:touchmove="{{dragging?'touchMove':''}}"
-		catch:touchend="{{dragging?'touchEnd':''}}">
+		style="width: {{100/columns}}%"
+		bind:longpress="{{handler.longPress}}"
+		catch:touchmove="{{dragging ? handler.touchMove : ''}}"
+		catch:touchend="{{dragging ? handler.touchEnd : ''}}">
 
-		<!-- start:请在该区域编写自己的渲染逻辑 -->
-		<view wx:if="{{columns === 1 && item.extraNode}}" class="cell">
-			<view class="cell__bd" style="height: 160rpx;">
-				<slot name="{{item.slot}}"></slot>
-			</view>
-		</view>
-		<view wx:elif="{{columns === 1 && !item.extraNode}}" class="cell">
-			<view class="cell__hd">
-				<image class="image" mode="aspectFill" src="{{item.data.images}}" alt=""/>
-			</view>
-			<view class="cell__bd">
-				<view class="name">{{item.data.title}}</view>
-				<view class="des">{{item.data.description}}</view>
-			</view>
-		</view>
-		<view wx:elif="{{columns > 1 && item.extraNode}}" class="info">
-			<view class="info__item">
-				<slot name="{{item.slot}}"></slot>
-			</view>
-		</view>
-		<view wx:elif="{{columns > 1 && !item.extraNode}}" class="info">
-			<view class="info__item">
-				<image class="image" src="{{item.data.images}}"></image>
-			</view>
-		</view>
-		<!-- end:请在该区域编写自己的渲染逻辑 -->
+		<block wx:if="{{item.extraNode}}">
+			<slot name="{{item.slot}}"></slot>
+		</block>
+		<block wx:else>
+			<item data-index="{{index}}" columns="{{columns}}" item-data="{{item.data}}" bind:click="itemClick"/>
+		</block>
 
 	</view>
 </view>

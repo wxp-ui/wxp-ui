@@ -5,27 +5,70 @@
 	<text style="color: #3F82FD;">最新版本增加顶部固定区域高度和底部固定区域高度, 以响应超过一屏时候可以正确滑动</text>
 </view>
 
-<drag id="drag"
-			bind:click="itemClick"
-			bind:change="change"
-			bind:sortend="sortEnd"
-			bind:scroll="scroll"
-			extra-nodes="{{extraNodes}}"
-			list-data="{{listData}}"
-			columns="{{size}}"
-			scroll-top="{{scrollTop}}"
-			top-size="110"
-			bottom-size="{{isIphoneX ? 380 : 300 }}">
-	<view slot="before" class="extra">
-		 第0个元素之前插入该元素, 该元素不参与排序
-	</view>
-	<view slot="after" class="extra">
-		第0个元素之后插入该元素, 该元素不参与排序
-	</view>
-	<view slot="plus" class="plus-wrap" bindtap="add">
-		<view class="plus"></view>
-	</view>
-</drag>
+<!--  drag 组件 外层需要适当加一定距离的margin, 防止某些情况精度计算误差导致drag宽度大于屏幕宽度, 从而出现横向滚动条 -->
+<view style="margin: 4rpx;">
+	<drag id="drag"
+				generic:item="drag-item"
+				bind:click="itemClick"
+				bind:change="change"
+				bind:sortend="sortEnd"
+				bind:scroll="scroll"
+				item-wrap-class="drag-item-wrap"
+				extra-nodes="{{extraNodes}}"
+				list-data="{{listData}}"
+				columns="{{size}}"
+				scroll-top="{{scrollTop}}"
+				item-height="{{(750 - 8) / size}}"
+				top-size="110"
+				bottom-size="{{isIphoneX ? 380 : 300 }}">
+
+		<view wx:if="{{size === 1}}" slot="before"  class="cell">
+			<view class="cell__bd" style="height: 160rpx;">
+				<view class="extra">
+					第0个元素之前插入该元素, 该元素不参与排序
+				</view>
+			</view>
+		</view>
+		<view wx:else slot="before" class="info">
+			<view class="info__item">
+				<view class="extra">
+					第0个元素之前插入该元素, 该元素不参与排序
+				</view>
+			</view>
+		</view>
+
+		<view wx:if="{{size === 1}}" slot="after"  class="cell">
+			<view class="cell__bd" style="height: 160rpx;">
+				<view class="extra">
+					第0个元素之后插入该元素, 该元素不参与排序
+				</view>
+			</view>
+		</view>
+		<view wx:else slot="after" class="info">
+			<view class="info__item">
+				<view class="extra">
+					第0个元素之后插入该元素, 该元素不参与排序
+				</view>
+			</view>
+		</view>
+
+		<view wx:if="{{size === 1}}" slot="plus"  class="cell">
+			<view class="cell__bd" style="height: 160rpx;">
+				<view  class="plus-wrap" bindtap="add">
+					<view class="plus"></view>
+				</view>
+			</view>
+		</view>
+		<view wx:else slot="plus" class="info">
+			<view class="info__item">
+				<view  class="plus-wrap" bindtap="add">
+					<view class="plus"></view>
+				</view>
+			</view>
+		</view>
+
+	</drag>
+</view>
 
 <view class="empty-bottom {{isIphoneX ? 'isX' : ''}}"></view>
 
@@ -43,7 +86,7 @@
 	<view class="panel-item">
 		<view class="panel-item__hd">columns:</view>
 		<view class="panel-item__bd">
-			<slider bindchanging="sizeChange" show-value="{{true}}" min="1" max="8" step="1"/>
+			<slider bindchange="sizeChange" value="{{4}}" show-value="{{true}}" min="1" max="10" step="1"/>
 		</view>
 	</view>
 </view>

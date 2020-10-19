@@ -117,7 +117,7 @@ Page({
 		this.setData({
 			size: e.detail.value
 		});
-		this.drag.init();
+		this.drag.columnChange();
 	},
 	itemClick(e) {
 		console.log(e);
@@ -132,8 +132,6 @@ Page({
 		this.setData({
 			listData: listData
 		});
-
-		this.drag.init();
 	},
 	add(e) {
 		let listData = this.data.listData;
@@ -146,7 +144,7 @@ Page({
 		});
 		setTimeout(() => {
 			this.setData({
-				listData,
+				listData
 			});
 			this.drag.init();
 		}, 300)

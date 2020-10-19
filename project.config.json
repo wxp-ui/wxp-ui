@@ -2,20 +2,25 @@
 	"description": "项目配置文件。",
 	"setting": {
 		"urlCheck": false,
-		"es6": true,
-		"enhance": false,
-		"postcss": true,
-		"minified": true,
-		"newFeature": true,
-		"coverView": true,
-		"nodeModules": false,
-		"autoAudits": false,
-		"showShadowRootInWxmlPanel": false,
 		"scopeDataCheck": false,
+		"coverView": true,
+		"es6": true,
+		"postcss": true,
+		"compileHotReLoad": false,
+		"preloadBackgroundData": false,
+		"minified": true,
+		"autoAudits": false,
+		"newFeature": true,
 		"uglifyFileName": true,
+		"uploadWithSourceMap": true,
+		"useIsolateContext": true,
+		"nodeModules": false,
+		"enhance": false,
+		"useCompilerModule": true,
+		"userConfirmedUseCompilerModuleSwitch": false,
+		"showShadowRootInWxmlPanel": false,
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
-		"uploadWithSourceMap": true,
 		"babelSetting": {
 			"ignore": [],
 			"disablePlugins": [],
@@ -24,7 +29,7 @@
 		"bundle": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.11.0",
+	"libVersion": "2.7.0",
 	"appid": "wxe14d4ca6edeb543e",
 	"projectname": "WxP%20UI",
 	"simulatorType": "wechat",
@@ -64,12 +69,6 @@
 					"name": "pages/x-drag/index",
 					"pathName": "pages/x-drag/index",
 					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/drag-wxs/index",
-					"pathName": "pages/drag-wxs/index",
 					"scene": null
 				}
 			]

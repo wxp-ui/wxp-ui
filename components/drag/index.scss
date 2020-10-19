@@ -4,69 +4,17 @@
 	position: relative;
 	.item {
 		position: absolute;
-		width: 100%;
 		z-index: 1;
-		&.itemTransition {
+		top: 0;
+		left: 0;
+		&.tran {
 			transition: transform 0.3s !important;
 		}
-		&.zIndex {
-			z-index: 2;
-		}
 		&.cur {
-			transition: initial;
+			z-index: 2;
 		}
 		&.fixed {
 			z-index: 0 !important;
-		}
-	}
-}
-
-.info {
-	position: relative;
-	padding-top: 100%;
-	background: #ffffff;
-	&__item {
-		position: absolute;
-		border: 1rpx solid $line-color;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		overflow: hidden;
-		padding: 10rpx;
-		box-sizing: border-box;
-		.image {
-			width: 100%;
-			height: 100%;
-		}
-	}
-}
-
-.cell {
-	display: flex;
-	padding: 20rpx;
-	border-bottom: 1rpx solid $line-color;
-	background: #FFFFFF;
-	&__hd {
-		font-size: 0;
-		.image {
-			width: 160rpx;
-			height: 160rpx;
-			margin-right: 20rpx;
-			border-radius: 12rpx;
-		}
-	}
-	&__bd {
-		flex: 1;
-		.name {
-			@include line(2);
-			font-size: 28rpx;
-			margin-bottom: 4rpx;
-		}
-		.des {
-			@include line(2);
-			color: $black2;
-			font-size: 24rpx;
 		}
 	}
 }

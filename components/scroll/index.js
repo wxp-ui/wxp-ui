@@ -64,7 +64,7 @@ Component({
 		successShow: false, // 显示success
 		successTran: false, // 过度success
 		refreshStatus: 1, // 1: 下拉刷新, 2: 松开更新, 3: 加载中, 4: 加载完成
-		move: -45, // movable-view 偏移量
+		move: -65, // movable-view 偏移量
 		scrollHeight1: 0, // refresh view 高度负值
 		scrollHeight2: 0, // refresh view - success view 高度负值
 		timer: null,

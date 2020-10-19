@@ -1,0 +1,16 @@
+<view catchtap="itemClick">
+	<view wx:if="{{columns === 1}}" class="cell">
+		<view class="cell__hd">
+			<image class="image" mode="aspectFill" src="{{itemData.images}}" alt=""/>
+		</view>
+		<view class="cell__bd">
+			<view class="name">{{itemData.title}}</view>
+			<view class="des">{{itemData.description}}</view>
+		</view>
+	</view>
+	<view wx:else class="info">
+		<view class="info__item">
+			<image class="image" src="{{itemData.images}}"></image>
+		</view>
+	</view>
+</view>

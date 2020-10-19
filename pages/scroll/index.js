@@ -78,27 +78,27 @@ Page({
   enableBackToTopChange(e) {
     this.setData({
       enableBackToTop: e.detail.value
-    })
+    });
   },
 	refreshChange(e) {
 		this.setData({
 			refreshSize: e.detail.value
-		})
+		});
 	},
 	topChange(e) {
 		this.setData({
 			topSize: e.detail.value
-		})
+		});
 	},
 	bottomChange(e) {
 		this.setData({
 			bottomSize: e.detail.value
-		})
+		});
 	},
 	radioChange: function (e) {
 		this.setData({
 			color: e.detail.value
-		})
+		});
 	},
 	emptyChange(e) {
 		if (e.detail.value) {
@@ -106,41 +106,41 @@ Page({
 				listData: [],
 				emptyShow: true,
 				end: true
-			})
+			});
 		} else {
 			this.setData({
 				listData: testData,
 				emptyShow: false,
 				end: false
-			})
+			});
 		}
 	},
 	getList(type, currentPage) {
 		this.setData({
 			requesting: true
-		})
+		});
 
-		wx.showNavigationBarLoading()
+		wx.showNavigationBarLoading();
 
 		// 模拟异步获取数据场景
 		setTimeout(() => {
 			this.setData({
 				requesting: false
-			})
+			});
 
-			wx.hideNavigationBarLoading()
+			wx.hideNavigationBarLoading();
 
 			if (type === 'refresh') {
 				this.setData({
 					listData: testData,
 					page: currentPage + 1
-				})
+				});
 			} else {
 				this.setData({
 					listData: this.data.listData.concat(testData),
 					page: currentPage + 1,
 					end: false
-				})
+				});
 			}
 
 		}, 1000);
@@ -150,7 +150,7 @@ Page({
 		this.getList('refresh', pageStart);
 		this.setData({
 			empty: false
-		})
+		});
 	},
 	// 加载更多
 	more() {

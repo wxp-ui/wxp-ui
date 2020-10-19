@@ -1,0 +1,51 @@
+@import "../../../assets/css/variables";
+
+.info {
+	position: relative;
+	padding-top: 100%;
+	background: #ffffff;
+	box-sizing: border-box;
+	&__item {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		padding: 10rpx;
+		box-sizing: border-box;
+		.image {
+			width: 100%;
+			height: 100%;
+		}
+	}
+}
+
+.cell {
+	display: flex;
+	padding: 20rpx;
+	box-sizing: border-box;
+	background: #FFFFFF;
+	&__hd {
+		font-size: 0;
+		.image {
+			width: 160rpx;
+			height: 160rpx;
+			margin-right: 20rpx;
+			border-radius: 12rpx;
+		}
+	}
+	&__bd {
+		flex: 1;
+		.name {
+			@include line(2);
+			font-size: 28rpx;
+			margin-bottom: 4rpx;
+		}
+		.des {
+			@include line(2);
+			color: $black2;
+			font-size: 24rpx;
+		}
+	}
+}
