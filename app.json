@@ -24,32 +24,6 @@
 		"navigationBarTitleText": "WxP UI",
 		"backgroundColor": "#f8f9fa"
 	},
-	"tabBar": {
-		"color": "#a8abaf",
-		"selectedColor": "#4a9cff",
-		"borderStyle": "white",
-		"backgroundColor": "#ffffff",
-		"list": [
-			{
-				"text": "组件",
-				"pagePath": "pages/main/index",
-				"iconPath": "assets/image/tabbar/application.png",
-				"selectedIconPath": "assets/image/tabbar/applicationCur.png"
-			},
-			{
-				"text": "商城",
-				"pagePath": "pages/main/index",
-				"iconPath": "assets/image/tabbar/home.png",
-				"selectedIconPath": "assets/image/tabbar/homeCur.png"
-			},
-			{
-				"text": "我的",
-				"pagePath": "pages/main/index",
-				"iconPath": "assets/image/tabbar/profile.png",
-				"selectedIconPath": "assets/image/tabbar/profileCur.png"
-			}
-		]
-	},
 	"style": "v2",
 	"sitemapLocation": "sitemap.json"
 }
