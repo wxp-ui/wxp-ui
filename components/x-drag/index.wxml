@@ -1,28 +1,34 @@
 <wxs module="handler" src="./index.wxs"></wxs>
 
 <view class="item-wrap item-wrap-class"
-			list="{{list}}"
-			style="{{wrapStyle}}"
-			baseData="{{baseData}}"
-			change:list="{{handler.listObserver}}"
-			change:baseData="{{handler.baseDataObserver}}">
+	  list="{{list}}"
+	  baseData="{{baseData}}"
+	  style="overflow: hidden;"
+	  change:list="{{handler.listObserver}}"
+	  change:baseData="{{handler.baseDataObserver}}">
 
-	<view
-		class="item"
-		wx:for="{{list}}"
-		wx:key="id"
-		data-index="{{index}}"
-		style="width: {{100/columns}}%"
-		bind:longpress="{{handler.longPress}}"
-		catch:touchmove="{{dragging ? handler.touchMove : ''}}"
-		catch:touchend="{{dragging ? handler.touchEnd : ''}}">
+	<view class="scroller"
+		  style="{{wrapStyle}};"
+		  bind:touchstart="{{handler.scrollerStart}}"
+		  bind:touchmove="{{handler.scrollerMove}}"
+		  bind:touchend="{{handler.scrollerEnd}}">
+		<view
+			class="item"
+			wx:for="{{list}}"
+			wx:key="id"
+			data-index="{{index}}"
+			style="width: {{itemHeight}}rpx"
+			bind:longpress="{{handler.longPress}}"
+			catch:touchmove="{{dragging ? handler.touchMove : ''}}"
+			catch:touchend="{{dragging ? handler.touchEnd : ''}}">
 
-		<block wx:if="{{item.extraNode}}">
-			<slot name="{{item.slot}}"></slot>
-		</block>
-		<block wx:else>
-			<item data-index="{{index}}" columns="{{columns}}" item-data="{{item.data}}" bind:click="itemClick"/>
-		</block>
+			<block wx:if="{{item.extraNode}}">
+				<slot name="{{item.slot}}"></slot>
+			</block>
+			<block wx:else>
+				<item data-index="{{index}}" columns="{{columns}}" item-data="{{item.data}}" bind:click="itemClick"/>
+			</block>
 
+		</view>
 	</view>
 </view>

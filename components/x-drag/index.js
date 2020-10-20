@@ -57,6 +57,10 @@ Component({
 			type: Number,
 			value: 0
 		},
+		maxContent: {            // 是否一行展示
+			type: Boolean,
+			value: false
+		},
 		scrollTop: {             // 页面滚动高度
 			type: Number,
 			value: 0
@@ -74,6 +78,7 @@ Component({
 		wrapStyle: '',                                          // item-wrap 样式
 		list: [],                                               // 渲染数据列
 		dragging: false,
+		translateX: 0
 	},
 	methods: {
 		vibrate() {
@@ -120,20 +125,23 @@ Component({
 			this.data.platform = platform;
 
 			let baseData = {};
+			baseData.windowWidth = windowWidth;
 			baseData.windowHeight = windowHeight;
 			baseData.realTopSize = this.data.topSize * remScale / 2;
 			baseData.realBottomSize = this.data.bottomSize * remScale / 2;
 			baseData.columns = this.data.columns;
-			baseData.rows =  this.data.rows;
+			baseData.rows = this.data.rows;
 
 			const query = this.createSelectorQuery();
 			query.select(".item").boundingClientRect();
 			query.select(".item-wrap").boundingClientRect();
 			query.exec((res) => {
+				let realContent = res[0].width * this.data.list.length;
 				baseData.itemWidth = res[0].width;
 				baseData.itemHeight = res[0].height;
 				baseData.wrapLeft = res[1].left;
 				baseData.wrapTop = res[1].top + this.data.scrollTop;
+				baseData.maxScroller = realContent - windowWidth > 0 ? realContent : 0;
 				this.setData({
 					dragging: false,
 					baseData
@@ -191,8 +199,11 @@ Component({
 				});
 			});
 
-			let i = 0, columns = this.data.columns;
-			let list = (_before.concat(_list, _after) || []).map((item, index) => {
+			let tempList = (_before.concat(_list, _after) || []);
+
+			let i = 0, listLen = tempList.length, columns = this.data.maxContent ? listLen : this.data.columns;
+
+			let list = tempList.map((item, index) => {
 				item.realKey = item.extraNode ? -1 : i++; // 真实顺序
 				item.sortKey = index; // 整体顺序
 				item.tranX = `${(item.sortKey % columns) * 100}%`;
@@ -200,12 +211,15 @@ Component({
 				return item;
 			});
 
-			this.data.rows = Math.ceil(list.length / columns);
+			this.data.rows = Math.ceil(listLen / columns);
+
+			let width = this.data.maxContent ? `width: ${listLen * this.data.itemHeight}rpx;` : '';
+			let wrapStyle = `height: ${this.data.rows * this.data.itemHeight}rpx;${width}`
 
 			this.setData({
 				list,
 				listWxs: list,
-				wrapStyle: `height: ${this.data.rows * this.data.itemHeight}rpx`
+				wrapStyle
 			});
 			if (list.length === 0) return;
 

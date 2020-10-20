@@ -16,7 +16,7 @@ var sortCore = function (sKey, eKey, st) {
 	// 先获取到 endKey 对应的 realKey, 防止下面排序过程中该 realKey 被修改
 	var endRealKey = -1;
 	st.list.forEach(function (item) {
-		if(item.sortKey === eKey) endRealKey = item.realKey;
+		if (item.sortKey === eKey) endRealKey = item.realKey;
 	});
 
 	return st.list.map(function (item) {
@@ -54,7 +54,7 @@ var sortCore = function (sKey, eKey, st) {
 	});
 }
 
-var triggerCustomEvent = function(list, type, ins) {
+var triggerCustomEvent = function (list, type, ins) {
 	var _list = [], listData = [];
 
 	list.forEach(function (item) {
@@ -74,6 +74,7 @@ var longPress = function (event, ownerInstance) {
 	var ins = event.instance;
 	var st = ownerInstance.getState();
 	var _ = st.baseData;
+	st.scrollerTranX = st.scrollerTranX || 0;
 
 	var sTouch = event.changedTouches[0];
 	if (!sTouch) return;
@@ -90,7 +91,7 @@ var longPress = function (event, ownerInstance) {
 	ownerInstance.callMethod("drag", {dragging: true});
 
 	// 计算X,Y轴初始位移, 使 item 中心移动到点击处, 单列时候X轴初始不做位移
-	st.tranX = _.columns === 1 ? 0 : sTouch.pageX - (_.itemWidth / 2 + _.wrapLeft);
+	st.tranX = _.columns === 1 ? 0 : sTouch.pageX - (_.itemWidth / 2 + _.wrapLeft + st.scrollerTranX);
 	st.tranY = sTouch.pageY - (_.itemHeight / 2 + _.wrapTop);
 	st.sId = sTouch.identifier;
 
@@ -120,21 +121,37 @@ var touchMove = function (event, ownerInstance) {
 	if (st.sId !== mTouch.identifier) return;
 
 	// 计算X,Y轴位移, 单列时候X轴初始不做位移
-	var tranX = _.columns === 1 ? 0 : mTouch.pageX - (_.itemWidth / 2 + _.wrapLeft);
+	var tranX = _.columns === 1 ? 0 : mTouch.pageX - (_.itemWidth / 2 + _.wrapLeft + st.scrollerTranX);
 	var tranY = mTouch.pageY - (_.itemHeight / 2 + _.wrapTop);
 
+	var scrollerIns = ownerInstance.selectComponent('.scroller');
+
+	console.log(scrollerIns)
+	console.log(mTouch.clientX)
+
 	// 到顶到底自动滑动
-	if (mTouch.clientY > _.windowHeight - _.itemHeight - _.realBottomSize) {
-		// 当前触摸点pageY + item高度 - (屏幕高度 - 底部固定区域高度)
-		ownerInstance.callMethod("pageScroll", {
-			scrollTop: mTouch.pageY + _.itemHeight - (_.windowHeight - _.realBottomSize)
-		});
-	} else if (mTouch.clientY < _.itemHeight + _.realTopSize) {
+	if (mTouch.clientX > _.windowWidth - 50) {
+		st.scrollerTranX -= 10;
+		console.log(st.scrollerTranX);
+		scrollerStop(scrollerIns, st.baseData.maxScroller, st.scrollerTranX, 0);
+	} else if (mTouch.clientX < 50) {
 		// 当前触摸点pageY - item高度 - 顶部固定区域高度
-		ownerInstance.callMethod("pageScroll", {
-			scrollTop: mTouch.pageY - _.itemHeight - _.realTopSize
-		});
+		st.scrollerTranX += 10;
+		scrollerStop(scrollerIns, st.baseData.maxScroller, st.scrollerTranX, 0);
 	}
+	//
+	// // 到顶到底自动滑动
+	// if (mTouch.clientY > _.windowHeight - _.itemHeight - _.realBottomSize) {
+	// 	// 当前触摸点pageY + item高度 - (屏幕高度 - 底部固定区域高度)
+	// 	ownerInstance.callMethod("pageScroll", {
+	// 		scrollTop: mTouch.pageY + _.itemHeight - (_.windowHeight - _.realBottomSize)
+	// 	});
+	// } else if (mTouch.clientY < _.itemHeight + _.realTopSize) {
+	// 	// 当前触摸点pageY - item高度 - 顶部固定区域高度
+	// 	ownerInstance.callMethod("pageScroll", {
+	// 		scrollTop: mTouch.pageY - _.itemHeight - _.realTopSize
+	// 	});
+	// }
 
 	// 设置当前激活元素偏移量
 	ins.setStyle({
@@ -214,7 +231,89 @@ var listObserver = function (newVal, oldVal, ownerInstance, ins) {
 	})
 }
 
+var scrollerStop = function (ins, max, dest, time) {
+	var tranX = dest > 0 ? 0 : dest < -max ? -max : dest;
+	console.log(dest)
+	console.log(max)
+	console.log(tranX)
+
+	ins.setStyle({
+		'transform': 'translate3d(' + tranX + 'px, 0, 0)',
+		'transition': 'all ' + time + 's'
+	});
+}
+
+var scrollerStart = function (event, ownerInstance, a, b, c) {
+	var st = ownerInstance.getState();
+	st.scrollerTranX = st.scrollerTranX || 0;
+	var startTouch = event.changedTouches[0];
+	if (!startTouch) return;
+
+	st.scrollerStart = {
+		time: +getDate(),
+		clientX: startTouch.clientX,
+		tranX: st.scrollerTranX
+	};
+	st.scrollerPoints = [];
+}
+
+var scrollerMove = function (event, ownerInstance) {
+	var st = ownerInstance.getState();
+	var ins = event.instance;
+	var moveTouch = event.changedTouches[0];
+	if (!moveTouch) return;
+
+	var diffX = moveTouch.clientX - st.scrollerStart.clientX;
+	var tempTranX = st.scrollerStart.tranX + diffX;
+	if (tempTranX > 0) return
+	st.scrollerTranX = tempTranX;
+	scrollerStop(ins, st.baseData.maxScroller, tempTranX, 0);
+	st.scrollerPoints.push({time: +getDate(), clientX: moveTouch.clientX});
+	if (st.scrollerPoints.length > 40) {
+		st.scrollerPoints.shift();
+	}
+}
+
+var scrollerEnd = function (event, ownerInstance) {
+	var st = ownerInstance.getState();
+	var ins = event.instance;
+	st.scrollerTranX = st.scrollerTranX || 0;
+	var endTouch = event.changedTouches[0];
+	if (!endTouch) return;
+
+	var diffX = endTouch.clientX - st.scrollerStart.clientX;
+	var tempTranX = st.scrollerStart.tranX + diffX;
+
+	var diffTime = +getDate() - st.scrollerStart.time;
+	var points = st.scrollerPoints;
+
+	if (diffTime > 150) {
+		scrollerStop(ins, st.baseData.maxScroller, tempTranX, 0);
+	} else {
+		var endPos = points.length - 1;
+		var startPos = endPos;
+		for (var i = endPos; i > 0 && st.scrollerStart.time - points[i].time < 100; i--) {
+			startPos = i;
+		}
+
+		if (startPos !== endPos) {
+			var ep = points[endPos];
+			var sp = points[startPos];
+			var t = ep.time - sp.time;
+			var s = ep.clientX - sp.clientX;
+			var v = s / t;
+			var tranX = v * 300 + tempTranX;
+			scrollerStop(ins, st.baseData.maxScroller, tranX, 0.3);
+		} else {
+			scrollerStop(ins, st.baseData.maxScroller, tempTranX, 0);
+		}
+	}
+}
+
 module.exports = {
+	scrollerStart: scrollerStart,
+	scrollerMove: scrollerMove,
+	scrollerEnd: scrollerEnd,
 	longPress: longPress,
 	touchMove: touchMove,
 	touchEnd: touchEnd,

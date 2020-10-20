@@ -17,6 +17,7 @@
 				extra-nodes="{{extraNodes}}"
 				list-data="{{listData}}"
 				columns="{{size}}"
+				maxContent="{{true}}"
 				scroll-top="{{scrollTop}}"
 				item-height="{{(750 - 8) / size}}"
 				top-size="110"
