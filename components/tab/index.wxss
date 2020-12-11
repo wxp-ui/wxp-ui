@@ -1,19 +1,20 @@
-.scroll-view {
+.tabs-wrap {
   width: 100%;
   height: 90rpx;
   overflow: hidden; }
 
-.tabs-wrap {
-  padding-bottom: 20rpx; }
+.scroll-view {
+  width: 100%;
+  height: 110rpx; }
 
 .tabs {
   position: relative;
   height: 90rpx;
   color: #999999;
-  display: flex; }
+  display: flex;
+  padding-bottom: 20rpx; }
   .tabs--scroll {
-    white-space: nowrap !important;
-    display: block !important; }
+    width: max-content; }
   .tabs--scroll .tabs__item {
     flex: initial !important;
     text-align: initial !important;
@@ -36,7 +37,7 @@
   .tabs__line {
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: 20rpx;
     background-color: #3F82FD;
     height: 4rpx;
     width: 0rpx;
