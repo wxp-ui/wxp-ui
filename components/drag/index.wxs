@@ -7,7 +7,7 @@ var sortCore = function (sKey, eKey, st) {
 
 	var excludeFix = function (cKey, type) {
 		if (st.list[cKey].fixed) { // fixed 元素位置不会变化, 这里直接用 cKey(sortKey) 获取, 更加快捷
-			var _cKey = type ? --cKey : ++cKey;
+			type ? --cKey : ++cKey;
 			return excludeFix(cKey, type);
 		}
 		return cKey;

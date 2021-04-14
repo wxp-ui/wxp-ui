@@ -20,14 +20,14 @@ let listData = [
 		title: "感受痛苦吧，体验痛苦吧，接受痛苦吧，了解痛苦吧。不知道痛苦的人是不会知道什么是和平",
 		description: "但我已经在无限存在的痛苦之中，有了超越凡人的成长。从凡人化为神",
 		images: "/assets/image/swipe/3.png",
-		fixed: false
+		fixed: true
 	},
 	{
 		dragId: "item3",
 		title: "我决定了 从今天起 我要选择一条不会让自己后悔的路 我要创造出属于自己的忍道 ",
 		description: "我才不要在这种时候放弃,即使当不成中忍,我也会通过其他的途径成为火影的,这就是我的忍道",
 		images: "/assets/image/swipe/4.png",
-		fixed: false
+		fixed: true
 	},
 	{
 		dragId: "item4",
