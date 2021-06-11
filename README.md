@@ -10,33 +10,44 @@ WxP UI 是一款提供高交互小程序插件的合集, 致力于简洁和高�
 
 ## 线上演示
 
-![WxP](http://www.singletouch.me/qrcode.jpeg)
+![WxP](http://www.singletouch.top/qrcode.jpeg)
 
 ## 微信交流群
 
 +微信 singletouch233 进群交流, 加的时候请备注: WxP UI. 您的 star 是我前进的动力～～.
 
-## Scss 转 Wxss 设置
+##Visual Studio Code
 
-### Visual Studio Code
+### Scss 转 Wxss
 
 [Live Sass Compiler 插件](https://marketplace.visualstudio.com/items?itemName=ritwickdey.live-sass)
 
 本项目默认包含.vscode 配置文件, 安装完插件即可使用
 
-### WebStorm
+## WebStorm
 
-preferences -> file watchers -> + scss 文件 ->
+### 代码提示
 
-![scss1](http://www.singletouch.me/webstorm_scss1.jpg)
+1. Preferences -> Plugins -> 搜索 `Wechat mini program support` 插件
+2. Preferences -> Languages & Frameworks -> JavaScript -> Libraries -> 启用wechat-mini-program-api
+
+### Scss 转 Wxss
+
+使用npm全局安装sass工具
+
+`npm install sass -g`
+
+Preferences -> Tools -> File Watchers -> + scss 文件 ->
+
+![scss1](http://www.singletouch.top/webstorm_scss1.jpg)
 
 将上图参数替换
-- `Arguments` 参数替换为 `--no-cache --update --style nested --sourcemap=none $FileName$:$FileNameWithoutExtension$.wxss`
+- `Arguments` 参数替换为 `--update --no-source-map $FileName$:$FileNameWithoutExtension$.wxss`
 - `Output paths to refresh` 参数替换为 `$FileNameWithoutExtension$.wxss`
 
 接着配置 `Scope` 即 `File Watcher` 在项目中作用域, 我们点击最外层文件夹然后选择 `Include Recursively` 即递归整个项目文件
 
-![scss2](http://www.singletouch.me/webstorm_scss2.jpg)
+![scss2](http://www.singletouch.top/webstorm_scss2.jpg)
 
 完成之后 `Apply` 即可
 

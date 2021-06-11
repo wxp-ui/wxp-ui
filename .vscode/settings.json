@@ -1,10 +1,10 @@
 {
-  "liveSassCompile.settings.formats": [
-    {
-      "format": "nested",
-      "extensionName": ".wxss"
-    }
-  ],
-  "liveSassCompile.settings.generateMap": false,
-  "liveSassCompile.settings.autoprefix": null
+	"liveSassCompile.settings.formats": [
+		{
+			"format": "expanded",
+			"extensionName": ".wxss"
+		}
+	],
+	"liveSassCompile.settings.generateMap": false,
+	"liveSassCompile.settings.autoprefix": null
 }
