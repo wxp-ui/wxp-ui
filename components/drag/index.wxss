@@ -11,3 +11,6 @@
       z-index: 2; }
     .item-wrap .item.fixed {
       z-index: 0 !important; }
+      .disable-pointer-events {
+        pointer-events: none;
+    }
