@@ -101,6 +101,9 @@ var longPress = function (event, ownerInstance) {
 	st.itemsInstance.forEach(function (item, index) {
 		item.removeClass("tran").removeClass("cur");
 		item.addClass(index === st.cur ? "cur" : "tran");
+		if (index !== st.cur) {
+		  item.addClass("disable-pointer-events"); // 添加类来禁用点击事件
+		}
 	})
 
 	ownerInstance.callMethod("vibrate");
@@ -178,6 +181,10 @@ var touchEnd = function (event, ownerInstance) {
 
 	if (!st.dragging) return;
 	triggerCustomEvent(st.list, "sortend", ownerInstance);
+
+	st.itemsInstance.forEach(function (item) {
+		item.removeClass("disable-pointer-events"); // 移除类来启用点击事件
+	});
 
 	ins.addClass("tran");
 	ins.setStyle({
