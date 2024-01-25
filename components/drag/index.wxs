@@ -110,6 +110,8 @@ var longPress = function (event, ownerInstance) {
 };
 
 var touchMove = function (event, ownerInstance) {
+	// 如果有多个触发点则返回
+	if (event.changedTouches.length > 1) return;
 	var ins = event.instance;
 	var st = ownerInstance.getState();
 	var _ = st.baseData;
@@ -189,6 +191,15 @@ var touchEnd = function (event, ownerInstance) {
 	ins.addClass("tran");
 	ins.setStyle({
 		'transform': 'translate3d(' + st.list[st.cur].tranX + ',' + st.list[st.cur].tranY + ', 0)'
+	});
+
+	// 重新排列所有元素
+	var list = sortCore(st.list[st.cur].sortKey, st.list[st.cur].sortKey, st);
+	st.itemsInstance.forEach(function (itemIns, index) {
+		var item = list[index];
+		itemIns.setStyle({
+			'transform': 'translate3d(' + item.tranX + ',' + item.tranY + ', 0)'
+		});
 	});
 
 	st.preStartKey = -1;
